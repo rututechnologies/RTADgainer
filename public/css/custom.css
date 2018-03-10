@@ -1,0 +1,317 @@
+#wrapper{
+    overflow-x:hidden;
+}
+table{
+    margin-bottom:0px !important;
+}
+
+.hr_style {
+    margin-top: 8px;
+    margin-bottom: 8px;
+}
+.modal-body{
+    padding:15px;
+}
+.col_style_right{
+ padding-right: 0;
+
+  }
+
+#col_style{
+    padding-right: 0;
+    padding-left: 0;
+}
+
+#responsive_padding_css .clear_padding_both{
+    padding:0;
+}
+.wrapper-content{
+        padding: 13px 25px 40px;
+}
+.form-control{
+    padding:6px 3px 6px 6px !important;
+    font-size: 14px !important;
+}
+::-webkit-scrollbar {
+    width: 7px;
+    height: 8px;
+
+}
+
+::-webkit-scrollbar-track {
+    background:rgb(255, 250, 250);
+    /*border: 4px solid transparent;*/
+    background-clip: content-box;
+    border-radius: 10px;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+    /*background: rgba(113, 102, 102, 0.83);*/
+    border: 1px solid rgb(0,0,0);
+    border-radius: 10px;
+}
+
+.ibox{
+    margin-bottom:8px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+
+}
+.ibox-content {
+    padding: 10px;
+}
+.table-responsive{
+
+}
+#log_div_style{
+    margin-top:-15px;
+}
+/* .modal-fullscreen size*/
+
+.modal-fullscreen {
+    background:  #ffffff;
+    /*opacity: .97;*/
+}
+.modal-fullscreen .modal-dialog {
+    margin: 0;
+    margin-right: auto;
+    margin-left: auto;
+    width: 100%;
+}
+.modal-fullscreen .modal-content {
+    background: rgba(255, 255, 255, 0.9);
+    border: 0;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+}
+.modal-backdrop.modal-backdrop-fullscreen {
+    background: #ffffff;
+}
+.modal-backdrop.modal-backdrop-fullscreen.in {
+    opacity: .97;
+    filter: alpha(opacity=97);
+}
+.tabs-left>.nav-tabs>li, .tabs-right>.nav-tabs>li {
+    float: none !important;
+}
+.tabs-left>.nav-tabs>li>a, .tabs-right>.nav-tabs>li>a {
+    min-width: 74px;
+    margin-right: 0;
+    margin-bottom: 3px;
+}
+.tabs-left>.nav-tabs>li>a {
+    margin-right: -1px;
+    -webkit-border-radius: 0;
+    -moz-border-radius: 0;
+    border-radius: 0;
+}
+.tabs-left>.nav-tabs>li>a:focus, .tabs-left>.nav-tabs>li>a:hover {
+    border-color: #eee #ddd #eee #eee;
+}
+.tabs-left>.nav-tabs .active>a, .tabs-left>.nav-tabs .active>a:focus, .tabs-left>.nav-tabs .active>a:hover {
+    border-color: #ddd transparent #ddd #ddd;
+}
+.box-info .nav-tabs {
+    background: #F3F3F4;
+    height:89vh;
+}
+.box-info .nav-tabs>li>a {
+    line-height: 1.428571429;
+    font-size: 12px;
+    border-top: none;
+    border-right: none;
+    border-left: none;
+    border-bottom: none;
+    border-radius: 0;
+    margin: 0;
+    color: #8B91A0;
+}
+.box-info .nav-tabs>li>a i {
+    /*color: #fff;*/
+}
+
+.box-info .nav-tabs>li.active>a, .box-info .nav-tabs>li.active>a:focus, .box-info .nav-tabs>li.active>a:hover {
+    cursor: default;
+    border-top: none;
+    border-right: none;
+    border-left: none;
+    border-bottom: none;
+    background-color: #fff;
+    color: #1B1E24;
+}
+.box-info .nav-tabs>li.active>a i, .box-info .nav-tabs>li.active>a:focus i, .box-info .nav-tabs>li.active>a:hover i {
+    color: #212121;
+}
+
+/*Responsive Media Query*/
+
+@media only screen and (max-width: 320px) {
+
+}
+@media only screen and (max-width: 767px){
+    .col_style{
+        padding-right: 0;
+        padding-left: 0;
+    }
+
+}
+@media only screen and (min-width: 768px) {
+    .col_style_left{
+        padding-left: 0;
+    }
+
+}
+
+#map-canvas{
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2) !important;
+}
+#right-sidebar2{
+    box-shadow: 0 16px 30px 5px rgba(0, 0, 0, 0.2);
+}
+
+#right-sidebar{
+    box-shadow: 0 16px 30px 5px rgba(0, 0, 0, 0.2);
+}
+
+.product-desc{
+    padding:0px !important;
+    height:333px;
+    background-color: white;
+}
+.profile_status{
+    height:70px;
+}
+.product-imitation{
+    padding:50px 0px !important;
+    background-color: white !important;
+}
+
+.carousel-caption {
+    right: 0.4%;
+    left: 0.4%;
+    bottom: 0.4%;
+    padding:0;
+}
+.carousel-control{
+    color:rgba(236, 240, 245, 0.79);
+}
+
+
+.slider_tile{
+    margin:13px 4px 0 13px;
+    float:left;
+    border:0.5px solid #eee;
+    text-align:center;
+    background: #eee;
+}
+.slider_image_heading{
+    /*color: chocolate;*/
+    color:#fff;
+    /*box-shadow: 1px -1px 1px 2px #eee;*/
+    font-size:20px;
+}
+.thumbnail{
+    margin-bottom:0!important;
+    padding:0px;
+}
+#slider-thumbs #myCarousel_thumbnail_image{
+    /*overflow-x: scroll;*/
+    /* overflow-y: hidden; */
+}
+#slider-thumbs{
+    /*overflow-x: ;*/
+}
+#doc_show_div{
+    margin-top:15px;
+}
+
+/*lightbox*/
+.li_image_link {
+    display: inline-block;
+    padding: 2px;
+    margin: 0 0.5rem 1rem 0.5rem;
+    background-color: #fff;
+    line-height: 0;
+    border-radius: 6px;
+    transition: background-color 0.5s ease-out; }
+.li_image_link:hover {
+    background-color: #3071A9;
+    /*transition: none; */
+}
+
+.li_image {
+
+}
+
+#update_ambulance_item{
+    max-height: 520px;
+    overflow-y: scroll;
+}
+
+.page-heading{
+    margin-left:auto !important;
+    padding: 0px 0px 0px 10px;
+}
+
+.media-body > h4 {
+    font-size:17px !important;
+}
+
+.checkbox-inline{
+    padding-left: 65px !important;
+}
+
+.ibox-content{
+    border-color: #fff !important;
+}
+.media{
+    margin-top:0px !important;
+}
+
+#p_name{
+    font-size:20px !important;
+}
+
+#btn_size{
+    height:30px !important;
+    width:auto;
+}
+h4.icons_result_text{
+    margin-top:auto;
+}
+.m-t-lg{
+    margin-top: 0px !important;
+}
+
+hr#op_fulldetails_line{
+    margin-left: 14px !important;
+    margin-right: 14px !important;
+    border-top: 0.1px dotted #A7B1C2 !important;
+}
+.align_content_column{
+    white-space:nowrap;
+    width: 80px !important;
+}
+#align_content_column{
+    white-space:nowrap;
+    width: 40px !important;
+    text-align: center;
+}
+.module_heading{
+    font-size: 24px !important;
+}
+
+.widget-adjust1{
+    margin-bottom: 0px !important;
+    margin-top: 0px !important;
+    padding: 0px !important;
+}
+.navbar-brand{
+    padding: 7px 15px;
+}
+.nav>li>a{
+    color: white;
+}
+.tabs-container .nav-tabs > li.active > a, .tabs-container .nav-tabs > li.active > a:hover, .tabs-container .nav-tabs > li.active > a:focus{
+    background-color: #d2dffb;
+}
