@@ -89,6 +89,11 @@
                 <a href="{{ url('/message') }}"><i class="fa
                 fa-commenting"></i> <span class="nav-label">Message Center</span></a>
             </li>
+            <li class="{{ isActiveRoute('Autoissue') }}">
+                <a href="{{ url('/autoissue') }}">
+                    <i class="fa fa-phone"></i> <span class="nav-label">Autoissue</span>
+                </a>
+            </li>
             <li class="{{ isActiveRoute('PPCManagement') }}">
                 <a href="{{ url('/center') }}"><i class="fa
                 fa-dashboard"></i> <span class="nav-label">PPC Management</span></a>

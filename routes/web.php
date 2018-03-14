@@ -93,3 +93,12 @@ Route::group(['namespace'=>'V1','middleware'=>['web','auth']], function () {
   Route::get('/Campaigntools', ['uses' => 'CampaigntoolsController@Campaigntools']);
   //
   Route::get('/Accountsa', ['uses' => 'AccountsaController@Accountsa']);
+  
+// autoissue
+Route::group( [ 'namespace' => 'Autoissue', 'middleware' => [ 'web', 'auth' ] ], function () {
+    Route::get( '/autoissue', 'AutoissueController@index' );
+    Route::get( '/autoissue/transfer-setting', 'AutoissueController@transferSetting' );
+    Route::get( '/autoissue/change-client-number', 'AutoissueController@changeClientNumber' );
+    Route::get( '/autoissue/schedule', 'AutoissueController@schedule' );
+    Route::get( '/autoissue/intec-client', 'AutoissueController@intecClient' );
+} );
