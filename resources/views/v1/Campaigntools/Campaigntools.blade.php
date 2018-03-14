@@ -150,7 +150,7 @@
                                                     
                                                         <span>Archive?</span> <input type="checkbox" id="look_archive" />
                                                         <br><br>
-                                                        <button id="updateAccountOverviewDate">View Data</button>
+                                                        <a href="{{url('viewbutton')}}"><button id="updateAccountOverviewDate">View Data</button></a>
                                                          &nbsp;&nbsp;&nbsp;
                                                         <button id="clearAccount">Start Over</button>
                                                         

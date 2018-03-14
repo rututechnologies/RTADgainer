@@ -82,7 +82,7 @@
                 fa-file"></i> <span class="nav-label">Reports</span></a>
             </li>
             <li class="{{ isActiveRoute('MyCampaign') }}">
-                <a href="{{ url('/Mycampaign') }}"><i class="fa
+                <a href="{{ url('/mycampiagn') }}"><i class="fa
                 fa-dashboard"></i> <span class="nav-label">My Campaign</span></a>
             </li>
             <li class="{{ isActiveRoute('MessageCenter') }}">
