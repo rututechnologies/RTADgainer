@@ -93,3 +93,26 @@ Route::group(['namespace'=>'V1','middleware'=>['web','auth']], function () {
   Route::get('/Campaigntools', ['uses' => 'CampaigntoolsController@Campaigntools']);
   //
   Route::get('/Accountsa', ['uses' => 'AccountsaController@Accountsa']);
+  //
+  Route::get('/viewbutton', ['uses' => 'viewbuttonController@viewbutton']);
+  //
+  Route::get('/mycampiagn', ['uses' => 'mycampiagnController@mycampiagn']);
+  //
+  Route::get('/management', ['uses' => 'iconController@management']);
+  //
+  Route::get('/delect', ['uses' => 'iconController@delect']);
+  //
+   Route::get('/buttonform', ['uses' => 'iconController@buttonform']);
+   //
+   Route::get('/lkg', ['uses' => 'lkgController@lkg']);  
+   //
+   Route::get('/eidtbutton', ['uses' => 'iconController@eidtbutton']);
+   //
+    Route::get('/passwordb', ['uses' => 'passwordController@passwordbutton']); 
+
+    //
+     Route::get('/callrecords', ['uses' => 'callrecordsController@callrecords']); 
+     //
+      Route::get('/ppcdail', ['uses' => 'callrecordsController@ppcdail']);
+      //
+       Route::get('/map', ['uses' => 'mapController@map']);
