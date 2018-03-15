@@ -94,18 +94,7 @@
         	</div></a>
     	</div>
     </div>
-     <div class="col-lg-3">
-        <div class="widget style1 btn-warning">
-            <div class="row">
-            	<div class="col-xs-4">
-                    <i class="fa fa-lock fa-5x"></i>
-                </div>
-	            <div class="col-xs-8 text-right">
-	                <h3 class="font-bold">PPC Management</h3>
-	            </div>
-        	</div>
-    	</div>
-    </div>
+     
      <div class="col-lg-3">
         <div class="widget style1 btn-default">
              <a href="{{url('agencyd')}}" style="color:#fff;"><div class="row">

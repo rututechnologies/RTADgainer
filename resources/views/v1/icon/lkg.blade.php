@@ -36,8 +36,8 @@
 <div class="container">
   <ul class="nav nav-tabs">
     
-    <li class="active"><a data-toggle="tab" href="#menu1">General Settings</a></li>
-    <li><a data-toggle="tab" href="#menu2">Billing Information</a></li>
+    <li class="active"><a data-toggle="tab" href="#menu1" style='color:black'>General Settings</a></li>
+    <li><a data-toggle="tab" href="#menu2" style='color:black'>Billing Information</a></li>
     
   </ul>
 
@@ -71,7 +71,7 @@
                     <td><label>Password</label></td>
                    
                         
-                            <td><a href="{{url('')}}"><b>Edit Password</b></a></td></tr>
+                            <td><a href="{{url('passwordb')}}"><b>Edit Password</b></a></td></tr>
                         </a>
                     
                 <tr>

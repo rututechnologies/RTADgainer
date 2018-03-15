@@ -116,7 +116,12 @@ Route::group(['namespace'=>'V1','middleware'=>['web','auth']], function () {
       Route::get('/ppcdail', ['uses' => 'callrecordsController@ppcdail']);
       //
        Route::get('/map', ['uses' => 'mapController@map']);
-
+       //
+       Route::get('/profile', ['uses' => 'iconController@profile']);
+       //
+             Route::get('/interface', ['uses' => 'iconController@interface']);
+//
+   Route::get('/adduser', ['uses' => 'iconController@adduser']);
        
 // autoissue
 Route::group( [ 'namespace' => 'Autoissue', 'middleware' => [ 'web', 'auth' ] ], function () {

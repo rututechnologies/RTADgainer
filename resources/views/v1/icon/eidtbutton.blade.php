@@ -72,7 +72,7 @@
                     <td><label>Password</label></td>
                    
                         
-                           <td> <a href="{{url('passwordb')}}"> <b>Edit Password</b></a></td></tr>
+                           <td>Edit Password</td></tr>
                        
                     
                 <tr>

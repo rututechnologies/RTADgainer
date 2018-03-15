@@ -70,9 +70,9 @@
                 
                     <td><label>Password</label></td>
                    
-                        <a href="" target="_blank">
+                        
                             <td><b>Edit Password</b></td></tr>
-                        </a>
+                       
                     
                 <tr>
                

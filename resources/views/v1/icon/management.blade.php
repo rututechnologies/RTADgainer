@@ -64,7 +64,7 @@
 											<div style="float:right;width:200px;">
 
 												 &nbsp;&nbsp;
-															<a href=''>
+															<a href="{{url('newCampaign')}}"> 
 																<img src='https://testenvadgainer.adgainersolutions.com/adgainer/application/images/icons/black/16/pencil.png' alt='Edit' />
 															</a>&nbsp;&nbsp;
 															<a href='{{ url('/delect') }}'>

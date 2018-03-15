@@ -102,10 +102,6 @@
                 <a href="{{ url('/agencyd') }}"><i class="fa
                 fa-user-secret"></i> <span class="nav-label">Agency</span></a>
             </li>
-            <li class="{{ isActiveRoute('japanese') }}">
-                <a href="{{ url('/japanese') }}"><i class="fa
-                fa-dashboard"></i> <span class="nav-label">電話転送先設定</span></a>
-            </li>
 
         </ul>
     </div>

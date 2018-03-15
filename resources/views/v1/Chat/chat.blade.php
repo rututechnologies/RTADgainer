@@ -35,8 +35,7 @@
 
 <div class="w3-container">
 <br><br><br><br><br><br><br><br><br><br><br><br>
- &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="{{url('message')}}"> <button class="button">Message Center</button></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-<a href="{{url('webchat')}}"> <button class="button">Web chat</button></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="{{ url('preGeneratedMessages') }}"><button class="button">Pre Msg</button></a>
+ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="{{ url('preGeneratedMessages') }}"><button class="button">Pre Msg</button></a>
  </div>
  @endsection
 
