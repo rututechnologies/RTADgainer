@@ -85,19 +85,19 @@
                 <a href="{{ url('/mycampiagn') }}"><i class="fa
                 fa-dashboard"></i> <span class="nav-label">My Campaign</span></a>
             </li>
-            <li class="{{ isActiveRoute('MessageCenter') }}">
+            <!-- <li class="{{ isActiveRoute('MessageCenter') }}">
                 <a href="{{ url('/message') }}"><i class="fa
                 fa-commenting"></i> <span class="nav-label">Message Center</span></a>
-            </li>
+            </li> -->
             <li class="{{ isActiveRoute('Autoissue') }}">
                 <a href="{{ url('/autoissue') }}">
                     <i class="fa fa-phone"></i> <span class="nav-label">Autoissue</span>
                 </a>
             </li>
-            <li class="{{ isActiveRoute('PPCManagement') }}">
+            <!-- <li class="{{ isActiveRoute('PPCManagement') }}">
                 <a href="{{ url('/center') }}"><i class="fa
                 fa-dashboard"></i> <span class="nav-label">PPC Management</span></a>
-            </li>
+            </li> -->
             <li class="{{ isActiveRoute('Agency') }}">
                 <a href="{{ url('/agencyd') }}"><i class="fa
                 fa-user-secret"></i> <span class="nav-label">Agency</span></a>
