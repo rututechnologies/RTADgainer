@@ -35,7 +35,8 @@
 
 <div class="w3-container">
 <br><br><br><br><br><br><br><br><br><br><br><br>
- &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="{{url('Accountsa')}}"> <button class="button">Account</button></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="{{ url('center') }}"><button class="button">New Sp Acct.</button></a>
+ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="{{url('Accountsa')}}"> <button class="button">Account</button></a>
+
  </div>
  @endsection
 

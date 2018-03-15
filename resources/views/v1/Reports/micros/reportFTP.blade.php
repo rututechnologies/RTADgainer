@@ -36,31 +36,31 @@
 <div class="w3-container">
 
 
-<div class="da-form-row" style="margin-left:30px;">
+<div class="da-form-row" style="margin-left:50px">
 <img src="https://testenvadgainer.adgainersolutions.com/adgainer/application/images/icons/black/16/pencil.png" alt="Edit" /> <b>Save FTP</b><br><hr>
 							<span>Save FTP settings for your automated reports to be sent to your FTP.</span>
 							<div class="da-form-item large">
 							<table align="left" cellpadding = "10">
 								<tr><td><div class="rowName">
-									Host:
+									Host</td><td>:</td>
 								</div></td><td>
 								<div class="rowValue">
-									<input type="text" id="host" name="host" class="req" /> <br/>
+									<input type="text" id="host" name="host" class="shadow" /> <br/>
 								</div></td></tr><tr><td>
 								<div class="rowName">
-									Username:
+									Username</td><td>:</td>
 								</div></td><td>
 								<div class="rowValue">
-									<input type="text" id="ftp_username" name="ftp_username" class="req" /> <br/>
+									<input type="text" id="ftp_username" name="ftp_username" class="shadow" /> <br/>
 								</div></td></tr><tr><td>
 								<div class="rowName">
-									Password:
+									Password</td><td>:</td>
 								</div></td><td>
 								<div class="rowValue">
-									<input type="password" id="ftp_password" name="ftp_password" class="req" /> <br/>
+									<input type="password" id="ftp_password" name="ftp_password" class="shadow" /> <br/>
 								</div></td></tr><tr><td>
 								<div class="rowName">
-									Port:
+									Port</td><td>:</td>
 								</div></td><td>
 								<div class="rowValue">
 									<select id="port" name="port">
@@ -69,15 +69,15 @@
 									</select> <br/>
 								</div></td></tr><tr><td>
 								<div class="rowName">
-									Destination Folder:
+									Destination Folder</td><td>:</td>
 								</div></td><td>
 								<div class="rowValue">
-									<input type="text" id="folder" name="folder" class="req" placeholder="/home/" /> <br/>
+									<input type="text" id="folder" name="folder" class="req" placeholder="/home/"  class="shadow"/> <br/>
 								</div></td></tr>
 								<tr><td>
 								<div class="da-button-row">
 
-									<input type="submit" id="" value="Save" class="da-button green" >
+									<input type="submit" id="" value="Save" class="btncolor" >
 																		</div></td></tr>
 								</table>
 									 
@@ -94,28 +94,29 @@
  </div>
  @endsection
 
-  <style>
-.button {
-  padding: 15px 25px;
-  font-size: 24px;
-  text-align: center;
-  cursor: pointer;
-  outline: none;
-  color: #fff;
-  background-color: #075f98;
-  border: none;
-  border-radius: 15px;
-  box-shadow: 0 9px #999;
+ <style>
+.btncolor{
+background-color:#20B2aa;
+color:white;
+border:1px solid gray;
+border-radius:10px;
+padding:5px;
+width:100px;
+box-shadow:5px 5px 5px -2px rgba(0,0,0,0.6);
 }
-
-.button:hover {background-color: #3e8e41}
-
-.button:active {
-  background-color: #3e8e41;
-  box-shadow: 0 5px #666;
-  transform: translateY(4px);
+.shadow{
+width:100px;
+heigth:25;
+box-shadow:inset 0px 0px 10px rgba(0,0,0,0.3);
 }
-</style>  
+td{
+padding-top:1em;
+padding-bottom:1em;
+}
+tr.spaceUnder>td{
+padding-bottom:1em;
+}
+</style>
 
 @section('scripts')
     <script>

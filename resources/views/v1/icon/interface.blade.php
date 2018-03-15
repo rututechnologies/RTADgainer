@@ -34,47 +34,51 @@
     </div>
 
 <div class="w3-container">
-
-<div class="btn-grid">
-                        &nbsp;&nbsp;<a href="{{url('profile')}}"><button type="button" class="btn btn-primary" class="btn btn-default">Profile</button></a>
+     &nbsp;&nbsp;&nbsp;&nbsp;<a href="{{url('profile')}}"><button type="button" class="btn btn-primary" class="btn btn-default">Profile</button></a>
                         <a href="{{url('passwordb')}}"><button type="button" class="btn btn-primary" >Password</button></a>
                         <a href="{{url('interface')}}"><button type="button" class="btn btn-primary" class="btn btn-default">Interface</button></a>
                          <a href="{{url('adduser')}}"><button type="button" class="btn btn-primary" class="btn btn-default">Add User</button></a>
                          <a href="{{url('buttonform')}}"><button type="button" class="btn btn-primary" class="btn btn-default">My Account</button></div></a>
-                    
-                    
+<img src="https://testenvadgainer.adgainersolutions.com/adgainer/application/images//icons/black/16/pencil.png" alt="">
+                                            Edit Your Profile<hr>
+                                        
+                                        <form action="" class="da-form"  method="post" >
+                                        
+                                            <table>
+                                            <tr>
+                                                <td><label>Logo</label></td>
+                                                
+                                                    <td>Current: ad-gainer-logo-v1.1-250x54px-transp-bkgd-flat.png<br/><br> 
+                                                    File: <input type="file" name="logo" ><br/><br>
                                                     
-                                    
-    <img src="https://testenvadgainer.adgainersolutions.com/adgainer/application/images/icons/black/16/pencil.png" alt=""><b>Change Your Password</b><hr width="50%" align="left">
-                                            <br>
+                                                    URL:  <input type="text" name='logo_url' value="" ><br/></td></tr>
+<tr>
+                                                
+                                                <td><label>Color</label></td>
+                                                
+                                                     <td><input type="color" name='color' style="width:100px" value="##000000" ></td>
+                                                     </tr>
+                                                <tr>
+                                                <td style='margin-bottom:5px'><label>Wallpaper</label></td>
+                                                
+                                                    <td>Current:<br><br>                                                <input type="file" name="wallpaper" >
+                                                    <br/>
+                                                    <br/>
+                                                    URL:  <input name='wallpaper_url' value="" ></td>
+                                                    </tr>
+                                                    </table>
+                                                
 
-                                    
-                                    <table>
-                                    <tr>
-                                    
-                                            
-                                                <td><label>Username</label></td>
-                                                
-                                                    <td><input type="text" name="username" value="cgibbs" readonly="readonly"/></td></tr>
-                                                <tr>
-                                                <td><label>Current Password</label></td>
-                                                
-                                                    <td><input type="password" name="oldPassword" class="req" required></td></tr>
-                                                <tr>
-                                                <td><label>New Password</label></td>
-                                                
-                                                    <td><input type="password" name="newPassword" class="req"  required></td>
-                                                </tr>
-                                                <table>
+                                        
                                                 <input type="reset" value="Reset" class="da-button gray left">
-                                                &nbsp;&nbsp;&nbsp;<input type="submit" value="Update Password" class="da-button green">
+                                                <input type="submit" value="Update Profile Information" class="da-button green">
                                             
-                                    
-                                    
+                                        </form>
+
 
 
 </div>
- @endsection
+@endsection
 <style>
 td {
     padding-top: .1em;

@@ -384,7 +384,7 @@
         <a href='{{ url('/management') }}'>
             <img src='https://testenvadgainer.adgainersolutions.com/adgainer/application/images/icons/black/16/settings.png' alt='Manage' />
         </a> &nbsp;&nbsp;
-        <a href='{{ url('/') }}'>
+        <a href="{{url('newCampaign')}}">
             <img src='https://testenvadgainer.adgainersolutions.com/adgainer/application/images/icons/black/16/pencil.png' alt='Edit' />
         </a>&nbsp;&nbsp;
         <a href='{{ url('/delect') }}'>
@@ -432,7 +432,7 @@
         <a href='{{ url('/management') }}'>
             <img src='https://testenvadgainer.adgainersolutions.com/adgainer/application/images/icons/black/16/settings.png' alt='Manage' />
         </a> &nbsp;&nbsp;
-        <a ='https://testenvadgainer.adgainersolutions.com/adgainer/campaign/edit?campaign_id=5e391fdc28041ad372488d3d4a0671e9&account_id=24c9e15e52afc47c225b757e7bee1f9d'>
+        <a href="{{url('newCampaign')}}">
             <img src='https://testenvadgainer.adgainersolutions.com/adgainer/application/images/icons/black/16/pencil.png' alt='Edit' />
         </a>&nbsp;&nbsp;
        <a href='{{ url('/delect') }}'>
@@ -480,7 +480,7 @@
         <a href='{{ url('/management') }}'>
             <img src='https://testenvadgainer.adgainersolutions.com/adgainer/application/images/icons/black/16/settings.png' alt='Manage' />
         </a> &nbsp;&nbsp;
-        <a ='https://testenvadgainer.adgainersolutions.com/adgainer/campaign/edit?campaign_id=952e8ab2c1640fe4b6a630ad5ecf37ce&account_id=24c9e15e52afc47c225b757e7bee1f9d'>
+       <a href="{{url('newCampaign')}}">
             <img src='https://testenvadgainer.adgainersolutions.com/adgainer/application/images/icons/black/16/pencil.png' alt='Edit' />
         </a>&nbsp;&nbsp;
 <a href='{{ url('/delect') }}'>
@@ -527,7 +527,7 @@
     <td class='  tall_line_height'>
         <a href='{{ url('/management') }}'>
         </a> &nbsp;&nbsp;
-        <a ='https://testenvadgainer.adgainersolutions.com/adgainer/campaign/edit?campaign_id=8da7ce86124f3d9509b336e495cd973d&account_id=24c9e15e52afc47c225b757e7bee1f9d'>
+       <a href="{{url('newCampaign')}}">
             <img src='https://testenvadgainer.adgainersolutions.com/adgainer/application/images/icons/black/16/pencil.png' alt='Edit' />
         </a>&nbsp;&nbsp;
 <a href='{{ url('/delect') }}'>
@@ -575,7 +575,7 @@
        <a href='{{ url('/management') }}'>
             <img src='https://testenvadgainer.adgainersolutions.com/adgainer/application/images/icons/black/16/settings.png' alt='Manage' />
         </a> &nbsp;&nbsp;
-        <a ='https://testenvadgainer.adgainersolutions.com/adgainer/campaign/edit?campaign_id=cd269bea65932ebac54bcf5b70b6d5f9&account_id=24c9e15e52afc47c225b757e7bee1f9d'>
+       <a href="{{url('newCampaign')}}">
             <img src='https://testenvadgainer.adgainersolutions.com/adgainer/application/images/icons/black/16/pencil.png' alt='Edit' />
         </a>&nbsp;&nbsp;
 <a href='{{ url('/delect') }}'>
@@ -623,7 +623,7 @@
         <a href='{{ url('/management') }}'>
             <img src='https://testenvadgainer.adgainersolutions.com/adgainer/application/images/icons/black/16/settings.png' alt='Manage' />
         </a> &nbsp;&nbsp;
-        <a ='https://testenvadgainer.adgainersolutions.com/adgainer/campaign/edit?campaign_id=81b62689975466780b925249d2b70afe&account_id=24c9e15e52afc47c225b757e7bee1f9d'>
+        <a href="{{url('newCampaign')}}">
             <img src='https://testenvadgainer.adgainersolutions.com/adgainer/application/images/icons/black/16/pencil.png' alt='Edit' />
         </a>&nbsp;&nbsp;
 <a href='{{ url('/delect') }}'>
@@ -671,7 +671,7 @@
        <a href='{{ url('/management') }}'>
             <img src='https://testenvadgainer.adgainersolutions.com/adgainer/application/images/icons/black/16/settings.png' alt='Manage' />
         </a> &nbsp;&nbsp;
-        <a ='https://testenvadgainer.adgainersolutions.com/adgainer/campaign/edit?campaign_id=68244ad14b88617590316527ffd0f678&account_id=24c9e15e52afc47c225b757e7bee1f9d'>
+       <a href="{{url('newCampaign')}}">
             <img src='https://testenvadgainer.adgainersolutions.com/adgainer/application/images/icons/black/16/pencil.png' alt='Edit' />
         </a>&nbsp;&nbsp;
 <a href='{{ url('/delect') }}'>
@@ -719,7 +719,7 @@
         <a href='{{ url('/management') }}'>
             <img src='https://testenvadgainer.adgainersolutions.com/adgainer/application/images/icons/black/16/settings.png' alt='Manage' />
         </a> &nbsp;&nbsp;
-        <a ='https://testenvadgainer.adgainersolutions.com/adgainer/campaign/edit?campaign_id=9212bd82a3006a4fd6d642144d6c7f77&account_id=24c9e15e52afc47c225b757e7bee1f9d'>
+       <a href="{{url('newCampaign')}}">
             <img src='https://testenvadgainer.adgainersolutions.com/adgainer/application/images/icons/black/16/pencil.png' alt='Edit' />
         </a>&nbsp;&nbsp;
 <a href='{{ url('/delect') }}'>
@@ -767,7 +767,7 @@
         <a href='{{ url('/management') }}'>
             <img src='https://testenvadgainer.adgainersolutions.com/adgainer/application/images/icons/black/16/settings.png' alt='Manage' />
         </a> &nbsp;&nbsp;
-        <a ='https://testenvadgainer.adgainersolutions.com/adgainer/campaign/edit?campaign_id=ba6b4d182fc22e41e3bbf8d36380f926&account_id=24c9e15e52afc47c225b757e7bee1f9d'>
+        <a href="{{url('newCampaign')}}">
             <img src='https://testenvadgainer.adgainersolutions.com/adgainer/application/images/icons/black/16/pencil.png' alt='Edit' />
         </a>&nbsp;&nbsp;
 <a href='{{ url('/delect') }}'>
@@ -815,7 +815,7 @@
         <a href='{{ url('/management') }}'>
             <img src='https://testenvadgainer.adgainersolutions.com/adgainer/application/images/icons/black/16/settings.png' alt='Manage' />
         </a> &nbsp;&nbsp;
-        <a ='https://testenvadgainer.adgainersolutions.com/adgainer/campaign/edit?campaign_id=6cbcc3a49d3512658d35a1092b1a9dfd&account_id=24c9e15e52afc47c225b757e7bee1f9d'>
+        <a href="{{url('newCampaign')}}">
             <img src='https://testenvadgainer.adgainersolutions.com/adgainer/application/images/icons/black/16/pencil.png' alt='Edit' />
         </a>&nbsp;&nbsp;
 <a href='{{ url('/delect') }}'>
@@ -863,7 +863,7 @@
         <a href='{{ url('/management') }}'>
             <img src='https://testenvadgainer.adgainersolutions.com/adgainer/application/images/icons/black/16/settings.png' alt='Manage' />
         </a> &nbsp;&nbsp;
-        <a ='https://testenvadgainer.adgainersolutions.com/adgainer/campaign/edit?campaign_id=f38c384a2a305f7c9c1d745c3df97664&account_id=24c9e15e52afc47c225b757e7bee1f9d'>
+        <a href="{{url('newCampaign')}}">
             <img src='https://testenvadgainer.adgainersolutions.com/adgainer/application/images/icons/black/16/pencil.png' alt='Edit' />
         </a>&nbsp;&nbsp;
 <a href='{{ url('/delect') }}'>
@@ -911,7 +911,7 @@
         <a href='{{ url('/management') }}'>
             <img src='https://testenvadgainer.adgainersolutions.com/adgainer/application/images/icons/black/16/settings.png' alt='Manage' />
         </a> &nbsp;&nbsp;
-        <a ='https://testenvadgainer.adgainersolutions.com/adgainer/campaign/edit?campaign_id=d720d74f3beb79f08150b1b1645b3ff0&account_id=24c9e15e52afc47c225b757e7bee1f9d'>
+        <a href="{{url('newCampaign')}}">
             <img src='https://testenvadgainer.adgainersolutions.com/adgainer/application/images/icons/black/16/pencil.png' alt='Edit' />
         </a>&nbsp;&nbsp;
 <a href='{{ url('/delect') }}'>
@@ -959,7 +959,7 @@
        <a href='{{ url('/management') }}'>
             <img src='https://testenvadgainer.adgainersolutions.com/adgainer/application/images/icons/black/16/settings.png' alt='Manage' />
         </a> &nbsp;&nbsp;
-        <a =''>
+       <a href="{{url('newCampaign')}}">
             <img src='https://testenvadgainer.adgainersolutions.com/adgainer/application/images/icons/black/16/pencil.png' alt='Edit' />
         </a>&nbsp;&nbsp;
        <a href='{{ url('/delect') }}'>
@@ -1007,7 +1007,7 @@
        <a href='{{ url('/management') }}'>
             <img src='https://testenvadgainer.adgainersolutions.com/adgainer/application/images/icons/black/16/settings.png' alt='Manage' />
         </a> &nbsp;&nbsp;
-        <a =''>
+       <a href="{{url('newCampaign')}}">
             <img src='https://testenvadgainer.adgainersolutions.com/adgainer/application/images/icons/black/16/pencil.png' alt='Edit' />
         </a>&nbsp;&nbsp;
        <a href='{{ url('/delect') }}'>
@@ -1055,7 +1055,7 @@
        <a href='{{ url('/management') }}'>
             <img src='https://testenvadgainer.adgainersolutions.com/adgainer/application/images/icons/black/16/settings.png' alt='Manage' />
         </a> &nbsp;&nbsp;
-        <a =''>
+        <a href="{{url('newCampaign')}}">
             <img src='https://testenvadgainer.adgainersolutions.com/adgainer/application/images/icons/black/16/pencil.png' alt='Edit' />
         </a>&nbsp;&nbsp;
        <a href='{{ url('/delect') }}'>
@@ -1103,7 +1103,7 @@
         <a href='{{ url('/management') }}'>
             <img src='https://testenvadgainer.adgainersolutions.com/adgainer/application/images/icons/black/16/settings.png' alt='Manage' />
         </a> &nbsp;&nbsp;
-        <a =''>
+       <a href="{{url('newCampaign')}}">
             <img src='https://testenvadgainer.adgainersolutions.com/adgainer/application/images/icons/black/16/pencil.png' alt='Edit' />
         </a>&nbsp;&nbsp;
        <a href='{{ url('/delect') }}'>

@@ -37,7 +37,7 @@
 <span class="da-panel-title"> <br>
 <table>
     <b>Upload PPC Records for Comparison</b>
-    <hr>
+    <hr width="50%" align="left">
                                         </span>
                                     <div>
                                     <tr>
@@ -45,7 +45,7 @@
                                         <form class="da-form" method="post" action="#" enctype="multipart/form-data">
                                             
                                             <div class="da-form-row">
-                                                <td>Existing Reports :   </td>
+                                                <td>Existing Reports &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
                                                 <div>
                                                     <td><select id="selectReportToView" class="textShadow">
                                                     <option value="">Select Report</option>
@@ -60,7 +60,7 @@
                                 </tr>
                         </div>
           </table>              <br/>
-          <hr>
+          <hr width="50%" align="left">
                  
                         
                         <div class="clear"></div>
@@ -72,15 +72,15 @@
                                         <span class="da-panel-title" style="height:auto">
                                              <span><b>Upload PPC Records for Comparison</b></span>
                                              <br/><br/>
-                                            <hr>
+                                            <hr width="50%" align="left">
                 <table>                                                                 </span>         
                                     </div>
                                     
                                     <div class="da-panel-content">
-                                        <form class="da-form" method="post" action="https://testenvadgainer.adgainersolutions.com/adgainer/report/do_uploadDataComparison" enctype="multipart/form-data"  onsubmit="checkCamp()">
+                                        <form class="da-form">
                                                                                     
-                                            <div class="da-form-row" ><tr></tr><tr></tr><tr></tr><tr></tr><tr></tr><tr></tr><tr></tr><tr></tr><tr></tr><tr></tr><tr></tr>
-                                            <tr>    <td>Account* : </td>
+                                            <div class="da-form-row" >
+                                            <tr>    <td>Account*&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
                                                 <td><div class="da-form-item large"">
                                                     <select id="csv_account" name="csv_account" class="textShadow">
                                                             <option value="">Select an Account</option>
@@ -92,7 +92,7 @@
                                             </div></tr>
         <tr></tr><tr></tr><tr></tr><tr></tr><tr></tr><tr></tr><tr></tr><tr></tr><tr></tr><tr></tr><tr></tr>
                                         <tr>    <div class="da-form-row">
-                                                <label><td>Campaign* : </td> </label>
+                                                <label><td>Campaign* &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: </td> </label>
                                                 <div class="da-form-item large">
                                                     <td><select id="csv_campaign" name="csv_campaign" class="textShadow">
                                                         <option value="">Select an Account</option>
@@ -103,32 +103,32 @@
                                         
                                             <tr></tr><tr></tr><tr></tr><tr></tr><tr></tr><tr></tr><tr></tr><tr></tr><tr></tr><tr></tr><tr></tr>
                                         <tr>    <div class="da-form-row">
-                                                <td><label>Date Range</label></td>
+                                                <td><label>Date Range &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:</label></td>
                                                 <div class="da-form-item large">
                                                 
-                                                     <td>Start Date:<input type='date' id='date1' name='date1' value="02/01/2018" class="textShadow" />
-                                                    End Date:<td><input type='date' id='date2' name='date2' value="02/28/2018" class="textShadow" />
+                                                     <td>Start Date &nbsp;&nbsp;&nbsp;:&nbsp;&nbsp;&nbsp;<input type='date' id='date1' name='date1' value="02/01/2018" class="textShadow" />
+                                                    <tr><td>&nbsp;</td><td>End Date &nbsp;&nbsp;&nbsp;&nbsp;:&nbsp;&nbsp;&nbsp;<input type='date' id='date2' name='date2' value="02/28/2018" class="textShadow" /></td></tr>
                                                  </div>
                                             </div>
-                                        </td></tr>
+                                        </tr>
                                 
                                             <tr><tr></tr><tr></tr><tr></tr><tr></tr><tr></tr><tr></tr><tr></tr><tr></tr><tr></tr><tr></tr><tr></tr>
                                         <tr>    <div class="da-form-row">
-                                                <label><td>Report Name : <br><i>Should be Unique</i></label></td>
+                                                <label><td>Report Name&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; : <br><i>Should be Unique</i></label></td>
                                                 <div class="da-form-item large">                                                    
                                                     <td><input type="text" name="reportName" class="textShadow" /></td>
                                                 </div></tr>
                                             </div><tr></tr><tr></tr><tr></tr><tr></tr><tr></tr><tr></tr><tr></tr><tr></tr><tr></tr><tr></tr><tr></tr>
                                         <tr>    
                                             <div class="da-form-row">
-                                                <label><td>Upload CSV : </td></label>
+                                                <label><td>Upload CSV &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: </td></label>
                                                 <div class="da-form-item large">
                                                     <td><input type="file" name="CSV_DATA_COMPARE"/></td></tr>
                                                     
                                                 </div>
                                             </div>
                                         </table>    
-                                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Row format: &nbsp;&nbsp; Keyword Match Type, &nbsp;&nbsp; Keyword, &nbsp;&nbsp; Status, &nbsp;&nbsp;  Max CPC, &nbsp;&nbsp; Clicks, &nbsp;&nbsp; Impressions, &nbsp;&nbsp; CTR, &nbsp;&nbsp; Avg CPC, &nbsp;&nbsp; Cost, &nbsp;&nbsp; Avg Positions 
+                                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Row format: &nbsp;&nbsp; Keyword Match Type, &nbsp;&nbsp; Keyword, &nbsp;&nbsp; Status, &nbsp;&nbsp;  Max CPC, &nbsp;&nbsp; Clicks, &nbsp;&nbsp; Impressions, &nbsp;&nbsp; CTR, &nbsp;&nbsp; Avg CPC, &nbsp;&nbsp; Cost, &nbsp;&nbsp; Avg Positions 
                                             
                                          
                                             <br/><br/>
@@ -141,11 +141,10 @@
                                                 <input type="submit" value="Submit" class="button">
                                             </div>
                                         </form>
-                                                                            
-                                
-                        
+                                                                            </div>
+                                </div>
+                        </div>
                         <hr>
-
 
 </div>
 

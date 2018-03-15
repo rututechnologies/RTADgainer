@@ -25,4 +25,13 @@ class iconController extends Controller
 	public function passwordbutton(){
 		return view($this->view_directory_name.'passwordbutton');
 	}
+	public function profile(){
+		return view($this->view_directory_name.'profile');
+	}
+public function interface(){
+		return view($this->view_directory_name.'interface');
+	}
+	public function adduser(){
+		return view($this->view_directory_name.'adduser');
+	}
 }
