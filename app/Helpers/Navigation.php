@@ -1,13 +1,20 @@
 <?php
+if ( ! function_exists( 'isActiveNav' ) ) {
 
-namespace App\Helpers;
-
-class Navigation
-{
-    public static function isActiveRoute($route, $output = 'active')
+    function isActiveNav( $path, $output = 'active' )
     {
-        if (Route::currentRouteName() == $route) {
-            return $output;
+        if ( is_array( $path ) ) {
+            foreach ( $path as $u ) {
+                if ( \Request::is( $u . '*' ) ) {
+                    return $output;
+                }
+            }
+        } else {
+            if ( \Request::is( $path . '*' ) ) {
+                return $output;
+            }
         }
     }
+
 }
+
