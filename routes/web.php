@@ -1,5 +1,6 @@
 
 <?php
+
 use Illuminate\Http\Request;
 
 Auth::routes();
@@ -120,9 +121,11 @@ Route::group(['namespace'=>'V1','middleware'=>['web','auth']], function () {
        Route::get('/profile', ['uses' => 'iconController@profile']);
        //
              Route::get('/interface', ['uses' => 'iconController@interface']);
+             //
+             Route::get('/mycampagin1', ['uses' => 'mycampagin1Controller@mycampagin1']);
 //
    Route::get('/adduser', ['uses' => 'iconController@adduser']);
-       
+
 // autoissue
 Route::group( [ 'namespace' => 'Autoissue', 'middleware' => [ 'web', 'auth' ] ], function () {
     Route::get( '/autoissue', 'AutoissueController@index' );
@@ -131,3 +134,4 @@ Route::group( [ 'namespace' => 'Autoissue', 'middleware' => [ 'web', 'auth' ] ],
     Route::get( '/autoissue/schedule', 'AutoissueController@schedule' );
     Route::get( '/autoissue/intec-client', 'AutoissueController@intecClient' );
 } );
+

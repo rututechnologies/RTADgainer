@@ -2,7 +2,62 @@
 @section('title','chat ')
 
 @section('style')
+<style>
+  .modal-dialog {
+  height: 70% !important;
+  padding-top:10%;
+}
 
+.modal-content {
+  height: 100% !important;
+  width:100%;
+  overflow:visible;
+}
+
+.modal-body {
+  height: 80%;
+  overflow: auto;
+}
+  td {
+    padding-top: .5em;
+    padding-bottom: .5em;
+}
+tr.spaceUnder>td {
+  padding-bottom: 2em;
+}
+  .btncolor{
+background-color:#1ab394;
+color:white;
+border:1px solid gray;
+border-radius:10px;
+padding:5px;
+width:200px;
+height:50px;
+box-shadow:5px 5px 5px -2px rgba(0,0,0,0.6);
+}
+.btcolor{
+color:white;
+background-color:#1ab394;
+border-radius:10px;
+width:75px;
+height:45px;
+box-shadow:5px 5px 5px -2px rgba(0,0,0,0.6);
+}
+
+.shadow{
+width:100px;
+heigth:25;
+box-shadow:inset 0px 0px 10px rgba(0,0,0,0.3);
+}
+  div.ex1 {
+    
+    width: 110px;
+    height: 110px;
+    overflow: scroll;
+  </style>
+  <style>
+  #tallModal .modal-body p { margin-bottom: 900px }
+  </style>
 
 @endsection
 

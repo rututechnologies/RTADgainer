@@ -46,10 +46,7 @@
                     
                 </ul>
             </li>
-            <li class="{{ isActiveRoute('Center') }}">
-                <a href="{{ url('/abc') }}"><i class="fa
-                fa-dashboard"></i> <span class="nav-label">Center</span></a>
-            </li>
+
             <li>
                 <a href=""><i class="fa fa-inr"></i> <span
                             class="nav-label">Sales</span> <span class="fa
@@ -70,7 +67,7 @@
                 fa-money"></i> <span class="nav-label">Accounting</span></a>
             </li>
             <li class="{{ isActiveRoute('CampaignList') }}">
-                <a href="{{ url('/Campaigntools') }}"><i class="fa
+                <a href="{{ url('/campaign') }}"><i class="fa
                 fa-dashboard"></i> <span class="nav-label">Campaign Tools</span></a>
             </li>s
             <li class="{{ isActiveRoute('Accounts') }}">
@@ -78,30 +75,27 @@
                 fa-lock"></i> <span class="nav-label">Accounts</span></a>
             </li>
             <li class="{{ isActiveRoute('Reports') }}">
-                <a href="{{ url('/center') }}"><i class="fa
+                <a href="{{ url('/report1') }}"><i class="fa
                 fa-file"></i> <span class="nav-label">Reports</span></a>
             </li>
             <li class="{{ isActiveRoute('MyCampaign') }}">
-                <a href="{{ url('/mycampiagn') }}"><i class="fa
+                <a href="{{ url('/mycampagin1') }}"><i class="fa
                 fa-dashboard"></i> <span class="nav-label">My Campaign</span></a>
             </li>
-            <!-- <li class="{{ isActiveRoute('MessageCenter') }}">
+            <li class="{{ isActiveRoute('MessageCenter') }}">
                 <a href="{{ url('/message') }}"><i class="fa
                 fa-commenting"></i> <span class="nav-label">Message Center</span></a>
-            </li> -->
-            <li class="{{ isActiveRoute('Autoissue') }}">
-                <a href="{{ url('/autoissue') }}">
-                    <i class="fa fa-phone"></i> <span class="nav-label">Autoissue</span>
-                </a>
             </li>
-            <!-- <li class="{{ isActiveRoute('PPCManagement') }}">
-                <a href="{{ url('/center') }}"><i class="fa
-                fa-dashboard"></i> <span class="nav-label">PPC Management</span></a>
-            </li> -->
+            <li class="{{ isActiveRoute('Autoissue') }}">
+                <a href="{{ url('/autoissue') }}"><i class="fa
+                fa-phone"></i> <span class="nav-label">Autoissue</span></a>
+            </li>
+
             <li class="{{ isActiveRoute('Agency') }}">
                 <a href="{{ url('/agencyd') }}"><i class="fa
                 fa-user-secret"></i> <span class="nav-label">Agency</span></a>
             </li>
+            
 
         </ul>
     </div>

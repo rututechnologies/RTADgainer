@@ -112,7 +112,7 @@ height: 200px;
 												<label>Keywords</label></td><td>
 												<div class="da-form-item large">
 
-													<span style="font-size:12px;"><i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;seperate each keyword by comma, i.e. blue shoes, lawn mowers, automotibles, watches...</i></span> </tr><tr><td></td><td><br/>&nbsp;&nbsp;&nbsp;&nbsp; <textarea id="estimateTerm" cols="50" rows="10" class="a" ></textarea> <br/></td></tr>
+													<span style="font-size:12px;"><i>&nbsp;&nbsp;&nbsp;&nbsp;seperate each keyword by comma, i.e. blue shoes, lawn mowers, automotibles, watches...</i></span> </tr><tr><td></td><td><br/>&nbsp;&nbsp;&nbsp;&nbsp; <textarea id="estimateTerm" cols="50" rows="10" class="a" ></textarea> <br/></td></tr>
 
 												</div></td><tr>
 											</div></table>
@@ -121,7 +121,7 @@ height: 200px;
 												<tr><td><label>Max CPC</label></td><td>
 												<div class="da-form-item large">
 
-													&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="text" id="maxCpc" class="b"/>
+													&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="text" id="maxCpc" class="b"/>
 
 												</td></div></tr></table>
 											</div>
@@ -163,28 +163,6 @@ height: 200px;
 </div>
  @endsection
 
-  <style>
-.button {
-  padding: 15px 25px;
-  font-size: 24px;
-  text-align: center;
-  cursor: pointer;
-  outline: none;
-  color: #fff;
-  background-color: #075f98;
-  border: none;
-  border-radius: 15px;
-  box-shadow: 0 9px #999;
-}
-
-.button:hover {background-color: #3e8e41}
-
-.button:active {
-  background-color: #3e8e41;
-  box-shadow: 0 5px #666;
-  transform: translateY(4px);
-}
-</style>  
 
 @section('scripts')
     <script>

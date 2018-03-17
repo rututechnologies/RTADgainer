@@ -2,8 +2,15 @@
 @section('title','Campaign Tool ')
 
 @section('style')
-
-
+<style>
+td {
+    padding-top: .5em;
+    padding-bottom: .5em;
+}
+tr.spaceUnder>td {
+  padding-bottom: 2em;
+}
+</style>
 @endsection
 @section('content')
 <div class="wrapper border-bottom white-bg page-heading">
@@ -1244,7 +1251,7 @@ Notification Threshold: <select name="goalsThresh" style="width:100px">
 
     <a class="btn btn-primary back">Go Back</a>
     <a class="btn btn-primary continue">Next</a>
- 
+ </div>
 
 <!--  4th panel  -->
  <div role="tabpanel" class="tab-pane" id="notification">
