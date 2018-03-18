@@ -2,7 +2,25 @@
 @section('title','Campaign Tool ')
 
 @section('style')
-
+<style>
+        #shadow {
+            border: 1px solid gray;
+            border-radius: 10px;
+            padding: 5px;
+            width: 150px;
+            height: 30px;
+            box-shadow: 5px 5px 5px -2px rgba(0, 0, 0, 0.6);
+        }
+        
+        td {
+            padding-top: 2em;
+            padding-bottom: 2em;
+        }
+        
+        tr.spaceUnder>td {
+            padding-bottom: 2em;
+        }
+    </style>
 
 @endsection
 
@@ -35,7 +53,7 @@
 
 <div class="w3-container">
 
-            <div id="da-content-area" style="margin:50px">
+            <div id="da-content-area" style="margin-left:15px">
 
                 <div class="clear"></div>
 

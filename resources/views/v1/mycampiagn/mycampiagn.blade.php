@@ -3,7 +3,72 @@
 @section('title','chat ')
 
 @section('style')
+<style>
+table, th, td {
+    border: 1px solid black;
+    border-collapse: collapse;
+}
+</style>
+<style>
+#customers {
+    font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+}
 
+#customers td, #customers th {
+    border: 1px solid #ddd;
+    padding: 8px;
+}
+
+#customers tr:nth-child(even){background-color: #f2f2f2;}
+
+#customers tr:hover {background-color: #ddd;}
+
+#customers th {
+    padding-top: 12px;
+    padding-bottom: 12px;
+    text-align: left;
+    background-color: #4CAF50;
+    color: white;
+  .btn-grid
+{
+    margin: -2px 0;
+}
+
+.btn-grid > .btn
+{
+    margin: 5px 0;
+}
+}
+.btncolor{
+background-color:#4274c2;
+color:white;
+border:1px solid gray;
+border-radius:10px;
+padding:5px;
+width:100px;
+box-shadow:5px 5px 5px -2px rgba(0,0,0,0.6);
+}
+.shadow{
+width:100px;
+heigth:25;
+box-shadow:inset 0px 0px 10px rgba(0,0,0,0.3);
+}
+.scrollit{
+overflow:scroll;
+height:300px;
+weight:300px;
+}
+td{
+padding-top:1em;
+padding-bottom:1em;
+}
+tr.spaceUnder>td{
+padding-bottom:1em;
+}
+
+</style>
 
 @endsection
 
@@ -203,7 +268,7 @@
 <a href="{{url('callrecords')}}"><button type="button" class="btn btn-primary">PPC Traffic</button></a>
 <a href="{{url('callrecords')}}"><button type="button" class="btn btn-primary">Conversion</button></a>
 <a href="images/Portfolio.pdf" class="button" download ><img src="images/doc_pdf.png" height="34" width="34" /></a>
-&nbsp;&nbsp;<a href="{{url('ppcdail')}}"><button type="button" class="btn btn-primary">PPC Daily</button>
+&nbsp;&nbsp;<a href="{{url('ppcdail')}}"><button type="button" class="btn btn-primary">PPC Daily</button></a>
 <hr></div>
 <div class="tab-content">
 
@@ -1482,13 +1547,14 @@
   
    <div role="tabpanel" class="tab-pane" id="mapview">
    <div>
+
 <label>Setting:-</label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 Campaign: <select>
                <option>Select a Campagin (option) </option>
          <option>takehiro_ct</option>
          </select><br>
         
-        &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Traffic Type:<select>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Traffic Type:<select>
         <option>All option </option>
          <option>PPC</option>
          <option>organic </option>
@@ -1501,10 +1567,10 @@ Campaign: <select>
         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
         <input type="radio" id="look_archive" />&nbsp;&nbsp;
         All calls<br>
-                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="radio" name="unique_calls" />&nbsp;&nbsp;Only Unique Calls<br>
-                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                         &nbsp;<input type="radio" id="look_archive" />&nbsp;&nbsp;All trafic<br>
@@ -1512,27 +1578,28 @@ Campaign: <select>
          
                         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<button id="clearAccount">Open map</button></td>
-         
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="{{ url('/map') }}">
+                        <button id="clearAccount">Open map</button></a></td>
+        
          </div>
   </div>
   
   <div role="tabpanel" class="tab-pane" id="graphdata">
-   <div class="collapsable_section" id="sec_5" style="display: block;">
+   
 
-          <div class="clear"></div>
+    
 
           <div id="chart_div1" style="width: 450px; height: 250px; float:left; margin:0 10px 0 50px"><div style="position: relative;"><div dir="ltr" style="position: relative; width: 400px; height: 200px;"><div aria-label="A chart." style="position: absolute; left: 0px; top: 0px; width: 100%; height: 100%;"><svg width="400" height="200" aria-label="A chart." style="overflow: hidden;"><defs id="defs"></defs><rect x="0" y="0" width="400" height="200" stroke="none" stroke-width="0" fill="#ffffff"></rect><g><text text-anchor="start" x="67" y="22.85" font-family="Arial" font-size="11" font-weight="bold" stroke="none" stroke-width="0" fill="#000000">Account Traffic Source</text><rect x="67" y="13.5" width="267" height="11" stroke="none" stroke-width="0" fill-opacity="0" fill="#ffffff"></rect></g><text text-anchor="middle" x="200.5" y="103.85" font-family="Arial" font-size="11" stroke="none" stroke-width="0" fill="#000000">No data</text><g></g></svg><div aria-label="A tabular representation of the data in the chart." style="position: absolute; left: -10000px; top: auto; width: 1px; height: 1px; overflow: hidden;"><table><thead><tr><th>Source</th><th>Visits per Source</th></tr></thead><tbody></tbody></table></div></div></div><div aria-hidden="true" style="display: none; position: absolute; top: 210px; left: 410px; white-space: nowrap; font-family: Arial; font-size: 11px;">No data</div><div></div></div></div>
           <div id="chart_div2" style="width: 450px; height: 250px; float:left; margin:0 10px 0 50px"><div style="position: relative;"><div dir="ltr" style="position: relative; width: 400px; height: 200px;"><div aria-label="A chart." style="position: absolute; left: 0px; top: 0px; width: 100%; height: 100%;"><svg width="400" height="200" aria-label="A chart." style="overflow: hidden;"><defs id="defs"></defs><rect x="0" y="0" width="400" height="200" stroke="none" stroke-width="0" fill="#ffffff"></rect><g><text text-anchor="start" x="67" y="22.85" font-family="Arial" font-size="11" font-weight="bold" stroke="none" stroke-width="0" fill="#000000">Account Call Source</text><rect x="67" y="13.5" width="267" height="11" stroke="none" stroke-width="0" fill-opacity="0" fill="#ffffff"></rect></g><text text-anchor="middle" x="200.5" y="103.85" font-family="Arial" font-size="11" stroke="none" stroke-width="0" fill="#000000">No data</text><g></g></svg><div aria-label="A tabular representation of the data in the chart." style="position: absolute; left: -10000px; top: auto; width: 1px; height: 1px; overflow: hidden;"><table><thead><tr><th>Source</th><th>Calls per Source</th></tr></thead><tbody></tbody></table></div></div></div><div aria-hidden="true" style="display: none; position: absolute; top: 210px; left: 410px; white-space: nowrap; font-family: Arial; font-size: 11px;">No data</div><div></div></div></div>
 
-          <div class="clear"></div>
+
 
           <div id="chart_div3" style="width: 450px; height: 250px; float:left; margin:0 10px 0 50px"><div style="position: relative;"><div dir="ltr" style="position: relative; width: 400px; height: 200px;"><div aria-label="A chart." style="position: absolute; left: 0px; top: 0px; width: 100%; height: 100%;"><svg width="400" height="200" aria-label="A chart." style="overflow: hidden;"><defs id="defs"></defs><rect x="0" y="0" width="400" height="200" stroke="none" stroke-width="0" fill="#ffffff"></rect><g><text text-anchor="start" x="67" y="22.85" font-family="Arial" font-size="11" font-weight="bold" stroke="none" stroke-width="0" fill="#000000">Account Conversion Referrals</text><rect x="67" y="13.5" width="267" height="11" stroke="none" stroke-width="0" fill-opacity="0" fill="#ffffff"></rect></g><text text-anchor="middle" x="200.5" y="103.85" font-family="Arial" font-size="11" stroke="none" stroke-width="0" fill="#000000">No data</text><g></g></svg><div aria-label="A tabular representation of the data in the chart." style="position: absolute; left: -10000px; top: auto; width: 1px; height: 1px; overflow: hidden;"><table><thead><tr><th>Source</th><th>Conversion Source</th></tr></thead><tbody></tbody></table></div></div></div><div aria-hidden="true" style="display: none; position: absolute; top: 210px; left: 410px; white-space: nowrap; font-family: Arial; font-size: 11px;">No data</div><div></div></div></div>
           <div id="chart_div4" style="width: 450px; height: 250px; float:left; margin:0 10px 0 50px"><div style="position: relative;"><div dir="ltr" style="position: relative; width: 400px; height: 200px;"><div aria-label="A chart." style="position: absolute; left: 0px; top: 0px; width: 100%; height: 100%;"><svg width="400" height="200" aria-label="A chart." style="overflow: hidden;"><defs id="defs"></defs><rect x="0" y="0" width="400" height="200" stroke="none" stroke-width="0" fill="#ffffff"></rect><g><text text-anchor="start" x="67" y="22.85" font-family="Arial" font-size="11" font-weight="bold" stroke="none" stroke-width="0" fill="#000000">Account Conversion Types</text><rect x="67" y="13.5" width="267" height="11" stroke="none" stroke-width="0" fill-opacity="0" fill="#ffffff"></rect></g><text text-anchor="middle" x="200.5" y="103.85" font-family="Arial" font-size="11" stroke="none" stroke-width="0" fill="#000000">No data</text><g></g></svg><div aria-label="A tabular representation of the data in the chart." style="position: absolute; left: -10000px; top: auto; width: 1px; height: 1px; overflow: hidden;"><table><thead><tr><th>Source</th><th>Conversion Traffic</th></tr></thead><tbody></tbody></table></div></div></div><div aria-hidden="true" style="display: none; position: absolute; top: 210px; left: 410px; white-space: nowrap; font-family: Arial; font-size: 11px;">No data</div><div></div></div></div>
 
           
 
-        </div>
+      
   </div>
   <div role="tabpanel" class="tab-pane" id="abc">
 <table align="center" id="customers">

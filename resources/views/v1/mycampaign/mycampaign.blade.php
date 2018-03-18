@@ -2,7 +2,15 @@
 @section('title','Campaign Tool ')
 
 @section('style')
-
+<style>
+td {
+    padding-top: .5em;
+    padding-bottom: .5em;
+}
+tr.spaceUnder>td {
+  padding-bottom: 1em;
+}
+</style>
 
 @endsection
 
@@ -470,6 +478,7 @@
   
    <div role="tabpanel" class="tab-pane" id="mapview">
    <div>
+
 <label>Setting:-</label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 Campaign: <select>
                <option>Select a Campagin (option) </option>
@@ -587,6 +596,7 @@ Campaign: <select>
    		</div>
 
 @endsection
+
 @section('scripts')
 
 @endsection

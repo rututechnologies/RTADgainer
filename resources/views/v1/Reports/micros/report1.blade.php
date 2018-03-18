@@ -2,7 +2,246 @@
 @section('title','Reports')
 
 @section('style')
+ <style>
+        body {
+            background: white
+        }
 
+        label a {
+            color: dodgerBlue;
+        }
+
+        .breadcrumbActive {
+            color: dodgerBlue !important;
+        }
+
+        #footer {
+            border-top-color: dodgerBlue;
+        }
+
+        .topBanner {
+            background: dodgerBlue;
+        }
+
+        #viewUsers {
+            background: dodgerBlue;
+        }
+
+        .ppc_header {
+            background: dodgerBlue;
+        }
+
+        .collapsable_control h2 {
+            color: dodgerBlue;
+        }
+
+        #info_heading {
+            border-color: dodgerBlue;
+        }
+    
+        
+     
+        </style>
+    
+
+
+
+<style>
+    #search_account_results{
+        display:none;
+        position:relative;
+        max-height:300px;
+        background:white;
+        width:125px;
+        border:1px #999 solid;
+        overflow-y: scroll;
+        margin:3px 0 0 5px;
+    }
+    #search_account_results div{
+        cursor: pointer;
+        padding:5px 0px;
+        border-bottom:1px #999 solid;
+        min-height:15px;
+        width:100%;
+        clear:both;
+        overflow: hidden;
+    }
+    .table-data-show, .table-data-show show-col{
+        overflow: visible;
+    }
+    
+    #result_div{
+    position:fixed;
+    top:40%;
+    left:10%;
+    width:80%;
+    height:200px;
+    background:white;
+    border:3px grey solid;
+    display:none;
+    z-index:1000;
+}
+
+#result_div textarea{
+    width:80%;
+    margin:0 10%;
+    height:100px;
+}
+
+#result_close{
+    border: 1px grey solid;
+    padding:10px;
+    cursor: pointer;
+    float:right;
+    clear:both;
+    margin:0 10px 20px 0;
+}
+.scrollit{
+overflow:scroll;
+height:300px;
+weight:300px;
+}
+    
+</style>
+
+
+
+
+<style>
+  .navbar {
+    overflow: hidden;
+    background-color: black;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.navbar a {
+    float: left;
+    font-size: 16px;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+}
+
+.dropdown {
+    float: left;
+    overflow: hidden;
+}
+
+.dropdown .dropbtn {
+    font-size: 16px;    
+    border: none;
+    outline: none;
+    color: white;
+    padding: 14px 16px;
+    background-color: inherit;
+    font-family: inherit;
+    margin: 0;
+}
+
+.navbar a:hover, .dropdown:hover .dropbtn {
+    background-color: red;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+}
+
+.dropdown-content a {
+    float: none;
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+    text-align: left;
+}
+
+.dropdown-content a:hover {
+    background-color: #ddd;
+}
+
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+label{
+    display:inline-block;
+    width:100px;
+}
+input[type="text"], textarea, input[type="file"] {
+    background-color: white;
+    -webkit-box-shadow: inset 0 2px 3px rgba(0, 0, 0, 0.2);
+    box-shadow: inset 0 2px 3px rgba(0, 0, 0, 0.2);
+}
+table {
+    border-collapse: collapse;
+}
+
+td {
+    padding-top: .5em;
+    padding-bottom: .5em;
+}   
+</style>
+<style>
+td {
+    padding-right: 50px;
+}
+th{
+padding-right:50px
+}
+<style>
+table, th, td {
+    border: 0px solid black;
+    border-collapse: collapse;
+}
+</style>
+<style>
+#customers {
+    font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+}
+
+#customers td, #customers th {
+    border: 0px solid #ddd;
+    padding: 8px;
+}
+
+#customers tr:nth-child(even){background-color: #f2f2f2;}
+
+#customers tr:hover {background-color: #ddd;}
+
+#customers th {
+    padding-top: 12px;
+    padding-bottom: 12px;
+    text-align: left;
+    background-color: ;
+    color: black;
+    .btn-grid
+{
+    margin: -2px 0;
+}
+
+.btn-grid > .btn
+{
+    margin: 5px 0;
+}
+}
+.btncolor{
+background-color:#4CAF50;
+color:white;
+}
+.report_date_short75{
+width:100px;
+heigth:25;
+box-shadow:inset 0px 0px 10px rgba(0,0,0,0.3);
+}
+
+</style>
 
 @endsection
 
@@ -66,7 +305,7 @@
         </div>
         
         <div class="clear clearSpace"></div>
-        <table style='margin-left:50px'><div class="grid_3">
+        <table style='margin-left:20px'><div class="grid_3">
             <div class="table-grid">
                 <form>
                     <h4 style='margin-left:50px'><b>Default Created Reports</b></h4>
@@ -111,13 +350,13 @@
                                         </select>
                                     </div>
                                 </td>
-                                <td>
+                                <td >
                                     <div class='table-data-column height75' style=''>
                                         <input type='text' class='report_date_short75' id='date1_def' value='02/01/2018' />
                                         <br/>   
                                         <input type='text' class='report_date_short75' id='date2_def' value='02/13/2018' />
                                         <br/>
-                                            <select name="time_zone" id="time_zone">
+                                            <select name="time_zone" id="time_zone" style='width=10px'>
                                                 <option value="America/Los_Angeles">(GMT-08:00) Pacific Time (US & Canada)</option>
                                                 <option value="Pacific/Midway">(GMT-11:00) Midway Island, Samoa</option>
                                                 <option value="America/Adak">(GMT-10:00) Hawaii-Aleutian</option>
@@ -1153,19 +1392,11 @@
         }
     
         
-        <title>ADgainer  - Report</title>
+     
         </style>
     
 
-<script>
-    
-    $(function(){
-        
-        $('#gen_report_account_def').val('');
-        
-    });
-    
-</script>
+
 
 <style>
     #search_account_results{
@@ -1224,6 +1455,10 @@ weight:300px;
 }
     
 </style>
+
+
+
+
 <style>
   .navbar {
     overflow: hidden;
@@ -1357,6 +1592,8 @@ width:100px;
 heigth:25;
 box-shadow:inset 0px 0px 10px rgba(0,0,0,0.3);
 }
+
+</style>
 
 </style>
 @section('scripts')

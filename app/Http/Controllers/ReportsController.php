@@ -26,7 +26,7 @@ class ReportsController extends Controller
 		return view($this->view_directory_name.'micros.uploadcsv');
 	}
 	public function report1(){
-		return view($this->view_directory_name.'micros.uploadcsv');
+		return view($this->view_directory_name.'micros.report1');
 	}
 	
 	
