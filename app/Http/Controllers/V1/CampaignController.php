@@ -30,6 +30,9 @@ class CampaignController extends Controller
     }
     public function view_compaign() {
        
+         $test = DB::table('campaigns')->select('campaign_name', 'clicksThresh', 'callsThresh','avgCalls','avgConversions','goal1_inc','emailsThresh','conversion_flag','avgConversions','clicksThresh', 'avgConversions', 'callsThresh','avgCalls','goal1_inc','goal2_inc','goal3_inc','goal4_inc','emailsThresh')->get();
+            return view($this->view_directory_name.'micros.viewcampaign',['test' => $test]);
+        
         return view($this->view_directory_name.'micros.viewcampaign');
     }
     

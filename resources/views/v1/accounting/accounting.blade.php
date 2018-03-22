@@ -12,7 +12,7 @@
             <div class="row">
                 <h1 class="module_heading">
                 <span>
-                    Campaign
+                    Accounting
                 </span>
                 </h1>
                 <ol class="breadcrumb">
@@ -22,7 +22,7 @@
                     </li>
 
                     <li class="active">
-                        <strong><i class="fa fa-list"></i> Campaign</strong>
+                        <strong><i class="fa fa-list"></i> Accounting</strong>
                     </li>
                 </ol>
             </div>
@@ -58,15 +58,16 @@
 
                                 <div class="clear"><br></div>
 
-                                <button id="accounting_gen_report" class="button" onclick="return false;">CSV</button>
+                                <button id="accounting_gen_report" class="button" onclick="return false;">CSV</button>&nbsp;&nbsp;
+&nbsp;&nbsp;
                                 <select class='shortSel' id='conv_type' name='conv_type'>
                                     <option value='UTF-8'>UTF-8 (English)</option>
                                     <option value='SJIS-win'>Shift-JIS (Japanese)</option>
-                                </select>
+                                </select><br><br>
 
 
                                 <br><br>Page:
-                                <b>1</b><a href="https://testenvadgainer.adgainersolutions.com/adgainer/accounting/?date1=02/01/2018&date2=02/28/2018&limit=5&amp;start=5" data-ci-pagination-page="2"></a><b>2<b><a href="https://testenvadgainer.adgainersolutions.com/adgainer/accounting/?date1=02/01/2018&date2=02/28/2018&limit=5&amp;start=10" data-ci-pagination-page="3"></a><b>3</b><a href="https://testenvadgainer.adgainersolutions.com/adgainer/accounting/?date1=02/01/2018&date2=02/28/2018&limit=5&amp;start=15" data-ci-pagination-page="4"></a><b>4</b><a href="https://testenvadgainer.adgainersolutions.com/adgainer/accounting/?date1=02/01/2018&date2=02/28/2018&limit=5&amp;start=5" data-ci-pagination-page="2" rel="next">&gt;</a><a href="https://testenvadgainer.adgainersolutions.com/adgainer/accounting/?date1=02/01/2018&date2=02/28/2018&limit=5&amp;start=1455" data-ci-pagination-page="292"></a><b>Last</b> &rsaquo;
+                                <b>1</b><a href=""></a><b>2<b><a href="https://testenvadgainer.adgainersolutions.com/adgainer/accounting/?date1=02/01/2018&date2=02/28/2018&limit=5&amp;start=10" data-ci-pagination-page="3"></a><b>3</b><a href="https://testenvadgainer.adgainersolutions.com/adgainer/accounting/?date1=02/01/2018&date2=02/28/2018&limit=5&amp;start=15" data-ci-pagination-page="4"></a><b>4</b><a href="https://testenvadgainer.adgainersolutions.com/adgainer/accounting/?date1=02/01/2018&date2=02/28/2018&limit=5&amp;start=5" data-ci-pagination-page="2" rel="next">&gt;</a><a href="https://testenvadgainer.adgainersolutions.com/adgainer/accounting/?date1=02/01/2018&date2=02/28/2018&limit=5&amp;start=1455" data-ci-pagination-page="292"></a><b>Last</b> &rsaquo;
                             </div>
 
 
@@ -87,7 +88,7 @@
                                     
                                     <tr>
                                                             <td>
-                                                                <a href='https://testenvadgainer.adgainersolutions.com/adgainer/accounting/getAccountDetails/?account_id=34f6eae94cbdb502333af787fafeef24'>
+                                                                <a href=''>
                                                                     01394????IDEA 
                                                                 </a>
                                                             </td>
@@ -100,7 +101,7 @@
                                                          </tr>
                                                          <tr class='table-data-column_alt accounting_search_parent'>
                                                             <td class=' table-data-column_alt tall_line_height accounting_search' style='text-align:left;padding:0 0 0 5px'>
-                                                                <a href='https://testenvadgainer.adgainersolutions.com/adgainer/accounting/getAccountDetails/?account_id=a4c4de12bd21e608f12020582ba29fd7'>
+                                                                <a href=''>
                                                                     03???
                                                                 </a>
                                                             </td>
@@ -112,7 +113,7 @@
                                                             
                                                          </tr><tr class=' accounting_search_parent'>
                                                             <td class='  tall_line_height accounting_search' style='text-align:left;padding:0 0 0 5px'>
-                                                                <a href='https://testenvadgainer.adgainersolutions.com/adgainer/accounting/getAccountDetails/?account_id=ce51474101e7683aea52c73d9dc5731b'>
+                                                                <a href=''>
                                                                     1000 SLS4_EL
                                                                 </a>
                                                             </td>
@@ -124,7 +125,7 @@
                                                             
                                                          </tr><tr class='table-data-column_alt accounting_search_parent'>
                                                             <td class=' table-data-column_alt tall_line_height accounting_search' style='text-align:left;padding:0 0 0 5px'>
-                                                                <a href='https://testenvadgainer.adgainersolutions.com/adgainer/accounting/getAccountDetails/?account_id=d15d611d5f2435518bd243de3c27b181'>
+                                                                <a href=''>
                                                                     1002???????·????????
                                                                 </a>
                                                             </td>
@@ -136,7 +137,7 @@
                                                             
                                                          </tr><tr class=' accounting_search_parent'>
                                                             <td class='  tall_line_height accounting_search' style='text-align:left;padding:0 0 0 5px'>
-                                                                <a href='https://testenvadgainer.adgainersolutions.com/adgainer/accounting/getAccountDetails/?account_id=ce0f436cb38dd583b44ba3b59578ff8c'>
+                                                                <a href=''>
                                                                     1003 OS_AF_independent
                                                                 </a>
                                                             </td>
