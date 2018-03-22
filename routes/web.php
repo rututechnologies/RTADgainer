@@ -2,7 +2,7 @@
 <?php
 
 use Illuminate\Http\Request;
-
+use App\Http\Controllers;
 Auth::routes();
 
 Route::post('/', 'Auth\LoginController@login');
@@ -120,6 +120,8 @@ Route::group(['namespace'=>'V1','middleware'=>['web','auth']], function () {
        //
        Route::get('/profile', ['uses' => 'iconController@profile']);
        //
+        Route::post('/check',['uses' => 'CampaignController@check']);
+//
              Route::get('/interface', ['uses' => 'iconController@interface']);
              //
              Route::get('/mycampagin1', ['uses' => 'mycampagin1Controller@mycampagin1']);
