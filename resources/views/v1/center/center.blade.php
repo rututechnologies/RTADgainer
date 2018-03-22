@@ -78,7 +78,7 @@ box-shadow:inset 0px 0px 10px rgba(0,0,0,0.3);
                     </li>
 
                     <li class="active">
-                        <strong><i class="fa fa-list"></i> chat</strong>
+                        <strong><i class="fa fa-list"></i> Center</strong>
                     </li>
                 </ol>
             </div>
@@ -356,9 +356,9 @@ Account:-<select><option>Select An campagin</option> </select><br>
           <div class="tileSection ui-draggable ui-draggable-handle" id="tileSection2237" style="position: relative; width: 1100px;  height: 200px; bottom: auto;  top: 0px; ">
              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; - Account PPC Overview  
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-            <input type="text" id="repc_date1_2237" class="repc_date hasDatepicker" value="02/01/2018">
+            <input type="date" id="repc_date1_2237" class="repc_date hasDatepicker" value="02/01/2018">
             -
-            <input type="text" id="repc_date2_2237" class="repc_date hasDatepicker" value="02/19/2018">
+            <input type="date" id="repc_date2_2237" class="repc_date hasDatepicker" value="02/19/2018">
             <button class="updateReportCenterDate" id="update_2237">Update</button>
             
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
@@ -421,9 +421,9 @@ Account:-<select><option>Select An campagin</option> </select><br>
           <div class="tileSection ui-draggable ui-draggable-handle" id="tileSection2237" style="position: relative; width: 1100px;  height: 200px; bottom: auto;  top: 0px; ">
              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; - Account PPC Overview  
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-            <input type="text" id="repc_date1_2237" class="repc_date hasDatepicker" value="02/01/2018">
+            <input type="date" id="repc_date1_2237" class="repc_date hasDatepicker" value="02/01/2018">
             -
-            <input type="text" id="repc_date2_2237" class="repc_date hasDatepicker" value="02/19/2018">
+            <input type="date" id="repc_date2_2237" class="repc_date hasDatepicker" value="02/19/2018">
             <button class="updateReportCenterDate" id="update_2237">Update</button>
             
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
@@ -481,9 +481,9 @@ Account:-<select><option>Select An campagin</option> </select><br>
           <div class="tileSection ui-draggable ui-draggable-handle" id="tileSection2237" style="position: relative; width: 1100px;  height: 200px; bottom: auto;  top: 0px; ">
              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; - Account PPC Overview  
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-            <input type="text" id="repc_date1_2237" class="repc_date hasDatepicker" value="02/01/2018">
+            <input type="date" id="repc_date1_2237" class="repc_date hasDatepicker" value="02/01/2018">
             -
-            <input type="text" id="repc_date2_2237" class="repc_date hasDatepicker" value="02/19/2018">
+            <input type="date" id="repc_date2_2237" class="repc_date hasDatepicker" value="02/19/2018">
             <button class="updateReportCenterDate" id="update_2237">Update</button>
             
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
@@ -541,9 +541,9 @@ Account:-<select><option>Select An campagin</option> </select><br>
           <div class="tileSection ui-draggable ui-draggable-handle" id="tileSection2237" style="position: relative; width: 1100px;  height: 200px; bottom: auto;  top: 0px; ">
              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; - Account PPC Overview  
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-            <input type="text" id="repc_date1_2237" class="repc_date hasDatepicker" value="02/01/2018">
+            <input type="date" id="repc_date1_2237" class="repc_date hasDatepicker" value="02/01/2018">
             -
-            <input type="text" id="repc_date2_2237" class="repc_date hasDatepicker" value="02/19/2018">
+            <input type="date" id="repc_date2_2237" class="repc_date hasDatepicker" value="02/19/2018">
             <button class="updateReportCenterDate" id="update_2237">Update</button>
             
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
@@ -590,9 +590,9 @@ Account:-<select><option>Select An campagin</option> </select><br>
           <div class="tileSection ui-draggable ui-draggable-handle" id="tileSection2237" style="position: relative; width: 1100px;  height: 200px; bottom: auto;  top: 0px; ">
              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; - Account PPC Overview  
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-            <input type="text" id="repc_date1_2237" class="repc_date hasDatepicker" value="02/01/2018">
+            <input type="date" id="repc_date1_2237" class="repc_date hasDatepicker" value="02/01/2018">
             -
-            <input type="text" id="repc_date2_2237" class="repc_date hasDatepicker" value="02/19/2018">
+            <input type="date" id="repc_date2_2237" class="repc_date hasDatepicker" value="02/19/2018">
             <button class="updateReportCenterDate" id="update_2237">Update</button>
             
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
@@ -654,9 +654,9 @@ Account:-<select><option>Select An campagin</option> </select><br>
           <div class="tileSection ui-draggable ui-draggable-handle" id="tileSection2237" style="position: relative; width: 1100px;  height: 200px; bottom: auto;  top: 0px; ">
              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; - Account PPC Overview  
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-            <input type="text" id="repc_date1_2237" class="repc_date hasDatepicker" value="02/01/2018">
+            <input type="date" id="repc_date1_2237" class="repc_date hasDatepicker" value="02/01/2018">
             -
-            <input type="text" id="repc_date2_2237" class="repc_date hasDatepicker" value="02/19/2018">
+            <input type="date" id="repc_date2_2237" class="repc_date hasDatepicker" value="02/19/2018">
             <button class="updateReportCenterDate" id="update_2237">Update</button>
             
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
