@@ -18,14 +18,8 @@ Route::group(['namespace'=>'V1','middleware'=>['web','auth']], function () {
     Route::get('/campaignP', ['uses' => 'CampaignController@check_phone_number']);
     Route::get('/campaignGoal', ['uses' => 'CampaignController@goal_action']);
     Route::get('/newCampaign', ['uses' => 'CampaignController@new_compaign']);
-    Route::any('/viewCampaign', ['uses' => 'CampaignController@view_compaign_Details']);
+    Route::get('/viewCampaign', ['uses' => 'CampaignController@view_compaign']);
     Route::get('/Mycampaign', ['uses' => 'mycampaignController@Mycampaign']);
-
-    //Route::any('/viewCampaign', ['uses' => 'CampaignController@all_Tacking_data']);
-    
-    //Route::get('/viewCampaign', ['uses' => 'mycampaignController@allTrackngData']);
-    Route::post('/new_Campaign_General', ['uses' => 'CampaignController@new_Campaign_General']);
-    Route::post('/save_Goal_Action', ['uses' => 'CampaignController@save_Goal_Action']);
 });
 	//Manage users routes
    	Route::get('/usersList', ['uses' => 'UserController@usersList'])->name('UsersList');
@@ -141,3 +135,5 @@ Route::group( [ 'namespace' => 'Autoissue', 'middleware' => [ 'web', 'auth' ] ],
     Route::get( '/autoissue/intec-client', 'AutoissueController@intecClient' );
 } );
 
+ Route::post('test/form', ['uses' =>'TestController@create']);
+  Route::get('/select','Test1Controller@testfunction');
