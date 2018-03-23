@@ -2,7 +2,15 @@
 @section('title','chat ')
 
 @section('style')
-
+<style>
+td {
+    padding-top: .5em;
+    padding-bottom: .5em;
+}
+tr.spaceUnder>td {
+  padding-bottom: 2em;
+}
+</style>
 
 @endsection
 
@@ -13,7 +21,7 @@
             <div class="row">
                 <h1 class="module_heading">
                 <span>
-                    chat
+                    My campaign
                 </span>
                 </h1>
                 <ol class="breadcrumb">
@@ -23,7 +31,7 @@
                     </li>
 
                     <li class="active">
-                        <strong><i class="fa fa-list"></i> chat</strong>
+                        <strong><i class="fa fa-list"></i> Goal Action</strong>
                     </li>
                 </ol>
             </div>
@@ -39,6 +47,7 @@
 
          <br>               <div class="grid_4">
                                     <div class="da-panel">
+                                       
                     <tr>
                     <div class="da-panel-header" id='test0'>
                         <span class="da-panel-title" id='test1'>
@@ -47,13 +56,13 @@
                             </div></tr>
         
         <tr><div class="da-panel-content">
-                <form action="https://testenvadgainer.adgainersolutions.com/adgainer/campaign/do_saveGoalAction" class="da-form" enctype="multipart/form-data" method="post" accept-charset="utf-8">
+                
                     <div class="da-form-row">
                         <td><label id='custom'>Create A Goal</label></td>
                         <div class="da-form-item large"></tr>
 
 
-                        <table> <tr><div class="rowName">
+                        <table style="margin-left: 40px"> <tr><div class="rowName">
                                 <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Account:</td>
                             </div>
                             <div class="rowValue" class="textShadow">
@@ -147,11 +156,11 @@
 
 
 
-                    <div class="da-button-row" class="da-button_green" >
-                        <input type="reset" id="rcorners2" value="Reset" class="da-button_green">
-                        <input type="submit" id="rcorners2" value="Save Goal" class="da-button_green">
+                    <div class="da-button-row" class="da-button_green" ><br><br>
+                        <input type="reset" id="rcorners2" value="Reset" class="da-button_green"style="margin-left: 140px">
+                        <input type="submit" id="rcorners2" value="Save Goal" class="da-button_green"style="margin-left: px">
                     </div>
-                </form>
+                
             </div>
             </div>
                         </div>
