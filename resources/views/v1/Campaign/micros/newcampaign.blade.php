@@ -62,7 +62,7 @@ box-shadow:5px 5px 5px -2px rgba(0,0,0,0.6);
 <div class="navbar-header">
       <a class="navbar-brand" href="#"><b>AD</b>gainer</a>
     </div>
-  <ul class="nav navbar-nav" role="tablist">
+  <ul class="nav navbar-nav" role="tablist" id="navtab">
     <li role="presentation" class="active">
       <a href="#billing" aria-controls="billing" role="tab" data-toggle="tab" aria-expanded="true">General Settings</a>
     </li>
@@ -600,7 +600,7 @@ If any of these words are typed during a chat session, they will be counted each
 <textarea name="tag_words" cols="40" rows='4'></textarea></td>
 </tr>
 </table>
-    <a class="btn btn-primary continue">Continue</a>
+    <input type="button" class="btn btn-primary continue" id="continue" value="continue">
   </div>
 
 
@@ -817,8 +817,8 @@ Notification Threshold: <select name="goalsThresh" style="width:100px">
 
                                         
 
-    <a class="btn btn-primary back">Go Back</a>
-    <a class="btn btn-primary continue">Continue</a>
+    <a class="btn btn-primary back" id="back1">Go Back</a>
+    <a class="btn btn-primary continue" id="continue1">Continue</a>
   </div>
 <!-- 3rd panel   -->
 
@@ -1180,8 +1180,8 @@ Notification Threshold: <select name="goalsThresh" style="width:100px">
                                                         </div></tr>
 </table>
 
-    <a class="btn btn-primary back">Go Back</a>
-    <a class="btn btn-primary continue">Next</a>
+    <a class="btn btn-primary back" id="back2">Go Back</a>
+    <a class="btn btn-primary continue" id="continue2">Continue</a>
  </div>
 
 <!--  4th panel  -->
@@ -1353,7 +1353,7 @@ Notification Threshold: <select name="goalsThresh" style="width:100px">
                                 </div>
                                 <tr>
 
-   <td> <a class="btn btn-primary back">Go Back</a> <a class="btn btn-primary continue">Next</a></td>
+   <td> <a class="btn btn-primary back" id="back3">Go Back</a> <a class="btn btn-primary continue" id="continue3">Continue</a></td>
                                             </tr>
                                 </table>
 
@@ -1393,7 +1393,7 @@ Notification Threshold: <select name="goalsThresh" style="width:100px">
  
    <td> <input type="reset" value="Reset"  class="btn btn-primary back" />  </td>
 
-                                                <td> <a class="btn btn-primary back">Go Back</a>
+                                                <td> <a class="btn btn-primary back" id="back4">Go Back</a>
    <input type="Submit" value="Submit" class="btn btn-primary continue" class="popupMsg">
                                             </td>
                                             </tr>
@@ -1409,13 +1409,51 @@ Notification Threshold: <select name="goalsThresh" style="width:100px">
 
 </form>
 </div>
+@endsection
+@section('scripts')
 
 <script type="text/javascript">
-    $('.continue').click(function(){
-  $('.nav-tabs > .active').next('li').find('a').trigger('click');
-});
-$('.back').click(function(){
-  $('.nav-tabs > .active').prev('li').find('a').trigger('click');
+    
+$(function(){
+
+    $('#continue').click(function(e){
+        e.preventDefault();
+        $('#navtab a[href="#shipping"]').tab('show');
+    });
+
+    $('#continue1').click(function(e){
+        e.preventDefault();
+        $('#navtab a[href="#review"]').tab('show');
+    });
+    $('#continue2').click(function(e){
+        e.preventDefault();
+        $('#navtab a[href="#notification"]').tab('show');
+    });
+    $('#continue3').click(function(e){
+        e.preventDefault();
+        $('#navtab a[href="#filering"]').tab('show');
+    });
+
+$('#back4').click(function(e){
+        e.preventDefault();
+        $('#navtab a[href="#notification"]').tab('show');
+    });
+
+$('#back3').click(function(e){
+        e.preventDefault();
+        $('#navtab a[href="#review"]').tab('show');
+    });
+$('#back2').click(function(e){
+        e.preventDefault();
+        $('#navtab a[href="#shipping"]').tab('show');
+    });
+
+$('#back1G').click(function(e){
+        e.preventDefault();
+        $('#navtab a[href="#billing"]').tab('show');
+    });
+
+
 });
 
 </script>

@@ -2,7 +2,7 @@
 <?php
 
 use Illuminate\Http\Request;
-use App\Http\Controllers;
+
 Auth::routes();
 
 Route::post('/', 'Auth\LoginController@login');
@@ -103,7 +103,7 @@ Route::group(['namespace'=>'V1','middleware'=>['web','auth']], function () {
   //
   Route::get('/viewbutton', ['uses' => 'viewbuttonController@viewbutton']);
   //
-  Route::get('/mycampiagn', ['uses' => 'mycampiagnController@mycampiagn']);
+  Route::any('/mycampiagn', ['uses' => 'mycampiagnController@mycampiagn']);
   //
   Route::get('/management', ['uses' => 'iconController@management']);
   //
@@ -126,8 +126,6 @@ Route::group(['namespace'=>'V1','middleware'=>['web','auth']], function () {
        //
        Route::get('/profile', ['uses' => 'iconController@profile']);
        //
-        Route::post('/check',['uses' => 'CampaignController@check']);
-//
              Route::get('/interface', ['uses' => 'iconController@interface']);
              //
              Route::get('/mycampagin1', ['uses' => 'mycampagin1Controller@mycampagin1']);
@@ -143,4 +141,3 @@ Route::group( [ 'namespace' => 'Autoissue', 'middleware' => [ 'web', 'auth' ] ],
     Route::get( '/autoissue/intec-client', 'AutoissueController@intecClient' );
 } );
 
- Route::post('test/form', ['uses' =>'TestController@create']);
