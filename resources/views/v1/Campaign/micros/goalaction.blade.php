@@ -54,8 +54,7 @@ tr.spaceUnder>td {
     </ul>
   </div>
 </nav>
-    <form action="test/form" method="post">
-    <input type="hidden" name="_token" value="{{ csrf_token() }}">
+    <form>
 <table id="table1"; cellspacing="5px"; width="50%" cellpadding="5%" align="center" valign="top">
 <tr>
 <td><div class="rowName">

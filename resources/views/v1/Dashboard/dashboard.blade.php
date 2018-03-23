@@ -97,7 +97,7 @@
      
      <div class="col-lg-3">
         <div class="widget style1 btn-default">
-             <a href="{{url('agencyd')}}" style="color:#fff;"><div class="row">
+             <a href="{{url('agencyd')}}" style="color:#075f98;"><div class="row">
             	<div class="col-xs-4">
                     <i class="fa fa-user-secret fa-5x"></i>
                 </div>

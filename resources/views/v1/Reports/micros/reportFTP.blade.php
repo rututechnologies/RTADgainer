@@ -2,7 +2,15 @@
 @section('title','Reports')
 
 @section('style')
-
+<style>
+td {
+    padding-top: .5em;
+    padding-bottom: .5em;
+}
+tr.spaceUnder>td {
+  padding-bottom: 2em;
+}
+</style>
 
 @endsection
 

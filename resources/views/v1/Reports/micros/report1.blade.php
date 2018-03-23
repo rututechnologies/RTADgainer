@@ -110,7 +110,7 @@ weight:300px;
 <style>
   .navbar {
     overflow: hidden;
-    background-color: black;
+   
     font-family: Arial, Helvetica, sans-serif;
 }
 
@@ -188,12 +188,12 @@ td {
 </style>
 <style>
 td {
-    padding-right: 50px;
+    padding-top: .5em;
+    padding-bottom: .5em;
 }
-th{
-padding-right:50px
+tr.spaceUnder>td {
+  padding-bottom: 2em;
 }
-<style>
 table, th, td {
     border: 0px solid black;
     border-collapse: collapse;
@@ -315,10 +315,10 @@ box-shadow:inset 0px 0px 10px rgba(0,0,0,0.3);
                             <div class="table-header" >
                                 <th><div class="table-header-column">Data</div></th>
                                 <th><div class="table-header-column">Traffic</div></th>
-                                <th><div class="table-header-column">Date</div></th>
+                                <th style="padding-left: 55px"><div class="table-header-column">Date</div></th>
                                 <th><div class="table-header-column">Account</div></th>
-                                <th><div class="table-header-column">Campaign (optional)</div></th>
-                                <th><div class="table-header-column">CSV Type</div></th>
+                                <th style="padding-right: 150px"><div class="table-header-column">Campaign (optional)</div></th>
+                                <th style="padding-right: 150px"><div class="table-header-column">CSV Type</div></th>
                                 <th><div class="table-header-column">Download</div></th>    
                             </div>
                         </tr></div>
@@ -326,7 +326,7 @@ box-shadow:inset 0px 0px 10px rgba(0,0,0,0.3);
                             <div class="table-data-show">                       
                                 <td>
                                     <div class='table-data-column height75'>
-                                        <select class='shortSel' id='report_id'>
+                                        <select class='shortSel' id='report_id' style="width:65%">
                                             <option value=''>Select a Report</option>
                                             <option value='1::Calls Report::Row::1'> Calls Report (Row) </option>
                                             <option value='3::Web Traffic Report::Row::0'> Web Traffic Report (Row) </option> 
@@ -342,7 +342,7 @@ box-shadow:inset 0px 0px 10px rgba(0,0,0,0.3);
                                 </td>
                                 <td>
                                     <div class='table-data-column height75'>                                                                                                                        
-                                        <select class='shortSel' id='traffic_type'>
+                                        <select class='shortSel' id='traffic_type' style="width:60%">
                                             <option value='All'>All</option>                                                                
                                             <option value='PPC'>PPC</option>                                                                                                                        <option value='ORG'>ORGANIC</option>                                                                    
                                             <option value='DIRECT'>DIRECT</option>                              
@@ -350,13 +350,13 @@ box-shadow:inset 0px 0px 10px rgba(0,0,0,0.3);
                                         </select>
                                     </div>
                                 </td>
-                                <td >
+                                <td style="padding-left: 55px">
                                     <div class='table-data-column height75' style=''>
-                                        <input type='text' class='report_date_short75' id='date1_def' value='02/01/2018' />
+                                        <input type='date' class='report_date_short75' id='date1_def' value='02/01/2018' />
                                         <br/>   
-                                        <input type='text' class='report_date_short75' id='date2_def' value='02/13/2018' />
+                                        <input type='date' class='report_date_short75' id='date2_def' value='02/13/2018' />
                                         <br/>
-                                            <select name="time_zone" id="time_zone" style='width=10px'>
+                                            <select name="time_zone" id="time_zone" style="width:55%">
                                                 <option value="America/Los_Angeles">(GMT-08:00) Pacific Time (US & Canada)</option>
                                                 <option value="Pacific/Midway">(GMT-11:00) Midway Island, Samoa</option>
                                                 <option value="America/Adak">(GMT-10:00) Hawaii-Aleutian</option>
@@ -382,9 +382,9 @@ box-shadow:inset 0px 0px 10px rgba(0,0,0,0.3);
                                             </select>
                                         </div>
                                     </td>
-                                    <td>    
+                                    <td style="padding-right: 75px">    
                                         <div class='table-data-column height75 table-data-show show-col'>
-                                            <select class='shortSel gen_report_account' id='gen_report_account_def' >
+                                            <select class='shortSel gen_report_account' id='gen_report_account_def' style="width:92%" >
                                                 <option value=''>Select an Account</option>
                                                 <option value='2f0ee35b57077055e481dc9896d07496'>1015VM_ワンクリック詐欺EL</option>
                                                 <option value='77e2b7a06a6ed0d997843ddb1cad83e4'>1030 アドウェイズテスト</option>
@@ -508,24 +508,24 @@ box-shadow:inset 0px 0px 10px rgba(0,0,0,0.3);
                                                 <option value='8f69f8432d3ebcffb342e5f43c265e45'>test acct</option>
                                                 <option value='ddc9e7780af347644c4e42df34696d05'>test111</option>
                                                 <option value='d3804235f81c9120cbcab8b8a3586bf8'>広島中央クリニック</option>
-                                            </select>
-                                                <input type='text' class='shortSel' id='search_report_account' placeholder='Search' />
+                                            </select><br>
+                                                <input type='text' class='shortSel' id='search_report_account' placeholder='Search' style="width: 92%" />
                                                     <div id='search_account_results'></div>
                                         </div>
                                     </td>
                                     <td>
                                         <div class='table-data-column height75' class='shortSel'>
-                                            <select class='shortSel' id='gen_report_campaign_def' name='gen_report_campaign'>
+                                            <select class='shortSel' id='gen_report_campaign_def' name='gen_report_campaign' style="width:60%">
                                                 <option value=''>Select an Account</option>
-                                            </select>                                                       
+                                            </select>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;                                                       
                                         </div>
                                     </td>
-                                    <td>    
+                                    <td style="padding-right:50px">    
                                         <div class='table-data-column  height75'>
-                                            <select class='shortSel' id='conv_type' name='conv_type'>
+                                            <select class='shortSel' id='conv_type' name='conv_type' style="width:60%">
                                                 <option value='UTF-8'>UTF-8 (English)</option>                                                                  
                                                 <option value='SJIS-win'>Shift-JIS (Japanese)</option>
-                                            </select>
+                                            </select>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                                         </div>
                                     </td>
                                     <td>    
@@ -549,15 +549,14 @@ box-shadow:inset 0px 0px 10px rgba(0,0,0,0.3);
                             <tr>
                                 <div class="table-header-column">                                       
                                     <div>
-                                        <th><div class="table-header-column">Name &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</div></th>
-                                        <th><div class="table-header-column">Fields&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</div></th>
-                                        <th><div class="table-header-column">Traffic &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</div></th>
-                                        <th><div class="table-header-column">Date &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</div></th>
-                                        <th><div class="table-header-column">Account &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</div></th>
-                                        <th><div class="table-header-column">Campaign (optional) &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</div></th>
-                                        <th><div class="table-header-column">CSV Type&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</div></th>
-                                        <th><div class="table-header-column">Download &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</div></th>
-                                        <th><div class="table-header-column">View &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</div></th>
+                                        <th><div class="table-header-column">&nbsp;&nbsp;Name &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</div></th>
+                                        <th><div class="table-header-column">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Fields&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</div></th>
+                                        <th style="padding-right: 15px"><div class="table-header-column">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Traffic &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</div></th>
+                                        <th style="padding-right: 15px"><div class="table-header-column">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Date &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</div></th>
+                                        <th style="padding-left: 55px"><div class="table-header-column">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Account &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</div></th>
+                                        <th style="padding-left: 145px">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Campaign<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(optional)</th>
+                                        <th style="padding-left: 45px"><div class="table-header-column">CSV <br>Type</div></th>
+                                        <th><div class="table-header-column">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Download </div></th>
                                     </div>
                                 </div>
                             </tr>
@@ -584,14 +583,14 @@ box-shadow:inset 0px 0px 10px rgba(0,0,0,0.3);
                                     <th><div class="table-header-column">Campaign (optional)</div></th>
                                     <th><div class="table-header-column">CSV Type</div></th>
                                     <th><div class="table-header-column">Download</div></th>
-                                    <th><div class="table-header-column">View</div></th>
+                                    
                                 </div>
                                 </center>
                             </tr>
                         <div class="table-data">
                             <tr>
                                 <td>
-                                    <div class='table-data-column  height75'>test report (Row) <br> 
+                                    <div class='table-data-column  height75'>test report (Row) <br><br> 
                                         <a href='' target='_blank'><button class="btncolor">Edit</button></a> 
                                     </div>
                                 </td>
@@ -600,7 +599,7 @@ box-shadow:inset 0px 0px 10px rgba(0,0,0,0.3);
                                 </td>
                                 <td>
                                     <div class='table-data-column  height75'>
-                                        <select class='shortSel' id='traffic_1363'>
+                                        <select class='shortSel' id='traffic_1363' style="width:80%">
                                             <option value='All'>All</option>                                                                
                                             <option value='PPC'>PPC</option>                                                                    
                                             <option value='ORG'>ORGANIC</option>                                                                    
@@ -613,7 +612,7 @@ box-shadow:inset 0px 0px 10px rgba(0,0,0,0.3);
                                     <div class='table-data-column  height75' style=''>  
                                         <input type='date' class='report_date short75' id='date1_1363' value='02/01/2018' /><br/>   
                                         <input type='date' class='report_date short75' id='date2_1363' value='02/13/2018' /><br/> 
-                                            <select name="time_zone" id="time_zone_1363">
+                                            <select name="time_zone" id="time_zone_1363" style="width:60%">
                                                 <option value="America/Los_Angeles">(GMT-08:00) Pacific Time (US & Canada)</option>
                                                 <option value="Pacific/Midway">(GMT-11:00) Midway Island, Samoa</option>
                                                 <option value="America/Adak">(GMT-10:00) Hawaii-Aleutian</option>
@@ -707,14 +706,14 @@ box-shadow:inset 0px 0px 10px rgba(0,0,0,0.3);
                                             </select>
                                     </div>
                                 </td>
-                                <td>
+                                <td style="padding-right: 200px">
                                     <div class='table-data-column  height75'>
                                         <input type='hidden' id='gen_report_account_1363' value='a63fcccb60fb5056f696c3356c0238f5'>Varspec</input>
                                     </div>
                                 </td>
                                 <td>
                                     <div class='table-data-column  height=75'>
-                                        <select class='shortSel' id='conv_type_1363' name='conv_type_1363'>
+                                        <select class='shortSel' id='conv_type_1363' name='conv_type_1363' style="width:60%">
                                                 <option value='UTF-8'>UTF-8 (English)</option>                                                                  
                                                 <option value='SJIS-win'>Shift-JIS (Japanese)</option>
                                             </select>
@@ -736,14 +735,16 @@ box-shadow:inset 0px 0px 10px rgba(0,0,0,0.3);
                                         <button class="btncolor" id='view_1363'>View</button>
                                     </div>
                                 </td>
+
                                     <div class='clear clearSpace'></div>
+                                    <tr>
                                     <td>
-                                        <div class='table-data-column table-data-column_alt height75'>Calls (Row) <br> <a href='https://testenvadgainer.adgainersolutions.com/adgainer/report/editUserReport?id=1695' target='_blank'><button>Edit</button></a></div>
-                                        <div class='table-data-column table-data-column_alt height75'  > campaign_name</br>phone_number</br>caller_phone</br>lat</br>lng</br>matchtype</br>source</br>goal1_hit</br>goal2_hit</br>goal3_hit </div>
+                                        <div class='table-data-column table-data-column_alt height75'>Calls (Row) <br><br> <a href=''><button class="btncolor">Edit</button></a></div></td></td>
+                                        <div class='table-data-column table-data-column_alt height75'  ><td> campaign_name</br>phone_number</br>caller_phone</br>lat</br>lng</br>matchtype</br>source</br>goal1_hit</br>goal2_hit</br>goal3_hit </div>
                                     </td>
                                 <td>
                                     <div class='table-data-column table-data-column_alt height75'>
-                                        <select class='shortSel' id='traffic_1695'>
+                                        <select class='shortSel' id='traffic_1695' style="width:60%">
                                             <option value='All'>All</option>                                                                
                                             <option value='PPC'>PPC</option>                                                                    
                                             <option value='ORG'>ORGANIC</option>                                                                    
@@ -754,9 +755,9 @@ box-shadow:inset 0px 0px 10px rgba(0,0,0,0.3);
                                 </td>
                                 <td>
                                     <div class='table-data-column table-data-column_alt height75' style=''> 
-                                        <input type='text' class='report_date short75' id='date1_1695' value='02/01/2018' /><br/>
-                                        <input type='text' class='report_date short75' id='date2_1695' value='02/13/2018' /><br/>
-                                        <select name="time_zone" id="time_zone_1695">
+                                        <input type='date' class='report_date short75' id='date1_1695' value='02/01/2018' /><br/>
+                                        <input type='date' class='report_date short75' id='date2_1695' value=\'02/13/2018' /><br/>
+                                        <select name="time_zone" id="time_zone_1695" style="width:60%">
                                             <option value="America/Los_Angeles">(GMT-08:00) Pacific Time (US & Canada)</option>
                                             <option value="Pacific/Midway">(GMT-11:00) Midway Island, Samoa</option>
                                             <option value="America/Adak">(GMT-10:00) Hawaii-Aleutian</option>
@@ -851,14 +852,14 @@ box-shadow:inset 0px 0px 10px rgba(0,0,0,0.3);
                                         </select>
                                     </div>
                                 </td>
-                                <td>
+                                <td style="padding-right: 200px">
                                     <div class='table-data-column table-data-column_alt height75'>
                                         <input type='hidden' id='gen_report_account_1695' value='a63fcccb60fb5056f696c3356c0238f5'>Varspec</input>
                                     </div>
                                 </td>
                                 <td>
                                     <div class='table-data-column table-data-column_alt height75'>
-                                        <select class='shortSel' id='conv_type_1695' name='conv_type_1695'>
+                                        <select class='shortSel' id='conv_type_1695' name='conv_type_1695' style="width:60%">
                                             <option value='UTF-8'>UTF-8 (English)</option>                                                                  
                                             <option value='SJIS-win'>Shift-JIS (Japanese)</option>
                                         </select>
@@ -884,7 +885,7 @@ box-shadow:inset 0px 0px 10px rgba(0,0,0,0.3);
                             <tr>
                                 <div class='clear clearSpace'></div>
                                 <td>
-                                    <div class='table-data-column  height75'>ag calls (Row) <br><a href='https://testenvadgainer.adgainersolutions.com/adgainer/report/editUserReport?id=1709' target='_blank'> 
+                                    <div class='table-data-column  height75'>ag calls (Row) <br><br><a href=''> 
                                         <button class="btncolor">Edit</button></a>
                                     </div>
                                 </td>
@@ -893,7 +894,7 @@ box-shadow:inset 0px 0px 10px rgba(0,0,0,0.3);
                                 </td>
                                 <td>
                                     <div class='table-data-column  height75'>
-                                        <select class='shortSel' id='traffic_1709'>
+                                        <select class='shortSel' id='traffic_1709' style="width:60%">
                                             <option value='All'>All</option>                                                                
                                             <option value='PPC'>PPC</option>                                                                    
                                             <option value='ORG'>ORGANIC</option>                                                                    
@@ -904,9 +905,9 @@ box-shadow:inset 0px 0px 10px rgba(0,0,0,0.3);
                                 </td>
                                 <td>
                                     <div class='table-data-column  height75' style=''>  
-                                        <input type='text' class='report_date short75' id='date1_1709' value='02/01/2018' /><br/> 
-                                        <input type='text' class='report_date short75' id='date2_1709' value='02/13/2018' /><br/>   
-                                        <select name="time_zone" id="time_zone_1709">
+                                        <input type='date' class='report_date short75' id='date1_1709' value='02/01/2018' /><br/> 
+                                        <input type='date' class='report_date short75' id='date2_1709' value='02/13/2018' /><br/>   
+                                        <select name="time_zone" id="time_zone_1709" style="width:60%">
                                             <option value="America/Los_Angeles">(GMT-08:00) Pacific Time (US & Canada)</option>
                                             <option value="Pacific/Midway">(GMT-11:00) Midway Island, Samoa</option>
                                             <option value="America/Adak">(GMT-10:00) Hawaii-Aleutian</option>
@@ -1009,7 +1010,7 @@ box-shadow:inset 0px 0px 10px rgba(0,0,0,0.3);
                                 <td>
                                     <div class='table-data-column  height75'></div>
                                     <div class='table-data-column  height75'>
-                                        <select class='shortSel' id='conv_type_1709' name='conv_type_1709'>
+                                        <select class='shortSel' id='conv_type_1709' name='conv_type_1709' style="width:60%">
                                             <option value='UTF-8'>UTF-8 (English)</option>                                                                  
                                             <option value='SJIS-win'>Shift-JIS (Japanese)</option>
                                         </select>
@@ -1035,7 +1036,7 @@ box-shadow:inset 0px 0px 10px rgba(0,0,0,0.3);
                                 <div class='clear clearSpace'></div>
                             <tr>
                                 <td>
-                                    <div class='table-data-column table-data-column_alt height75'>Calls (Row) <br> <a href='https://testenvadgainer.adgainersolutions.com/adgainer/report/editUserReport?id=1763' target='_blank'>
+                                    <div class='table-data-column table-data-column_alt height75'>Calls (Row) <br><br> <a href=''>
                                         <button class="btncolor">Edit</button></a>
                                     </div>
                                 </td>
@@ -1044,7 +1045,7 @@ box-shadow:inset 0px 0px 10px rgba(0,0,0,0.3);
                                 </td>
                                 <td>                            
                                     <div class='table-data-column table-data-column_alt height75'>
-                                        <select class='shortSel' id='traffic_1763'>
+                                        <select class='shortSel' id='traffic_1763' style="width:60%">
                                             <option value='All'>All</option>                                                                
                                             <option value='PPC'>PPC</option>                                                                    
                                             <option value='ORG'>ORGANIC</option>                                                                    
@@ -1055,9 +1056,9 @@ box-shadow:inset 0px 0px 10px rgba(0,0,0,0.3);
                                 </td>   
                                 <td>
                                     <div class='table-data-column table-data-column_alt height75' style=''>     
-                                        <input type='text' class='report_date short75' id='date1_1763' value='02/01/2018' /><br/>   
-                                        <input type='text' class='report_date short75' id='date2_1763' value='02/13/2018' /><br/> 
-                                        <select name="time_zone" id="time_zone_1763">
+                                        <input type='date' class='report_date short75' id='date1_1763' value='02/01/2018' /><br/>   
+                                        <input type='date' class='report_date short75' id='date2_1763' value='02/13/2018' /><br/> 
+                                        <select name="time_zone" id="time_zone_1763" style="width:60%">
                                             <option value="America/Los_Angeles">(GMT-08:00) Pacific Time (US & Canada)</option>
                                             <option value="Pacific/Midway">(GMT-11:00) Midway Island, Samoa</option>
                                             <option value="America/Adak">(GMT-10:00) Hawaii-Aleutian</option>
@@ -1159,7 +1160,7 @@ box-shadow:inset 0px 0px 10px rgba(0,0,0,0.3);
                                 <td>
                                     <div class='table-data-column table-data-column_alt height75'></div>
                                     <div class='table-data-column table-data-column_alt height75'>
-                                        <select class='shortSel' id='conv_type_1763' name='conv_type_1763'>
+                                        <select class='shortSel' id='conv_type_1763' name='conv_type_1763' style="width:60%">
                                             <option value='UTF-8'>UTF-8 (English)</option>                                                                  
                                             <option value='SJIS-win'>Shift-JIS (Japanese)</option>
                                         </select>
@@ -1185,14 +1186,17 @@ box-shadow:inset 0px 0px 10px rgba(0,0,0,0.3);
                             <div class='clear clearSpace'></div>
                             <tr>
                                 <td>
-                                    <div class='table-data-column  height75'>Calls2 (Row) <br><a href='https://testenvadgainer.adgainersolutions.com/adgainer/report/editUserReport?id=1765' target='_blank'>
+                                    <div class='table-data-column  height75'>Calls2 (Row) <br>
+                                        <br><a href='' >
                                         <button class="btncolor">Edit</button></a> 
                                     </div>
                                 </td>
                                 <td>
                                     <div class='table-data-column  height75'  > campaign_name</br>goal3_hit</br>goal4_hit </div>
                                     <div class='table-data-column  height75'>
-                                        <select class='shortSel' id='traffic_1765'>
+                                    </td>
+                                    <td>
+                                        <select class='shortSel' id='traffic_1765' style="width:60%">
                                             <option value='All'>All</option>                                                                
                                             <option value='PPC'>PPC</option>                                                                    
                                             <option value='ORG'>ORGANIC</option>                                                                    
@@ -1203,9 +1207,9 @@ box-shadow:inset 0px 0px 10px rgba(0,0,0,0.3);
                                 </td>
                                 <td>
                                     <div class='table-data-column  height75' style=''>  
-                                        <input type='text' class='report_date short75' id='date1_1765' value='02/01/2018' /><br/>   
-                                        <input type='text' class='report_date short75' id='date2_1765' value='02/13/2018' /><br/>
-                                        <select name="time_zone" id="time_zone_1765">
+                                        <input type='date' class='report_date short75' id='date1_1765' value='02/01/2018' /><br/>   
+                                        <input type='date' class='report_date short75' id='date2_1765' value='02/13/2018' /><br/>
+                                        <select name="time_zone" id="time_zone_1765" style="width:60%">
                                             <option value="America/Los_Angeles">(GMT-08:00) Pacific Time (US & Canada)</option>
                                             <option value="Pacific/Midway">(GMT-11:00) Midway Island, Samoa</option>
                                             <option value="America/Adak">(GMT-10:00) Hawaii-Aleutian</option>
@@ -1308,7 +1312,7 @@ box-shadow:inset 0px 0px 10px rgba(0,0,0,0.3);
                                 <td>
                                     <div class='table-data-column  height75'></div>
                                     <div class='table-data-column  height75'>
-                                        <select class='shortSel' id='conv_type_1765' name='conv_type_1765'>
+                                        <select class='shortSel' id='conv_type_1765' name='conv_type_1765' style="width:60%">
                                             <option value='UTF-8'>UTF-8 (English)</option>                                                                  
                                             <option value='SJIS-win'>Shift-JIS (Japanese)</option>
                                         </select>

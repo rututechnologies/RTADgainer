@@ -2,7 +2,15 @@
 @section('title','Users List ')
 
 @section('style')
-
+<style>
+td {
+    padding-top: .5em;
+    padding-bottom: .5em;
+}
+tr.spaceUnder>td {
+  padding-bottom: 2em;
+}
+</style>
 
 @endsection
 
@@ -21,7 +29,7 @@
 
 						 <div class="clear"></div>
 
-
+                          <br><br>
 						 <div class="grid_3">
 
 							<div class="da-panel">
@@ -32,13 +40,14 @@
 											<b>Create a New Pre-generated Message</b></td><hr>
 										</span></tr>
 									</div>
-<table>
+
 									<div class="da-panel-content">
 
 
 											<div class="da-form-row">
 
 												<div class="da-form-item large">
+													<table>
 													<tr><div class="rowName">
 														<td>Account</td>
 													</div>

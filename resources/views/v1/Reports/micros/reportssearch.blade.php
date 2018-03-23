@@ -2,7 +2,29 @@
 @section('title','Report search ')
 
 @section('style')
-
+<style>
+td {
+    padding-top: .5em;
+    padding-bottom: .5em;
+}
+tr.spaceUnder>td {
+  padding-bottom: 2em;
+}
+.btncolor{
+background-color:#00cc7a;
+color:white;
+border:1px solid gray;
+border-radius:10px;
+padding:5px;
+width:100px;
+box-shadow:5px 5px 5px -2px rgba(0,0,0,0.6);
+}
+.shadow{
+width:100px;
+heigth:25;
+box-shadow:inset 0px 0px 10px rgba(0,0,0,0.3);
+}
+</style>
 
 @endsection
 
@@ -34,14 +56,15 @@
     </div>
 
 <div class="w3-container">
-<div style="margin-left:150px">
-<div class="da-panel-header" style="margin-left:150px">
+<div class="da-panel-header" style="margin-left:50px">
+<table><tr><td>
+                  <div>
                     <span class="da-panel-title">
-                      <b>Custom Query</b><hr width="50%" align="left">
+                      <b><center>Custom Query</center></b><hr width="80%" align="center">
                     </span>
                   </div>
                   <div class="col-sem-6">
-                    <table align="left" style="width:50%" cellspacing="10" cellpadding="5">
+                    <table align="center" style="width:50%" cellspacing="10" cellpadding="5">
                     <div class="da-form-row">
                       <tr><td><label>Account</label></td>
                       <div class="da-form-item large">
@@ -64,7 +87,7 @@
                     
                     <tr><td>  <label>Keyword</label></td>
                     <td>  <div class="da-form-item large">
-                        <input type="text" id="keyword" />
+                        <input type="text" id="keyword" class="shadow" />
                         Contains: <input type="radio" name="keyword_spec" id="keyword_spec1" value="1" checked />
                         Equals: <input type="radio" name="keyword_spec" id="keyword_spec2" value="0"  /></td></tr>
                       </div></td></tr>
@@ -73,20 +96,20 @@
                     <div class="da-form-row">
                     <tr><td>  <label>Source</label></td>
                     <td>  <div class="da-form-item large">
-                        <input type="text" id="source" />
+                        <input type="text" id="source" class="shadow"/>
                         Contains: <input type="radio" name="source_spec" id="source_spec1" value="1" checked />
                         Equals: <input type="radio" name="source_spec" id="source_spec2" value="0"  />
                       </div></td></tr>
                     </div>
                   
                     <div class="da-form-row">
-                    <tr><td>  <label>Search Term</label></td><td>
-                      <div class="da-form-item large">
-                        <input type="text" id="searchTerm" /> </br>
+                    <tr><td><label>Search Term</label></td>
+                      <td><div class="da-form-item large">
+                        <input type="text" id="searchTerm" class="shadow" /> 
                         Contains: <input type="radio" name="searchTerm_spec" id="searchTerm_spec1" value="1" checked />
                         Equals: <input type="radio" name="searchTerm_spec" id="searchTerm_spec2" value="0"  />
-                      
-                      </div></td></tr>
+                      </td>
+                      </div></tr>
                     </div>
                     
                     <div class="da-form-row"><tr><td>
@@ -105,13 +128,13 @@
                      <div class="da-form-row">
                       <tr><td><label>Visit Location</label></td><td>
                       <div class="da-form-item large">
-                        <input type="text" id="visit_location" /> *contains
+                        <input type="text" id="visit_location" class="shadow"/> *contains
                       </div></td></tr>
                     </div>
                     
                      <div class="da-form-row"><tr><td>
-                      <label>Visit Duration (secs)</label></td><td>
-                      <div class="da-form-item large">
+                      <label>Visit Duration (secs)</label></td>
+                      <td><div class="da-form-item large">
                         <select id="visit_dur_operartor">
                           <option value=">">&rang;</option>
                           <option value="<">&lang;</option>
@@ -119,9 +142,9 @@
                           <option value=">=">&rang;=</option>
                           <option value="<=">&lang;=</option>
                         </select>
-                        </td><td>
-                        <input type="text" id="visit_duration" /></td>
-                      </div></tr>
+                        
+                        <input type="text" id="visit_duration" class="shadow" />
+                      </div></td></tr>
                     </div>
                     
                      <div class="da-form-row">
@@ -136,31 +159,31 @@
                      <div class="da-form-row"><tr><td>
                       <label>Date of Visit</label></td><td>
                       <div class="da-form-item large">
-                        From: <input type="text" id="date1_v" /> <br/>
-                        To: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="text" id="date2_v" />
+                        From: <input type="text" id="date1_v" class="shadow"/>
+                        To: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="text" id="date2_v" class="shadow"/>
                       </div></td></tr>
                     </div><tr><td>
                     
                     <div class="da-button-row">
-                      <input id="run_query" type="submit" value="Show Results" class="da-button green" onclick="return false;" style="height:50px;width:100px">
+                      <input id="run_query" type="submit" value="Show Results" class="btncolor" onclick="return false;" style="height:50px;width:100px">
                     </div></td></td></table>
                 </div>    
                     
               </div>  
-          </div>  
+          </div></td> 
           <div class="grid_2">
-              <div class="da-panel">
+          <td>    <div class="da-panel">
                   <div class="da-panel-header">
                     <span class="da-panel-title">
                        
                     </span>
                   </div>
-                  <div class="col-sem-6">
-          <table align="right" style="width:50%" cellspacing="10" cellpadding="5">
+                  <div class="col-sem-6" style='margin-bottom:110px'>
+          <table align="center" style="width:50%" cellspacing="10" cellpadding="5" style='padding-top:1em'>
                      <div class="da-form-row"><tr><td>
                       <label>Tracking Phone Number</label></td><td>
                       <div class="da-form-item large">
-                        <input type="text" id="phone_number" /> *contains
+                        <input type="text" id="phone_number" class="shadow" /> *contains
                       </div></td></tr>
                     </div>
                      
@@ -183,13 +206,13 @@
                      <div class="da-form-row"><tr><td>
                       <label>Caller Phone Number</label></td><td>
                       <div class="da-form-item large">
-                        <input type="text" id="caller_phone" /> *contains
+                        <input type="text" id="caller_phone" class="shadow" /> *contains
                       </div></td></tr>
-                    </div><hr width="50%" align="right">
+                    </div><hr width="80%" align="center">
                      <div class="da-form-row">
                     <tr><td>  <label>Caller Location</label></td><td>
                       <div class="da-form-item large">
-                        <input type="text" id="caller_location" /> *contains
+                        <input type="text" id="caller_location" class="shadow"/> *contains
                       </div></td></tr>
                     </div>
                      <div class="da-form-row">
@@ -201,24 +224,26 @@
                           <option value="=">=</option>
                           <option value=">=">&rang;=</option>
                           <option value="<=">&lang;=</option>
-                        </select></td><td>
-                        <input type="text" id="call_duration" />
+                        </select>
+                        <input type="text" id="call_duration" class="shadow"/>
                       </div></td></tr>
                     </div>
                     <div class="da-form-row">
                       <tr><td><label>Date of Call</label></td><td>
                       <div class="da-form-item large">
-                        From: <input type="text" id="date1_c" /> <br/>
-                        To: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="text" id="date2_c" />
+                        From: <input type="text" id="date1_c" class="shadow" />
+                        To: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="text" id="date2_c" class="shadow" />
                       </div></td></tr>
                     </div>
+                    </table>
                 </div>    
-            </div>  
+            </div>  </td>
           </div>  
-</table>          
-                   </form>   
+          
+                   </form>
+</tr></table>            
                         <div class="clear"></div>
-                        <h3>Records are limited to 200</h3>
+                        <h4 align="left">Records are limited to 200</h4>
                         <div id="resultQuery" style="margin:0 0 100px 0">
                         
                         </div>
@@ -229,9 +254,10 @@
                 </div>
                 
             </div>
-            
+           
         </div>
-</div>
+
+
  </div>
  @endsection
 
