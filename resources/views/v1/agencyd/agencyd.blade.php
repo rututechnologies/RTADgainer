@@ -53,19 +53,19 @@
 
 <div class="w3-container">
 
-            <div id="da-content-area" style="margin-left:15px">
+            <div id="da-content-area" style="margin-right:45px">
 
                 <div class="clear"></div>
 
                 <table>
-                    <tr>
+                    <tr >
                         <td>
 
                             <div class="grid_2">
 
                                 <div class="da-panel">
                                     <div class="da-panel-header">
-                                        <form action="https://testenvadgainer.adgainersolutions.com/adgainer/agency/updateLogo" class="da-form" enctype="multipart/form-data" method="post" accept-charset="utf-8">
+                                       
                                             <span class="da-panel-title">
 
                                 <h4 align="center"><img src="https://testenvadgainer.adgainersolutions.com/adgainer/application/images/icons/black/16/pencil.png" alt="Edit" /><b>Agency Logo Branding</b></h4>
@@ -78,7 +78,7 @@
                                             <div class="da-panel-content">
 
                                                 <div class="da-form-row">
-                                                    <td>
+                                                    <td style="padding-left: 50px">
                                                         <label>
                                                             Logo </label>
                                                     </td>
@@ -91,7 +91,7 @@
                         
                                 
                         <tr>
-                            <td>
+                            <td style="padding-left: 40px" >
                                 <div class="da-button-row">
 
                                     <input type="submit" id="shadow" value="Update Logo" class="da-button green" style="background-color:f5fffa">
@@ -101,7 +101,7 @@
                         </div>
                         </tr>
                         </table>
-                        </form>
+                        
                         </div>
                         </div>
                     </td>
@@ -116,7 +116,7 @@
                                     <div class="da-panel">
 
                                         <div class="da-panel-header">
-                                            <form action="https://testenvadgainer.adgainersolutions.com/adgainer/agency/updateColor" class="da-form" enctype="multipart/form-data" method="post" accept-charset="utf-8" align="right">
+                                            
                                                 <span class="da-panel-title">
 
                             <h4 align="center"> <img src="https://testenvadgainer.adgainersolutions.com/adgainer/application/images/icons/black/16/pencil.png" alt="Edit" />
@@ -156,7 +156,7 @@
                                                     </div>
                                                     </tr>
                                         </table>
-                                        </form>
+                                        
                                     </div>
                                 </div></td>
                         </div>
@@ -178,9 +178,9 @@
                             </span>
                                             <hr width="50%" align="center">
                                         </div>
-                                        <form action="https://testenvadgainer.adgainersolutions.com/adgainer/agency/updateDomain" class="da-form" enctype="multipart/form-data" method="post" accept-charset="utf-8">
+                                        
                                             <table id="a" align="center" style="width:60%" style="height:25%">
-                                                <tr>
+                                                <trstyle="margin-right: 10px">
                                                     <td>
                                                         <div class="da-panel-content">
 
@@ -197,9 +197,9 @@
                                                     </td>
                                                 </tr>
                                                 </div>
-                                                <tr>
-                                                    <td>
-                                                        <div class="da-button-row">
+                                                <tr >
+                                                    <td >
+                                                        <div >
 
                                                             <input type="submit" id="shadow" value="Update Subdomain" class="da-button green" style="background-color:f5fffa">
                                                         </div>
@@ -208,7 +208,7 @@
 
                                                 </div>
                                             </table>
-                                        </form>
+                                        
                                     </div>
                                 </div>
 
@@ -218,10 +218,10 @@
 
                                     <div class="da-panel">
                                         <div class="da-panel-header">
-                                            <form action="https://testenvadgainer.adgainersolutions.com/adgainer/agency/updateSlogan" class="da-form" enctype="multipart/form-data" method="post" accept-charset="utf-8">
+                                            
                                                 <span class="da-panel-title">
 
-                            <h4 align="center"> <img src="https://testenvadgainer.adgainersolutions.com/adgainer/application/images/icons/black/16/pencil.png" alt="Edit" />
+                            <h4 align="center" style="margin-bottom:15px "> <img src="https://testenvadgainer.adgainersolutions.com/adgainer/application/images/icons/black/16/pencil.png" alt="Edit" />
 
                                 <b>Login Page Slogan</b></span>
                                                 <hr width="80%" align="center">
@@ -243,16 +243,16 @@
                                             </div>
                                             </div>
                                             <tr>
-                                                <td>
+                                                <td style="padding-top: 20px">
                                                     <div class="da-button-row">
 
-                                                        <input type="submit" id="shadow" value="Update Slogan" class="da-button green" style="background-color:f5fffa">
+                                                        <input type="submit" id="shadow" value="Update Slogan" class="da-button green" style="background-color:#075f98" style="bgcolor:black">
                                                     </div>
                                                 </td>
                                             </tr>
 
                                         </table>
-                                        </form>
+                                        
                                         </div>
                                     </div>
 

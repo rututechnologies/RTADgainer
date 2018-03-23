@@ -56,7 +56,7 @@ tr.spaceUnder>td {
       <a href="#ppctracking" id="ppc" aria-controls="shipping" role="tab" data-toggle="tab" aria-expanded="false">PPC Tracking  Data</a>
     </li>
     <li>
-      <a href="#alltrackingdata" id="all" aria-controls="review" role="tab" data-toggle="tab" aria-expanded="false">All Tracking Data</a>
+      <a href="#alltrackingdata" id="all" aria-controls="review" role="tab" data-toggle="tab" aria-expanded="false">All TracData</a>
     </li>
     
     <li>
@@ -82,7 +82,7 @@ tr.spaceUnder>td {
 </nav>
 <div class="da-form-item">
 													
-														&nbsp;&nbsp;&nbsp;Search:<input type="text" id="search_account_select" />
+													
 
 													
 													
@@ -197,7 +197,7 @@ tr.spaceUnder>td {
 														<br><br>
 														&nbsp;&nbsp;&nbsp;<button id="updateAccountOverviewDate">View Data</button>
 														 &nbsp;&nbsp;&nbsp;
-														<button id="clearAccount">Start Over</button>
+														<input type="reset" value="Start Over">
 														<!--
 														 <br> <br> <button id="view_archive"> View Archive </button>
 														 -->
@@ -206,11 +206,12 @@ tr.spaceUnder>td {
 <h1><b>Account Records Navigation</b></h1>
  </div>
  <div>
-&nbsp;&nbsp;<button type="button" class="btn btn-primary">Call Records</button>
-<button type="button" class="btn btn-primary">Web Traffic</button>
-<button type="button" class="btn btn-primary">PPC Traffic</button>
-<button type="button" class="btn btn-primary">Conversion</button>
-<a href="images/Portfolio.pdf" class="button" download ><img src="images/doc_pdf.png" height="34" width="34" /></a>&nbsp;&nbsp;<button type="button" class="btn btn-primary">PPC Daily</button>
+&nbsp;&nbsp; <a href="{{url('callrecords')}}"><button type="button" class="btn btn-primary">Call Records</button></a>
+<a href="{{url('callrecords')}}"><button type="button" class="btn btn-primary">Web Traffic</button></a>
+<a href="{{url('callrecords')}}"><button type="button" class="btn btn-primary">PPC Traffic</button></a>
+<a href="{{url('callrecords')}}"><button type="button" class="btn btn-primary">Conversion</button></a>
+<a href="images/Portfolio.pdf" class="button" download ><img src="images/doc_pdf.png" height="34" width="34" /></a>
+&nbsp;&nbsp;<a href="{{url('ppcdail')}}"><button type="button" class="btn btn-primary">PPC Daily</button></a>
 <hr></div>
 <div class="tab-content">
 
