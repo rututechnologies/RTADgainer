@@ -41,8 +41,10 @@ tr.spaceUnder>td {
 <div class="w3-container">
 <h2 align="center"><b>campaign Setup</b></h2><hr>
 
+
 <form action="new_Campaign_General" method="post">
   <input type="hidden" name="_token" value="{{ csrf_token() }}">
+
 <div class="container tabs-wrap">
  
 <nav class="navbar navbar-default">
@@ -414,6 +416,7 @@ Per Tracking Session:-</td>
 <option value='12' >12</option> 
 </select>
 </td>
+
 </tr>
 <tr>
 <td>Time Zone:-</td>
@@ -670,7 +673,9 @@ If any of these words are typed during a chat session, they will be counted each
 <textarea name="tag_words" cols="40" rows='4'></textarea></td>
 </tr>
 </table>
+
     <input type="button" class="btn btn-primary continue" id="continue1" value="continue">
+
   </div>
 
 
@@ -889,6 +894,7 @@ Notification Threshold: <select name="goalsThresh" style="width:50px">
 
     <a class="btn btn-primary back" id="back1">Go Back</a>
     <a class="btn btn-primary continue" id="continue2">Next</a>
+
   </div>
 <!-- 3rd panel   -->
 
@@ -1428,8 +1434,10 @@ Notification Threshold: <select name="goalsThresh" style="width:50px">
                                 </div>
                                 <tr>
 
+
    <td> <a class="btn btn-primary back" id="back3">Go Back</a>
     <a class="btn btn-primary continue" id="continue4">next</a></td>
+
                                             </tr>
                                 </table>
 
@@ -1493,6 +1501,7 @@ Notification Threshold: <select name="goalsThresh" style="width:50px">
 $(function(){
 
     $('#continue1').click(function(e){
+
         e.preventDefault();
         $('#navtab a[href="#shipping"]').tab('show');
     });
@@ -1506,6 +1515,7 @@ $(function(){
         $('#navtab a[href="#notification"]').tab('show');
     });
     $('#continue4').click(function(e){
+
         e.preventDefault();
         $('#navtab a[href="#filering"]').tab('show');
     });
@@ -1525,6 +1535,7 @@ $('#back2').click(function(e){
     });
 
 $('#back1').click(function(e){
+
         e.preventDefault();
         $('#navtab a[href="#billing"]').tab('show');
     });

@@ -144,6 +144,7 @@ padding-bottom:1em;
                           
                         
                             &nbsp;&nbsp;&nbsp;Time Zone:<select name="timeZone" id="timeZone">
+
                               <option value="America/Los_Angeles">(GMT-08:00) Pacific Time (US & Canada)</option>
                                                             <option value="Pacific/Midway">(GMT-11:00) Midway Island, Samoa</option>
                                                             <option value="America/Adak">(GMT-10:00) Hawaii-Aleutian</option>
@@ -1203,6 +1204,7 @@ padding-bottom:1em;
 </tbody>
 </table>
   </div>
+
 <div role="tabpanel" class="tab-pane" id="alltrackingdata">
 <table align="center" id="customers">
  <tr>
@@ -1333,7 +1335,9 @@ Campaign: <select>
                       <td><div class="table-header-column" id=''>Goals                 </div></td>
                       <td><div class="table-header-column" id=''> Record Calls        </div></td>
                       <td><div class="table-header-column" id=''>Active                 </div></td>
+
                       <td><div class="table-header-column" id=''>Edit / Details   </div></td>
+
                   </div></thead></tr>
           <tr>
                    @if($result)
@@ -1379,12 +1383,14 @@ Campaign: <select>
           <td>  Hit Count </td></tr>
     <tr>
       @if($result)
+
       @foreach($result as $count => $data)
         
         <td>{{$data->campaign_name}}</td>
         <td>{{++$count}}</td>
         <td>{{$data->goal1Memo}}</td>
         <td>{{$data->goal1}}</td>
+
         <td>cpl</td>
         <td>hitcount</td>
       </tr>
