@@ -143,7 +143,7 @@ padding-bottom:1em;
                            
                           
                         
-                            &nbsp;&nbsp;&nbsp;Time Zone:<select name="time_zone" id="time_zone">
+                            &nbsp;&nbsp;&nbsp;Time Zone:<select name="timeZone" id="timeZone">
                               <option value="America/Los_Angeles">(GMT-08:00) Pacific Time (US & Canada)</option>
                                                             <option value="Pacific/Midway">(GMT-11:00) Midway Island, Samoa</option>
                                                             <option value="America/Adak">(GMT-10:00) Hawaii-Aleutian</option>
@@ -1203,324 +1203,47 @@ padding-bottom:1em;
 </tbody>
 </table>
   </div>
-
-  <div role="tabpanel" class="tab-pane" id="alltrackingdata">
-   <table align="center" id="customers">
-           
-
-<tr>
-
-
-
-
-
-                        <div class="grid_3">
-            
-                <div class="table-grid">
-
-
-                    <div class="clear"></div>
-
-                    <div class="table-header">
-
-                      <td><div class="table-header-column" id=''>
-                        
-                                                    Campaign Name                 </div></td>
-                      <td><div class="table-header-column" id=''>
-
-                        All visits                </div><td>
-                      <td><div class="table-header-column" id=''>
-
-                        All clicks                    </div></td>
-                      <td><div class="table-header-column" id=''>
-
-                        PPC                   </div></td>
-                      <td><div class="table-header-column" id=''>
-
-                        Display                 </div></td>
-                      <td><div class="table-header-column" id=''>
-
-                        Organic                 </div></td>
-                      <td><div class="table-header-column" id=''>
-                                                         Direct
-                                            </div></td>
-                      <td><div class="table-header-column" id=''>
-                                                 Call | Unique                      </div></td>
-                      <td><div class="table-header-column" id=''>
-
-                        Call conv%                  </div></td>
-                        <td><div class="table-header-column" id=''>
-
-                        Goals                   </div></td>
-                        <td><div class="table-header-column" id=''>
-
-                        Email                   </div></td>
-                        <td><div class="table-header-column" id=''>
-
-                        All Convs                   </div></td>
-                        <td><div class="table-header-column" id=''>
-
-                        All Conv%                 </div></td> 
-
-                  </div>
-                  </tr>
+<div role="tabpanel" class="tab-pane" id="alltrackingdata">
+<table align="center" id="customers">
+ <tr>
+ <div class="grid_3">
+<div class="table-grid">
+<div class="table-header">
+<td><div class="table-header-column" id=''>Campaign Name                 </div></td>
+<td><div class="table-header-column" id=''>All visits                </div></td>
+<td><div class="table-header-column" id=''>All clicks                    </div></td>
+<td><div class="table-header-column" id=''>PPC                   </div></td>
+<td><div class="table-header-column" id=''>Display                 </div></td>
+<td><div class="table-header-column" id=''>Organic                 </div></td>
+<td><div class="table-header-column" id=''>Direct</div></td>
+<td><div class="table-header-column" id=''>Call | Unique                      </div></td>
+<td><div class="table-header-column" id=''>Call conv%                  </div></td>
+<td><div class="table-header-column" id=''>Goals                   </div></td>
+<td><div class="table-header-column" id=''>Email                   </div></td>
+<td><div class="table-header-column" id=''>All Convs                   </div></td>
+<td><div class="table-header-column" id=''>All Conv%                 </div></td></div></tr>
+                @if($result)
+                @foreach($result as $key => $data)
+                    <td>{{$data->campaign_name}}</td>
+                    <td><a href="">all visit</a></td>
+                    <td><a href="">{{$data->clicksThresh}}</a></td> 
+                    <td><a href="">{{$data->ppc_markup}}</a></td> 
+                    <td><a href="">display</a></td>
+                    <td><a href="">organic</a></td>
+                    <td><a href="">Direct</a></td>
+                    <td><a href="">{{$data->avgCalls}}</a></td>
+                    <td><a href="">{{$data->avgConversions}}</a></td> 
+                    <td><a href="">{{$data->goalsThresh}}</a></td> 
+                    <td>{{$data->emailsThresh}}</td> 
+                    <td><a href="">{{$data->convsThresh}}</a></td>  
+                    <td>{{$data->avgCalls}}</td>
                     
-                    <td>ADgainer Main Site</td>
-                        <td style="color:blue">0</td>
-                    <td style="color:blue">0</td>
-                    <td style="color:blue">0</td>
-                    <td style="color:blue">0</td>
-                    <td style="color:blue">0</td>
-                    <td style="color:blue">0</td>
-                    <td style="color:blue">0|0</td>
-                    <td style="color:blue">0</td>
-                    <td style="color:blue">0</td>
-                    <td style="color:blue">0</td>
-                    <td style="color:blue">0</td>
-                    <td style="color:blue">0</td>
-                    <td style="color:blue">0</td>
                     </tr>
-                    <tr>
-                    <td>ADgainer KK Site</td>
-                        <td style="color:blue">0</td>
-                    <td style="color:blue">0</td>
-                    <td style="color:blue">0</td>
-                    <td style="color:blue">0</td>
-                    <td style="color:blue">0</td>
-                    <td style="color:blue">0</td>
-                    <td style="color:blue">0|0</td>
-                    <td style="color:blue">0</td>
-                    <td style="color:blue">0</td>
-                    <td style="color:blue">0</td>
-                    <td style="color:blue">0</td>
-                    <td style="color:blue">0</td>
-                    <td style="color:blue">0</td>
-                    </tr>
-                    <tr>
-                    <td>Super Pages</td>
-                        <td style="color:blue">0</td>
-                    <td style="color:blue">0</td>
-                    <td style="color:blue">0</td>
-                    <td style="color:blue">0</td>
-                    <td style="color:blue">0</td>
-                    <td style="color:blue">0</td>
-                    <td style="color:blue">0|0</td>
-                    <td style="color:blue">0</td>
-                    <td style="color:blue">0</td>
-                    <td style="color:blue">0</td>
-                    <td style="color:blue">0</td>
-                    <td style="color:blue">0</td>
-                    <td style="color:blue">0</td>
-                    </tr>
-                    <tr>
-                    <td>New Multi Campaign</td>
-                        <td style="color:blue">0</td>
-                    <td style="color:blue">0</td>
-                    <td style="color:blue">0</td>
-                    <td style="color:blue">0</td>
-                    <td style="color:blue">0</td>
-                    <td style="color:blue">0</td>
-                    <td style="color:blue">0|0</td>
-                    <td style="color:blue">0</td>
-                    <td style="color:blue">0</td>
-                    <td style="color:blue">0</td>
-                    <td style="color:blue">0</td>
-                    <td style="color:blue">0</td>
-                    <td style="color:blue">0</td>
-                    </tr>
-                    <tr>
-                    <td>Main Site</td>
-                        <td style="color:blue">0</td>
-                    <td style="color:blue">0</td>
-                    <td style="color:blue">0</td>
-                    <td style="color:blue">0</td>
-                    <td style="color:blue">0</td>
-                    <td style="color:blue">0</td>
-                    <td style="color:blue">0|0</td>
-                    <td style="color:blue">0</td>
-                    <td style="color:blue">0</td>
-                    <td style="color:blue">0</td>
-                    <td style="color:blue">0</td>
-                    <td style="color:blue">0</td>
-                    <td style="color:blue">0</td>
-                    </tr>
-                    <tr>
-                    <td>Source2</td>
-                        <td style="color:blue">0</td>
-                    <td style="color:blue">0</td>
-                    <td style="color:blue">0</td>
-                    <td style="color:blue">0</td>
-                    <td style="color:blue">0</td>
-                    <td style="color:blue">0</td>
-                    <td style="color:blue">0|0</td>
-                    <td style="color:blue">0</td>
-                    <td style="color:blue">0</td>
-                    <td style="color:blue">0</td>
-                    <td style="color:blue">0</td>
-                    <td style="color:blue">0</td>
-                    <td style="color:blue">0</td>
-                    </tr>
-                    <tr>
-                    <td>Ads Network2</td>
-                        <td style="color:blue">0</td>
-                    <td style="color:blue">0</td>
-                    <td style="color:blue">0</td>
-                    <td style="color:blue">0</td>
-                    <td style="color:blue">0</td>
-                    <td style="color:blue">0</td>
-                    <td style="color:blue">0|0</td>
-                    <td style="color:blue">0</td>
-                    <td style="color:blue">0</td>
-                    <td style="color:blue">0</td>
-                    <td style="color:blue">0</td>
-                    <td style="color:blue">0</td>
-                    <td style="color:blue">0</td>
-                    </tr>
-                    <tr>
-                    <td>Renamed</td>
-                        <td style="color:blue">0</td>
-                    <td style="color:blue">0</td>
-                    <td style="color:blue">0</td>
-                    <td style="color:blue">0</td>
-                    <td style="color:blue">0</td>
-                    <td style="color:blue">0</td>
-                    <td style="color:blue">0|0</td>
-                    <td style="color:blue">0</td>
-                    <td style="color:blue">0</td>
-                    <td style="color:blue">0</td>
-                    <td style="color:blue">0</td>
-                    <td style="color:blue">0</td>
-                    <td style="color:blue">0</td>
-                    </tr>
-                    <tr>
-                    <td>Test Camp2</td>
-                        <td style="color:blue">0</td>
-                    <td style="color:blue">0</td>
-                    <td style="color:blue">0</td>
-                    <td style="color:blue">0</td>
-                    <td style="color:blue">0</td>
-                    <td style="color:blue">0</td>
-                    <td style="color:blue">0|0</td>
-                    <td style="color:blue">0</td>
-                    <td style="color:blue">0</td>
-                    <td style="color:blue">0</td>
-                    <td style="color:blue">0</td>
-                    <td style="color:blue">0</td>
-                    <td style="color:blue">0</td>
-                    </tr>
-                    <tr>
-                    <td>New Submit Campaign</td>
-                        <td style="color:blue">0</td>
-                    <td style="color:blue">0</td>
-                    <td style="color:blue">0</td>
-                    <td style="color:blue">0</td>
-                    <td style="color:blue">0</td>
-                    <td style="color:blue">0</td>
-                    <td style="color:blue">0|0</td>
-                    <td style="color:blue">0</td>
-                    <td style="color:blue">0</td>
-                    <td style="color:blue">0</td>
-                    <td style="color:blue">0</td>
-                    <td style="color:blue">0</td>
-                    <td style="color:blue">0</td>
-                    </tr>
-                    <tr>
-                    <td>New Submit Campaign</td>
-                        <td style="color:blue">0</td>
-                    <td style="color:blue">0</td>
-                    <td style="color:blue">0</td>
-                    <td style="color:blue">0</td>
-                    <td style="color:blue">0</td>
-                    <td style="color:blue">0</td>
-                    <td style="color:blue">0|0</td>
-                    <td style="color:blue">0</td>
-                    <td style="color:blue">0</td>
-                    <td style="color:blue">0</td>
-                    <td style="color:blue">0</td>
-                    <td style="color:blue">0</td>
-                    <td style="color:blue">0</td>
-                    </tr>
-                    <tr>
-                    <td>Make New Auto</td>
-                        <td style="color:blue">0</td>
-                    <td style="color:blue">0</td>
-                    <td style="color:blue">0</td>
-                    <td style="color:blue">0</td>
-                    <td style="color:blue">0</td>
-                    <td style="color:blue">0</td>
-                    <td style="color:blue">0|0</td>
-                    <td style="color:blue">0</td>
-                    <td style="color:blue">0</td>
-                    <td style="color:blue">0</td>
-                    <td style="color:blue">0</td>
-                    <td style="color:blue">0</td>
-                    <td style="color:blue">0</td>
-                    </tr>
-                    <tr>
-                    <td>Make New Auto</td>
-                        <td style="color:blue">0</td>
-                    <td style="color:blue">0</td>
-                    <td style="color:blue">0</td>
-                    <td style="color:blue">0</td>
-                    <td style="color:blue">0</td>
-                    <td style="color:blue">0</td>
-                    <td style="color:blue">0|0</td>
-                    <td style="color:blue">0</td>
-                    <td style="color:blue">0</td>
-                    <td style="color:blue">0</td>
-                    <td style="color:blue">0</td>
-                    <td style="color:blue">0</td>
-                    <td style="color:blue">0</td>
-                    </tr>
-                    <tr>
-                    <td>Make New Auto</td>
-                        <td style="color:blue">0</td>
-                    <td style="color:blue">0</td>
-                    <td style="color:blue">0</td>
-                    <td style="color:blue">0</td>
-                    <td style="color:blue">0</td>
-                    <td style="color:blue">0</td>
-                    <td style="color:blue">0|0</td>
-                    <td style="color:blue">0</td>
-                    <td style="color:blue">0</td>
-                    <td style="color:blue">0</td>
-                    <td style="color:blue">0</td>
-                    <td style="color:blue">0</td>
-                    <td style="color:blue">0</td>
-                    </tr>
-                    <tr>
-                    <td>JPN</td>
-                        <td style="color:blue">0</td>
-                    <td style="color:blue">0</td>
-                    <td style="color:blue">0</td>
-                    <td style="color:blue">0</td>
-                    <td style="color:blue">0</td>
-                    <td style="color:blue">0</td>
-                    <td style="color:blue">0|0</td>
-                    <td style="color:blue">0</td>
-                    <td style="color:blue">0</td>
-                    <td style="color:blue">0</td>
-                    <td style="color:blue">0</td>
-                    <td style="color:blue">0</td>
-                    <td style="color:blue">0</td>
-                    </tr>
-                    <tr>
-                    <td>jPN</td>
-                        <td style="color:blue">0</td>
-                    <td style="color:blue">0</td>
-                    <td style="color:blue">0</td>
-                    <td style="color:blue">0</td>
-                    <td style="color:blue">0</td>
-                    <td style="color:blue">0</td>
-                    <td style="color:blue">0|0</td>
-                    <td style="color:blue">0</td>
-                    <td style="color:blue">0</td>
-                    <td style="color:blue">0</td>
-                    <td style="color:blue">0</td>
-                    <td style="color:blue">0</td>
-                    <td style="color:blue">0</td>
-                    </tr>
-                    
+                @endforeach
+                @else
+                            <label class="label label-danger">No Campaign Found....</label>
+                 @endif
+
                 </div>
                             
             </div>
@@ -1610,7 +1333,7 @@ Campaign: <select>
                       <td><div class="table-header-column" id=''>Goals                 </div></td>
                       <td><div class="table-header-column" id=''> Record Calls        </div></td>
                       <td><div class="table-header-column" id=''>Active                 </div></td>
-                      <td><div class="table-header-column" id=''>Details / Edit   </div></td>
+                      <td><div class="table-header-column" id=''>Edit / Details   </div></td>
                   </div></thead></tr>
           <tr>
                    @if($result)
@@ -1656,34 +1379,67 @@ Campaign: <select>
           <td>  Hit Count </td></tr>
     <tr>
       @if($result)
-      @foreach($result as $key => $data)
+      @foreach($result as $count => $data)
+        
         <td>{{$data->campaign_name}}</td>
-        <td>1</td>
+        <td>{{++$count}}</td>
         <td>{{$data->goal1Memo}}</td>
-            {{$data->goal2Memo}}
-            {{$data->goal3Memo}}
-            {{$data->goal4Memo}}
-            {{$data->goal5Memo}}
-            {{$data->goal6Memo}}
-            {{$data->goal7Memo}}
-            {{$data->goal8Memo}}
-            {{$data->goal9Memo}}
-            {{$data->goal10Memo}}</td>
-        <td>{{$data->goal1}}
-            {{$data->goal2}}
-            {{$data->goal3}}
-            {{$data->goal4}}
-            {{$data->goal5}}
-            {{$data->goal6}}
-            {{$data->goal7}}
-            {{$data->goal8}}
-            {{$data->goal9}}
-            {{$data->goal10}}</td>
+        <td>{{$data->goal1}}</td>
         <td>cpl</td>
         <td>hitcount</td>
       </tr>
 
+      <tr><td></td>
+        <td>{{++$count}}</td> 
+        <td>{{$data->goal2Memo}}</td>
+        <td>{{$data->goal2}}</td>
+        <td>cpl</td>
+        <td>hitcount</td></tr>
+    <tr><td></td>
+        <td>{{++$count}}</td>
+        <td>{{$data->goal3Memo}}</td>
+        <td>{{$data->goal3}}</td>
+        <td>cpl</td>
+        <td>hitcount</td></tr>
+    <tr><td></td>
+        <td>{{++$count}}</td>
+        <td>{{$data->goal4Memo}}</td>
+        <td>{{$data->goal4}}</td>
+        <td>cpl</td>
+        <td>hitcount</td></tr>
+    <tr><td></td>
+        <td>{{++$count}}</td>
+        <td>{{$data->goal5Memo}}</td>
+        <td>{{$data->goal5}}</td>
+        <td>cpl</td>
+        <td>hitcount</td></tr>
+        <tr><td></td>
+        <td>{{++$count}}</td>
+        <td>{{$data->goal6Memo}}</td>
+        <td>{{$data->goal6}}</td>
+        <td>cpl</td>
+        <td>hitcount</td></tr>
+    <tr><td></td>
+        <td>{{++$count}}</td>
+        <td>{{$data->goal7Memo}}</td>
+        <td>{{$data->goal8}}</td>
+        <td>cpl</td>
+        <td>hitcount</td></tr>
+    <tr><td></td>
+        <td>{{++$count}}</td>
+        <td>{{$data->goal9Memo}}</td>
+        <td>{{$data->goal9}}</td>
+        <td>cpl</td>
+        <td>hitcount</td></tr>
+    <tr><td></td>
+        <td>{{++$count}}</td>
+        <td>{{$data->goal10Memo}}</td>
+        <td>{{$data->goal10}}</td>
+        <td>cpl</td>
+        <td>hitcount</td></tr>
+
     @endforeach
+
     @else
         <label class="label label-danger">No  Campaign Goal Found....</label>
     @endif
