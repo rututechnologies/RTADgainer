@@ -41,7 +41,10 @@ tr.spaceUnder>td {
 <div class="w3-container">
 <h2 align="center"><b>campaign Setup</b></h2><hr>
 
-<form>
+
+<form action="new_Campaign_General" method="post">
+  <input type="hidden" name="_token" value="{{ csrf_token() }}">
+
 <div class="container tabs-wrap">
  
 <nav class="navbar navbar-default">
@@ -412,7 +415,8 @@ Per Tracking Session:-</td>
 <option value='11' >11</option>
 <option value='12' >12</option> 
 </select>
-</td><
+</td>
+
 </tr>
 <tr>
 <td>Time Zone:-</td>
@@ -669,7 +673,9 @@ If any of these words are typed during a chat session, they will be counted each
 <textarea name="tag_words" cols="40" rows='4'></textarea></td>
 </tr>
 </table>
-    <input type="button" class="btn btn-primary continue" id="continue" value="continue">
+
+    <input type="button" class="btn btn-primary continue" id="continue1" value="continue">
+
   </div>
 
 
@@ -887,7 +893,8 @@ Notification Threshold: <select name="goalsThresh" style="width:50px">
                                         
 
     <a class="btn btn-primary back" id="back1">Go Back</a>
-    <a class="btn btn-primary continue" id="continue1">Continue</a>
+    <a class="btn btn-primary continue" id="continue2">Next</a>
+
   </div>
 <!-- 3rd panel   -->
 
@@ -1254,8 +1261,8 @@ Notification Threshold: <select name="goalsThresh" style="width:50px">
 </td>
 <tr>
   </table>
-    <a class="btn btn-primary back">Go Back</a>
-    <a class="btn btn-primary continue">Next</a>
+    <a class="btn btn-primary back" id="back2" >Go Back</a>
+    <a class="btn btn-primary continue" id="continue3">Next</a>
  </div>
 
 <!--  4th panel  -->
@@ -1427,7 +1434,10 @@ Notification Threshold: <select name="goalsThresh" style="width:50px">
                                 </div>
                                 <tr>
 
-   <td> <a class="btn btn-primary back" id="back3">Go Back</a> <a class="btn btn-primary continue" id="continue3">Continue</a></td>
+
+   <td> <a class="btn btn-primary back" id="back3">Go Back</a>
+    <a class="btn btn-primary continue" id="continue4">next</a></td>
+
                                             </tr>
                                 </table>
 
@@ -1490,20 +1500,22 @@ Notification Threshold: <select name="goalsThresh" style="width:50px">
     
 $(function(){
 
-    $('#continue').click(function(e){
+    $('#continue1').click(function(e){
+
         e.preventDefault();
         $('#navtab a[href="#shipping"]').tab('show');
     });
 
-    $('#continue1').click(function(e){
+    $('#continue2').click(function(e){
         e.preventDefault();
         $('#navtab a[href="#review"]').tab('show');
     });
-    $('#continue2').click(function(e){
+    $('#continue3').click(function(e){
         e.preventDefault();
         $('#navtab a[href="#notification"]').tab('show');
     });
-    $('#continue3').click(function(e){
+    $('#continue4').click(function(e){
+
         e.preventDefault();
         $('#navtab a[href="#filering"]').tab('show');
     });
@@ -1522,7 +1534,8 @@ $('#back2').click(function(e){
         $('#navtab a[href="#shipping"]').tab('show');
     });
 
-$('#back1G').click(function(e){
+$('#back1').click(function(e){
+
         e.preventDefault();
         $('#navtab a[href="#billing"]').tab('show');
     });
