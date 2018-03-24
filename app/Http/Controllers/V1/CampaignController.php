@@ -29,7 +29,7 @@ class CampaignController extends Controller
        
         return view($this->view_directory_name.'micros.newcampaign');
     }
-    public function view_compaign_Details(Request $request) 
+    public function view_compaign(Request $request) 
     {
     
         $account_id=$request->campaign_account; // is it from post request? yes
@@ -38,14 +38,6 @@ class CampaignController extends Controller
         return view($this->view_directory_name.'micros.viewcampaign',['tdata' => $tdata]);   
         return view($this->view_directory_name.'micros.viewcampaign');
     }
-    /*(public function all_Tacking_data(Request $request) 
-    {
-        $account_id=$request->campaign_account;
-        $tdata = DB::table('campaigns')->select('campaign_name','ppc_markup','avgCalls','goalsThresh','emailsThresh','avgConversions')->where('account_id','=',$account_id )->get();
-        return view($this->view_directory_name.'micros.viewcampaign',['tdata' => $tdata]);
-
-    }*/
-
         
 
      public function new_Campaign_General(Request $request)
@@ -94,10 +86,9 @@ class CampaignController extends Controller
                  $newcampaigns->prompt=$request->prompt;
                  //$newcampaigns->record_calls="";
                  //$newcampaigns->call_notification="";
-                foreach($request->input("call_notification")as $call_notification)
-                {
-                   $newcampaigns->call_notification=$call_notification; 
-                }
+                
+                   $newcampaigns->call_notification=$request->call_notification; 
+        
                  $newcampaigns->multi_phone=$request->multi_phone;
                  $newcampaigns->email_notify=$request->email_notify;
                  $newcampaigns->email_notify_user=$request->email_notify_user;
@@ -113,10 +104,9 @@ class CampaignController extends Controller
                   $newcampaigns->cell_to_text=$request->cell_to_text;
                  $newcampaigns->postback_page=$request->postback_page;
                  $newcampaigns->post_back_type=$request->post_back_type;
-                 foreach($request->input("postback_fields")as $postback_fields)
-                {
-                   $newcampaigns->postback_fields=$postback_fields; 
-                }
+                
+                   //$newcampaigns->postback_fields=$request->$postback_fields; 
+                
                  $newcampaigns->tag_words=$request->tag_words;
                  $newcampaigns->blacklist_words=$request->blacklist_words;
 
@@ -212,6 +202,12 @@ class CampaignController extends Controller
 
                     return view( $this->view_directory_name .'micros.newcampaign' );
                  }
+                 else
+                 {
+                    echo "<script type='text/javascript'>alert('Please Fill All Campaingn Details...')</script>";
+                    return view( $this->view_directory_name .'micros.newcampaign' );
+                 }
+
                 /* $newcampaigns->=$request->call_code;*/
                
         
