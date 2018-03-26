@@ -249,7 +249,7 @@ Account:-<select><option>Select An campagin</option> </select><br>
   </div><br><br>
   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
   <!-- Trigger the modal with a button4 -->
-  <button type="button" class="btncolor" class="btn btn-info btn-lg" data-toggle="modal" data-target="#CampaignTrafficGraph">Campaign Traffic Graph</button>
+  <button type="button" class="btncolor" class="btn btn-info btn-lg" data-toggle="modal" data-target="#CampaignPPCTable">Campaign Traffic Graph</button>
 
   <!-- Modal -->
   <div class="modal fade" id="CampaignTrafficGraph" role="dialog">
@@ -329,7 +329,7 @@ Account:-<select><option>Select An campagin</option> </select><br>
   </div>
   &nbsp;&nbsp;&nbsp;&nbsp;
   <!-- Trigger the modal with a button6 -->
-  <button type="button" class="btncolor" class="btn btn-info btn-lg" data-toggle="modal" data-target="#CampaignKeywordsTable">Campaign Keywords Table</button>
+  <button type="button" class="btncolor" class="btn btn-info btn-lg" data-toggle="modal" data-target="#CampaignPPCTable">Campaign Keywords Table</button>
 
   <!-- Modal1 -->
   <div class="modal fade" id="CampaignKeywordsTable" role="dialog">
