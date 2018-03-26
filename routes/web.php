@@ -136,3 +136,4 @@ Route::group( [ 'namespace' => 'Autoissue', 'middleware' => [ 'web', 'auth' ] ],
 } );
 
  Route::post('test/form', ['uses' =>'TestController@create']);
+Route::get('/select','Test1Controller@testfunction');

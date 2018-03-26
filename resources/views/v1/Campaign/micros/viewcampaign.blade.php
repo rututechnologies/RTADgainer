@@ -1,4 +1,4 @@
-@extends('layouts.app')
+﻿@extends('layouts.app')
 @section('title','Campaign Tool ')
 
 @section('style')
@@ -72,6 +72,7 @@
 </div>
 </div>
 </nav>
+<form action="viewCampaign" method="get">
 <div class="da-form-item">
 													
 														&nbsp;&nbsp;&nbsp;Search:<input type="text" id="search_account_select" />
@@ -512,7 +513,21 @@ Campaign: <select>
 											<td>CPL Goal</td>
 											<td>Hit Count</td>
 											
-
+@if($tdata)
+@foreach($tdata as $key => $data)
+  <tr><td> {{$data->campaign_id}}</td>
+    <td>{{$data->id}}</td>
+    <td>{{$data->click_id}}</td>
+    <td>{{$data->URL}}</td>
+    <td>{{$data->active}}</td>
+    <td>{{$data->goal_count}}</td>
+    </tr>
+    @endforeach 
+  </table>
+@else
+<label class="label label-danger">No Campaign Goal found....</label>
+@endif
+						
 										
 										</tr>
 										<tr>
