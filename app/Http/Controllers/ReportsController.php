@@ -10,8 +10,44 @@ class ReportsController extends Controller
 {
 	protected $view_directory_name="v1.Reports.";
 	
-	public function reportList(){
+	public function reportList(Request $request)
+	{
+			DB::table('profile_report_settings')->insert([
+    		['duration' => $request->duration],
+    		['day' => $request->day],
+    		['hour' => $request->hour],
+    		['time_zone' => $request->time_zone],
+    		['emails' => $request->emails],
+    		['format' => $request->format],
+    		['ftp_data_id' => $request->ftp_data_id],
+    		['account_id' => ""],
+    		['username' => ""],
+    		['account_account_id' => ""],
+    		['campaign_account_id' =>""],
+    		['fields' => ""],
+    		['report_name' => $request->report_name ],
+    		['data_report_name' => $request->data_report],
+    		['report' =>""],
+    		['is_table' =>""],
+    		['rc_table' => ""],
+    		['rc_graph' => ""],
+    		['rc_pie' => ""],
+    		['rType' => $request->rType],
+    		['rq_acct' => $request->report_account],
+    		['rq_camp ' => $request->report_campaign],
+    		['traffic' => $request->traffic],
+    		['csv_type' => $request->conv_type],
+    		['attach_csv' => $request->attach_csv],
+    		['send_ftp' =>""],
+    		['group_by' =>"" ],
+    		['fromDate' => ""],
+    		['toDate' => ""]
+]);
+
+
 		return view($this->view_directory_name.'reports');
+
+
 	}
 	public function reportFTP(){
 		return view($this->view_directory_name.'micros.reportFTP');

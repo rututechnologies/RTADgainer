@@ -369,9 +369,7 @@ Campaign: <select>
    <div role="tabpanel" class="tab-pane" id="campaigngoals">
    <div class="table-responsive">
    <table align="center" id="campaigngls" class="table table-striped table-bordered">
-        
-
-<tr>
+        									<tr>
 											<td>Campaign	</td>
 											<td>#	<td>
 											<td>Goal</td>
@@ -389,50 +387,13 @@ Campaign: <select>
     <td>{{$data->goal_count}}</td>
     </tr>
     @endforeach 
+    @else
+          <label class="label label-danger">No Data found....</label>
+          @endif
   </table>
  											
-										<tr>
-										<td>takehiro_ct</td>
-										<td>1</td>
-										<td></td>
-										<td></td>
-										<td></td>
-										<td>NO</td>
-										<td>0</td>
-										</tr>
-										</tr>
-										<tr>
-										<td></td>
-										<td>2</td>
-										<td></td>
-										<td></td>
-										<td></td>
-										<td>NO</td>
-										<td>0</td>
-										</tr>
-										</tr>
-										<tr>
-										<td></td>
-										<td>3</td>
-										<td></td>
-										<td></td>
-										<td></td>
-										<td>NO</td>
-										<td>0</td>
-										</tr>
-										</tr>
-										<tr>
-										<td></td>
-										<td>4</td>
-										<td></td>
-										<td></td>
-										<td></td>
-										<td>NO</td>
-										<td>0</td>
-										</tr>
-										</table>
-                 </div>
   </div>
+</div>
   <div role="tabpanel" class="tab-pane" id="acckeyword"><table id="myTable" class="table table-striped table-bordered" width="100%"> 
 <thead> 
 <tr> 
