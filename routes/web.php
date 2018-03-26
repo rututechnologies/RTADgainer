@@ -2,7 +2,7 @@
 <?php
 
 use Illuminate\Http\Request;
-use App\Http\Controllers;
+
 Auth::routes();
 
 Route::post('/', 'Auth\LoginController@login');
@@ -18,7 +18,7 @@ Route::group(['namespace'=>'V1','middleware'=>['web','auth']], function () {
     Route::get('/campaignP', ['uses' => 'CampaignController@check_phone_number']);
     Route::get('/campaignGoal', ['uses' => 'CampaignController@goal_action']);
     Route::get('/newCampaign', ['uses' => 'CampaignController@new_compaign']);
-    Route::get('/viewCampaign', ['uses' => 'CampaignController@view_compaign']);
+    Route::any('/viewCampaign', ['uses' => 'CampaignController@view_compaign_Goal']);
     Route::get('/Mycampaign', ['uses' => 'mycampaignController@Mycampaign']);
 });
 	//Manage users routes
@@ -87,8 +87,6 @@ Route::group(['namespace'=>'V1','middleware'=>['web','auth']], function () {
 //
  Route::get('/MyCampaign', ['uses' => 'mycampaignController@mycampaign']);
  Route::get('/goalaction', ['uses' => 'mycampaignController@goalaction']);
- Route::get('/ppctrac', ['uses' => 'mycampaignController@ppctracking']);
- 
 
  //
   Route::get('/accounts', ['uses' => 'accountsController@accounts']);
@@ -122,8 +120,6 @@ Route::group(['namespace'=>'V1','middleware'=>['web','auth']], function () {
        //
        Route::get('/profile', ['uses' => 'iconController@profile']);
        //
-        Route::post('/check',['uses' => 'CampaignController@check']);
-//
              Route::get('/interface', ['uses' => 'iconController@interface']);
              //
              Route::get('/mycampagin1', ['uses' => 'mycampagin1Controller@mycampagin1']);
@@ -139,3 +135,4 @@ Route::group( [ 'namespace' => 'Autoissue', 'middleware' => [ 'web', 'auth' ] ],
     Route::get( '/autoissue/intec-client', 'AutoissueController@intecClient' );
 } );
 
+ Route::post('test/form', ['uses' =>'TestController@create']);
