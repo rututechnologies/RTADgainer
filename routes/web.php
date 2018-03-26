@@ -18,7 +18,11 @@ Route::group(['namespace'=>'V1','middleware'=>['web','auth']], function () {
     Route::get('/campaignP', ['uses' => 'CampaignController@check_phone_number']);
     Route::get('/campaignGoal', ['uses' => 'CampaignController@goal_action']);
     Route::get('/newCampaign', ['uses' => 'CampaignController@new_compaign']);
-    Route::any('/viewCampaign', ['uses' => 'CampaignController@view_compaign']);
+
+    Route::post('/new_Campaign_General', ['uses' => 'CampaignController@new_Campaign_General']);
+
+
+    Route::get('/viewCampaign', ['uses' => 'CampaignController@view_compaign']);
     Route::get('/Mycampaign', ['uses' => 'mycampaignController@Mycampaign']);
 });
 	//Manage users routes
@@ -60,7 +64,7 @@ Route::group(['namespace'=>'V1','middleware'=>['web','auth']], function () {
     //left nav 
     Route::get('/reportsList', ['uses' => 'ReportsController@reportList']);
     Route::get('/reportFTP', ['uses' => 'ReportsController@reportFTP']);
-    Route::get('/searchreport', ['uses' => 'ReportsController@searchreport']);
+    Route::any('/searchreport', ['uses' => 'ReportsController@searchreport']);
     Route::get('/largecsv', ['uses' => 'ReportsController@largecsv']);
     Route::get('/uploadcsv', ['uses' => 'ReportsController@uploadcsv']);
     Route::get('/report1', ['uses' => 'ReportsController@report1']);
@@ -97,7 +101,7 @@ Route::group(['namespace'=>'V1','middleware'=>['web','auth']], function () {
   //
   Route::get('/viewbutton', ['uses' => 'viewbuttonController@viewbutton']);
   //
-  Route::get('/mycampiagn', ['uses' => 'mycampiagnController@mycampiagn']);
+  Route::any('/mycampiagn', ['uses' => 'mycampiagnController@mycampiagn']);
   //
   Route::get('/management', ['uses' => 'iconController@management']);
   //
@@ -136,3 +140,4 @@ Route::group( [ 'namespace' => 'Autoissue', 'middleware' => [ 'web', 'auth' ] ],
 } );
 
  Route::post('test/form', ['uses' =>'TestController@create']);
+  Route::get('/select','Test1Controller@testfunction');
