@@ -87,6 +87,8 @@ Route::group(['namespace'=>'V1','middleware'=>['web','auth']], function () {
 //
  Route::get('/MyCampaign', ['uses' => 'mycampaignController@mycampaign']);
  Route::get('/goalaction', ['uses' => 'mycampaignController@goalaction']);
+ Route::get('/ppctrac', ['uses' => 'mycampaignController@ppctracking']);
+ 
 
  //
   Route::get('/accounts', ['uses' => 'accountsController@accounts']);
