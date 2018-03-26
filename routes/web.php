@@ -18,11 +18,7 @@ Route::group(['namespace'=>'V1','middleware'=>['web','auth']], function () {
     Route::get('/campaignP', ['uses' => 'CampaignController@check_phone_number']);
     Route::get('/campaignGoal', ['uses' => 'CampaignController@goal_action']);
     Route::get('/newCampaign', ['uses' => 'CampaignController@new_compaign']);
-
-    Route::post('/new_Campaign_General', ['uses' => 'CampaignController@new_Campaign_General']);
-
-
-    Route::get('/viewCampaign', ['uses' => 'CampaignController@view_compaign']);
+    Route::any('/viewCampaign', ['uses' => 'CampaignController@view_compaign']);
     Route::get('/Mycampaign', ['uses' => 'mycampaignController@Mycampaign']);
 });
 	//Manage users routes
