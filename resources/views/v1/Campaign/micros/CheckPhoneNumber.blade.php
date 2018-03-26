@@ -1,5 +1,5 @@
 @extends('layouts.app')
-@section('title','Campaign Tool ')
+@section('title','Check PhoneNumbers ')
 
 @section('style')
 <style>
@@ -18,9 +18,9 @@ tr.spaceUnder>td {
         <div class="col-md-3">
             <div class="row">
                 <h1 class="module_heading">
-                <span>
-                    Campaign
-                </span>
+                <a href="{{url('campaign')}}" style="color:black" > <span>
+                    Campaign Tools
+                </span></a>
                 </h1>
                 <ol class="breadcrumb">
                     <li>

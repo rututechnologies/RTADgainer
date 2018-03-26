@@ -1,5 +1,5 @@
 @extends('layouts.app')
-@section('title','Campaign Tool ')
+@section('title','Agency')
 
 @section('style')
 <style>
@@ -31,7 +31,7 @@
             <div class="row">
                 <h1 class="module_heading">
                 <span>
-                    Campaign
+                    Agency
                 </span>
                 </h1>
                 <ol class="breadcrumb">
@@ -41,7 +41,7 @@
                     </li>
 
                     <li class="active">
-                        <strong><i class="fa fa-list"></i> Campaign</strong>
+                        <strong><i class="fa fa-list"></i>Agency</strong>
                     </li>
                 </ol>
             </div>

@@ -1,5 +1,5 @@
 @extends('layouts.app')
-@section('title','chat ')
+@section('title','My campaign')
 
 @section('style')
 <style>
@@ -20,9 +20,9 @@ tr.spaceUnder>td {
         <div class="col-md-3">
             <div class="row">
                 <h1 class="module_heading">
-                <span>
+                <a href="{{url('MyCampaign')}}" style="color:black"><span>
                     My campaign
-                </span>
+                </span></a>
                 </h1>
                 <ol class="breadcrumb">
                     <li>

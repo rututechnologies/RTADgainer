@@ -13,7 +13,7 @@
             <div class="row">
                 <h1 class="module_heading">
                 <span>
-                    Campaign
+                   Campaign Tool
                 </span>
                 </h1>
                 <ol class="breadcrumb">
@@ -23,7 +23,7 @@
                     </li>
 
                     <li class="active">
-                        <strong><i class="fa fa-list"></i> Campaign</strong>
+                        <strong><i class="fa fa-list"></i>Campaign Tool</strong>
                     </li>
                 </ol>
             </div>

@@ -12,9 +12,9 @@
         <div class="col-md-3">
             <div class="row">
                 <h1 class="module_heading">
-                <span>
-                    Report large csv
-                </span>
+                <a href="{{url('reportsList')}}" style="color:black"><span>
+                    Reports
+                </span></a>
                 </h1>
                 <ol class="breadcrumb">
                     <li>
@@ -23,7 +23,7 @@
                     </li>
 
                     <li class="active">
-                        <strong><i class="fa fa-list"></i> csv</strong>
+                        <strong><i class="fa fa-list"></i>Large csv</strong>
                     </li>
                 </ol>
             </div>

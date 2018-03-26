@@ -34,9 +34,9 @@ box-shadow:inset 0px 0px 10px rgba(0,0,0,0.3);
         <div class="col-md-3">
             <div class="row">
                 <h1 class="module_heading">
-                <span>
-                    Report search
-                </span>
+               <a href="{{url('reportsList')}}" style="color:black"> <span>
+                    Reports
+                </span></a>
                 </h1>
                 <ol class="breadcrumb">
                     <li>
@@ -159,8 +159,8 @@ box-shadow:inset 0px 0px 10px rgba(0,0,0,0.3);
                      <div class="da-form-row"><tr><td>
                       <label>Date of Visit</label></td><td>
                       <div class="da-form-item large">
-                        From: <input type="text" id="date1_v" class="shadow"/>
-                        To: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="text" id="date2_v" class="shadow"/>
+                        From: <input type="date" id="date1_v" class="shadow"/>
+                        To: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="date" id="date2_v" class="shadow"/>
                       </div></td></tr>
                     </div><tr><td>
                     
@@ -231,8 +231,8 @@ box-shadow:inset 0px 0px 10px rgba(0,0,0,0.3);
                     <div class="da-form-row">
                       <tr><td><label>Date of Call</label></td><td>
                       <div class="da-form-item large">
-                        From: <input type="text" id="date1_c" class="shadow" />
-                        To: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="text" id="date2_c" class="shadow" />
+                        From: <input type="date" id="date1_c" class="shadow" />
+                        To: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="date" id="date2_c" class="shadow" />
                       </div></td></tr>
                     </div>
                     </table>

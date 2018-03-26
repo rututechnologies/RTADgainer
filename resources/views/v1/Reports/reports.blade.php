@@ -35,14 +35,11 @@
 
 <div class="w3-container">
 <br><br><br><br><br><br><br><br><br><br><br><br>
- &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="{{ url('report1') }}">
-  <button class="button">Reports</button></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-<a href="abc"> <button class="button">Center</button></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-<a href="{{ url('searchreport') }}" ><button class="button" >Search</button></a>
- <a href="{{ url('uploadcsv') }}" ><button class="button" >Upload CSV</button></a>
- <a href="{{ url('largecsv') }}" ><button class="button" >Large CSV</button></a>
- <a href="{{ url('reportFTP') }}" ><button class="button" >Report FTPs</button></a>
+ &nbsp;&nbsp;<a href="{{ url('report1') }}">
+  <button class="button">Reports</button></a>&nbsp;&nbsp;<a href="abc"> <button class="button">Report Center</button></a>&nbsp;&nbsp;<a href="{{ url('searchreport') }}" ><button class="button" >Search</button></a>
+&nbsp;&nbsp;<a href="{{ url('uploadcsv') }}" ><button class="button" >Upload CSV</button></a>
+&nbsp;&nbsp;<a href="{{ url('largecsv') }}" ><button class="button" >Large CSV</button></a>
+&nbsp;&nbsp;<a href="{{ url('reportFTP') }}" ><button class="button" >Report FTPs</button></a>
  </div>
  @endsection
 

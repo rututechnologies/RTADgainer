@@ -1,5 +1,5 @@
 @extends('layouts.app')
-@section('title','chat ')
+@section('title','Message Center')
 
 @section('style')
 <style>
@@ -62,9 +62,9 @@ height: 200px;
         <div class="col-md-3">
             <div class="row">
                 <h1 class="module_heading">
-                <span>
-                    Chat
-                </span>
+                <a href="{{url('chatlist')}}" style="color:black;"> <span>
+                   Message Center
+                </span></a>
                 </h1>
                 <ol class="breadcrumb">
                     <li>
@@ -73,7 +73,7 @@ height: 200px;
                     </li>
 
                     <li class="active">
-                        <strong><i class="fa fa-list"></i> Chat </strong>
+                        <strong><i class="fa fa-list"></i> Message Center</strong>
                     </li>
                 </ol>
             </div>
@@ -91,10 +91,9 @@ height: 200px;
 
 						 <div class="clear"></div>
                         	<h4>Pre Generated Messages</h4>
-							<div style="width:700px;height:300px;overflow-y: scroll;border-top:1px grey solid;padding:10px;">
+							<textarea rows="10" cols="50">Welcome, how can I help you?</textarea>
 
-							<span class=''>Welcome, how can I help you?</span> <br><br> 
-                        </div>
+							<br><br><br>
 
 						 <div class="clear"></div>
 
