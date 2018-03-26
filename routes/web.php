@@ -64,7 +64,7 @@ Route::group(['namespace'=>'V1','middleware'=>['web','auth']], function () {
     //left nav 
     Route::get('/reportsList', ['uses' => 'ReportsController@reportList']);
     Route::get('/reportFTP', ['uses' => 'ReportsController@reportFTP']);
-    Route::get('/searchreport', ['uses' => 'ReportsController@searchreport']);
+    Route::any('/searchreport', ['uses' => 'ReportsController@searchreport']);
     Route::get('/largecsv', ['uses' => 'ReportsController@largecsv']);
     Route::get('/uploadcsv', ['uses' => 'ReportsController@uploadcsv']);
     Route::get('/report1', ['uses' => 'ReportsController@report1']);

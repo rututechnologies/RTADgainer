@@ -6,7 +6,7 @@
                 padding-bottom: 50px;">
                 <div class="dropdown profile-element">
                     <span id="hospital_img_small">
-                        <?php $user = Auth::user()->name; ?>
+                        <!--<?php $user = Auth::user()->name;?>-->
                         <img src="{{asset('images/logo.jpg')}}"
                              class="user-image img-rounded
                              center-block" alt="User Image"

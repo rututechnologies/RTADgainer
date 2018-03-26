@@ -305,7 +305,7 @@ box-shadow:inset 0px 0px 10px rgba(0,0,0,0.3);
         </div>
         
         <div class="clear clearSpace"></div>
-        <table style='margin-left:20px'><div class="grid_3">
+<table style='margin-left:20px' width='95%'><div class="grid_3">
             <div class="table-grid">
                 <form>
                     <h4 style='margin-left:50px'><b>Default Created Reports</b></h4>
@@ -517,7 +517,7 @@ box-shadow:inset 0px 0px 10px rgba(0,0,0,0.3);
                                         <div class='table-data-column height75' class='shortSel'>
                                             <select class='shortSel' id='gen_report_campaign_def' name='gen_report_campaign' style="width:60%">
                                                 <option value=''>Select an Account</option>
-                                            </select>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;                                                       
+                                            </select>                                                      
                                         </div>
                                     </td>
                                     <td style="padding-right:50px">    
@@ -525,80 +525,76 @@ box-shadow:inset 0px 0px 10px rgba(0,0,0,0.3);
                                             <select class='shortSel' id='conv_type' name='conv_type' style="width:60%">
                                                 <option value='UTF-8'>UTF-8 (English)</option>                                                                  
                                                 <option value='SJIS-win'>Shift-JIS (Japanese)</option>
-                                            </select>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                            </select>
                                         </div>
                                     </td>
                                     <td>    
                                         <div class='table-data-column  height75'>
                                             <img id='gen_report_def' class='' src='https://testenvadgainer.adgainersolutions.com/adgainer/application/images/icons/color/doc_excel_csv.png' alt='download CSV' />
-                                            &nbsp;&nbsp;
+                                        
                                             <img id='gen_report_pdf' src='https://testenvadgainer.adgainersolutions.com/adgainer/application/images/icons/color/doc_pdf.png' alt='download PDF' style='display:none;cursor:pointer' />
                                         </div>  
                                     </td>                                           
                             </div>      
                         </tr>   
-                    </table>    
-                    <hr>                                
-            </div>
-            <div class="clear clearSpace"></div>
-            <div class="grid_3">
-            <div class="table-grid">
-                <table style='margin-left:50px'>
-                    <h4 style='margin-left:50px'><b>Account Created Reports</b></h4>
-                    <div class="clear"></div>
+</table>    
+            <div class="table-grid" style='margin-bottom:100px'>
+                <table style='margin-left:40px' width='100%'>
+                    <h4 style='margin-left:40px'><b>Account Created Reports</b></h4>
+                    
                             <tr>
                                 <div class="table-header-column">                                       
                                     <div>
-                                        <th><div class="table-header-column">&nbsp;&nbsp;Name &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</div></th>
+                                        <th><div class="table-header-column">Name </div></th>
                                         <th><div class="table-header-column">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Fields&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</div></th>
-                                        <th style="padding-right: 15px"><div class="table-header-column">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Traffic &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</div></th>
-                                        <th style="padding-right: 15px"><div class="table-header-column">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Date &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</div></th>
-                                        <th style="padding-left: 55px"><div class="table-header-column">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Account &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</div></th>
-                                        <th style="padding-left: 145px">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Campaign<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(optional)</th>
-                                        <th style="padding-left: 45px"><div class="table-header-column">CSV <br>Type</div></th>
-                                        <th><div class="table-header-column">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Download </div></th>
+                                        <th><div class="table-header-column">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Traffic &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</div></th>
+                                        <th><div class="table-header-column">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Date &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</div></th>
+                                        <th><div class="table-header-column">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Account &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</div></th>
+                                        <th><div class="table-header-column">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Campaign<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(optional)</div></th>
+                                        <th><div class="table-header-column">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;CSV <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Type</div></th>
+                                        <th><div class="table-header-column">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Download </div></th>
                                     </div>
                                 </div>
                             </tr>
                                 <div class="table-data"></div>
                                 
-                </table><br><br><hr>
+                </table>
+
             </div>
-            <div class="clear clearSpace"></div>
-            <div class="grid_3">
-            <div class="scrollit">
-                <table id="customers" style='margin-left:50px'>
-                    <div class="table-grid" id="table-scroll">
+
+
+    <div class="grid_3">
+            <div class="scrollit" style='margin-bottom:1100px' width='80%'>
+                <table id="customers" style='margin-left:50px' width='80%'>
+                    <div id="table-scroll">
                             <tr>
                                 <h4 style='margin-left:50px'><b>User Created Reports</b></h4>
                             </tr>
-                            <div class="clear"></div>
-                            <tr><center>
-                                <div class="table-header">
-                                    <th><div class="table-header-column">Name</div></th>
-                                    <th><div class="table-header-column">Fields</div></th>
-                                    <th><div class="table-header-column">Traffic</div></th> 
-                                    <th><div class="table-header-column">Date</div></th>
-                                    <th><div class="table-header-column">Account</div></th>
-                                    <th><div class="table-header-column">Campaign (optional)</div></th>
-                                    <th><div class="table-header-column">CSV Type</div></th>
-                                    <th><div class="table-header-column">Download</div></th>
-                                    
-                                </div>
-                                </center>
+                            
+                            <tr>
+                                    <th>Name</th>
+                                    <th>Fields</th>
+                                    <th>Traffic</th> 
+                                    <th>Date</th>
+                                    <th>Account</th>
+                                    <th>Campaign (optional)</th>
+                                    <th>CSV Type</th>
+                                    <th>Download</th>
+                                
+                            
                             </tr>
                         <div class="table-data">
                             <tr>
                                 <td>
-                                    <div class='table-data-column  height75'>test report (Row) <br><br> 
+                                    <div class='table-data-column '>test report (Row)  
                                         <a href='' target='_blank'><button class="btncolor">Edit</button></a> 
                                     </div>
                                 </td>
                                 <td>
-                                    <div class='table-data-column  height75'>campaign_name</br>phone_number</br>caller_phone</br>traffic_type</br>keyword </div>
+                                    <div class='table-data-column'>campaign_name phone_number</br>caller_phone</br>traffic_type</br>keyword </div>
                                 </td>
                                 <td>
-                                    <div class='table-data-column  height75'>
+                                    <div class='table-data-column'>
                                         <select class='shortSel' id='traffic_1363' style="width:80%">
                                             <option value='All'>All</option>                                                                
                                             <option value='PPC'>PPC</option>                                                                    
@@ -609,7 +605,7 @@ box-shadow:inset 0px 0px 10px rgba(0,0,0,0.3);
                                     </div>
                                 </td>
                                 <td>    
-                                    <div class='table-data-column  height75' style=''>  
+                                    <div class='table-data-column' style=''>  
                                         <input type='date' class='report_date short75' id='date1_1363' value='02/01/2018' /><br/>   
                                         <input type='date' class='report_date short75' id='date2_1363' value='02/13/2018' /><br/> 
                                             <select name="time_zone" id="time_zone_1363" style="width:60%">
@@ -704,10 +700,9 @@ box-shadow:inset 0px 0px 10px rgba(0,0,0,0.3);
                                                 <option value="Pacific/Tongatapu">(GMT+13:00) Nukualofa</option>
                                                 <option value="Pacific/Kiritimati">(GMT+14:00) Kiritimati</option>
                                             </select>
-                                    </div>
-                                </td>
-                                <td style="padding-right: 200px">
-                                    <div class='table-data-column  height75'>
+                                    </td></div>
+                                <td>
+                                    <div class='table-data-column'>
                                         <input type='hidden' id='gen_report_account_1363' value='a63fcccb60fb5056f696c3356c0238f5'>Varspec</input>
                                     </div>
                                 </td>
@@ -736,7 +731,6 @@ box-shadow:inset 0px 0px 10px rgba(0,0,0,0.3);
                                     </div>
                                 </td>
 
-                                    <div class='clear clearSpace'></div>
                                     <tr>
                                     <td>
                                         <div class='table-data-column table-data-column_alt height75'>Calls (Row) <br><br> <a href=''><button class="btncolor">Edit</button></a></div></td></td>
@@ -883,7 +877,7 @@ box-shadow:inset 0px 0px 10px rgba(0,0,0,0.3);
                                 </td>
                             </tr>                                                           
                             <tr>
-                                <div class='clear clearSpace'></div>
+                               
                                 <td>
                                     <div class='table-data-column  height75'>ag calls (Row) <br><br><a href=''> 
                                         <button class="btncolor">Edit</button></a>
@@ -1033,7 +1027,7 @@ box-shadow:inset 0px 0px 10px rgba(0,0,0,0.3);
                                     </div>
                                 </td>
                             </tr>   
-                                <div class='clear clearSpace'></div>
+                                
                             <tr>
                                 <td>
                                     <div class='table-data-column table-data-column_alt height75'>Calls (Row) <br><br> <a href=''>
@@ -1183,7 +1177,7 @@ box-shadow:inset 0px 0px 10px rgba(0,0,0,0.3);
                                     </div>  
                                 </td>
                             </tr>                                                           
-                            <div class='clear clearSpace'></div>
+                            
                             <tr>
                                 <td>
                                     <div class='table-data-column  height75'>Calls2 (Row) <br>
@@ -1335,16 +1329,10 @@ box-shadow:inset 0px 0px 10px rgba(0,0,0,0.3);
                                     </div>
                                 </td>
                             </tr>                                                               
-                                <div class='clear clearSpace'></div>                                                
+                               
                         </div>                                      
                     </div>
                 </table>
-                </div>
-            </div>
-            <div class="clear"></div>
-            </div>
-            
-        </div>
     </div>
         
         <!-- Footer -->
@@ -1353,9 +1341,7 @@ box-shadow:inset 0px 0px 10px rgba(0,0,0,0.3);
                 <p>&copy; 2018 &nbsp;&nbsp;  ADgainer Client Solutions   All Rights Reserved.</p>
             </div>
         </div>
-        
-    </div>
-    </div>
+    
     @endsection
 
             <style>
