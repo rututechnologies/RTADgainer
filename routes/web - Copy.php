@@ -2,7 +2,7 @@
 <?php
 
 use Illuminate\Http\Request;
-use App\Http\Controllers;
+
 Auth::routes();
 
 Route::post('/', 'Auth\LoginController@login');
@@ -64,7 +64,6 @@ Route::group(['namespace'=>'V1','middleware'=>['web','auth']], function () {
     Route::get('/largecsv', ['uses' => 'ReportsController@largecsv']);
     Route::get('/uploadcsv', ['uses' => 'ReportsController@uploadcsv']);
     Route::get('/report1', ['uses' => 'ReportsController@report1']);
-    Route::post('/uploadcsv_details', ['uses' => 'ReportsController@uploadcsv_details']);
 
      //chatlist 
     Route::get('/chatlist', ['uses' => 'ChatController@chatlist']);
@@ -88,8 +87,6 @@ Route::group(['namespace'=>'V1','middleware'=>['web','auth']], function () {
 //
  Route::get('/MyCampaign', ['uses' => 'mycampaignController@mycampaign']);
  Route::get('/goalaction', ['uses' => 'mycampaignController@goalaction']);
- Route::get('/ppctrac', ['uses' => 'mycampaignController@ppctracking']);
- 
 
  //
   Route::get('/accounts', ['uses' => 'accountsController@accounts']);
@@ -123,8 +120,6 @@ Route::group(['namespace'=>'V1','middleware'=>['web','auth']], function () {
        //
        Route::get('/profile', ['uses' => 'iconController@profile']);
        //
-        Route::post('/check',['uses' => 'CampaignController@check']);
-//
              Route::get('/interface', ['uses' => 'iconController@interface']);
              //
              Route::get('/mycampagin1', ['uses' => 'mycampagin1Controller@mycampagin1']);
