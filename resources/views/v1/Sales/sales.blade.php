@@ -1,5 +1,5 @@
 @extends('layouts.app')
-@section('title','Users List ')
+@section('title','Sales')
 
 @section('style')
 
@@ -13,7 +13,7 @@
             <div class="row">
                 <h1 class="module_heading">
                 <span>
-                    Users
+                   Sales
                 </span>
                 </h1>
                 <ol class="breadcrumb">
@@ -23,7 +23,7 @@
                     </li>
 
                     <li class="active">
-                        <strong><i class="fa fa-list"></i> Sales </strong>
+                        <strong><i class="fa fa-list"></i>Sales</strong>
                     </li>
                 </ol>
             </div>

@@ -5,7 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Campaign;
-use DB;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Log;
 
 class CampaignController extends Controller
 {
@@ -43,222 +44,90 @@ class CampaignController extends Controller
 
 public function check(Request $request)
 {
-    //DB::phone_number_inventory();
-    // try{
+   
 
-            //  method1 //
+          
+        $phone_number1 = (string) $request->input('chck_phone_1');
+        $phone_number2 = $request->chck_phone_2;
+        $phone_number3 = $request->chck_phone_3;
+        $phone_number4 = $request->chck_phone_4;
+        $phone_number5 = $request->chck_phone_5;
+        $phone_number6 = $request->chck_phone_6;
+        $phone_number7 = $request->chck_phone_7;
+        $phone_number8 = $request->chck_phone_8;
+        $phone_number9 = $request->chck_phone_9;
+        $phone_number10 = $request->chck_phone_10;
 
+        $data = [];
 
-        //$phone_number_inventory=new phone_number_inventory();
-
-        // if (phone_number_inventory::where('phone_number', '=', Input::get('check_phone_1'))->exists())
-        //  {
-        //     Session::flash('alert-info','Phone number exists');
-        //  }
-         
-        // else
-        // {
-        //     Session::flash('alert-danger','Phone number does not exists');
-        // }
-
-            //  method2 //
-
-        
-        // if( DB::table('phone_number_inventory')->get('phone_number') == Input::get('check_phone_1'))
-        //     {
-        //        Session::flash('alert-info','Phone number exists'); 
-        //     }
-        //     else
-        //     {
-        //        Session::flash('alert-danger','Phone number does not exists'); 
-        //     }
-
-             //$number = array(DB::table('phone_number_inventory')->get('phone_number'));
-        // $user_data = User::where('username',$request->username)->first();
-
-                //method 3//
-        // 1. get the submitted phone number
-        $phone_number = $request->chck_phone_1;
-        $phone_number1 = $request->chck_phone_2;
-        $phone_number2 = $request->chck_phone_3;
-        $phone_number3 = $request->chck_phone_4;
-        $phone_number4 = $request->chck_phone_5;
-        $phone_number5 = $request->chck_phone_6;
-        $phone_number6 = $request->chck_phone_7;
-        $phone_number7 = $request->chck_phone_8;
-        $phone_number8 = $request->chck_phone_9;
-        $phone_number9 = $request->chck_phone_10;
-        // create query builder to check the phone number
-        $query = DB::table('phone_number_inventory')->where('phone_number', $phone_number)->get();
-        $query1 = DB::table('phone_number_inventory')->where('phone_number',$phone_number1)->get();
-        $query2 = DB::table('phone_number_inventory')->where('phone_number',$phone_number2)->get();
-        $query3 = DB::table('phone_number_inventory')->where('phone_number',$phone_number3)->get();
-        $query4 = DB::table('phone_number_inventory')->where('phone_number',$phone_number4)->get();
-        $query5 = DB::table('phone_number_inventory')->where('phone_number',$phone_number5)->get();
-        $query6 = DB::table('phone_number_inventory')->where('phone_number',$phone_number6)->get();
-        $query7 = DB::table('phone_number_inventory')->where('phone_number',$phone_number7)->get();
-        $query8 = DB::table('phone_number_inventory')->where('phone_number',$phone_number8)->get();
-        $query9 = DB::table('phone_number_inventory')->where('phone_number',$phone_number9)->get();
-        //1//
-        // check if collection / result is not empty
-        if($query->isNotEmpty()){
-            // phone number is exist
-            echo"<script type='text/javascript'> alert('Phone number exists');</script>";
-            return view($this->view_directory_name.'micros.CheckPhoneNumber');
-           //return back()->withMessage('Phone number exists');
-
-        }
-        else{
-            echo"<script type='text/javascript'> alert('Phone number not exists');</script>";
-           return view($this->view_directory_name.'micros.CheckPhoneNumber'); 
-            // phone number not exist
-           // return back()->withMessage('Phone number does not exists');
-
-        }
-        //2//
-       if($query1->isNotEmpty()){
-            // phone number is exist
-            echo"<script type='text/javascript'> alert('Phone number exists');</script>";
-            return view($this->view_directory_name.'micros.CheckPhoneNumber');
-           //return back()->withMessage('Phone number exists');
-
-        }
-        else{
-            echo"<script type='text/javascript'> alert('Phone number not exists');</script>";
-           return view($this->view_directory_name.'micros.CheckPhoneNumber'); 
-            // phone number not exist
-           // return back()->withMessage('Phone number does not exists');
+        if($phone_number1){
+            $query = DB::table('phone_number_inventory')->where("phone_number", $phone_number1 )->get();
+            $msg = (count($query) > 0) ? $phone_number1 .' : Phone number exists' : $phone_number1 . ' : Phone number not exists';
+            array_push($data, $msg);
 
         }
 
-        //3//
-        if($query2->isNotEmpty()){
-            // phone number is exist
-            echo"<script type='text/javascript'> alert('Phone number exists');</script>";
-            return view($this->view_directory_name.'micros.CheckPhoneNumber');
-           //return back()->withMessage('Phone number exists');
+        if($phone_number2){
+           $query = DB::table('phone_number_inventory')->where("phone_number", $phone_number2 )->get();
+            $msg = (count($query) > 0) ? $phone_number2 .' : Phone number exists' : $phone_number2 . ' : Phone number not exists';
+            array_push($data, $msg);
+        }
+
+        if($phone_number3){
+           $query = DB::table('phone_number_inventory')->where("phone_number", $phone_number3 )->get();
+            $msg = (count($query) > 0) ? $phone_number3 .' : Phone number exists' : $phone_number3 . ' : Phone number not exists';
+            array_push($data, $msg);
+        }
+
+        if($phone_number4){
+            $query = DB::table('phone_number_inventory')->where("phone_number", $phone_number4 )->get();
+            $msg = (count($query) > 0) ? $phone_number4 .' : Phone number exists' : $phone_number4 . ' : Phone number not exists';
+            array_push($data, $msg);
 
         }
-        else{
-            echo"<script type='text/javascript'> alert('Phone number not exists');</script>";
-           return view($this->view_directory_name.'micros.CheckPhoneNumber'); 
-            // phone number not exist
-           // return back()->withMessage('Phone number does not exists');
+
+        if($phone_number5){
+           $query = DB::table('phone_number_inventory')->where("phone_number", $phone_number5 )->get();
+            $msg = (count($query) > 0) ? $phone_number5 .' : Phone number exists' : $phone_number5 . ' : Phone number not exists';
+            array_push($data, $msg);
+        }
+
+        if($phone_number6){
+           $query = DB::table('phone_number_inventory')->where("phone_number", $phone_number6 )->get();
+            $msg = (count($query) > 0) ? $phone_number6 .' : Phone number exists' : $phone_number6 . ' : Phone number not exists';
+            array_push($data, $msg);
+        }
+
+        if($phone_number7){
+           $query = DB::table('phone_number_inventory')->where("phone_number", $phone_number7 )->get();
+            $msg = (count($query) > 0) ? $phone_number7 .' : Phone number exists' : $phone_number7 . ' : Phone number not exists';
+            array_push($data, $msg);
+        }
+
+         if($phone_number8){
+            $query = DB::table('phone_number_inventory')->where("phone_number", $phone_number8 )->get();
+            $msg = (count($query) > 0) ? $phone_number8 .' : Phone number exists' : $phone_number8 . ' : Phone number not exists';
+            array_push($data, $msg);
 
         }
-        //4//
-         if($query3->isNotEmpty()){
-            // phone number is exist
-            echo"<script type='text/javascript'> alert('Phone number exists');</script>";
-            return view($this->view_directory_name.'micros.CheckPhoneNumber');
-           //return back()->withMessage('Phone number exists');
 
+        if($phone_number9){
+           $query = DB::table('phone_number_inventory')->where("phone_number", $phone_number9 )->get();
+            $msg = (count($query) > 0) ? $phone_number9 .' : Phone number exists' : $phone_number9 . ' : Phone number not exists';
+            array_push($data, $msg);
         }
-        else{
-            echo"<script type='text/javascript'> alert('Phone number not exists');</script>";
-           return view($this->view_directory_name.'micros.CheckPhoneNumber'); 
-            // phone number not exist
-           // return back()->withMessage('Phone number does not exists');
 
+        if($phone_number10){
+           $query = DB::table('phone_number_inventory')->where("phone_number", $phone_number10 )->get();
+            $msg = (count($query) > 0) ? $phone_number10 .' : Phone number exists' : $phone_number10 . ' : Phone number not exists';
+            array_push($data, $msg);
         }
-        //5//
-         if($query4->isNotEmpty()){
-            // phone number is exist
-            echo"<script type='text/javascript'> alert('Phone number exists');</script>";
-            return view($this->view_directory_name.'micros.CheckPhoneNumber');
-           //return back()->withMessage('Phone number exists');
-
-        }
-        else{
-            echo"<script type='text/javascript'> alert('Phone number not exists');</script>";
-           return view($this->view_directory_name.'micros.CheckPhoneNumber'); 
-            // phone number not exist
-           // return back()->withMessage('Phone number does not exists');
-
-        }
-        //6//
-         if($query5->isNotEmpty()){
-            // phone number is exist
-            echo"<script type='text/javascript'> alert('Phone number exists');</script>";
-            return view($this->view_directory_name.'micros.CheckPhoneNumber');
-           //return back()->withMessage('Phone number exists');
-
-        }
-        else{
-            echo"<script type='text/javascript'> alert('Phone number not exists');</script>";
-           return view($this->view_directory_name.'micros.CheckPhoneNumber'); 
-            // phone number not exist
-           // return back()->withMessage('Phone number does not exists');
-
-        }
-        //7//
-         if($query6->isNotEmpty()){
-            // phone number is exist
-            echo"<script type='text/javascript'> alert('Phone number exists');</script>";
-            return view($this->view_directory_name.'micros.CheckPhoneNumber');
-           //return back()->withMessage('Phone number exists');
-
-        }
-        else{
-            echo"<script type='text/javascript'> alert('Phone number not exists');</script>";
-           return view($this->view_directory_name.'micros.CheckPhoneNumber'); 
-            // phone number not exist
-           // return back()->withMessage('Phone number does not exists');
-
-        }
-        //8//
-         if($query7->isNotEmpty()){
-            // phone number is exist
-            echo"<script type='text/javascript'> alert('Phone number exists');</script>";
-            return view($this->view_directory_name.'micros.CheckPhoneNumber');
-           //return back()->withMessage('Phone number exists');
-
-        }
-        else{
-            echo"<script type='text/javascript'> alert('Phone number not exists');</script>";
-           return view($this->view_directory_name.'micros.CheckPhoneNumber'); 
-            // phone number not exist
-           // return back()->withMessage('Phone number does not exists');
-
-        }
-        //9//
-         if($query8->isNotEmpty()){
-            // phone number is exist
-            echo"<script type='text/javascript'> alert('Phone number exists');</script>";
-            return view($this->view_directory_name.'micros.CheckPhoneNumber');
-           //return back()->withMessage('Phone number exists');
-
-        }
-        else{
-            echo"<script type='text/javascript'> alert('Phone number not exists');</script>";
-           return view($this->view_directory_name.'micros.CheckPhoneNumber'); 
-            // phone number not exist
-           // return back()->withMessage('Phone number does not exists');
-
-        }
-        //10//
-         if($query9->isNotEmpty()){
-            // phone number is exist
-            echo"<script type='text/javascript'> alert('Phone number exists');</script>";
-            return view($this->view_directory_name.'micros.CheckPhoneNumber');
-           //return back()->withMessage('Phone number exists');
-
-        }
-        else{
-            echo"<script type='text/javascript'> alert('Phone number not exists');</script>";
-           return view($this->view_directory_name.'micros.CheckPhoneNumber'); 
-            // phone number not exist
-           // return back()->withMessage('Phone number does not exists');
-
-        }
-        
 
 
-    
-//     catch(Exception $e){
-//         DB::rollback();
-//         dd($e);
-// }
+        return back()->with('check', $data);
+
+       
+
 }
 
 

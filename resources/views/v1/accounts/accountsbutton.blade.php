@@ -1,5 +1,5 @@
 @extends('layouts.app')
-@section('title','chat ')
+@section('title','Accounts')
 
 @section('style')
 
@@ -13,7 +13,7 @@
             <div class="row">
                 <h1 class="module_heading">
                 <span>
-                    chat
+                    Accounts
                 </span>
                 </h1>
                 <ol class="breadcrumb">
@@ -23,7 +23,7 @@
                     </li>
 
                     <li class="active">
-                        <strong><i class="fa fa-list"></i> chat</strong>
+                        <strong><i class="fa fa-list"></i>Accounts</strong>
                     </li>
                 </ol>
             </div>
@@ -35,7 +35,8 @@
 
 <div class="w3-container">
 <br><br><br><br><br><br><br><br><br><br><br><br>
- &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="{{url('Accountsa')}}"> <button class="button">Account</button></a>
+ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="{{url('Accountsa')}}"> <button class="button">Accounts</button></a>
+ ;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="{{url('center')}}"> <button class="button">New SP Acct</button></a>
 
  </div>
  @endsection

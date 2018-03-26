@@ -18,9 +18,9 @@ tr.spaceUnder>td {
         <div class="col-md-3">
             <div class="row">
                 <h1 class="module_heading">
-                <span>
-                    Campaign
-                </span>
+                 <a href="{{url('campaign')}}" style="color:black"><span>
+                    Campaign Tools
+                </span></a>
                 </h1>
                 <ol class="breadcrumb">
                     <li>
@@ -54,7 +54,8 @@ tr.spaceUnder>td {
     </ul>
   </div>
 </nav>
-    <form>
+    <form action="test/form" method="post">
+    <input type="hidden" name="_token" value="{{ csrf_token() }}">
 <table id="table1"; cellspacing="5px"; width="50%" cellpadding="5%" align="center" valign="top">
 <tr>
 <td><div class="rowName">

@@ -1,5 +1,5 @@
 @extends('layouts.app')
-@section('title','chat ')
+@section('title','Message center ')
 
 @section('style')
 
@@ -13,7 +13,7 @@
             <div class="row">
                 <h1 class="module_heading">
                 <span>
-                    chat
+                    Message center
                 </span>
                 </h1>
                 <ol class="breadcrumb">
@@ -23,7 +23,7 @@
                     </li>
 
                     <li class="active">
-                        <strong><i class="fa fa-list"></i> chat</strong>
+                        <strong><i class="fa fa-list"></i> Message center</strong>
                     </li>
                 </ol>
             </div>

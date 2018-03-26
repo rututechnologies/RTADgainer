@@ -6,7 +6,7 @@
                 padding-bottom: 50px;">
                 <div class="dropdown profile-element">
                     <span id="hospital_img_small">
-                        <?php $user = Auth::user()->name; ?>
+                        <!--<?php $user = Auth::user()->name;?>-->
                         <img src="{{asset('images/logo.jpg')}}"
                              class="user-image img-rounded
                              center-block" alt="User Image"
@@ -98,11 +98,7 @@
                     <i class="fa fa-dashboard"></i> <span class="nav-label">My Campaign</span>
                 </a>
             </li>
-            <li class="{{ isActiveNav('message') }}">
-                <a href="{{ url('/message') }}">
-                    <i class="fa fa-commenting"></i> <span class="nav-label">Message Center</span>
-                </a>
-            </li>
+           
             <li class="{{ isActiveNav('autoissue') }}">
                 <a href="{{ url('/autoissue') }}">
                     <i class="fa fa-phone"></i> <span class="nav-label">Autoissue</span>

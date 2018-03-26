@@ -1,5 +1,5 @@
 @extends('layouts.app')
-@section('title','Users List ')
+@section('title','Message Center')
 
 @section('style')
 <style>
@@ -22,7 +22,7 @@ tr.spaceUnder>td {
 
 						 <div class="clear"></div>
                         	<h4>Pre Generated Messages</h4>
-							<div style="width:700px;height:300px;overflow-y: scroll;border-top:1px grey solid;padding:10px;">
+							<textarea>Welcome, how can I help you?</textarea>
 
 							<span class=''>Welcome, how can I help you?</span> <br><br> 
                         </div>

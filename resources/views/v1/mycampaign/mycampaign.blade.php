@@ -371,11 +371,11 @@ tr.spaceUnder>td {
   <div role="tabpanel" class="tab-pane" id="alltrackingdata">
    <table align="center" id="tacking" class="table table-striped table-bordered">
 <tr>
-<td><div class="table-header-column" id=''>Campaign Name</div></td>
-<td><div class="table-header-column" id=''>All visits</div><td>
-<td><div class="table-header-column" id=''>All clicks</div></td>
-<td><div class="table-header-column" id=''>PPC</div></td>
-											<td><div class="table-header-column" id=''>
+  <td><div class="table-header-column" id=''>Campaign Name</div></td>
+  <td><div class="table-header-column" id=''>All visits</div><td>
+  <td><div class="table-header-column" id=''>All clicks</div></td>
+  <td><div class="table-header-column" id=''>PPC</div></td>
+	<td><div class="table-header-column" id=''>
 
 												Display									</div></td>
 											<td><div class="table-header-column" id=''>
@@ -441,7 +441,6 @@ tr.spaceUnder>td {
   </div>
    <div role="tabpanel" class="tab-pane" id="campaigndetails">
    <table align="center" id="campaigndetails" class="table table-striped table-bordered">
-
 <tr>
 
 
@@ -450,31 +449,32 @@ tr.spaceUnder>td {
 
                         
 
-											<td><div class="table-header-column" id=''>
-												
-                                                    Campaign Name#									</div></td>
-											<td><div class="table-header-column" id=''>
+                      <td><div class="table-header-column" id=''>
+                        
+                                                    Campaign Name#                  </div></td>
+                      <td><div class="table-header-column" id=''>
 
-												Budget#								</div><td>
-											<td><div class="table-header-column" id=''>
+                        Budget#               </div><td>
+                      <td><div class="table-header-column" id=''>
 
-												Default#										</div></td>
-											<td><div class="table-header-column" id=''>
+                        Default#                    </div></td>
+                      <td><div class="table-header-column" id=''>
 
-												Dest#										</div></td>
-											<td><div class="table-header-column" id=''>
+                        Dest#                   </div></td>
+                      <td><div class="table-header-column" id=''>
 
-												Manage								</div></td>
-											
-										</tr>
-										<tr>
-										<td>takehiro_ct</td>
-								        <td>0</td>
-										<td>0899418883</td>
-										<td>0899418883,</td>
-										<td></td>
-									   </tr> </table>
+                        Manage                </div></td>
+                      
+                    </tr>
+                    <tr>
+                    <td>takehiro_ct</td>
+                        <td>0</td>
+                    <td>0899418883</td>
+                    <td>0899418883,</td>
+                    <td></td>
+                     </tr>
 
+</table>
   </div>
   
    <div role="tabpanel" class="tab-pane" id="mapview">

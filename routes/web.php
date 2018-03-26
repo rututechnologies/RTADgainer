@@ -18,7 +18,7 @@ Route::group(['namespace'=>'V1','middleware'=>['web','auth']], function () {
     Route::get('/campaignP', ['uses' => 'CampaignController@check_phone_number']);
     Route::get('/campaignGoal', ['uses' => 'CampaignController@goal_action']);
     Route::get('/newCampaign', ['uses' => 'CampaignController@new_compaign']);
-    Route::get('/viewCampaign', ['uses' => 'CampaignController@view_compaign']);
+    Route::any('/viewCampaign', ['uses' => 'CampaignController@view_compaign']);
     Route::get('/Mycampaign', ['uses' => 'mycampaignController@Mycampaign']);
 });
 	//Manage users routes
@@ -60,10 +60,11 @@ Route::group(['namespace'=>'V1','middleware'=>['web','auth']], function () {
     //left nav 
     Route::get('/reportsList', ['uses' => 'ReportsController@reportList']);
     Route::get('/reportFTP', ['uses' => 'ReportsController@reportFTP']);
-    Route::get('/searchreport', ['uses' => 'ReportsController@searchreport']);
+    Route::any('/searchreport', ['uses' => 'ReportsController@searchreport']);
     Route::get('/largecsv', ['uses' => 'ReportsController@largecsv']);
     Route::get('/uploadcsv', ['uses' => 'ReportsController@uploadcsv']);
     Route::get('/report1', ['uses' => 'ReportsController@report1']);
+    Route::post('/uploadcsv_details', ['uses' => 'ReportsController@uploadcsv_details']);
 
      //chatlist 
     Route::get('/chatlist', ['uses' => 'ChatController@chatlist']);
@@ -87,6 +88,8 @@ Route::group(['namespace'=>'V1','middleware'=>['web','auth']], function () {
 //
  Route::get('/MyCampaign', ['uses' => 'mycampaignController@mycampaign']);
  Route::get('/goalaction', ['uses' => 'mycampaignController@goalaction']);
+ Route::get('/ppctrac', ['uses' => 'mycampaignController@ppctracking']);
+ 
 
  //
   Route::get('/accounts', ['uses' => 'accountsController@accounts']);

@@ -1,5 +1,5 @@
 @extends('layouts.app')
-@section('title','Reports')
+@section('title','Upload CSV')
 
 @section('style')
 <style>
@@ -19,9 +19,9 @@ tr.spaceUnder>td {
         <div class="col-md-3">
             <div class="row">
                 <h1 class="module_heading">
-                <span>
+               <a href="{{url('reportsList')}}" style="color:black"> <span>
                     Reports
-                </span>
+                </span></a>
                 </h1>
                 <ol class="breadcrumb">
                     <li>
@@ -30,7 +30,7 @@ tr.spaceUnder>td {
                     </li>
 
                     <li class="active">
-                        <strong><i class="fa fa-list"></i> Reports</strong>
+                        <strong><i class="fa fa-list"></i> Upload CSV</strong>
                     </li>
                 </ol>
             </div>

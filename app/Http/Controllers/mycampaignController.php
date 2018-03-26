@@ -14,6 +14,10 @@ class mycampaignController extends Controller
 	public function MyCampaign() {
  
         return view($this->view_directory_name.'mycampaignbutton');
+        /*$test = DB::table(' ppc_historical_data')->select('campaign_name', 'clicks', 'calls','conversions','goals','emails','cpa')->get();
+
+       return view($this->view_directory_name.'micros.mycampaign',['test' => $test]);
+       return view($this->view_directory_name.'micros.mycampaign');*/
 
     }
     public function goalaction() {
@@ -21,7 +25,21 @@ class mycampaignController extends Controller
         return view($this->view_directory_name.'goalaction');
 
     }
-   
+     public function mycampiagn() {
+
+        return view($this->view_directory_name.'mycampiagn');
+    }
+    
+   public function ppctracking(Request $request){
+      $account_id=$request->campaign_account;
+
+
+   	 $test = DB::table('ppc_historical_data')->select('campaign_name', 'clicks', 'calls','conversions','goals','emails','cpa')->where('account_id','=',$account_id )->get();
+
+       return view($this->view_directory_name.'micros.mycampiagn',['test' => $test]);
+       return view($this->view_directory_name.'micros.mycampiagn');
+
+   }
 
 
 }
