@@ -1,6 +1,6 @@
 
 @extends('layouts.app')
-@section('title','chat ')
+@section('title','My campaign')
 
 @section('style')
 <style>
@@ -78,9 +78,9 @@ padding-bottom:1em;
         <div class="col-md-3">
             <div class="row">
                 <h1 class="module_heading">
-                <span>
-                    Campaign
-                </span>
+                <a href="{{url('MyCampaign')}}" style="color:black"><span>
+                       My Campaign
+                </span></a>
                 </h1>
                 <ol class="breadcrumb">
                     <li>
@@ -242,7 +242,7 @@ padding-bottom:1em;
                           
 
                           
-                            &nbsp;&nbsp;&nbsp;Date:&nbsp;&nbsp;&nbsp;From: <input type="date" id="date1" name="date1" style="width:150px" value="02/01/2018" class="dateChange" />
+                            &nbsp;&nbsp;&nbsp;Date:&nbsp;&nbsp;&nbsp;From:  <input type="date" id="date2" style="width:150px" value="02/19/2018" class="dateChange"  />
                             To: <input type="date" id="date2" style="width:150px" value="02/19/2018" class="dateChange"  /><br><br>
 &nbsp;&nbsp;&nbsp;<span>Archive?</span> <input type="checkbox" id="look_archive" />
                             <br><br>

@@ -4,7 +4,6 @@ namespace App\Http\Controllers\V1;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Campaign;
 use DB;
 
 class CampaignController extends Controller
@@ -29,26 +28,17 @@ class CampaignController extends Controller
        
         return view($this->view_directory_name.'micros.newcampaign');
     }
-    public function view_compaign_Details(Request $request) 
-    {
-    
-        $account_id=$request->campaign_account; // is it from post request? yes
-       // var_dump($account_id);
-        $tdata = DB::table('campaigns')->select('campaign_name','campaign_budget','avgClicks', 'default_number','ppc_markup','avgCalls','goalsThresh','emailsThresh','avgConversions')->where('account_id','=',$account_id )->get();
-        return view($this->view_directory_name.'micros.viewcampaign',['tdata' => $tdata]);   
+    public function view_compaign(Request $request) {
+       
+       $account_id=$request->campaign_account;
+
+         $test = DB::table('campaigns')->select('campaign_name', 'clicksThresh', 'callsThresh','avgCalls','avgConversions','goal1_inc','emailsThresh','conversion_flag','avgConversions','clicksThresh', 'avgConversions', 'callsThresh','avgCalls','goal1_inc','goal2_inc','goal3_inc','goal4_inc','emailsThresh','campaign_name','campaign_budget','avgClicks', 'default_number','ppc_markup','avgCalls','goalsThresh','emailsThresh','avgConversions')->where('account_id','=',$account_id )->get();
+            return view($this->view_directory_name.'micros.viewcampaign',['test' => $test]);
+        
         return view($this->view_directory_name.'micros.viewcampaign');
     }
-    /*(public function all_Tacking_data(Request $request) 
-    {
-        $account_id=$request->campaign_account;
-        $tdata = DB::table('campaigns')->select('campaign_name','ppc_markup','avgCalls','goalsThresh','emailsThresh','avgConversions')->where('account_id','=',$account_id )->get();
-        return view($this->view_directory_name.'micros.viewcampaign',['tdata' => $tdata]);
-
-    }*/
-
-        
-
-     public function new_Campaign_General(Request $request)
+    
+    public function new_Campaign_General(Request $request)
     {
          try
          {
@@ -212,6 +202,11 @@ class CampaignController extends Controller
 
                     return view( $this->view_directory_name .'micros.newcampaign' );
                  }
+                 else
+                 {
+                    echo "<script type='text/javascript'>alert('please Fill The Required Feild...  ')</script>";
+                    return view( $this->view_directory_name .'micros.newcampaign' );  
+                 }
                 /* $newcampaigns->=$request->call_code;*/
                
         
@@ -221,12 +216,10 @@ class CampaignController extends Controller
     }
      catch(\PDOException $e)
      {
+        echo "<script type='text/javascript'>alert('please Fill The Required Feild...  ')</script>";
+                    return view( $this->view_directory_name .'micros.newcampaign' );  
           DB::rollBack();
      }       
  }
-    
-
-    
 
 }
-

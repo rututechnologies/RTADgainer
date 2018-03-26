@@ -10,18 +10,8 @@
     </style>
 @endsection
 @section('content')
-   <div class="col-lg-3">
-        <div class="widget style1 navy-bg">
-            <a href="{{url('abc')}}" style="color:#fff;"><div class="row">
-            	<div class="col-xs-4">
-                    <i class="fa fa-dashboard fa-5x"></i>
-                </div>
-	            <div class="col-xs-8 text-right">
-	                <h3 class="font-bold">Center</h3>
-	            </div>
-        	</div></a>
-    	</div>
-    </div>
+
+    
      <div class="col-lg-3">
         <div class="widget style1 yellow-bg">
             <a href="{{url('accounts')}}" style="color:#fff;"><div class="row">
@@ -82,18 +72,7 @@
         	</div></a>
     	</div>
     </div>
-     <div class="col-lg-3">
-        <div class="widget style1 btn-danger">
-           <a href="{{url('chatlist')}}" style="color:#fff;"> <div class="row">
-            	<div class="col-xs-4">
-                    <i class="fa fa-commenting fa-5x"></i>
-                </div>
-	            <div class="col-xs-8 text-right">
-	                <h3 class="font-bold">Message Center</h3>
-	            </div>
-        	</div></a>
-    	</div>
-    </div>
+     
      
      <div class="col-lg-3">
         <div class="widget style1 btn-default">

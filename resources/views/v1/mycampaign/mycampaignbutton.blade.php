@@ -13,7 +13,7 @@
             <div class="row">
                 <h1 class="module_heading">
                 <span>
-                    chat
+                    My campaign
                 </span>
                 </h1>
                 <ol class="breadcrumb">
@@ -23,7 +23,7 @@
                     </li>
 
                     <li class="active">
-                        <strong><i class="fa fa-list"></i> chat</strong>
+                        <strong><i class="fa fa-list"></i>My campaign</strong>
                     </li>
                 </ol>
             </div>
@@ -35,7 +35,7 @@
 
 <div class="w3-container">
 <br><br><br><br><br><br><br><br><br><br><br><br>
- &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="{{ url('/mycampiagn') }}"> <button class="button">My campagin</button></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="{{ url('goalaction') }}"><button class="button">Goal action</button></a>
+ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="{{ url('/mycampiagn') }}"> <button class="button">My campaign</button></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="{{ url('goalaction') }}"><button class="button">Goal action</button></a>
  </div>
  @endsection
 

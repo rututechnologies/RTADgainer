@@ -39,8 +39,8 @@
                     <br>
                     <div class="rowValue" style="width:500px;height:35px;">
                         From:
-                        <input type="text" id="date1" style="width:65px" value="03/01/2018" class="hasDatepicker"> To:
-                        <input type="text" id="date2" style="width:65px" value="03/10/2018" class="hasDatepicker">
+                        <input type="date" id="date1" style="width:120px" value="03/01/2018" class="hasDatepicker"> To:
+                        <input type="date" id="date2" style="width:120px" value="03/10/2018" class="hasDatepicker">
                         <button id="setTableDate">Update</button>
                         <input type="hidden" id="account_id" value="24c9e15e52afc47c225b757e7bee1f9d">
                         <input type="hidden" id="campaign_id" value="">

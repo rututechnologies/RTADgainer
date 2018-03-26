@@ -1,5 +1,5 @@
 @extends('layouts.app')
-@section('title','Sales ')
+@section('title','CPC Estimate')
 
 @section('style')
 <style>
@@ -40,9 +40,9 @@ height: 200px;
         <div class="col-md-3">
             <div class="row">
                 <h1 class="module_heading">
-                <span>
+                <a href="{{url('salesList')}}" style="color:black"><span>
                     Sales
-                </span>
+                </span></a>
                 </h1>
                 <ol class="breadcrumb">
                     <li>
@@ -51,7 +51,7 @@ height: 200px;
                     </li>
 
                     <li class="active">
-                        <strong><i class="fa fa-list"></i> Sales </strong>
+                        <strong><i class="fa fa-list"></i>CPC Estimate</strong>
                     </li>
                 </ol>
             </div>
