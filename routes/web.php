@@ -18,7 +18,7 @@ Route::group(['namespace'=>'V1','middleware'=>['web','auth']], function () {
     Route::get('/campaignP', ['uses' => 'CampaignController@check_phone_number']);
     Route::get('/campaignGoal', ['uses' => 'CampaignController@goal_action']);
     Route::get('/newCampaign', ['uses' => 'CampaignController@new_compaign']);
-    Route::any('/viewCampaign', ['uses' => 'CampaignController@view_compaign_Goal']);
+    Route::get('/viewCampaign', ['uses' => 'CampaignController@view_compaign']);
     Route::get('/Mycampaign', ['uses' => 'mycampaignController@Mycampaign']);
 });
 	//Manage users routes
@@ -136,4 +136,8 @@ Route::group( [ 'namespace' => 'Autoissue', 'middleware' => [ 'web', 'auth' ] ],
 } );
 
  Route::post('test/form', ['uses' =>'TestController@create']);
-Route::get('/select','Test1Controller@testfunction');
+  Route::get('/select','Test1Controller@testfunction');
+    Route::post('fileUpload', ['uses'=>'fileuploadController@fileUpload']);
+    Route::post('colorUpload', ['uses'=>'fileuploadController@colorUpload']);
+    Route::post('subdomain', ['uses'=>'fileuploadController@subdomain']);
+    

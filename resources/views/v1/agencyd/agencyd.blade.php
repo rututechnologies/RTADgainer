@@ -66,7 +66,7 @@
                     </td>
                     <td>
 
-                        <input type="file" name="logo" value="" required>
+                        <input type="file" name="logo" value="" accept="image/*" required>
                         flat.png
                     </td>
                 </tr>
@@ -78,7 +78,7 @@
                     </td>
                 </tr>
             </table>
-
+</form>
         </td>
 
         <td>
@@ -87,7 +87,8 @@
 
                            <h4 align="center"> <img src="https://testenvadgainer.adgainersolutions.com/adgainer/application/images/icons/black/16/pencil.png" alt="Edit" /><b>Agency Color Branding</b></h4>
                             </span>
-
+<form action="colorUpload" method="post">
+    <input type="hidden" name="_token" value="{{ csrf_token() }}">
             <table id="a" style="margin-right:15px">
 
                 <tr>
@@ -113,7 +114,7 @@
 
     </tr>
     </table>
-
+</form>
     </td>
     </tr>
 
@@ -125,7 +126,8 @@
                                 <h4  align="center"><img src="https://testenvadgainer.adgainersolutions.com/adgainer/application/images/icons/black/16/pencil.png" alt="Edit" />
                                <b> Agency Subdomain</b></h4>
                             </span>
-
+<form action="subdomain" method="post">
+    <input type="hidden" name="_token" value="{{ csrf_token() }}">
             <table id="a" align="left" style="margin-left:15px">
                 <tr>
                     <td>
@@ -149,7 +151,7 @@
                 </tr>
 
             </table>
-
+</form>
         </td>
         <td>
 
@@ -158,7 +160,8 @@
                             <h4 align="center"> <img src="https://testenvadgainer.adgainersolutions.com/adgainer/application/images/icons/black/16/pencil.png" alt="Edit" />
 
                                 <b>Login Page Slogan</b></h4></span>
-
+<form action="slogan" method="post">
+    <input type="hidden" name="_token" value="{{ csrf_token() }}">
             <table style="margin-right:15px">
                 <tr>
                     <td>
@@ -181,7 +184,7 @@
                 </tr>
 
             </table>
-
+        </form>
         </td>
     </tr>
 </table>
