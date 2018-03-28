@@ -41,9 +41,8 @@
         <!-- jvectormap -->
         <link rel="stylesheet"
               href="{{ asset('custom/plugins/jvectormap/jquery-jvectormap-1.2.2.css')}}">
-        <!-- Date Picker 
-        <link rel="stylesheet"
-              href="{{ asset('custom/plugins/datepicker/datepicker3.css')}}">-->
+        <!-- Date Picker -->
+        <link rel="stylesheet" href="{{ asset('custom/plugins/datepicker/datepicker3.css')}}">
         <!-- Daterange picker
         <link rel="stylesheet"
               href="{{ asset('custom/plugins/daterangepicker/daterangepicker.css')}}"> -->
@@ -100,6 +99,9 @@
         <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/js/select2.min.js"></script>
         <script src="{{ asset('https://cdn.datatables.net/buttons/1.2.4/js/dataTables.buttons.min.js') }}"></script>
         <script src="{{ asset('//cdn.datatables.net/buttons/1.2.4/js/buttons.flash.min.js') }}"></script>
+        
+        <!--datepicker js-->
+        <script src="{{ asset('custom/plugins/datepicker/bootstrap-datepicker.js')}}"></script>
         
         <!--adgainer script-->
         <script src="{{ asset('js/adgainer.js')}}"></script>

@@ -114,9 +114,9 @@ class CampaignController extends Controller
             }
             $campaignId = $campaign->campaign_id;
             $accountId = $campaign->account_id;
-            $urlDetail = url( "app/campaign/details/$campaignId/$accountId" );
-            $urlEdit = url( "app/campaign/edit/$campaignId/$accountId" );
-            $urlDelete = url( "app/campaign/delete/$campaignId/$accountId" );
+            $urlDetail = "campaign/details/$campaignId/$accountId";
+            $urlEdit = "campaign/edit/$campaignId/$accountId";
+            $urlDelete = "campaign/delete/$campaignId/$accountId";
             ?>
             <tr class="campaign-item">
                 <td class="campaign-name"><?php echo $campaign->campaign_name; ?></td>

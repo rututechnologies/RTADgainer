@@ -6,7 +6,7 @@
                 padding-bottom: 50px;">
                 <div class="dropdown profile-element">
                     <span id="hospital_img_small">
-                        <!--<?php $user = Auth::user()->name;?>-->
+                        <!--<?php $user = Auth::user()->name; ?>-->
                         <img src="{{asset('images/logo.jpg')}}"
                              class="user-image img-rounded
                              center-block" alt="User Image"
@@ -78,17 +78,36 @@
                     <i class="fa fa-money"></i> <span class="nav-label">Accounting</span>
                 </a>
             </li>
-            <li class="{{ isActiveNav('campaign') }}">
-                <a href="{{ url('/campaign') }}">
-                    <i class="fa fa-dashboard"></i> <span class="nav-label">Campaign Tools</span>
+            <li class="{{ isActiveNav(['app/campaign-tools/mycampaign', 'app/campaign-tools/all-campaigns']) }}">
+                <a href="">
+                    <i class="fa fa-inr"></i> 
+                    <span class="nav-label">Campaign Tools</span> 
+                    <span class="fa arrow"></span>
                 </a>
-            </li>s
-<!--            <li class="{{ isActiveNav('accountsList') }}">
-                <a href="{{ url('/accountsList') }}">
-                    <i class="fa fa-lock"></i> <span class="nav-label">Accounts</span>
-                </a>
-            </li>-->
-            <li class="{{ isActiveNav('accounts') }}">
+                <ul class="nav nav-second-level collapse {{ isActiveNav(['app/campaign-tools/mycampaign', 'app/campaign-tools/all-campaigns'], 'in') }}">
+                    <li class="{{ isActiveNav('app/campaign-tools/mycampaign') }}">
+                        <a href="{{ url('app/campaign-tools/mycampaign/')}}">
+                            My Campaign
+                        </a>
+                    </li>
+                    <li class="{{ isActiveNav('app/campaign-tools/all-campaigns') }}">
+                        <a href="{{ url('app/campaign-tools/all-campaigns/')}}">
+                            All Campaigns
+                        </a>
+                    </li>
+                </ul>
+            </li>
+            <!--            <li class="{{ isActiveNav('campaign') }}">
+                            <a href="{{ url('/campaign') }}">
+                                <i class="fa fa-dashboard"></i> <span class="nav-label">Campaign Tools</span>
+                            </a>
+                        </li>-->
+            <!--            <li class="{{ isActiveNav('accountsList') }}">
+                            <a href="{{ url('/accountsList') }}">
+                                <i class="fa fa-lock"></i> <span class="nav-label">Accounts</span>
+                            </a>
+                        </li>-->
+            <li class="{{ isActiveNav('app/accounts') }}">
                 <a href="{{ url('/app/accounts') }}">
                     <i class="fa fa-users"></i> <span class="nav-label">Accounts</span>
                 </a>
@@ -98,12 +117,12 @@
                     <i class="fa fa-file"></i> <span class="nav-label">Reports</span>
                 </a>
             </li>
-            <li class="{{ isActiveNav('mycampagin1') }}">
+<!--            <li class="{{ isActiveNav('mycampagin1') }}">
                 <a href="{{ url('/mycampagin1') }}">
                     <i class="fa fa-dashboard"></i> <span class="nav-label">My Campaign</span>
                 </a>
-            </li>
-           
+            </li>-->
+
             <li class="{{ isActiveNav('autoissue') }}">
                 <a href="{{ url('/autoissue') }}">
                     <i class="fa fa-phone"></i> <span class="nav-label">Autoissue</span>
