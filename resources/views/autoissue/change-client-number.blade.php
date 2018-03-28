@@ -2,48 +2,6 @@
 @section('title',' ')
 
 @section('style')
-<style>
-    ::-webkit-scrollbar-thumb{
-        background: rgba(113, 102, 102, 0.83);
-        border: none;
-    }
-    .panel-heading{
-        padding-top: 15px;
-    }
-    .panel-title{
-        font-size: 16px;
-        font-weight: 600;
-    }
-    .table-overflow{
-        height: 250px;
-        overflow-y: auto;
-    }
-    .table-fixed-head-header{
-        width: calc(100% - 7px);
-    }
-    .table-fixed-head-header > thead > tr > th{
-        padding-left: 10px;
-    }
-    .table .table-fixed-head-shadow{
-        visibility: hidden;
-    }
-    .table .table-fixed-head-shadow tr th{
-        height: 0;
-        padding-top: 0;
-        padding-bottom: 0;
-        border: none;
-    }
-    .table-responsive.table-responsive-fixed-head{
-        white-space: normal;
-    }
-    .table-responsive.table-responsive-fixed-head .table,
-    .table-responsive.table-responsive-fixed-head .table-overflow{
-        min-width: 700px;
-    }
-    .table-responsive.table-responsive-fixed-head .table-overflow{
-        overflow-x: hidden;
-    }
-</style>
 
 @endsection
 
@@ -193,36 +151,9 @@
     (function($){
         $(function(){
 
-            // filter account 
-            var filterAccountInput = $('#filter_account');
-            var accountList = $('#account_list .account-item');
-            filterAccountInput.keyup(function(){
-                var term = $(this).val().trim().toLowerCase();
-                accountList.each(function(){
-                    var name = $(this).children('.account-name').text().toLowerCase();
-                    if (name.search(term) === -1) {
-                        $(this).hide();
-                    } else {
-                        $(this).show();
-                    }
-                });
-            });
-
-            // filter campaign
+            // campaign
             var filterCampaignInput = $('#filter_campaign');
             var campaignList = $('#campaign_list');
-            filterCampaignInput.keyup(function(){
-                var term = $(this).val().trim().toLowerCase();
-                var items = campaignList.find('.campaign-item');
-                items.each(function(){
-                    var name = $(this).children('.campaign-name').text().toLowerCase();
-                    if (name.search(term) === -1) {
-                        $(this).hide();
-                    } else {
-                        $(this).show();
-                    }
-                });
-            });
 
             // filter clients
             var filterClientInput = $('#filter_client');

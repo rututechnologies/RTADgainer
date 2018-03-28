@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 use App\User;
 use DB;
 
-class iconController extends Controller
+class lkgController extends Controller
 {
 	protected $view_directory_name="v1.icon.";
 

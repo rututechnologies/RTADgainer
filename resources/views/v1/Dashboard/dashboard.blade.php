@@ -14,7 +14,8 @@
     
      <div class="col-lg-3">
         <div class="widget style1 yellow-bg">
-            <a href="{{url('accounts')}}" style="color:#fff;"><div class="row">
+            <!--<a href="{{url('accounts')}}" style="color:#fff;"><div class="row">-->
+            <a href="{{url('app/accounts')}}" style="color:#fff;"><div class="row">
             	<div class="col-xs-4">
                     <i class="fa fa-lock fa-5x"></i>
                 </div>
@@ -22,6 +23,7 @@
 	                <h3 class="font-bold">Accounts</h3>
 	            </div>
         	</div>
+            </a>
     	</div>
     </div>
      <div class="col-lg-3">

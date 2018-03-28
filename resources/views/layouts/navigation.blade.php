@@ -83,9 +83,14 @@
                     <i class="fa fa-dashboard"></i> <span class="nav-label">Campaign Tools</span>
                 </a>
             </li>s
-            <li class="{{ isActiveNav('accountsList') }}">
+<!--            <li class="{{ isActiveNav('accountsList') }}">
                 <a href="{{ url('/accountsList') }}">
                     <i class="fa fa-lock"></i> <span class="nav-label">Accounts</span>
+                </a>
+            </li>-->
+            <li class="{{ isActiveNav('accounts') }}">
+                <a href="{{ url('/app/accounts') }}">
+                    <i class="fa fa-users"></i> <span class="nav-label">Accounts</span>
                 </a>
             </li>
             <li class="{{ isActiveNav('report1') }}">
