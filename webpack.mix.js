@@ -15,7 +15,8 @@ const { mix } = require('laravel-mix');
 //   .sass('resources/assets/sass/app.scss', 'public/css');
 
 mix.js([
-    'resources/assets/js/adgainer.js'
+    'resources/assets/js/adgainer.js',
+    'resources/assets/js/adgainer/filter.js'
 ], 'public/js/adgainer.js').sourceMaps();
 
 mix.sass('resources/assets/sass/adgainer.scss', 'public/css').sourceMaps();

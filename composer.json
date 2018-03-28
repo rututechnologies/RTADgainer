@@ -27,7 +27,8 @@
             "app/Helpers/Navigation.php"
         ],
         "psr-4": {
-            "App\\": "app/"
+            "App\\": "app/",
+            "Adgainer\\": "adgainer/"
         }
     },
     "autoload-dev": {

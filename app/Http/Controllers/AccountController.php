@@ -9,8 +9,55 @@ use App\User;
 
 class AccountController extends Controller
 {
-
     protected $view_directory_name = "v1.Account.";
+
+    /**
+     * Get account list according to user id
+     * Account_model::getAccounts()
+     * TODO: add account_id parameter
+     */
+    public function getAccounts( $user_id = '' )
+    {
+        $accounts = array();
+        if ( !empty( $user_id ) ) {
+            // get user by id
+            $user = User::find( $user_id );
+            if ( !$user ) {
+                return array();
+            }
+        } else {
+            // get loggedin user id
+            $user = Auth::user();
+            if ( $user ) {
+                $user_id = $user->id;
+            } else {
+                // unauthenticated
+                return array();
+            }
+        }
+
+        // get attach_accounts from user
+        $accounts = array();
+        if ( isset( $user->attach_accounts ) ) {
+            $attach_accounts = explode( ',', $user->attach_accounts );
+            $accounts = array_merge( $accounts, $attach_accounts );
+        }
+
+        // add self account_id from user
+        array_push( $accounts, $user->account_id );
+
+        // get accounts
+        $account_list = Account::whereIn( 'account_id', $accounts )->orderBy( 'accountName' )->get();
+        return $account_list;
+    }
+
+    /**
+     * TODO: add get account agent if level = 5
+     */
+    public function getAccountAgent( $user_id = '' )
+    {
+        
+    }
 
     public function accounts_list()
     {
@@ -168,46 +215,6 @@ class AccountController extends Controller
     public function Translation()
     {
         return view( $this->view_directory_name . 'micros.userAccountMgmt' );
-    }
-
-    /**
-     * Get account list according to user id
-     * Account_model::getAccounts()
-     * TODO: add account_id parameter
-     */
-    public function getAccounts( $user_id = '' )
-    {
-        $accounts = array();
-        if ( ! empty( $user_id ) ) {
-            // get user by id
-            $user = User::find( $user_id );
-            if ( ! $user ) {
-                return array();
-            }
-        } else {
-            // get loggedin user id
-            $user = Auth::user();
-            if ( $user ) {
-                $user_id = $user->id;
-            } else {
-                // unauthenticated
-                return array();
-            }
-        }
-
-        // get attach_accounts from user
-        $accounts = array();
-        if ( isset( $user->attach_accounts ) ) {
-            $attach_accounts = explode( ',', $user->attach_accounts );
-            $accounts = array_merge( $accounts, $attach_accounts );
-        }
-
-        // add self account_id from user
-        array_push( $accounts, $user->account_id );
-
-        // get accounts
-        $account_list = Account::whereIn( 'account_id', $accounts )->orderBy( 'accountName' )->get();
-        return $account_list;
     }
 
 }

@@ -1,13 +1,13 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\V1;
 
 use Illuminate\Http\Request;
 use App\message;
 use DB;
 use App\User;
 
-class AccountController extends Controller
+class msgController extends Controller
 {
    protected $view_directory_name="v1.message.";
 	

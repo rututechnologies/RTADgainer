@@ -21,7 +21,7 @@ Route::group(['namespace'=>'V1','middleware'=>['web','auth']], function () {
     Route::any('/viewCampaign', ['uses' => 'CampaignController@view_compaign']);
     Route::get('/Mycampaign', ['uses' => 'mycampaignController@Mycampaign']);
 });
-	//Manage users routes
+    //Manage users routes
    	Route::get('/usersList', ['uses' => 'UserController@usersList'])->name('UsersList');
     Route::post('/search_user', ['uses' => 'UserController@search_user']);
     Route::post('/saveUser', ['uses' => 'UserController@save_user']);
@@ -29,7 +29,7 @@ Route::group(['namespace'=>'V1','middleware'=>['web','auth']], function () {
     Route::post('/editUser', ['uses' => 'UserController@edit_user']);
     Route::post('/updateUser', ['uses' => 'UserController@update_user']);
 
-//navigation links routes
+    //navigation links routes
  	Route::get('/navigationList', ['uses' => 'NavigationController@navigation_list'])->name('NavigationList');
     Route::post('/searchNavigation', ['uses' => 'NavigationController@search_navigation']);
     Route::post('/saveNavigation', ['uses' => 'NavigationController@save_navigation']);
@@ -51,7 +51,7 @@ Route::group(['namespace'=>'V1','middleware'=>['web','auth']], function () {
     Route::get('/salesList', ['uses' => 'SalesController@sales_list'])->name('Sales');
     Route::get('/trafficEstimator', ['uses' => 'SalesController@traffic_estimator']);
     Route::get('/documentsList', ['uses' => 'SalesController@documentslist']);
-    
+
     //left nav 
     Route::get('/Agency', ['uses' => 'leftNavController@agency']);
     Route::get('/userAccountsMgmt', ['uses' => 'AccountController@userAccountsMgmt']);
@@ -78,7 +78,7 @@ Route::group(['namespace'=>'V1','middleware'=>['web','auth']], function () {
 
     //japanese
     Route::get('/japanese', 'japaneseController@japanese');
-   
+
    //accounting
     Route::get('/accounting', 'accountingController@accounting');
 

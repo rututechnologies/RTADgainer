@@ -2,6 +2,11 @@
   margin-bottom: 30px;
 }
 
+::-webkit-scrollbar-thumb {
+  background: rgba(113, 102, 102, 0.83);
+  border: none;
+}
+
 .panel-body h3 {
   font-size: 18px;
 }
