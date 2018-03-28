@@ -62,3 +62,27 @@
   overflow-x: hidden;
 }
 
+.table tr.odd {
+  background-color: #fafafa;
+}
+
+.nav-tabs > li > a {
+  color: #337ab7;
+}
+
+.nav-tabs-sm > li > a {
+  font-size: 12px;
+  padding-left: 8px;
+  padding-right: 8px;
+}
+
+.tab-content > .tab-pane {
+  padding: 15px;
+}
+
+.nav-tabs > li.active > a,
+.nav-tabs > li.active > a:hover,
+.nav-tabs > li.active > a:focus {
+  border-bottom-color: #fff;
+}
+
