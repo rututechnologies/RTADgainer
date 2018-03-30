@@ -29,7 +29,6 @@ class CampaignToolController extends Controller
     {
         $data = [];
 
-        // TODO: get archive from input
         $data[ 'archive' ] = $request->query( 'archive', 0 );
 
         // get my account and campaign data
@@ -48,15 +47,23 @@ class CampaignToolController extends Controller
             $time_zone = $accountData->account_time_zone;
         }
 
-        $data[ 'time_zone' ] = $request->query( 'time_zone', $time_zone );
+        $time_zone = $request->query( 'time_zone', $time_zone );
+        $data[ 'time_zone' ] = $time_zone;
 
-        $date1_ = $request->query( 'date1', Carbon::parse( 'first day of this month' ) );
-        $date1 = ($date1_)? Carbon::parse( $date1_ ): Carbon::parse( 'first day of this month' );
-        $date2_ = $request->query( 'date2', Carbon::yesterday() );
-        $date2 = ($date2_)? Carbon::parse( $date2_ ): Carbon::yesterday();
+        $date1_ = $request->query( 'date1' );
+        $carbon_date1 = ($date1_) ? Carbon::parse( $date1_ ) : Carbon::parse( 'first day of this month' );
+        $date1 = $carbon_date1->format( 'Y-m-d' );
 
-        $data[ 'date1_show' ] = $date1->format( 'm/d/Y' );
-        $data[ 'date2_show' ] = $date2->format( 'm/d/Y' );
+        $date2_ = $request->query( 'date2' );
+        $carbon_date2 = ($date2_) ? Carbon::parse( $date2_ ) : Carbon::yesterday();
+        $date2 = $carbon_date2->format( 'Y-m-d' );
+
+        $data[ 'date1_show' ] = $carbon_date1->format( 'Y-m-d' );
+        $data[ 'date2_show' ] = $carbon_date2->format( 'Y-m-d' );
+        $data[ 'date2_show_' ] = date( "Y-m-d H:i:s", strtotime( $data[ 'date2_show' ] . " +1 DAY" ) );
+
+        $data[ 'date1_show_input' ] = $carbon_date1->format( 'm/d/Y' );
+        $data[ 'date2_show_input' ] = $carbon_date2->format( 'm/d/Y' );
         // TODO: selcted timezone
         $TZ_offset1 = $this->get_timezone_offset( 'America/Los_Angeles', $time_zone, $date1 );
         $tz1 = $TZ_offset1[ 'HR' ];
@@ -72,30 +79,10 @@ class CampaignToolController extends Controller
         // get PPC tracking details
         $data[ 'ppc' ] = [];
         if ( $campaigns ) {
-            $data[ 'ppc' ] = $this->getPpcTrackingDetails( $campaigns, $date1, $date2, $data[ 'date1_show' ], $data[ 'date2_show' ], $data[ 'archive' ] );
+            $data[ 'ppc' ] = $this->getPpcTrackingDetails( $campaigns, $data[ 'date1' ], $data[ 'date2' ], $data[ 'date1_show' ], $data[ 'date2_show' ], $data[ 'archive' ] );
         }
-//
-//        var_dump( $data );
-//        exit;
-        return view( "{$this->viewDir}.mycampaign", $data );
-    }
 
-    /**
-     * Get timezone offset
-     */
-    function get_timezone_offset( $remote_tz, $origin_tz = NULL, $datetime = 'now' )
-    {
-        if ( $origin_tz === NULL || $origin_tz == '' ) {
-            if ( !is_string( $origin_tz = date_default_timezone_get() ) ) {
-                return FALSE; // A UTC timestamp was returned -- bail out!
-            }
-        }
-        $origin_dtz = new DateTimeZone( $origin_tz );
-        $remote_dtz = new DateTimeZone( $remote_tz );
-        $origin_dt = new DateTime( $datetime, $origin_dtz );
-        $remote_dt = new DateTime( $datetime, $remote_dtz );
-        $offset = $origin_dtz->getOffset( $origin_dt ) - $remote_dtz->getOffset( $remote_dt );
-        return array( 'SEC' => $offset, 'HR' => (($offset / 60) / 60) );
+        return view( "{$this->viewDir}.mycampaign", $data );
     }
 
     /**
@@ -112,7 +99,6 @@ class CampaignToolController extends Controller
         $sourceTraffic[ 'CALLSOURCE' ] = [];
         $sourceTraffic[ 'CONVSOURCE' ] = [];
         $sourceTraffic[ 'CONVTYPE' ] = [];
-
         $date1_r = date( "Y-m-d H:i:s", strtotime( $date1 . " -2 DAY" ) );
         $date2_r = date( "Y-m-d H:i:s", strtotime( $date2 . " +2 DAY" ) );
         $date2_show_ = date( "Y-m-d H:i:s", strtotime( $date2_show . " +1 DAY" ) );
@@ -180,6 +166,24 @@ class CampaignToolController extends Controller
             ->get()
             ->toArray();
         return $res;
+    }
+
+    /**
+     * Get timezone offset
+     */
+    function get_timezone_offset( $remote_tz, $origin_tz = NULL, $datetime = 'now' )
+    {
+        if ( $origin_tz === NULL || $origin_tz == '' ) {
+            if ( !is_string( $origin_tz = date_default_timezone_get() ) ) {
+                return FALSE; // A UTC timestamp was returned -- bail out!
+            }
+        }
+        $origin_dtz = new DateTimeZone( $origin_tz );
+        $remote_dtz = new DateTimeZone( $remote_tz );
+        $origin_dt = new DateTime( $datetime, $origin_dtz );
+        $remote_dt = new DateTime( $datetime, $remote_dtz );
+        $offset = $origin_dtz->getOffset( $origin_dt ) - $remote_dtz->getOffset( $remote_dt );
+        return array( 'SEC' => $offset, 'HR' => (($offset / 60) / 60) );
     }
 
 }

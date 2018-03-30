@@ -55,8 +55,8 @@ $dirOnePagers = 0;
 
             $unique_calls = array();
             foreach ( $all_ppc[ $campaign->campaign_id ] as $campPPC ) {
-//                if ( strtotime( $campPPC->time_stamp ) > strtotime( $date1 ) && strtotime( $campPPC->time_stamp ) < strtotime( $date2 ) ) {
-                if ( true ) {
+
+                if ( strtotime( $campPPC->time_stamp ) > strtotime( $date1 ) && strtotime( $campPPC->time_stamp ) < strtotime( $date2 ) ) {
                     $tType = $campPPC->traffic_type;
                     if ( $tType == "" ) {
                         $tType = "Unknown";
