@@ -1,5 +1,5 @@
 @extends('layouts.app')
-@section('title','Campaign Detail ')
+@section('title','My Campaigns ')
 
 @section('style')
 

@@ -18,6 +18,5 @@ Route::group( [ 'middleware' => [ 'auth' ] ], function () {
 
     // campaign tools
     Route::get( 'campaign-tools/mycampaign', [ 'uses' => 'CampaignToolController@myCampaign' ] );
-    
-    
+    Route::get( 'campaign-tools/all-campaigns', [ 'uses' => 'CampaignToolController@allCampaigns' ] );
 } );

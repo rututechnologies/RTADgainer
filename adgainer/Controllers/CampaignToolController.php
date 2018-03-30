@@ -12,27 +12,86 @@ use Illuminate\Foundation\Auth\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Validator;
 use function view;
 
 class CampaignToolController extends Controller
 {
     protected $viewDir = 'adgainer.campaign-tools';
+    protected $accountController;
+
+    public function __construct( AccountController $accountController )
+    {
+        $this->accountController = $accountController;
+    }
 
     /**
      * View My Campaign Tool.
      * 
      * ref code:
      * application/controller/campaign::myCampaign() | 2560
-     * application/views/campaigns/myCampaign.php | 2560
+     * application/views/campaigns/myCampaign.php
      */
     public function myCampaign( Request $request )
+    {
+        // get my account and campaign data
+        $account_id = Auth::user()->account_id;
+        $data = $this->getData( $request, $account_id );
+        return view( "{$this->viewDir}.mycampaign", $data );
+    }
+
+    /**
+     * View All campaign tools.
+     * 
+     * ref code:
+     * application/controller/campaign::viewCampaigns() | 2533
+     * application/views/campaigns/viewCampaigns.php
+     */
+    public function allCampaigns( Request $request )
+    {
+        // get all accounts
+        // TODO: get account agent if level = 5
+        $data[ 'accounts' ] = $this->accountController->getAccounts();
+        $data[ 'account_id' ] = '';
+
+        $carbon_date1 = Carbon::parse( 'first day of this month' );
+        $carbon_date2 = Carbon::yesterday();
+
+        $data[ 'date1_show_input' ] = $carbon_date1->format( 'm/d/Y' );
+        $data[ 'date2_show_input' ] = $carbon_date2->format( 'm/d/Y' );
+        $data[ 'archive' ] = 0;
+        $data[ 'time_zone' ] = "America/Los_Angeles";
+
+        // TODO: validation
+//        $validator = Validator::make( $request->all(), [
+//                'account_id' => 'required',
+//                'data1'      => 'required',
+//                'data2'      => 'required',
+//            ] );
+//            var_dump( $validator);
+//        if ( $validator->fails() ) {
+//            return view( "{$this->viewDir}.all-campaigns", $data );
+//        }
+        // get data reports
+        $account_id = $request->query( 'account_id' );
+        if ( $account_id ) {
+            $data = array_merge( $data, $this->getData( $request, $account_id ) );
+        }
+        return view( "{$this->viewDir}.all-campaigns", $data );
+    }
+
+    /**
+     * Get data for campaigns
+     */
+    public function getData( Request $request, $account_id )
     {
         $data = [];
 
         $data[ 'archive' ] = $request->query( 'archive', 0 );
+        // TODO: data level
+        $data[ 'level' ] = 1;
 
-        // get my account and campaign data
-        $account_id = Auth::user()->account_id;
+        // accounts and campaign
         $data[ 'account_id' ] = $account_id;
         $accountData = Account::where( 'account_id', $account_id )->first();
         $data[ 'accountData' ] = $accountData;
@@ -72,9 +131,6 @@ class CampaignToolController extends Controller
         $data[ 'tz' ] = $tz1;
         $data[ 'date1' ] = date( "Y-m-d H:i:s", strtotime( "-" . $tz1 . " HOURS", strtotime( $date1 ) ) );
         $data[ 'date2' ] = date( "Y-m-d H:i:s", strtotime( "-" . $tz2 . " HOURS", strtotime( $date2 ) ) );
-        // end - get date
-        // TODO: data level
-        $data[ 'level' ] = 1;
 
         // get PPC tracking details
         $data[ 'ppc' ] = [];
@@ -82,7 +138,7 @@ class CampaignToolController extends Controller
             $data[ 'ppc' ] = $this->getPpcTrackingDetails( $campaigns, $data[ 'date1' ], $data[ 'date2' ], $data[ 'date1_show' ], $data[ 'date2_show' ], $data[ 'archive' ] );
         }
 
-        return view( "{$this->viewDir}.mycampaign", $data );
+        return $data;
     }
 
     /**
