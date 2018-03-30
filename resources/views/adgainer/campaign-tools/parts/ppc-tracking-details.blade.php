@@ -213,9 +213,9 @@ $dirOnePagers = 0;
                     {!! ( $clicks > 0 )? number_format( ($ppcOnePagers / $clicks ), 2 ) : 0 !!}
                 </td>
                 <?php
-                $urlDetail = "campaign/details/$campaign->campaign_id/$account_id";
-                $urlEdit = "campaign/edit/$campaign->campaign_id/$account_id";
-                $urlDelete = "campaign/delete/$campaign->campaign_id/$account_id";
+                $urlDetail = url("app/campaign/details/$campaign->campaign_id/$account_id");
+                $urlEdit = url("app/campaign/edit/$campaign->campaign_id/$account_id");
+                $urlDelete = url("app/campaign/delete/$campaign->campaign_id/$account_id");
                 ?>
                 <td>
                     <a href="<?php echo $urlDetail; ?>" class=""><i class="fa fa-info-circle"></i></a>&nbsp;
