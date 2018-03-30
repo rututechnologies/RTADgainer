@@ -34,10 +34,8 @@ class AccountController extends Controller
      */
     public function details( $account_id )
     {
-        /*
-         * TODO: Get account details and display to details page
-         */
-        return view( "{$this->viewDir}.details" );
+        $account = Account::where( 'account_id', $account_id )->first();
+        return view( "{$this->viewDir}.details", [ 'account' => $account ] );
     }
 
     /**
@@ -62,7 +60,6 @@ class AccountController extends Controller
         /*
          * TODO: Get submitted form fields and save to database
          */
-        
     }
 
     /**
