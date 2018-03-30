@@ -58,7 +58,7 @@ class RouteServiceProvider extends ServiceProvider
         Route::middleware( 'web' )
             ->prefix( 'app' )
             ->namespace( 'Adgainer\Controllers' )
-            ->group( base_path( 'Adgainer/routes/web.php' ) );
+            ->group( base_path( 'adgainer/routes/web.php' ) );
     }
 
     /**
@@ -78,7 +78,7 @@ class RouteServiceProvider extends ServiceProvider
         Route::prefix( 'api/adgainer' )
             ->middleware( 'api' )
             ->namespace( 'Adgainer\Controllers' )
-            ->group( base_path( 'Adgainer/routes/api.php' ) );
+            ->group( base_path( 'adgainer/routes/api.php' ) );
     }
 
 }

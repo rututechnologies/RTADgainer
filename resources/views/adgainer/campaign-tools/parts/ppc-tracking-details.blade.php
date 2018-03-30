@@ -36,27 +36,30 @@ $dirOnePagers = 0;
         <tbody>
             @foreach($campaigns as $campaign)
             <?php
-            $conv = 0;
-            $ppcConv = 0;
-            $goals = 0;
-            $ppcGoals = 0;
-            $calls = 0;
-            $ppcCalls = 0;
-            $callConv = 0;
-            $emails = 0;
-            $ppcEmails = 0;
-            $clicks = 0;
-            $org = 0;
-            $display = 0;
-            $ppc = 0;
-            $direct = 0;
             $visits = 0;
+            $clicks = 0;
+            $ppcCalls = 0;
+            $unique_calls = [];
+            $callConv = 0;
+            $ppcGoals = 0;
+            $ppcEmails = 0;
+            $ppcConv = 0;
             $convPer = 0;
 
-            $unique_calls = array();
+            // unused
+            $conv = 0;
+            $goals = 0;
+            $calls = 0;
+            $emails = 0;
+            $direct = 0;
+            $org = 0;
+            //--
+            $ppc = 0;
+            $display = 0;
+            
             foreach ( $all_ppc[ $campaign->campaign_id ] as $campPPC ) {
-//                if ( strtotime( $campPPC->time_stamp ) > strtotime( $date1 ) && strtotime( $campPPC->time_stamp ) < strtotime( $date2 ) ) {
-                if ( true ) {
+
+                if ( strtotime( $campPPC->time_stamp ) > strtotime( $date1 ) && strtotime( $campPPC->time_stamp ) < strtotime( $date2 ) ) {
                     $tType = $campPPC->traffic_type;
                     if ( $tType == "" ) {
                         $tType = "Unknown";
@@ -213,9 +216,9 @@ $dirOnePagers = 0;
                     {!! ( $clicks > 0 )? number_format( ($ppcOnePagers / $clicks ), 2 ) : 0 !!}
                 </td>
                 <?php
-                $urlDetail = "campaign/details/$campaign->campaign_id/$account_id";
-                $urlEdit = "campaign/edit/$campaign->campaign_id/$account_id";
-                $urlDelete = "campaign/delete/$campaign->campaign_id/$account_id";
+                $urlDetail = url( "app/campaign/details/$campaign->campaign_id/$account_id" );
+                $urlEdit = url( "app/campaign/edit/$campaign->campaign_id/$account_id" );
+                $urlDelete = url( "app/campaign/delete/$campaign->campaign_id/$account_id" );
                 ?>
                 <td>
                     <a href="<?php echo $urlDetail; ?>" class=""><i class="fa fa-info-circle"></i></a>&nbsp;

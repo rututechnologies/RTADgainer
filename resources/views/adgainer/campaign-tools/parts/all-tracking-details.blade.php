@@ -231,8 +231,24 @@ $dirOnePagers = 0;
                 $keyword = str_replace( "(org)", "", $keyword );
                 $keyword = str_replace( "direct", "", $keyword );
                 $keyword = trim( $keyword );
-
-                $matchType = $this->Webtracking_model->getMatchType( $campPPC->matchtype );
+                
+                // REVIEW: ref: application/models/Webtacking_model.php | 1266
+//                $matchType = $this->Webtracking_model->getMatchType( $campPPC->matchtype );
+                $type = $campPPC->matchtype;
+                switch ( $type ) {
+                    case 'p':
+                        $matchType = "Phrase";
+                        break;
+                    case 'e':
+                        $matchType = "Exact";
+                        break;
+                    case 'b':
+                        $matchType = "Board";
+                        break;
+                    default:
+                        $matchType = $type;
+                        break;
+                }
 
                 if ( !isset( $allKeywords[ $keyword . " _ " . $campPPC->traffic_type . " _ " . $matchType ][ 'CLICKS' ] ) ) {
                     $allKeywords[ $keyword . " _ " . $campPPC->traffic_type . " _ " . $matchType ][ 'CLICKS' ] = array();

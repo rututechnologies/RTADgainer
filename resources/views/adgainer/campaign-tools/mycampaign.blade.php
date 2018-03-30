@@ -1,5 +1,5 @@
 @extends('layouts.app')
-@section('title','Campaign Detail ')
+@section('title','My Campaigns ')
 
 @section('style')
 
@@ -30,13 +30,13 @@
                             <div class="col-sm-6">
                                 <div class="form-group">
                                     <label>From :</label>
-                                    <input type="text" name="date1" class="form-control" data-provide="datepicker" value="{!! $date1_show !!}" placeholder="mm/dd/yyyy">
+                                    <input type="text" name="date1" class="form-control" data-provide="datepicker" value="{!! $date1_show_input !!}" placeholder="mm/dd/yyyy">
                                 </div>
                             </div>
                             <div class="col-sm-6">
                                 <div class="form-group">
                                     <label>To :</label>
-                                    <input type="text" name="date2" class="form-control" data-provide="datepicker" value="{!! $date2_show !!}" placeholder="mm/dd/yyyy">
+                                    <input type="text" name="date2" class="form-control" data-provide="datepicker" value="{!! $date2_show_input !!}" placeholder="mm/dd/yyyy">
                                 </div>
                             </div>
                         </div>
@@ -185,11 +185,11 @@
             </div>
             <!--section 2-->
             <div role="tabpanel" class="tab-pane fade" id="tab_ppc_tracking">
-                @include('adgainer.campaign-tools.parts.ppc-tracking-details', ['account_id' => $account_id, 'campaigns' => $campaigns, 'all_ppc' => $ppc, 'date1' => $date1, 'date2' => $date2])
+                @include('adgainer.campaign-tools.parts.ppc-tracking-details', ['account_id' => $account_id, 'campaigns' => $campaigns, 'all_ppc' => $ppc, 'date1' => $date1, 'date2' => $date2, 'date1_show' => $date1_show, 'date2_show_' => $date2_show_])
             </div>
             <!--section 3-->
             <div role="tabpanel" class="tab-pane fade" id="tab_all_tracking">
-                @include('adgainer.campaign-tools.parts.all-tracking-details', ['account_id' => $account_id, 'campaigns' => $campaigns, 'all_ppc' => $ppc, 'date1' => $date1, 'date2' => $date2])
+                @include('adgainer.campaign-tools.parts.all-tracking-details', ['account_id' => $account_id, 'campaigns' => $campaigns, 'all_ppc' => $ppc, 'date1' => $date1, 'date2' => $date2, 'date1_show' => $date1_show, 'date2_show_' => $date2_show_])
             </div>
             <!--section 4-->
             <div role="tabpanel" class="tab-pane fade" id="tab_map_view">
@@ -197,7 +197,7 @@
             </div>
             <!--section 5-->
             <div role="tabpanel" class="tab-pane fade" id="tab_graph_data">
-                @include('adgainer.campaign-tools.parts.graph-data')
+                @include('adgainer.campaign-tools.parts.graph-data', ['account_id' => $account_id, 'campaigns' => $campaigns, 'all_ppc' => $ppc, 'date1' => $date1, 'date2' => $date2, 'date1_show' => $date1_show, 'date2_show_' => $date2_show_])
             </div>
             <!--section 6-->
             <div role="tabpanel" class="tab-pane fade" id="tab_last_30">
@@ -209,7 +209,7 @@
             </div>
             <!--section 8-->
             <div role="tabpanel" class="tab-pane fade" id="tab_campaign_goals">
-                @include('adgainer.campaign-tools.parts.campaign-goals', ['campaigns' => $campaigns, 'all_ppc' => $ppc, 'date1' => $date1, 'date2' => $date2])
+                @include('adgainer.campaign-tools.parts.campaign-goals', ['campaigns' => $campaigns, 'all_ppc' => $ppc, 'date1' => $date1, 'date2' => $date2, 'date1_show' => $date1_show, 'date2_show' => $date2_show])
             </div>
         </div>
 

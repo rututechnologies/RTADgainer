@@ -63,8 +63,8 @@
                 echo "<td>" . $goals . "</td>";
                 echo "<td>" . $record_calls . "</td>";
                 echo "<td>" . $active . "</td>";
-                $urlDetail = "campaign/details/$campaign->campaign_id/$account_id";
-                $urlEdit = "campaign/edit/$campaign->campaign_id/$account_id";
+                $urlDetail = url("app/campaign/details/$campaign->campaign_id/$account_id");
+                $urlEdit = url("app/campaign/edit/$campaign->campaign_id/$account_id");
                 ?>
             <td>
                 <a href = "<?php echo $urlDetail; ?>" class = "btn btn-sm btn-info"><i class = "fa fa-info-circle"></i></a>
