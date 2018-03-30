@@ -137,7 +137,7 @@ class CampaignToolController extends Controller
         if ( $campaigns ) {
             $data[ 'ppc' ] = $this->getPpcTrackingDetails( $campaigns, $data[ 'date1' ], $data[ 'date2' ], $data[ 'date1_show' ], $data[ 'date2_show' ], $data[ 'archive' ] );
         }
-
+        
         return $data;
     }
 
@@ -218,7 +218,7 @@ class CampaignToolController extends Controller
 		k_keyword,matchtype,call_duration,time_stamp,time_of_call';
         $res = DB::table( $table )
             ->select( DB::raw( $select ) )
-            ->whereRaw( "campaign_id='$campaign_id' $tQ  $dateQ $dateC" )
+//            ->whereRaw( "campaign_id='$campaign_id' $tQ  $dateQ $dateC" )
             ->get()
             ->toArray();
         return $res;

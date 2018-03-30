@@ -197,7 +197,7 @@
             </div>
             <!--section 5-->
             <div role="tabpanel" class="tab-pane fade" id="tab_graph_data">
-                @include('adgainer.campaign-tools.parts.graph-data')
+                @include('adgainer.campaign-tools.parts.graph-data', ['account_id' => $account_id, 'campaigns' => $campaigns, 'all_ppc' => $ppc, 'date1' => $date1, 'date2' => $date2, 'date1_show' => $date1_show, 'date2_show_' => $date2_show_])
             </div>
             <!--section 6-->
             <div role="tabpanel" class="tab-pane fade" id="tab_last_30">
