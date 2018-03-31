@@ -16,6 +16,7 @@
                    Sales
                 </span>
                 </h1>
+               <a href="{{url('/dashboard')}}"> <button class=".btn-primary">Back</button></a>
                 <ol class="breadcrumb">
                     <li>
                         <a href="{{url('/dashboard')}}"><i

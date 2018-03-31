@@ -25,7 +25,6 @@
 @endsection
 
 @section('content')
-
     <div class="wrapper border-bottom white-bg page-heading">
         <div class="col-md-3">
             <div class="row">
@@ -34,6 +33,7 @@
                     Agency
                 </span>
                 </h1>
+                 <a href="{{url('/dashboard')}}"><button class=".btn-primary">Back</button></a>
                 <ol class="breadcrumb">
                     <li>
                         <a href="{{url('/dashboard')}}"><i
@@ -41,253 +41,159 @@
                     </li>
 
                     <li class="active">
-                        <strong><i class="fa fa-list"></i>Agency</strong>
+                        <strong><i class="fa fa-list"></i> Agency</strong>
                     </li>
                 </ol>
             </div>
         </div>
+ </div>
 
+    <div class="wrapper border-bottom white-bg page-heading">
+        <form action="fileUpload" method="post">
+<input type="hidden" name="_token" value="{{ csrf_token() }}">
+<table style="margin-left:15px">
+    <tr>
+        <td>
 
-         
-    </div>
+            <span class="da-panel-title">
 
-<div class="w3-container">
-
-            <div id="da-content-area" style="margin-right:45px">
-
-                <div class="clear"></div>
-
-                <table>
-                    <tr >
-                        <td>
-
-                            <div class="grid_2">
-
-                                <div class="da-panel">
-                                    <div class="da-panel-header">
-                                       
-                                            <span class="da-panel-title">
-
-                                <h4 align="center"><img src="https://testenvadgainer.adgainersolutions.com/adgainer/application/images/icons/black/16/pencil.png" alt="Edit" /><b>Agency Logo Branding</b></h4>
+                            <h4 align="center"><img src="https://testenvadgainer.adgainersolutions.com/adgainer/application/images/icons/black/16/pencil.png" alt="Edit" /><b>Agency Logo Branding</b></h4>
                             </span>
-                                            <hr width="50%" align="center">
-                                    </div>
-                                    <table align="center" style="width:60%" style="height:25%">
-                                        <tr>
-
-                                            <div class="da-panel-content">
-
-                                                <div class="da-form-row">
-                                                    <td style="padding-left: 50px">
-                                                        <label>
-                                                            Logo </label>
-                                                    </td>
-                                                    <td>
-                                                        <div class="da-form-item large">
-                                                            <input type="file" name="logo" value="">
-                                                            <br/> ad-gainer-logo-v1.1-250x54px-transp-bkgd-flat.png </div>
-                                                    </td>
-                                                </div>
-                        
-                                
-                        <tr>
-                            <td style="padding-left: 40px" >
-                                <div class="da-button-row">
-
-                                    <input type="submit" id="shadow" value="Update Logo" class="da-button green" style="background-color:f5fffa">
-                                </div>
-                            </td>
-                        </tr>
-                        </div>
-                        </tr>
-                        </table>
-                        
-                        </div>
-                        </div>
+            <table style="margin-left:15px">
+                <tr>
+                    <td>
+                        <label>
+                            Logo </label>
                     </td>
-                    
-                       
+                    <td>
 
-                        <br>
-                        <div style='margin-right:700px'>
-                            <td>
-                                <div class="grid_2">
+                        <input type="file" name="logo" id="logo"value="" accept="image/*" required>
+                        flat.png
+                    </td>
+                </tr>
+                <tr>
+                    <td>
 
-                                    <div class="da-panel">
+                        <input type="submit" id="shadow"name="shadow" value="Update Logo" class="da-button green" style="background-color:f5fffa">
 
-                                        <div class="da-panel-header">
-                                            
-                                                <span class="da-panel-title">
+                    </td>
+                </tr>
+            </table>
+</form>
+        </td>
+
+        <td>
+
+            <span class="da-panel-title">
+
+                           <h4 align="center"> <img src="https://testenvadgainer.adgainersolutions.com/adgainer/application/images/icons/black/16/pencil.png" alt="Edit" /><b>Agency Color Branding</b></h4>
+                            </span>
+<form action="colorUpload" method="post">
+    <input type="hidden" name="_token" value="{{ csrf_token() }}">
+            <table id="a" style="margin-right:15px">
+
+                <tr>
+
+                    <td>
+                        <label>
+                            Color </label>
+                    </td>
+
+                    <td>Click &nbsp;&nbsp; --></td>
+                    <td>
+                        <input type="color" name='color' id="color"style="width:100px" value="1966FF" /><br/>                        please select color
+                    </td>
+
+                </tr>
+
+    </tr>
+
+    <tr>
+        <td>
+            <input type="submit" id="shadow" value="Update Color" class="da-button green" style="background-color:f5fffa">
+        </td>
+
+    </tr>
+    </table>
+</form>
+    </td>
+    </tr>
+
+    <tr>
+        <td>
+
+            <span class="da-panel-title">
+
+                                <h4  align="center"><img src="https://testenvadgainer.adgainersolutions.com/adgainer/application/images/icons/black/16/pencil.png" alt="Edit" />
+                               <b> Agency Subdomain</b></h4>
+                            </span>
+<form action="subdomain" method="post">
+    <input type="hidden" name="_token" value="{{ csrf_token() }}">
+            <table id="a" align="left" style="margin-left:15px">
+                <tr>
+                    <td>
+
+                        <label>
+                            Subdomain </label>
+                    </td>
+                    <td>
+
+                        <input type="text" name="subdomain" id="subdomain" class="letters_only" value="demo " required/><br/>
+                        Must be only alpha characters a-z in english, with no spaces.
+                         Case is insensitive.</td>
+                </tr>
+
+                <tr>
+                    <td>
+
+                        <input type="submit" id="shadow" value="Update Subdomain" class="da-button green" style="background-color:f5fffa">
+
+                    </td>
+                </tr>
+
+            </table>
+</form>
+        </td>
+        <td>
+
+            <span class="da-panel-title">
 
                             <h4 align="center"> <img src="https://testenvadgainer.adgainersolutions.com/adgainer/application/images/icons/black/16/pencil.png" alt="Edit" />
 
-                                Agency Color Branding
-                            </span>
-                                                <hr width="80%" align="center">
-                                        </div>
-                                        <table id="a" align="center" style="width:100%" style="height:25%">
-                                            <tr>
-                                                <td>
-                                                    <div class="da-panel-content">
-                                                        <tr>
-                                                            <div class="da-form-row">
-                                                                <td>
-                                                                    <label>
-                                                                        Color </label>
-                                                                </td>
+                                <b>Login Page Slogan</b></h4></span>
+<form action="slogan" method="post">
+    <input type="hidden" name="_token" value="{{ csrf_token() }}">
+            <table style="margin-right:15px">
+                <tr>
+                    <td>
 
-                                                                <div class="da-form-item large">
-                                                                    <td>Click &nbsp; -->
-                                                                        <input type="color" name='color' style="width:100px" value="1966FF" />
-                                                                    </td>
-                                                                </div>
+                        <label>Slogan </label>
+                    </td>
+                    <td>
 
-                                                            </div>
-                                                        </tr>
-                                                        <tr>
+                        <input type="text" name="slogan" class="" value="DEMO AGENCY SLOGAN " required/>
+                        <br/>
+                        <i>Can contain html.</i></td>
+                </tr>
 
-                                                            <div class="da-button-row">
+                <tr>
+                    <td>
 
-                                                                <td>
-                                                                    <input type="submit" id="shadow" value="Update Color" class="da-button green" style="background-color:f5fffa">
-                                                                </td>
-                                                            </div>
+                        <input type="submit" id="shadow" value="Update Slogan" class="da-button green" style="background-color:f5fffa">
 
-                                                    </div>
-                                                    </tr>
-                                        </table>
-                                        
-                                    </div>
-                                </div></td>
-                        </div>
-                        </td>
-                        </tr>
-                        <br>
-                        <div class="clear"></div>
+                    </td>
+                </tr>
 
-                        <tr>
-                            <td>
-                                <div class="grid_2">
-
-                                    <div class="da-panel">
-                                        <div class="da-panel-header">
-                                            <span class="da-panel-title">
-
-                                <h4  align="center"><img src="https://testenvadgainer.adgainersolutions.com/adgainer/application/images/icons/black/16/pencil.png" alt="Edit" />
-                                <b>Agency Subdomain</b></h4>
-                            </span>
-                                            <hr width="50%" align="center">
-                                        </div>
-                                        
-                                            <table id="a" align="center" style="width:60%" style="height:25%">
-                                                <trstyle="margin-right: 10px">
-                                                    <td>
-                                                        <div class="da-panel-content">
-
-                                                            <div class="da-form-row">
-                                                                <label>
-                                                                    Subdomain </label>
-                                                    </td>
-                                                    <td>
-                                                        <div class="da-form-item large">
-                                                            <input type="text" name="subdomain" class="letters_only" value="demo " />
-                                                            <br/>
-                                                            <i>Must be only alpha characters a-z in english, with no spaces. Case is insensitive.</i>
-                                                        </div>
-                                                    </td>
-                                                </tr>
-                                                </div>
-                                                <tr >
-                                                    <td >
-                                                        <div >
-
-                                                            <input type="submit" id="shadow" value="Update Subdomain" class="da-button green" style="background-color:f5fffa">
-                                                        </div>
-                                                    </td>
-                                                </tr>
-
-                                                </div>
-                                            </table>
-                                        
-                                    </div>
-                                </div>
-
-                            </td>
-                            <td>
-                                <div class="grid_2">
-
-                                    <div class="da-panel">
-                                        <div class="da-panel-header">
-                                            
-                                                <span class="da-panel-title">
-
-                            <h4 align="center" style="margin-bottom:15px "> <img src="https://testenvadgainer.adgainersolutions.com/adgainer/application/images/icons/black/16/pencil.png" alt="Edit" />
-
-                                <b>Login Page Slogan</b></span>
-                                                <hr width="80%" align="center">
-                                        </div>
-                                        <table align="center" style="width:50%" style="height:25%">
-                                            <tr>
-                                                <td>
-                                                    <div class="da-panel-content">
-
-                                                        <div class="da-form-row">
-                                                            <label>Slogan </label>
-                                                </td>
-                                                <td>
-                                                    <div class="da-form-item large">
-                                                        <input type="text" name="slogan" class="" value="DEMO AGENCY SLOGAN " />
-                                                        <br/>
-                                                        <i>Can contain html.</i></td>
-                                            </tr>
-                                            </div>
-                                            </div>
-                                            <tr>
-                                                <td style="padding-top: 20px">
-                                                    <div class="da-button-row">
-
-                                                        <input type="submit" id="shadow" value="Update Slogan" class="da-button green" style="background-color:#075f98" style="bgcolor:black">
-                                                    </div>
-                                                </td>
-                                            </tr>
-
-                                        </table>
-                                        
-                                        </div>
-                                    </div>
-
-                                </div>
-
-                            </td>
-                        </tr>
-            </div>
-
-            </div>
-
-            </div>
             </table>
-            </div>
-</div>
+        </form>
+        </td>
+    </tr>
+</table>
+</form>
 @endsection
-  <style>
-        #shadow {
-            border: 1px solid gray;
-            border-radius: 10px;
-            padding: 5px;
-            width: 150px;
-            height: 30px;
-            box-shadow: 5px 5px 5px -2px rgba(0, 0, 0, 0.6);
-        }
-        
-        td {
-            padding-top: 1em;
-            padding-bottom: 1em;
-        }
-        
-        tr.spaceUnder>td {
-            padding-bottom: 1em;
-        }
-    </style>
+  
 @section('scripts')
+<script>
 
+</script>
 @endsection
