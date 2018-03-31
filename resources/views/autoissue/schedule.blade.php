@@ -233,7 +233,7 @@
                 // remove filter
                 filterCampaignInput.val('');
                 // send request
-                var url = '/api/campaigns/' + accountID;
+                var url = '/api/adgainer/campaigns/' + accountID;
                 campaignList.html('');
                 $.get(url).done(function(res){
                     if (res) {
