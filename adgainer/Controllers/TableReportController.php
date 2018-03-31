@@ -643,12 +643,13 @@ class TableReportController extends Controller
         if ( in_array( $goal_page, $campaign_goal_pgs[ $campaign_id ] ) ) {
             return $campaign_goal_pgs[ $campaign_id ];
         }
-        $this->db->where( 'campaign_id', $campaign_id );
-        $this->db->select( $goal_page );
-        $q = $this->db->get( 'campaigns' );
-        $campaign_goal_pgs[ $campaign_id ][] = $q->row()->$goal_page;
+        $res = DB::table('campaigns')
+            ->select(DB::raw($goal_page))
+            ->where('campaign_id', $campaign_id)
+            ->first();
+        $campaign_goal_pgs[ $campaign_id ][] = $res->$goal_page;
 
-        return $q->row()->$goal_page;
+        return $res->$goal_page;
     }
 
     function reportFieldTableValue( $fieldName, $value, $campaign_id, $row, $all_info, $TZ )

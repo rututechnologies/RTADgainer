@@ -321,9 +321,9 @@
                             }
                             foreach ( $reportFields as $key => $fieldName ) {
                                 // TODO: goal page memo
-//                                if ( isset( $campaignData->campaign_id ) && stristr( $fieldName, 'goal' ) ) {
-//                                    $fieldName = $tableReportController->getGoalPageMemo( $campaignData->campaign_id, $fieldName, $campaign_goal_pgs );
-//                                }
+                                if ( isset( $campaignData->campaign_id ) && stristr( $fieldName, 'goal' ) ) {
+                                    $fieldName = $tableReportController->getGoalPageMemo( $campaignData->campaign_id, $fieldName, $campaign_goal_pgs );
+                                }
                                 echo "<th>" . substr( $fieldName, 0, 19 ) . "</th>";
                             }
                             //". str_replace("_"," ",ucfirst($fieldName)) ."
