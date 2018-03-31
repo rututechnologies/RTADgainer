@@ -57,20 +57,18 @@ class AccountController extends Controller
      */
     public function edit( $account_id )
     {
-        /*
-         * TODO: Get account details and display form
-         */
-        return view( "{$this->viewDir}.edit" );
+        $account = Account::where( 'account_id', $account_id )->first();
+        return view( "{$this->viewDir}.edit", [ 'account' => $account ] );
     }
 
     /**
      * Submitted edit form.
      * Save to database and return to edit form with alert
      */
-    public function editSubmit( Request $request )
+    public function editSubmit( Request $request, $account_id )
     {
         /*
-         * TODO: Get submitted form fields and save to database
+         * TODO: Submit edit account
          */
     }
 
@@ -207,7 +205,7 @@ class AccountController extends Controller
             //getReportRecords($fields,$date1,$date2,$rType,$order,$dir,$start,$end,$traffic,$account_id,$campaign_id='',$archive='',$date1_TZ='',$date2_TZ='',$report='',$type='',$user_account_id='')
             $data[ 'all_total_calls' ] = $this->tableReportController->getAllCallsData( $account_id, $campaign_id, $date1, $date2, $archive );
 //            var_dump( $data);
-            $data['tableReportController'] = $this->tableReportController;
+            $data[ 'tableReportController' ] = $this->tableReportController;
             return view( "adgainer.reports.get-table", $data );
         }
     }

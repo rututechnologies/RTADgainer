@@ -43,12 +43,10 @@ class CampaignController extends Controller
      * 
      * TODO: display campaign form.
      */
-    public function create( $account_id )
+    public function createByAccount( $account_id )
     {
-        /*
-         * TODO: Get account details and display form
-         */
-        return view( "{$this->viewDir}.create" );
+        $account = Account::where( 'account_id', $account_id )->first();
+        return view( "{$this->viewDir}.create", [ 'account' => $account ] );
     }
 
     /**
