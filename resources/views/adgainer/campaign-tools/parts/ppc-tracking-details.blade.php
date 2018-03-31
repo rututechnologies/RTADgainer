@@ -36,6 +36,15 @@ $dirOnePagers = 0;
         <tbody>
             @foreach($campaigns as $campaign)
             <?php
+            $url_params = [
+                'account_id'  => $campaign->account_id,
+                'campaign_id' => $campaign->campaign_id,
+                'rType'       => '0',
+                'date1'       => $date1_show,
+                'date2'       => $date2_show,
+//                'time_zone'  => $time_zone,
+            ];
+            
             $visits = 0;
             $clicks = 0;
             $ppcCalls = 0;
@@ -56,23 +65,11 @@ $dirOnePagers = 0;
             //--
             $ppc = 0;
             $display = 0;
-            
+
             foreach ( $all_ppc[ $campaign->campaign_id ] as $campPPC ) {
 
-                if ( strtotime( $campPPC->time_stamp ) > strtotime( $date1 ) && strtotime( $campPPC->time_stamp ) < strtotime( $date2 ) ) {
-                    $tType = $campPPC->traffic_type;
-                    if ( $tType == "" ) {
-                        $tType = "Unknown";
-                    }
-                    if ( stristr( $campPPC->traffic_type, "direct" ) ) {
-                        $tType = "DIRECT";
-                    }
-
-                    if ( !isset( $sourceTraffic[ 'SOURCE' ][ $tType ] ) ) {
-                        $sourceTraffic[ 'SOURCE' ][ $tType ] = 0;
-                    }
-
-                    $sourceTraffic[ 'SOURCE' ][ $tType ] ++;
+//                if ( strtotime( $campPPC->time_stamp ) > strtotime( $date1 ) && strtotime( $campPPC->time_stamp ) < strtotime( $date2 ) ) {
+                if ( true ) {
 
                     if ( $campPPC->visits == 1 && stristr( $campPPC->traffic_type, 'PPC' ) ) {
                         $ppcOnePagers++;
@@ -98,17 +95,6 @@ $dirOnePagers = 0;
                         $org++;
                     }
 
-                    if ( $campPPC->goal1_hit == 1 || $campPPC->goal2_hit == 1 || $campPPC->goal3_hit == 1 || $campPPC->goal4_hit == 1 ) {
-                        if ( !isset( $sourceTraffic[ 'CONVTYPE' ][ 'Goals ' . $tType ] ) ) {
-                            $sourceTraffic[ 'CONVTYPE' ][ 'Goals ' . $tType ] = 0;
-                        }
-                        $sourceTraffic[ 'CONVTYPE' ][ 'Goals ' . $tType ] ++;
-
-                        if ( !isset( $sourceTraffic[ 'CONVSOURCE' ][ $tType ] ) ) {
-                            $sourceTraffic[ 'CONVSOURCE' ][ $tType ] = 0;
-                        }
-                        $sourceTraffic[ 'CONVSOURCE' ][ $tType ] ++;
-                    }
                     if ( $campPPC->goal1_hit == 1 || $campPPC->goal2_hit || $campPPC->goal3_hit || $campPPC->goal4_hit ) {
                         $goals++;
                     }
@@ -117,13 +103,6 @@ $dirOnePagers = 0;
                         $ppcGoals++;
                     }
 
-                    if ( $campPPC->email_data_sent == 1 ) {
-                        $emails++;
-                        if ( !isset( $sourceTraffic[ 'CONVTYPE' ][ 'Emails ' . $tType ] ) ) {
-                            $sourceTraffic[ 'CONVTYPE' ][ 'Emails ' . $tType ] = 0;
-                        }
-                        $sourceTraffic[ 'CONVTYPE' ][ 'Emails ' . $tType ] ++;
-                    }
                     if ( $campPPC->email_data_sent == 1 && stristr( $campPPC->traffic_type, "PPC" ) ) {
                         $ppcEmails++;
                     }
@@ -132,17 +111,6 @@ $dirOnePagers = 0;
 
                 if ( strtotime( $campPPC->time_of_call ) > strtotime( $date1_show ) && strtotime( $campPPC->time_of_call ) < strtotime( $date2_show_ ) ) {
                     $tType = $campPPC->traffic_type;
-                    if ( $campPPC->caller_phone != "" ) {
-                        if ( !isset( $sourceTraffic[ 'CALLSOURCE' ][ $tType ] ) ) {
-                            $sourceTraffic[ 'CALLSOURCE' ][ $tType ] = 0;
-                        }
-
-                        if ( !isset( $sourceTraffic[ 'CONVTYPE' ][ 'Calls ' . $tType ] ) ) {
-                            $sourceTraffic[ 'CONVTYPE' ][ 'Calls ' . $tType ] = 0;
-                        }
-                        $sourceTraffic[ 'CONVTYPE' ][ 'Calls ' . $tType ] ++;
-                        $sourceTraffic[ 'CALLSOURCE' ][ $tType ] ++;
-                    }
 
                     if ( $campPPC->caller_phone != "" ) {
                         $calls++;
@@ -167,40 +135,46 @@ $dirOnePagers = 0;
                 if ( $clicks > 0 ) {
                     $convPer = number_format( (($ppcConv / $clicks) * 100 ), 2, '.', '' );
                 }
-
-                $acctTotalVisits = $acctTotalVisits + $visits;
-                $acctTotalClicks = $acctTotalClicks + $clicks;
-                $acctTotalPPC = $acctTotalPPC + $ppc;
-                $acctTotalCalls = $acctTotalCalls + $ppcCalls;
-                $acctTotalGoals = $acctTotalGoals + $ppcGoals;
-                $acctTotalEmails = $acctTotalEmails + $ppcEmails;
-                $totalUniqueCalls = $totalUniqueCalls + count( $unique_calls );
             }
+            $acctTotalVisits = $acctTotalVisits + $visits;
+            $acctTotalClicks = $acctTotalClicks + $clicks;
+            $acctTotalPPC = $acctTotalPPC + $ppc;
+            $acctTotalCalls = $acctTotalCalls + $ppcCalls;
+            $acctTotalGoals = $acctTotalGoals + $ppcGoals;
+            $acctTotalEmails = $acctTotalEmails + $ppcEmails;
+            $totalUniqueCalls = $totalUniqueCalls + count( $unique_calls );
+
+            $urlVisit = route( 'campaign-reports', array_merge( $url_params, [ 'report' => 'Web Traffic' ] ) );
+            $urlClicks = route( 'campaign-reports', array_merge( $url_params, [ 'report' => 'Web Traffic', 'traffic' => 'PPC|DISPLAY' ] ) );
+            $urlPPC_calls = route( 'campaign-reports', array_merge( $url_params, [ 'report' => 'Call Records', 'rType' => '1', 'traffic' => 'PPC' ] ) );
+            $urlCallConv = route( 'campaign-reports', array_merge( $url_params, [ 'report' => 'Conversion Records', 'rType' => '2', 'traffic' => 'PPC' ] ) );
+            $urlPPC_goals = route( 'campaign-reports', array_merge( $url_params, [ 'report' => 'Goal Records', 'rType' => '3', 'traffic' => 'PPC' ] ) );
+            $urlConvPer = route( 'campaign-reports', array_merge( $url_params, [ 'report' => 'Conversion Records', 'rType' => '2' ] ) );
             ?>
             <tr class="text-center">
                 <td class="text-left">{{$campaign->campaign_name}}</td>
                 <td>
-                    <a href="#" target="_blank">
+                    <a href="{{$urlVisit}}" target="_blank">
                         {!! $visits !!}
                     </a>
                 </td>
                 <td>
-                    <a href="#" target="_blank">
+                    <a href="{{$urlClicks}}" target="_blank">
                         {!! $clicks !!}
                     </a>
                 </td>
                 <td>
-                    <a href="#" target="_blank">
+                    <a href="{{$urlPPC_calls}}" target="_blank">
                         {!! $ppcCalls . " | " . count($unique_calls) !!}
                     </a>
                 </td>
                 <td>
-                    <a href="#" target="_blank">
+                    <a href="{{$urlCallConv}}" target="_blank">
                         {!! $callConv !!}
                     </a>
                 </td>
                 <td>
-                    <a href="#" target="_blank">
+                    <a href="{{$urlPPC_goals}}" target="_blank">
                         {!! $ppcGoals !!}
                     </a>
                 </td>
@@ -208,7 +182,7 @@ $dirOnePagers = 0;
                     {!! $ppcEmails !!}
                 </td>
                 <td>
-                    <a href="#" target="_blank">
+                    <a href="{{$urlConvPer}}" target="_blank">
                         {!! $convPer !!}
                     </a>
                 </td>
@@ -230,21 +204,33 @@ $dirOnePagers = 0;
 
         </tbody>
         <tfoot>
+            <?php 
+            $url_params = [
+                'account_id'  => $account_id,
+                'rType'       => '0',
+                'date1'       => $date1_show,
+                'date2'       => $date2_show,
+//                'time_zone'  => $time_zone,
+            ];
+            $urlVisitTotal = route( 'account-reports', array_merge( $url_params, [ 'report' => 'Web Traffic' ] ) );
+            $urlClicksTotal = route( 'campaign-reports', array_merge( $url_params, [ 'report' => 'Web Traffic', 'traffic' => 'PPC' ] ) );
+            $urlPPC_callsTotal = route( 'campaign-reports', array_merge( $url_params, [ 'report' => 'Call Records', 'rType' => '1', 'traffic' => 'PPC' ] ) );
+            ?>
             <tr class="text-center">
                 <th class="text-center">--</th>
                 <th class="text-center">
-                    <a href="#" target="_blank">
+                    <a href="{{$urlVisitTotal}}" target="_blank">
                         {!! $acctTotalVisits !!}
                     </a>
                 </th>
                 <th class="text-center">
-                    <a href="#" target="_blank">
+                    <a href="{{$urlClicksTotal}}" target="_blank">
                         {!! $acctTotalClicks !!}
                     </a>
                 </th>
                 <th class="text-center">
 
-                    <a href="#" target="_blank">
+                    <a href="{{$urlPPC_callsTotal}}" target="_blank">
                         {!! $acctTotalCalls . " | " . $totalUniqueCalls !!}
                     </a>
                 </th>

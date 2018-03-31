@@ -150,13 +150,28 @@
         </div>
         <!--.col-md-6-->
         <div class="col-md-6">
+            <h3 style="font-size: 1.25em;margin-bottom: 25px;">Account Records Navigation</h3>
             <!--buttons-->
-            <a href="#" class="btn btn-primary btn-lg" style="margin-bottom: 10px;">Call Records</a> &nbsp;
-            <a href="#" class="btn btn-primary btn-lg" style="margin-bottom: 10px;">Web Traffic</a> &nbsp;
-            <a href="#" class="btn btn-primary btn-lg" style="margin-bottom: 10px;">PPC Traffic</a> &nbsp;
-            <a href="#" class="btn btn-primary btn-lg" style="margin-bottom: 10px;">Conversion</a> &nbsp;
-            <a href="#" class="btn btn-primary btn-lg" style="margin-bottom: 10px;">PPC Daily</a> &nbsp;
-            <a href="#" class="btn btn-default btn-lg" style="margin-bottom: 10px;"><img src="{!!asset('images/doc_pdf.png')!!}" alt=""></a> &nbsp;
+            <?php
+            $url_params = [
+                'account_id' => $account_id,
+                'rType'      => '1',
+                'date1'      => $date1,
+                'date2'      => $date2,
+                'archive'    => $archive,
+                'time_zone'  => $time_zone,
+            ];
+            $url1 = route( 'account-reports', array_merge( [ 'report' => 'Call Records' ], $url_params ) );
+            $url2 = route( 'account-reports', array_merge( [ 'report' => 'Web Traffic' ], $url_params ) );
+            $url3 = route( 'account-reports', array_merge( [ 'report' => 'PPC Traffic' ], $url_params ) );
+            $url4 = route( 'account-reports', array_merge( [ 'report' => 'Conversion Records' ], $url_params ) );
+            ?>
+            <a href="{{$url1}}" target="_blank" class="btn btn-primary btn-lg" style="margin-bottom: 10px;">Call Records</a> &nbsp;
+            <a href="{{$url2}}" target="_blank" class="btn btn-primary btn-lg" style="margin-bottom: 10px;">Web Traffic</a> &nbsp;
+            <a href="{{$url3}}" target="_blank" class="btn btn-primary btn-lg" style="margin-bottom: 10px;">PPC Traffic</a> &nbsp;
+            <a href="{{$url4}}" target="_blank" class="btn btn-primary btn-lg" style="margin-bottom: 10px;">Conversion</a> &nbsp;
+            <a href="#" target="_blank" class="btn btn-primary btn-lg" style="margin-bottom: 10px;">PPC Daily</a> &nbsp;
+            <a href="#" target="_blank" class="btn btn-default btn-lg" style="margin-bottom: 10px;"><img src="{!!asset('images/doc_pdf.png')!!}" alt=""></a> &nbsp;
         </div>
     </div>
     <!--.row-->
@@ -185,11 +200,11 @@
             </div>
             <!--section 2-->
             <div role="tabpanel" class="tab-pane fade" id="tab_ppc_tracking">
-                @include('adgainer.campaign-tools.parts.ppc-tracking-details', ['account_id' => $account_id, 'campaigns' => $campaigns, 'all_ppc' => $ppc, 'date1' => $date1, 'date2' => $date2, 'date1_show' => $date1_show, 'date2_show_' => $date2_show_])
+                @include('adgainer.campaign-tools.parts.ppc-tracking-details', ['account_id' => $account_id, 'campaigns' => $campaigns, 'all_ppc' => $ppc, 'date1' => $date1, 'date2' => $date2, 'date1_show' => $date1_show, 'date2_show' => $date2_show, 'date2_show_' => $date2_show_])
             </div>
             <!--section 3-->
             <div role="tabpanel" class="tab-pane fade" id="tab_all_tracking">
-                @include('adgainer.campaign-tools.parts.all-tracking-details', ['account_id' => $account_id, 'campaigns' => $campaigns, 'all_ppc' => $ppc, 'date1' => $date1, 'date2' => $date2, 'date1_show' => $date1_show, 'date2_show_' => $date2_show_])
+                @include('adgainer.campaign-tools.parts.all-tracking-details', ['account_id' => $account_id, 'campaigns' => $campaigns, 'all_ppc' => $ppc, 'date1' => $date1, 'date2' => $date2, 'date1_show' => $date1_show, 'date2_show' => $date2_show, 'date2_show_' => $date2_show_, 'archive' => $archive])
             </div>
             <!--section 4-->
             <div role="tabpanel" class="tab-pane fade" id="tab_map_view">

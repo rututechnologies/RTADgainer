@@ -1,6 +1,7 @@
 <?php
 namespace Adgainer\Controllers;
 
+use Adgainer\Controllers\AccountController;
 use Adgainer\Models\Account;
 use Adgainer\Models\Campaign;
 use App\Http\Controllers\Controller;
@@ -9,10 +10,9 @@ use DateInterval;
 use DateTime;
 use DateTimeZone;
 use Illuminate\Foundation\Auth\User;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Validator;
+use Symfony\Component\HttpFoundation\Request;
 use function view;
 
 class CampaignToolController extends Controller
@@ -137,12 +137,15 @@ class CampaignToolController extends Controller
         if ( $campaigns ) {
             $data[ 'ppc' ] = $this->getPpcTrackingDetails( $campaigns, $data[ 'date1' ], $data[ 'date2' ], $data[ 'date1_show' ], $data[ 'date2_show' ], $data[ 'archive' ] );
         }
-        
+
         return $data;
     }
 
     /**
      * Get PPC Tracking Details
+     * 
+     * ref: campaign_model.php | 92
+     * 
      * @param array $campaigns collection
      * 
      * @return array

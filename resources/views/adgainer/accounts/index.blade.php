@@ -58,7 +58,7 @@
                                 <button type="button" class="btn btn-default btn-sm show-account-campaigns" data-account-name="{!!$account->accountName!!}" data-account-id="{!! $account->account_id !!}">
                                     View
                                 </button>
-                                <a href="campaign/create/{!! $account->account_id !!}" class="btn btn-default btn-sm">
+                                <a href="campaign/create-by-account/{!! $account->account_id !!}" class="btn btn-default btn-sm">
                                     Create
                                 </a>
                             </td>
