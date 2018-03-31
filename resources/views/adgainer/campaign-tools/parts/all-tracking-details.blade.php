@@ -41,6 +41,16 @@ $dirOnePagers = 0;
         <tbody>
             @foreach($campaigns as $campaign)
             <?php
+            $url_params = [
+                'account_id'  => $campaign->account_id,
+                'campaign_id' => $campaign->campaign_id,
+                'rType'       => '0',
+                'date1'       => $date1_show,
+                'date2'       => $date2_show,
+                'archive'     => $archive,
+                'time_zone'  => $time_zone,
+            ];
+
             if ( !isset( $camp_goals[ $campaign->campaign_id ][ 1 ] ) ) {
                 $camp_goals[ $campaign->campaign_id ][ 1 ] = 0;
             }
@@ -75,20 +85,6 @@ $dirOnePagers = 0;
             foreach ( $all_ppc[ $campaign->campaign_id ] as $campPPC ):
 
                 if ( strtotime( $campPPC->time_stamp ) > strtotime( $date1 ) && strtotime( $campPPC->time_stamp ) < strtotime( $date2 ) ) {
-
-                    $tType = $campPPC->traffic_type;
-                    if ( $tType == "" ) {
-                        $tType = "Unknown";
-                    }
-                    if ( stristr( $campPPC->traffic_type, "direct" ) ) {
-                        $tType = "DIRECT";
-                    }
-
-                    if ( !isset( $sourceTraffic[ 'SOURCE' ][ $tType ] ) ) {
-                        $sourceTraffic[ 'SOURCE' ][ $tType ] = 0;
-                    }
-
-                    $sourceTraffic[ 'SOURCE' ][ $tType ] ++;
 
                     if ( $campPPC->visits == 1 && stristr( $campPPC->traffic_type, 'PPC' ) ) {
                         $ppcOnePagers++;
@@ -231,7 +227,7 @@ $dirOnePagers = 0;
                 $keyword = str_replace( "(org)", "", $keyword );
                 $keyword = str_replace( "direct", "", $keyword );
                 $keyword = trim( $keyword );
-                
+
                 // REVIEW: ref: application/models/Webtacking_model.php | 1266
 //                $matchType = $this->Webtracking_model->getMatchType( $campPPC->matchtype );
                 $type = $campPPC->matchtype;
@@ -333,51 +329,62 @@ $dirOnePagers = 0;
             $totalUniqueCalls = $totalUniqueCalls + count( $unique_calls );
 
             $campConv = ($goals + $calls + $emails);
+
+            $urlVisit = route( 'campaign-reports', array_merge( $url_params, [ 'report' => 'Web Traffic' ] ) );
+            $urlClicks = route( 'campaign-reports', array_merge( $url_params, [ 'report' => 'PPC Traffic', 'traffic' => 'PPC|DISPLAY' ] ) );
+            $urlPPC = route( 'campaign-reports', array_merge( $url_params, [ 'report' => 'Web Traffic', 'traffic' => 'PPC' ] ) );
+            $urlDisplay = route( 'campaign-reports', array_merge( $url_params, [ 'report' => 'Web Traffic', 'traffic' => 'DISPLAY' ] ) );
+            $urlOrg = route( 'campaign-reports', array_merge( $url_params, [ 'report' => 'Web Traffic', 'rType' => '1', 'traffic' => 'ORG' ] ) );
+            $urlDirect = route( 'campaign-reports', array_merge( $url_params, [ 'report' => 'Web Traffic', 'rType' => '1', 'traffic' => 'DIRECT' ] ) );
+            $urlCalls = route( 'campaign-reports', array_merge( $url_params, [ 'report' => 'Call Records', 'rType' => '1', 'traffic' => '' ] ) );
+            $urlCallConv = route( 'campaign-reports', array_merge( $url_params, [ 'report' => 'Call Records', 'rType' => '1', 'traffic' => '' ] ) );
+            $urlPPC_goals = route( 'campaign-reports', array_merge( $url_params, [ 'report' => 'Goal Records', 'rType' => '3', 'traffic' => '' ] ) );
+            $urlCampConv = route( 'campaign-reports', array_merge( $url_params, [ 'report' => 'Conversion Records', 'rType' => '2', 'traffic' => '' ] ) );
             ?>
             <tr class="text-center">
                 <td class="text-left">{{$campaign->campaign_name}}</td>
                 <td>
-                    <a href="#" target="_blank">
+                    <a href="{{$urlVisit}}" target="_blank">
                         {!! $visits !!}
                     </a>
                 </td>
                 <td>
-                    <a href="#" target="_blank">
+                    <a href="{{$urlClicks}}" target="_blank">
                         {!! $clicks !!}
                     </a>
                 </td>
                 <td>
-                    <a href="#" target="_blank">
+                    <a href="{{$urlPPC}}" target="_blank">
                         {!! $ppc !!}
                     </a>
                 </td>
                 <td>
-                    <a href="#" target="_blank">
+                    <a href="{{$urlDisplay}}" target="_blank">
                         {!! $display !!}
                     </a>
                 </td>
                 <td>
-                    <a href="#" target="_blank">
+                    <a href="{{$urlOrg}}" target="_blank">
                         {!! $org !!}
                     </a>
                 </td>
                 <td>
-                    <a href="#" target="_blank">
+                    <a href="{{$urlDirect}}" target="_blank">
                         {!! $direct !!}
                     </a>
                 </td>
                 <td>
-                    <a href="#" target="_blank">
+                    <a href="{{$urlCalls}}" target="_blank">
                         {!! $calls . " | " . count($unique_calls) !!}
                     </a>
                 </td>
                 <td>
-                    <a href="#" target="_blank">
+                    <a href="{{$urlCallConv}}" target="_blank">
                         {!! $callConv !!}
                     </a>
                 </td>
                 <td>
-                    <a href="#" target="_blank">
+                    <a href="{{$urlPPC_goals}}" target="_blank">
                         {!! $goals !!}
                     </a>
                 </td>
@@ -385,7 +392,7 @@ $dirOnePagers = 0;
                     {!! $emails !!}
                 </td>
                 <td>
-                    <a href="#" target="_blank">
+                    <a href="{{$urlCampConv}}" target="_blank">
                         {!! $campConv !!}
                     </a>
                 </td>
@@ -397,6 +404,28 @@ $dirOnePagers = 0;
 
         </tbody>
         <tfoot>
+            <?php 
+            
+            $url_params = [
+                'account_id'  => $account_id,
+                'rType'       => '0',
+                'date1'       => $date1_show,
+                'date2'       => $date2_show,
+                'archive'     => $archive,
+                'time_zone'  => $time_zone,
+            ];
+            
+            $urlVisit = route( 'campaign-reports', array_merge( $url_params, [ 'report' => 'Web Traffic' ] ) );
+            $urlClicks = route( 'campaign-reports', array_merge( $url_params, [ 'report' => 'PPC Traffic', 'traffic' => 'PPC|DISPLAY' ] ) );
+            $urlPPC = route( 'campaign-reports', array_merge( $url_params, [ 'report' => 'Web Traffic', 'traffic' => 'PPC' ] ) );
+            $urlDisplay = route( 'campaign-reports', array_merge( $url_params, [ 'report' => 'Web Traffic', 'traffic' => 'DISPLAY' ] ) );
+            $urlOrg = route( 'campaign-reports', array_merge( $url_params, [ 'report' => 'Web Traffic', 'rType' => '1', 'traffic' => 'ORG' ] ) );
+            $urlDirect = route( 'campaign-reports', array_merge( $url_params, [ 'report' => 'Web Traffic', 'rType' => '1', 'traffic' => 'DIRECT' ] ) );
+            $urlCalls = route( 'campaign-reports', array_merge( $url_params, [ 'report' => 'Call Records', 'rType' => '1', 'traffic' => '' ] ) );
+            $urlCallConv = route( 'campaign-reports', array_merge( $url_params, [ 'report' => 'Call Records', 'rType' => '1', 'traffic' => '' ] ) );
+            $urlPPC_goals = route( 'campaign-reports', array_merge( $url_params, [ 'report' => 'Goal Records', 'rType' => '3', 'traffic' => '' ] ) );
+            $urlCampConv = route( 'campaign-reports', array_merge( $url_params, [ 'report' => 'Conversion Records', 'rType' => '2', 'traffic' => '' ] ) );
+            ?>
             <tr class="text-center">
                 <th class="text-center">--</th>
                 <th class="text-center">

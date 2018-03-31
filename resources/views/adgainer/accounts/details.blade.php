@@ -10,7 +10,6 @@
 
 <div class="wrapper border-bottom white-bg page-heading">
     <h1 class="module_heading">
-        <!--TODO: Account name here-->
         <span>Account Details - {{$account->accountName}}</span>
     </h1>
     <ol class="breadcrumb" style="padding-bottom: 20px;">

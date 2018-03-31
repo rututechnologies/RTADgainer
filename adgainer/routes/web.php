@@ -15,8 +15,10 @@ Route::group( [ 'middleware' => [ 'auth' ] ], function () {
     Route::post( 'campaign/submit-create', [ 'uses' => 'CampaignController@submitCreate' ] );
     Route::post( 'campaign/submit-edit', [ 'uses' => 'CampaignController@submitEdit' ] );
 
-
     // campaign tools
     Route::get( 'campaign-tools/mycampaign', [ 'uses' => 'CampaignToolController@myCampaign' ] );
     Route::get( 'campaign-tools/all-campaigns', [ 'uses' => 'CampaignToolController@allCampaigns' ] );
+    // reports
+    Route::get( 'account/get-table', [ 'uses' => 'AccountController@tableReports', 'as' => 'account-reports' ] );
+    Route::get( 'campaign/get-table', [ 'uses' => 'CampaignController@tableReports', 'as' => 'campaign-reports' ] );
 } );
