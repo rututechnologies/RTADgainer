@@ -44,6 +44,7 @@ height: 200px;
                     Sales
                 </span></a>
                 </h1>
+                <a href="{{url('salesList')}}" style="color:black"><button class=".btn-primary">Back</button></a>
                 <ol class="breadcrumb">
                     <li>
                         <a href="{{url('/dashboard')}}"><i

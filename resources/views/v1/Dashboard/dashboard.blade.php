@@ -95,7 +95,7 @@
                     <i class="fa fa-file fa-5x"></i>
                 </div>
 	            <div class="col-xs-8 text-right">
-	                <h3 class="font-bold">Reports</h3>
+	                <h3 class="font-bold">Reports Center</h3>
 	            </div>
         	</div></a>
     	</div>

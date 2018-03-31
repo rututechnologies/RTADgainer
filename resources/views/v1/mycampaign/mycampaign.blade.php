@@ -22,17 +22,18 @@ tr.spaceUnder>td {
             <div class="row">
                 <h1 class="module_heading">
                 <span>
-                    Campaign
+                    My Campaign
                 </span>
                 </h1>
+                <a href="{{url('MyCampaign')}}" style="color:#fff;"><button class=".btn-primary">Back</button></a>
                 <ol class="breadcrumb">
                     <li>
-                        <a href="{{url('/campaign')}}"><i
-                                    class="fa fa-dashboard"></i> Campaign</a>
+                       <a href="{{url('/dashboard')}}"><i
+                                    class="fa fa-dashboard"></i> Dashboard</a>
                     </li>
 
                     <li class="active">
-                        <strong><i class="fa fa-list"></i> Campaign Tool</strong>
+                        <strong><i class="fa fa-list"></i>My Campaign</strong>
                     </li>
                 </ol>
             </div>
@@ -371,11 +372,11 @@ tr.spaceUnder>td {
   <div role="tabpanel" class="tab-pane" id="alltrackingdata">
    <table align="center" id="tacking" class="table table-striped table-bordered">
 <tr>
-  <td><div class="table-header-column" id=''>Campaign Name</div></td>
-  <td><div class="table-header-column" id=''>All visits</div><td>
-  <td><div class="table-header-column" id=''>All clicks</div></td>
-  <td><div class="table-header-column" id=''>PPC</div></td>
-	<td><div class="table-header-column" id=''>
+<td><div class="table-header-column" id=''>Campaign Name</div></td>
+<td><div class="table-header-column" id=''>All visits</div><td>
+<td><div class="table-header-column" id=''>All clicks</div></td>
+<td><div class="table-header-column" id=''>PPC</div></td>
+											<td><div class="table-header-column" id=''>
 
 												Display									</div></td>
 											<td><div class="table-header-column" id=''>
@@ -441,6 +442,7 @@ tr.spaceUnder>td {
   </div>
    <div role="tabpanel" class="tab-pane" id="campaigndetails">
    <table align="center" id="campaigndetails" class="table table-striped table-bordered">
+
 <tr>
 
 
@@ -449,32 +451,31 @@ tr.spaceUnder>td {
 
                         
 
-                      <td><div class="table-header-column" id=''>
-                        
-                                                    Campaign Name#                  </div></td>
-                      <td><div class="table-header-column" id=''>
+											<td><div class="table-header-column" id=''>
+												
+                                                    Campaign Name#									</div></td>
+											<td><div class="table-header-column" id=''>
 
-                        Budget#               </div><td>
-                      <td><div class="table-header-column" id=''>
+												Budget#								</div><td>
+											<td><div class="table-header-column" id=''>
 
-                        Default#                    </div></td>
-                      <td><div class="table-header-column" id=''>
+												Default#										</div></td>
+											<td><div class="table-header-column" id=''>
 
-                        Dest#                   </div></td>
-                      <td><div class="table-header-column" id=''>
+												Dest#										</div></td>
+											<td><div class="table-header-column" id=''>
 
-                        Manage                </div></td>
-                      
-                    </tr>
-                    <tr>
-                    <td>takehiro_ct</td>
-                        <td>0</td>
-                    <td>0899418883</td>
-                    <td>0899418883,</td>
-                    <td></td>
-                     </tr>
+												Manage								</div></td>
+											
+										</tr>
+										<tr>
+										<td>takehiro_ct</td>
+								        <td>0</td>
+										<td>0899418883</td>
+										<td>0899418883,</td>
+										<td></td>
+									   </tr> </table>
 
-</table>
   </div>
   
    <div role="tabpanel" class="tab-pane" id="mapview">

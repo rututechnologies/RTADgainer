@@ -251,10 +251,11 @@ box-shadow:inset 0px 0px 10px rgba(0,0,0,0.3);
         <div class="col-md-3">
             <div class="row">
                 <h1 class="module_heading">
-                <span>
+                <a href="{{url('reportsList')}}" style="color:black"><span>
                     Reports
-                </span>
+                </span></a>
                 </h1>
+                <a href="{{url('reportsList')}}" style="color:black"><button class=".btn-primary">Back</button></a>
                 <ol class="breadcrumb">
                     <li>
                         <a href="{{url('/dashboard')}}"><i

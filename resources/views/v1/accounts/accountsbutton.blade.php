@@ -16,6 +16,7 @@
                     Accounts
                 </span>
                 </h1>
+                &nbsp;&nbsp;&nbsp;<a href="{{url('/dashboard')}}"><button class=".btn-primary">Back</button></a>
                 <ol class="breadcrumb">
                     <li>
                         <a href="{{url('/dashboard')}}"><i

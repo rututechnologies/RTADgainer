@@ -24,6 +24,7 @@ tr.spaceUnder>td {
                     My campaign
                 </span></a>
                 </h1>
+                <a href="{{url('MyCampaign')}}" style="color:black;"><button class=".btn-primary">Back</button></a>
                 <ol class="breadcrumb">
                     <li>
                         <a href="{{url('/dashboard')}}"><i

@@ -18,10 +18,11 @@ Route::group(['namespace'=>'V1','middleware'=>['web','auth']], function () {
     Route::get('/campaignP', ['uses' => 'CampaignController@check_phone_number']);
     Route::get('/campaignGoal', ['uses' => 'CampaignController@goal_action']);
     Route::get('/newCampaign', ['uses' => 'CampaignController@new_compaign']);
-    Route::any('/viewCampaign', ['uses' => 'CampaignController@view_compaign']);
+    Route::post('/new_Campaign_General', ['uses' => 'CampaignController@new_Campaign_General']);
+    Route::get('/viewCampaign', ['uses' => 'CampaignController@view_compaign']);
     Route::get('/Mycampaign', ['uses' => 'mycampaignController@Mycampaign']);
 });
-    //Manage users routes
+	//Manage users routes
    	Route::get('/usersList', ['uses' => 'UserController@usersList'])->name('UsersList');
     Route::post('/search_user', ['uses' => 'UserController@search_user']);
     Route::post('/saveUser', ['uses' => 'UserController@save_user']);
@@ -29,7 +30,7 @@ Route::group(['namespace'=>'V1','middleware'=>['web','auth']], function () {
     Route::post('/editUser', ['uses' => 'UserController@edit_user']);
     Route::post('/updateUser', ['uses' => 'UserController@update_user']);
 
-    //navigation links routes
+//navigation links routes
  	Route::get('/navigationList', ['uses' => 'NavigationController@navigation_list'])->name('NavigationList');
     Route::post('/searchNavigation', ['uses' => 'NavigationController@search_navigation']);
     Route::post('/saveNavigation', ['uses' => 'NavigationController@save_navigation']);
@@ -51,7 +52,7 @@ Route::group(['namespace'=>'V1','middleware'=>['web','auth']], function () {
     Route::get('/salesList', ['uses' => 'SalesController@sales_list'])->name('Sales');
     Route::get('/trafficEstimator', ['uses' => 'SalesController@traffic_estimator']);
     Route::get('/documentsList', ['uses' => 'SalesController@documentslist']);
-
+    
     //left nav 
     Route::get('/Agency', ['uses' => 'leftNavController@agency']);
     Route::get('/userAccountsMgmt', ['uses' => 'AccountController@userAccountsMgmt']);
@@ -60,11 +61,10 @@ Route::group(['namespace'=>'V1','middleware'=>['web','auth']], function () {
     //left nav 
     Route::get('/reportsList', ['uses' => 'ReportsController@reportList']);
     Route::get('/reportFTP', ['uses' => 'ReportsController@reportFTP']);
-    Route::any('/searchreport', ['uses' => 'ReportsController@searchreport']);
+    Route::get('/searchreport', ['uses' => 'ReportsController@searchreport']);
     Route::get('/largecsv', ['uses' => 'ReportsController@largecsv']);
     Route::get('/uploadcsv', ['uses' => 'ReportsController@uploadcsv']);
     Route::get('/report1', ['uses' => 'ReportsController@report1']);
-    Route::post('/uploadcsv_details', ['uses' => 'ReportsController@uploadcsv_details']);
 
      //chatlist 
     Route::get('/chatlist', ['uses' => 'ChatController@chatlist']);
@@ -78,7 +78,7 @@ Route::group(['namespace'=>'V1','middleware'=>['web','auth']], function () {
 
     //japanese
     Route::get('/japanese', 'japaneseController@japanese');
-
+   
    //accounting
     Route::get('/accounting', 'accountingController@accounting');
 
@@ -88,8 +88,6 @@ Route::group(['namespace'=>'V1','middleware'=>['web','auth']], function () {
 //
  Route::get('/MyCampaign', ['uses' => 'mycampaignController@mycampaign']);
  Route::get('/goalaction', ['uses' => 'mycampaignController@goalaction']);
- Route::get('/ppctrac', ['uses' => 'mycampaignController@ppctracking']);
- 
 
  //
   Route::get('/accounts', ['uses' => 'accountsController@accounts']);
@@ -100,7 +98,7 @@ Route::group(['namespace'=>'V1','middleware'=>['web','auth']], function () {
   //
   Route::get('/viewbutton', ['uses' => 'viewbuttonController@viewbutton']);
   //
-  Route::any('/mycampiagn', ['uses' => 'mycampiagnController@mycampiagn']);
+  Route::get('/mycampiagn', ['uses' => 'mycampiagnController@mycampiagn']);
   //
   Route::get('/management', ['uses' => 'iconController@management']);
   //
@@ -123,6 +121,8 @@ Route::group(['namespace'=>'V1','middleware'=>['web','auth']], function () {
        //
        Route::get('/profile', ['uses' => 'iconController@profile']);
        //
+       Route::post('/check',['uses' => 'CampaignController@check']);
+       //
              Route::get('/interface', ['uses' => 'iconController@interface']);
              //
              Route::get('/mycampagin1', ['uses' => 'mycampagin1Controller@mycampagin1']);
@@ -137,6 +137,12 @@ Route::group( [ 'namespace' => 'Autoissue', 'middleware' => [ 'web', 'auth' ] ],
     Route::get( '/autoissue/schedule', 'AutoissueController@schedule' );
     Route::get( '/autoissue/intec-client', 'AutoissueController@intecClient' );
 } );
+//shweta
+Route::post('fileUpload', ['uses'=>'fileuploadController@fileUpload']);
+    Route::post('colorUpload', ['uses'=>'fileuploadController@colorUpload']);
+    Route::post('subdomain', ['uses'=>'fileuploadController@subdomain']);
+    Route::post('slogan', ['uses'=>'fileuploadController@slogan']);
 
- Route::post('test/form', ['uses' =>'TestController@create']);
-  Route::get('/select','Test1Controller@testfunction');
+    Route::post('test/form', ['uses' =>'TestController@create']);
+    //
+    Route::post('mycampiagn', ['uses' =>'TestController@mycampiagn']);

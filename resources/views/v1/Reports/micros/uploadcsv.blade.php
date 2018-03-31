@@ -23,6 +23,7 @@ tr.spaceUnder>td {
                     Reports
                 </span></a>
                 </h1>
+                <a href="{{url('reportsList')}}" style="color:black"><button class=".btn-primary">Back</button></a>
                 <ol class="breadcrumb">
                     <li>
                         <a href="{{url('/dashboard')}}"><i
