@@ -56,23 +56,23 @@
 
         </ul>
         <div class="panel-body" style="padding-left: 0;padding-right: 0;">
-            <form action='app/campaign/submit-create' method='post'>
+            <form action='{{url('app/campaign/submit-create')}}' method='post'>
                 {{ csrf_field() }}
                 <div class="tab-content">
                     <div role="tabpanel" class="tab-pane active" id="billing">
-                        @include('adgainer.campaigns.form.general-settings', ['account' => $account])
+                        @include('adgainer.campaigns.form.general-settings', ['accountData' => $accountData, 'level' => $level])
                     </div>
                     <div role="tabpanel" class="tab-pane" id="shipping">
-                        @include('adgainer.campaigns.form.conversions', ['account' => $account])
+                        @include('adgainer.campaigns.form.conversions', ['accountData' => $accountData])
                     </div>
                     <div role="tabpanel" class="tab-pane" id="review">
-                        @include('adgainer.campaigns.form.call-tracking', ['account' => $account])
+                        @include('adgainer.campaigns.form.call-tracking', ['accountData' => $accountData])
                     </div>
                     <div role="tabpanel" class="tab-pane" id="notification">
-                        @include('adgainer.campaigns.form.notifications', ['account' => $account])
+                        @include('adgainer.campaigns.form.notifications', ['accountData' => $accountData])
                     </div>
                     <div role="tabpanel" class="tab-pane" id="filering">
-                        @include('adgainer.campaigns.form.filtering', ['account' => $account])
+                        @include('adgainer.campaigns.form.filtering', ['accountData' => $accountData])
                     </div>
                 </div>
             </form>
@@ -90,8 +90,10 @@
     $(function(){
 
         $('#continue1').click(function(e){
+            if (validate()) {
+                $('#navtab a[href="#shipping"]').tab('show');
+            }
             e.preventDefault();
-            $('#navtab a[href="#shipping"]').tab('show');
         });
 
         $('#continue2').click(function(e){
@@ -127,15 +129,48 @@
             e.preventDefault();
             $('#navtab a[href="#billing"]').tab('show');
         });
+
+        $('#camp_type').change(function(){
+            if ($(this).val() === 'multi_code') {
+                $('#multi_tracking_row').show();
+            } else {
+                $('#multi_tracking_row').hide();
+            }
+        });
+
+        $('a[data-toggle="tab"]').on('click', function(e){
+            e.preventDefault();
+            return validate();
+        });
     });
 
-    function validateId()
+    function confirmSubmit()
     {
-        var z = document.forms["createCampaign"]["dblclick_agency_id"].value;
-        if (!z.match(/^\d+/))
-        {
-            alert("Please only enter numeric characters only for your Age! (Allowed input:0-9)")
-        }
+        var agree = confirm("Are you sure these settings are accurate?");
+        if (agree) {
+            return validate();
+        } else
+            return false;
     }
+
+
+    function validate(){
+        var user = document.getElementById("campaign_name").value;
+        var exuser = /[a-zA-Z|0-9]{1,25}$/;
+        if (user.length == 0)
+        {
+            alert("Please fill in all required values. campaign_name");
+            $('#navtab a[href="#billing"]').tab('show');
+            return false;
+
+        } else if (exuser.test(user) == false)
+        {
+            alert("Invalid campaign name");
+            $('#navtab a[href="#billing"]').tab('show');
+            return false;
+        }
+        return true;
+    }
+
 </script>
 @endsection

@@ -31,7 +31,7 @@
             <td> <input type="reset" value="Reset"  class="btn btn-primary back" />  </td>
 
             <td> <a class="btn btn-primary back" id="back4">Go Back</a>
-                <input type="Submit" value="Submit" class="btn btn-primary continue" class="popupMsg" id="continue4" onclick='App / campaign / submit - create'>
+                <input type="Submit" value="Submit" class="btn btn-primary continue" class="popupMsg" id="continue4"  onClick="return confirmSubmit()">
             </td>
         </tr>
     </table>

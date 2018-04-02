@@ -7,7 +7,7 @@
                         <option value="online">Online - Web</option>
                         <option value="offline">Offline - Non Web</option>
                     </select>
-
+                    <input type="hidden" name="single_to_many_numbers" value="NO" />
                 </td>
             </tr>
             <tr>
@@ -60,7 +60,7 @@
             <tr>
                 <td><label>Default Display Phone Number <span class="required_inputs_star text-danger">*</span></label></td>
                 <td><i>Note: All numbers, no dashes, periods or spaces.</i><br>
-                    < name="default_number" />
+                    <input type="text" class="form-control" name="default_number" />
                 </td>
             </tr> 
 

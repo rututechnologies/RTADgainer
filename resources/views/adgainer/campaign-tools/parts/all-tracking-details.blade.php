@@ -117,18 +117,6 @@ $dirOnePagers = 0;
                         $display++;
                     }
 
-                    if ( $campPPC->goal1_hit == 1 || $campPPC->goal2_hit == 1 || $campPPC->goal3_hit == 1 || $campPPC->goal4_hit == 1 ) {
-                        if ( !isset( $sourceTraffic[ 'CONVTYPE' ][ 'Goals ' . $tType ] ) ) {
-                            $sourceTraffic[ 'CONVTYPE' ][ 'Goals ' . $tType ] = 0;
-                        }
-                        $sourceTraffic[ 'CONVTYPE' ][ 'Goals ' . $tType ] ++;
-
-                        if ( !isset( $sourceTraffic[ 'CONVSOURCE' ][ $tType ] ) ) {
-                            $sourceTraffic[ 'CONVSOURCE' ][ $tType ] = 0;
-                        }
-                        $sourceTraffic[ 'CONVSOURCE' ][ $tType ] ++;
-                    }
-
                     if ( $campPPC->goal1_hit == 1 ) {
                         $goals++;
                         $camp_goals[ $campaign->campaign_id ][ 1 ] ++;
@@ -158,14 +146,7 @@ $dirOnePagers = 0;
                     if ( ($campPPC->goal4_hit == 1) && stristr( $campPPC->traffic_type, "PPC" ) ) {
                         $ppcGoals++;
                     }
-
-                    if ( $campPPC->email_data_sent == 1 ) {
-                        $emails++;
-                        if ( !isset( $sourceTraffic[ 'CONVTYPE' ][ 'Emails ' . $tType ] ) ) {
-                            $sourceTraffic[ 'CONVTYPE' ][ 'Emails ' . $tType ] = 0;
-                        }
-                        $sourceTraffic[ 'CONVTYPE' ][ 'Emails ' . $tType ] ++;
-                    }
+                    
                     if ( $campPPC->email_data_sent == 1 && stristr( $campPPC->traffic_type, "PPC" ) ) {
                         $ppcEmails++;
                     }
@@ -180,18 +161,7 @@ $dirOnePagers = 0;
                     if ( $campPPC->caller_phone != "" && (stristr( $campPPC->traffic_type, "PPC" ) || stristr( $campPPC->traffic_type, "DISPLAY" )) ) {
                         $ppcCalls++;
                     }
-
-                    if ( $campPPC->caller_phone != "" ) {
-                        if ( !isset( $sourceTraffic[ 'CALLSOURCE' ][ $tType ] ) ) {
-                            $sourceTraffic[ 'CALLSOURCE' ][ $tType ] = 0;
-                        }
-
-                        if ( !isset( $sourceTraffic[ 'CONVTYPE' ][ 'Calls ' . $tType ] ) ) {
-                            $sourceTraffic[ 'CONVTYPE' ][ 'Calls ' . $tType ] = 0;
-                        }
-                        $sourceTraffic[ 'CONVTYPE' ][ 'Calls ' . $tType ] ++;
-                        $sourceTraffic[ 'CALLSOURCE' ][ $tType ] ++;
-                    }
+                    
                 }
 
                 $conv = $goals + $calls + $emails;

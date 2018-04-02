@@ -1,18 +1,50 @@
 <div class="row">
     <div class="col-md-6">
         <table class="table-form">
+            <?php if ( !isset( $accountData->account_id ) ) { ?>
+                <tr>
+                    <td>
+                        Select Account or Create New Account
+                    </td>
+                    <td>
+                        <select name="account_id" id="account_id" class="form-control">
+                            <option value="">
+                                Select an Account
+                            </option>
+                            <option value="NEW">
+                                New Account
+                            </option>
+                            <?php
+                            foreach ( $allAccounts as $account ) {
+                                echo "<option value='" . $account->account_id . "'>" . $account->accountName . "</option>";
+                            }
+                            ?>
+                        </select>
+
+                    </td>
+                </tr>
+            <?php } else { ?>
+                <tr>
+                    <td><p>Account</p></td>
+                    <td>
+                        <p>
+                            <?php
+                            echo "<input type='hidden' name='account_id' value='" . $accountData->account_id . "' />" . $accountData->accountName;
+                            ?>
+                        </p>
+                    </td>
+                </tr>
+
+            <?php } ?>
             <tr>
                 <td>Campaign name:- <span class="required_inputs_star text-danger">*</span></td>
-                <td><input type="text" class="form-control" name="campaign_name" required /></td>
+                <td><input type="text" class="form-control" id="campaign_name" name="campaign_name" required /></td>
             </tr>
-            <tr>
-                <td>Account</td>
-                <td>{{$account->accountName}}</td>
-            </tr>
+
             <tr>
                 <td >Campaign Tracking Type</td>
                 <td>
-                    <select class="form-control" id='campaign_type' name='campaign_type'>
+                    <select class="form-control" id='camp_type' name='camp_type'>
                         <option value='tracking_code'>Standard</option>
                         <option value='source_code'>Source</option>
                         <option value='multi_code'>Multi-Tracking</option>
@@ -20,54 +52,79 @@
                 </td>
             </tr>
 
+            <tr id="multi_tracking_row" style="display:none">
+                <td>
+                    Multi-Numbers Used Per Tracking Session
+                </td>
+                <td>
+                    <select name="multi_phone" class="form-control">
+                        <?php
+                        for ( $x = 2; $x <= 150; $x++ ) {
+                            echo "<option value='$x'>$x</option>";
+                        }
+                        ?>
+                    </select>
+                </td>
+            </tr>
+
             <tr>
                 <td>Traffic Tracking Type</td>
-                <td><select class="form-control" name="tracking_type" >
+                <td>
+                    <select name="tracking_type" class="form-control">
                         <option value="0">OFF</option>
-                        <option value="P" selected>PPC</option>
-                        <option value="D">Display</option>
-                        <option value="O">Organic</option>
-                        <option value="O+P">Organic + PPC</option>
-                        <option value="O+D">Organic + Display</option>
-                        <option value="P+D">PPC + Display</option>
-                        <option value="O+P+D">Organic + PPC + Display</option>
-                        <option value="A">Organic + PPC + Display+ Direct</option></select></td>
+                        <?php if ( (isset( $accountData->status ) && $accountData->status != "TEMP") || $level != 3 ) { ?>
+                            <option value="P" selected>PPC</option>
+                            <option value="D">Display</option>
+                            <option value="O">Organic</option>
+                            <option value="O+P">Organic + PPC</option>
+                            <option value="O+D">Organic + Display</option>
+                            <option value="P+D">PPC + Display</option>
+                            <option value="O+P+D">Organic + PPC + Display</option>
+                            <option value="A">Organic + PPC + Display+ Direct</option>
+                        <?php } else { ?>
+                            <option value="O" selected>Organic</option>
+                        <?php } ?>
+
+                    </select>
+                </td>
             </tr>
 
             <tr>
                 <td>Country/Language:-</td>
-                <td><select class="form-control" name="country_tracking"  >
-                        <option value="keyword">{{$account->account_language}}</option>
+                <td>
+                    <select name="country_tracking" class="form-control">
+                        <option value="keyword">USA (English)</option>
                         <option value="ch_keyword">Chinese (Includes English)</option>
                         <option value="k_keyword">Korean (Includes English)</option>
                         <option value="j_keyword">Japanese (Includes English)</option>
-                    </select></td>
+                    </select>
+                </td>
             </tr>
 
             <tr>
                 <td>Correlation Time:-</td>
-                <td><select class="form-control" id="correlation_time"  name="correlation_time"   >
+                <td>
+                    <select class="form-control" id="correlation_time"  name="correlation_time"  <?php if ( $level == 3 ) { ?> readonly="readonly" <?php } ?> >
                         <option value="0.083">5 minutes</option>
                         <option value="0.166">10 minutes</option>
                         <option value="0.332">20 minutes</option>
-                        <option value='1' >1</option>
-                        <option value='2' >2</option>
-                        <option value='3' >3</option>
-                        <option value='4' selected>4</option>
-                        <option value='5' >5</option>
-                        <option value='6' >6</option>
-                        <option value='7' >7</option>
-                        <option value='8' >8</option>
-                        <option value='9' >9</option>
-                        <option value='10' >10</option>
-                        <option value='11' >11</option>
-                        <option value='12' >12</option> </select></td>
+                        <option value="0.5">30 minutes</option>
+                        <?php
+                        for ( $x = 1; $x <= 12; $x++ ) {
+                            $sel = "";
+                            if ( $x == 4 )
+                                $sel = "selected";
+                            echo "<option value='$x' $sel>$x</option>";
+                        }
+                        ?>
+                    </select>
+                </td>
             </tr>
 
             <tr>
                 <td>Time Zone:-</td>
-                <td><select class="form-control" name="timeZone" id="timeZone">
-                        <option value="America/Los_Angeles">{{$account->account_time_zone}}</option>
+                <td>
+                    <select name="timeZone" id="timeZone" class="form-control">
                         <option value="America/Los_Angeles">(GMT-08:00) Pacific Time (US & Canada)</option>
                         <option value="Pacific/Midway">(GMT-11:00) Midway Island, Samoa</option>
                         <option value="America/Adak">(GMT-10:00) Hawaii-Aleutian</option>
@@ -163,13 +220,13 @@
                 </td>
             </tr>
 
-            <tr><td>Show Phone Numbers</td>
-                <td><select class="form-control" id="show_number" name="show_number" >
+            <tr><td>Show Phone Numbers <i>In reports</i></td>
+                <td>
+                    <select class="form-control" id="show_number" name="show_number" >
                         <option value="1">Yes</option>
-                        <option value="0">No</option></select></td>
+                        <option value="0">No</option></select>
+                </td>
             </tr>
-            <tr><td> <i>In reports</i></td></tr>
-
             <tr>
                 <td>Email Submission Form Tracking</td>
                 <td>Yes <input type="checkbox" name="email_tracking" value="1" checked style="width:auto"/></td>
@@ -184,11 +241,20 @@
             </tr>
 
             <tr>
-                <td>Browser Location </td>
-                <td>Both<input type="radio" name="location_device" value="2" style="width:30px" checked /> 
-                    Mobile Only<input type="radio" name="location_device" value="1" style="width:30px" /></tr>
-            <tr><td>Tracking Device</td><td>
-                    Desktop Only<input type="radio" name="location_device" value="0" style="width:30px"  /></td>
+                <td>Browser Location Tracking Device</td>
+                <td>
+                    <div class="radio">
+                        <label style="display: block;">
+                            <input type="radio" name="location_device" value="2" checked /> Both
+                        </label>
+                        <label style="display: block;">
+                            <input type="radio" name="location_device" value="1" /> Mobile Only
+                        </label>
+                        <label style="display: block;">
+                            <input type="radio" name="location_device" value="0" /> Desktop Only
+                        </label>
+                    </div>
+                </td>
             </tr>
 
         </table>
@@ -196,24 +262,23 @@
     <div class="col-md-6">
         <table class="table-form">
             <tr>
-                <td>Campaign Budget <span class="required_inputs_star text-danger">*</span></td>
+                <td>Campaign Budget</td>
                 <td><input type="text" class="form-control" name="campaign_budget"  /></td>
             </tr>
 
             <tr>
-                <td>Campaign Manager <span class="required_inputs_star text-danger">*</span></td>
+                <td>Campaign Manager</td>
                 <td><input type="text" class="form-control" name="campaign_mgr"  /></td>
             </tr>
 
             <tr>
-                <td>Account Manager <span class="required_inputs_star text-danger">*</span></td>
-                <td><input type="text" class="form-control" name="account_mgr" required  /></td>
+                <td>Account Manager</td>
+                <td><input type="text" class="form-control" name="account_mgr"  /></td>
             </tr>
 
             <tr>
                 <td>Campaign Currency:-</td>
-                <td><select class="form-control" name="campaign_currency">
-                        <option value="">{{$account->account_currency}}</option>
+                <td><select name="campaign_currency" class="form-control">
                         <option value="">Select Currency</option>
                         <option value="AUD">Australian Dollar</option>
                         <option value="BRL">Brazilian Real </option>
@@ -244,97 +309,99 @@
 
             <tr>
                 <td>Billing Cycle:-</td>
-                <td><select class="form-control" name="campaign_cycle">
-                        <option value='1'>1</option>
-                        <option value='2'>2</option>
-                        <option value='3'>3</option>
-                        <option value='4'>4</option>
-                        <option value='5'>5</option>
-                        <option value='6'>6</option>
-                        <option value='7'>7</option>
-                        <option value='8'>8</option>
-                        <option value='9'>9</option>
-                        <option value='10'>10</option>
-                        <option value='11'>11</option>
-                        <option value='12'>12</option>
-                        <option value='13'>13</option>
-                        <option value='14'>14</option>
-                        <option value='15'>15</option>
-                        <option value='16'>16</option>
-                        <option value='17'>17</option>
-                        <option value='18'>18</option>
-                        <option value='19'>19</option>
-                        <option value='20'>20</option>
-                        <option value='21'>21</option>
-                        <option value='22'>22</option>
-                        <option value='23'>23</option>
-                        <option value='24'>24</option>
-                        <option value='25'>25</option>
-                        <option value='26'>26</option>
-                        <option value='27'>27</option>
-                        <option value='28'>28</option>
-                        <option value='29'>29</option>
-                        <option value='30'>30</option>
-                        <option value='31'>31</option>      
+                <td>
+                    <select class="form-control" name="campaign_cycle">
+                        <?php
+                        for ( $x = 1; $x <= 31; $x++ ) {
+                            echo "<option value='$x'>$x</option>";
+                        }
+                        ?>     
                     </select></td>
             </tr>
 
             <tr>
                 <td>Doubleclick Calls Activity Name:- </td>
-                <td><input type="text" class="form-control"   name="dblclick_name_calls"  style="width:100px"  /></td>
+                <td><input type="text" class="form-control"   name="dblclick_name_calls"   /></td>
             </tr>
 
             <tr>
                 <td>Doubleclick Goals Activity Name:-</td>
-                <td><input type="text" class="form-control"   name="dblclick_name_goals"  style="width:100px"  /></td>
+                <td><input type="text" class="form-control"   name="dblclick_name_goals"   /></td>
             </tr>
 
             <tr>
                 <td>Doubleclick Agency ID:- </td>
-                <td><input type="text" class="form-control"    name="dblclick_agency_id"  style="width:100px" onkeypress='return validateId()' /></td>
+                <td><input type="text" class="form-control"    name="dblclick_agency_id"  onkeypress='return validateId()' /></td>
             </tr>
 
             <tr>
                 <td>Doubleclick Advertiser ID :-</td>
-                <td><input type="text" class="form-control"    name="dblclick_advertiser_id"  style="width:100px" /></td>
+                <td><input type="text" class="form-control"    name="dblclick_advertiser_id"  /></td>
             </tr>
 
             <tr>
                 <td>Yahoo JPN Account Id:- <span class="required_inputs_star text-danger">*</span></td>
-                <td><input type="text" class="form-control"   name="yahoojpn_aid"  style="width:100px"/></td>
+                <td><input type="text" class="form-control"   name="yahoojpn_aid" /></td>
             </tr>
 
             <tr>
                 <td>Yahoo JPN Campaign Id:- <span class="required_inputs_star text-danger">*</span></td>
-                <td><input type="text" class="form-control"   name="yahoojpn_cid"  style="width:100px"/></td>
+                <td><input type="text" class="form-control"   name="yahoojpn_cid" /></td>
             </tr>
 
             <tr>
                 <td>>AdWords Campaign Id:-</td>
-                <td><input type="text" class="form-control"   name="adwords_campaign_id"  style="width:100px"/></td>
+                <td><input type="text" class="form-control"   name="adwords_campaign_id" /></td>
             </tr>
 
             <tr>
                 <td>Bing Campaign Id:-</td>
-                <td><input type="text" class="form-control"   name="bing_campaign_id"  style="width:100px"/></td>
+                <td><input type="text" class="form-control"   name="bing_campaign_id" /></td>
             </tr>
 
             <tr>
                 <td>Super Pgs Campaign Id:-</td>
-                <td><input type="text" class="form-control"   name="sp_campaign_id"  style="width:100px"/></td>
+                <td><input type="text" class="form-control"   name="sp_campaign_id" /></td>
             </tr>
+            <?php
+            if ( $level == 1 || $level == 7 ) {
+                ?>
+                <tr>
+                    <td>PPC Markup:-</td>
+                    <td><i>20% markup = ( 100 - 20 ), enter 80 into the field</i><br>
+                        <input type="text" class="form-control" name="ppc_markup" />  = (100 - %)</td>
+                </tr>
+                <?php
+            } else {
+                ?>
+                <input type="hidden" name="ppc_markup" value="55"/>
+                <?php
+            }
+            ?>
 
             <tr>
-                <td>PPC Markup:-</td>
-                <td><i>20% markup = ( 100 - 20 ), enter 80 into the field</i><br>
-                    <input type="text" class="form-control"   name="ppc_markup"  style="width:100px"  />  = (100 - %)</td>
+                <td>**Chat Campaign</td>
+                <td>
+                    <div class="radio radio-inline">
+                        <label><input type="radio" name="chat_campaign" value="1"> Yes</label>
+                        <label><input type="radio" name="chat_campaign" value="0" checked> No</label>
+                    </div>
+                </td>
             </tr>
-
+            <tr>
+                <td>**Save Chat Conversation</td>
+                <td>
+                    <div class="radio radio-inline">
+                        <label><input type="radio" name="save_chat" value="1"> Yes</label>
+                        <label><input type="radio" name="save_chat" value="0" checked> No</label>
+                    </div>
+                </td>
+            </tr>
             <tr>
                 <td>**Chat Covnersion Words:-</td>
-                <td><i>i.e. credit cards, appointment,shipping, do you take credit cards </i> up to 50.<br>
-                    If any of these words are typed during a chat session, they will be counted each time as a conversion.<br>
-                    <textarea name="tag_words" cols="40" rows='4'></textarea></td>
+                <td><p><i>i.e. credit cards, appointment,shipping, do you take credit cards </i> up to 50.<br>
+                    If any of these words are typed during a chat session, they will be counted each time as a conversion</p>
+                    <textarea name="tag_words" cols="40" rows='4' class="form-control"></textarea></td>
             </tr>
 
         </table>
