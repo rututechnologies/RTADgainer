@@ -31,10 +31,34 @@ class CampaignController extends Controller
      */
     public function details( $campaign_id, $account_id )
     {
-        /*
-         * TODO: Get account details and display to details page
-         */
-        return view( "{$this->viewDir}.details" );
+
+        $data[ 'campaign' ] = Campaign::where( 'campaign_id', $campaign_id )->first();
+        $data[ 'accountData' ] = Account::where( 'account_id', $account_id )->first();
+        $user = Auth::user();
+        $data[ 'level' ] = $user->level;
+        $user_account_id = $user->account_id;
+
+        if ( $data[ 'level' ] == 5 ) {
+            $accounts = $this->accountController->getAccountAgent();
+        } else {
+            $accounts = $this->accountController->getAccounts();
+        }
+
+        $acctArray = array();
+        foreach ( $accounts as $acct ) {
+            if ( isset( $acct->account_id ) ) {
+                $acctArray[] = $acct->account_id;
+            }
+        }
+
+        $data[ 'campaignController' ] = $this;
+
+        if ( in_array( $data[ 'campaign' ]->account_id, $acctArray ) || $user_account_id == $data[ 'campaign' ]->account_id || $data[ 'accountData' ]->agent_id == $user_account_id
+        ) {
+            return view( "{$this->viewDir}.mgt-details", $data );
+        } else {
+            echo "No Access";
+        }
     }
 
     /**
@@ -474,6 +498,57 @@ class CampaignController extends Controller
             $data[ 'tableReportController' ] = $this->tableReportController;
             return view( "adgainer.reports.get-table", $data );
         }
+    }
+
+    function getUnassignedPhoneNumbers( $account_id )
+    {
+        return DB::table( 'source_number_inventory' )
+                ->where( [ 'account_id' => $account_id, 'campaign_id' => '' ] )
+                ->get();
+    }
+
+    function getCampaignSourcePhoneNumbers( $campaign_id )
+    {
+        return DB::table( 'source_number_inventory' )
+                ->where( [ 'useable' => 1, 'campaign_id' => $campaign_id ] )
+                ->get();
+    }
+
+    function getMultiTrackingNumberSets( $account_id, $campaign_id, $multi_phone )
+    {
+        $result = DB::table( 'multi_tracking_inventory' )
+            ->where( 'account_id', $account_id )
+            ->where( 'campaign_id', $campaign_id )
+            ->where( 'track_phone', '!=', 0 )
+            ->get();
+        $allTrack = array();
+        foreach ( $result as $phone ) {
+            $allTrack[ $phone->cust_phone ][] = $phone->track_phone;
+        }
+        $totalPerGroup = array();
+        foreach ( $allTrack as $phoneArr ) {
+            $totalPerGroup[] = count( $phoneArr );
+        }
+        if ( count( $totalPerGroup ) == 0 ) {
+            $totalPerGroup = array( 0 );
+        }
+        $smallestGroup = min( $totalPerGroup );
+
+        return array( 'MIN' => $smallestGroup, 'ALLTRACK' => $allTrack, 'GRPTOTAL' => $totalPerGroup );
+    }
+
+    function countMultiPhoneAssigned( $account_id, $campaign_id )
+    {
+        return DB::table( 'multi_tracking_inventory' )
+                ->where( 'account_id', $account_id )
+                ->where( 'campaign_id', $campaign_id )
+                ->where( 'track_phone', '!=', 0 )->count();
+    }
+
+    function getAllCampaignSourcePhoneNumbers( $campaign_id )
+    {
+        $result = DB::table( 'source_number_inventory' )->where( 'campaign_id', $campaign_id )->get();
+        return $result;
     }
 
 }

@@ -255,7 +255,7 @@ class AccountController extends Controller
      */
     public function getAccountAgent( $user_id = '' )
     {
-        
+        return $this->getAccounts();
     }
 
     /**

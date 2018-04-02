@@ -10,6 +10,7 @@ Route::group( [ 'middleware' => [ 'auth' ] ], function () {
     Route::get( 'campaigns', [ 'uses' => 'CampaignController@index' ] );
     Route::get( 'campaign/details/{campaign_id}/{account_id}', [ 'uses' => 'CampaignController@details', 'as' => 'campaignDetails' ] );
     Route::get( 'campaign/create-by-account/{account_id}', [ 'uses' => 'CampaignController@createByAccount' ] );
+    Route::get( 'campaign/createCampaign/{account_id}', [ 'uses' => 'CampaignController@createByAccount' ] );
     Route::get( 'campaign/edit/{campaign_id}/{account_id}', [ 'uses' => 'CampaignController@edit' ] );
     // form submitted
     Route::post( 'campaign/submit-create', [ 'uses' => 'CampaignController@submitCreate' ] );

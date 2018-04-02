@@ -16,6 +16,7 @@ const { mix } = require('laravel-mix');
 
 mix.js([
     'resources/assets/js/adgainer.js',
+    'resources/assets/js/adgainer/genurl.js',
     'resources/assets/js/adgainer/filter.js'
 ], 'public/js/adgainer.js').sourceMaps();
 

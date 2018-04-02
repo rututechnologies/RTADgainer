@@ -103,6 +103,9 @@
         <!--datepicker js-->
         <script src="{{ asset('custom/plugins/datepicker/bootstrap-datepicker.js')}}"></script>
         
+        <!--qrcode js-->
+        <script src="{{ asset('js/plugins/qrcode/jquery.qrcode.min.js')}}"></script>
+        
         <!--adgainer script-->
         <script src="{{ asset('js/adgainer.js')}}"></script>
         
