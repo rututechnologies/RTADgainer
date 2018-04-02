@@ -17,6 +17,5 @@
     <br/><br/>
     <a class="btn btn-primary back" id="back4">Go Back</a>
     <input type="reset" value="Reset"  class="btn btn-primary back" /> 
-    <input type="Submit" value="Submit" class="btn btn-info continue" class="popupMsg" id="continue4"  onClick="return confirmSubmit()">
 
 </div>

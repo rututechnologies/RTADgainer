@@ -464,9 +464,67 @@ class CampaignController extends Controller
             return back()->with( 'error_msg', $ex->getMessage() );
         }
 
-        // TODO: set flash data
-//        $this->session->set_flashdata( 'result', $result[ 'updateResult' ] );
         return back()->with( 'success_msg', "Campaign: " . $campaign_name . ", has been updated." );
+    }
+
+    public function delete( $campaign_id, $account_id )
+    {
+        $user = Auth::user();
+        $level = $user->level;
+        $data[ 'level' ] = $level;
+        $user_account_id = $user->account_id;
+
+        if ( $level == 5 ) {
+            $accounts = $this->accountController->getAccountAgent();
+        } else {
+            $accounts = $this->accountController->getAccounts();
+        }
+
+        $data[ 'accountData' ] = Account::where( 'account_id', $account_id )->first();
+        $data[ 'campaignDetails' ] = Campaign::where( 'campaign_id', $campaign_id )->first();
+
+        $acctArray = array();
+        foreach ( $accounts as $acct ) {
+            if ( isset( $acct->account_id ) ) {
+                $acctArray[] = $acct->account_id;
+            }
+        }
+
+        if ( in_array( $account_id, $acctArray ) || $user_account_id == $account_id || $data[ 'campaignDetails' ]->agent_id == $user_account_id ) {
+            $data[ 'result' ] = $this->getCampaignPhoneNumbers( $campaign_id );
+            $data[ 'campaigns' ] = Campaign::where( 'account_id', $account_id )->get();
+            return view( "{$this->viewDir}.delete", $data );
+        }
+    }
+
+    public function submitDelete( Request $request, $campaign_id )
+    {
+        $yes = $request->input( 'deleteYes' );
+        if ( $yes != 1 ) {
+            return back()->with( 'error_msg', 'You must confirm your deletion' );
+        }
+        $numPhoneNumbers = $request->input( 'numPhoneNumbers' );
+
+        $campaignDetails = Campaign::where( 'campaign_id', $campaign_id )->first();
+        if ( !$campaignDetails ) {
+            return;
+        }
+        $account_id = $campaignDetails->account_id;
+
+        DB::beginTransaction();
+        try {
+            $new_campaign_id = $request->input( 'transferCampaignId' );
+            if ( $numPhoneNumbers > 0 && $new_campaign_id ) {
+                $this->transferPhoneNumbersToCampaign( $campaign_id, $new_campaign_id );
+            }
+            // delete campaign
+            DB::table( 'campaigns' )->where( 'campaign_id', $campaign_id )->delete();
+            DB::commit();
+            return redirect()->route( 'accountDetails', [ 'account_id' => $account_id ] );
+        } catch ( Exception $ex ) {
+            DB::rollback();
+            return back()->with( 'error_msg', $ex->getMessage() );
+        }
     }
 
     public function scrubSQL( $string )
@@ -566,7 +624,7 @@ class CampaignController extends Controller
                 <td>
                     <a href="<?php echo $urlDetail; ?>" class="btn btn-sm btn-info"><i class="fa fa-info-circle"></i></a>
                     <a href="<?php echo $urlEdit; ?>" class="btn btn-sm btn-info"><i class="fa fa-pencil"></i></a>
-                    <a href="#" class="btn btn-sm btn-danger"><i class="fa fa-trash"></i></a>
+                    <a href="<?php echo $urlDelete; ?>" class="btn btn-sm btn-danger"><i class="fa fa-trash"></i></a>
                 </td>
             </tr>
             <?php
@@ -770,6 +828,13 @@ class CampaignController extends Controller
         return DB::table( 'phone_number_inventory' )
                 ->where( 'campaign_id', $campaign_id )
                 ->get();
+    }
+
+    function transferPhoneNumbersToCampaign( $old_campaign_id, $new_campaign_id )
+    {
+        DB::table( 'phone_number_inventory' )
+            ->where( 'campaign_id', $old_campaign_id )
+            ->update( [ 'campaign_id' => $new_campaign_id ] );
     }
 
 }

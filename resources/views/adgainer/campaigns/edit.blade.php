@@ -48,13 +48,13 @@ if ( $level == 3 ) {
 </div>
 
 <div class="container-fluid">
-    
+
     @if (session('success_msg'))
     <div class="alert alert-success">
         {{ session('success_msg') }}
     </div>
     @endif
-    
+
     @if (session('error_msg'))
     <div class="alert alert-danger">
         {{ session('error_msg') }}
@@ -101,6 +101,10 @@ if ( $level == 3 ) {
                     <div role="tabpanel" class="tab-pane" id="filering">
                         @include('adgainer.campaigns.edit.filtering', ['accountData' => $accountData, 'disabled' => $disable ])
                     </div>
+                </div>
+
+                <div class="panel-body text-center">    
+                    <input type="Submit" value="Submit" class="btn btn-info btn-lg" class="popupMsg" onClick="return confirmSubmit()" />
                 </div>
             </form>
         </div>
