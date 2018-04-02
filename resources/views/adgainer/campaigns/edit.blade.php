@@ -38,7 +38,6 @@ if ( $level == 3 ) {
 ?>
 <div class="wrapper border-bottom white-bg page-heading">
     <h1 class="module_heading">
-        <!--TODO: Campaign name here-->
         <span>Edit Campaign - {{$accountData->accountName}} - {{$campaignDetails->campaign_name}}</span>
     </h1>
     <ol class="breadcrumb" style="padding-bottom: 20px;">
@@ -49,6 +48,18 @@ if ( $level == 3 ) {
 </div>
 
 <div class="container-fluid">
+    
+    @if (session('success_msg'))
+    <div class="alert alert-success">
+        {{ session('success_msg') }}
+    </div>
+    @endif
+    
+    @if (session('error_msg'))
+    <div class="alert alert-danger">
+        {{ session('error_msg') }}
+    </div>
+    @endif
 
     <div class="panel">
 
@@ -76,19 +87,19 @@ if ( $level == 3 ) {
                 {{ csrf_field() }}
                 <div class="tab-content">
                     <div role="tabpanel" class="tab-pane active" id="billing">
-                        @include('adgainer.campaigns.edit.general-settings', ['accountData' => $accountData, 'level' => $level])
+                        @include('adgainer.campaigns.edit.general-settings', ['accountData' => $accountData, 'level' => $level, 'disabled' => $disable])
                     </div>
                     <div role="tabpanel" class="tab-pane" id="shipping">
-                        @include('adgainer.campaigns.edit.conversions', ['accountData' => $accountData])
+                        @include('adgainer.campaigns.edit.conversions', ['accountData' => $accountData, 'disabled' => $disable ])
                     </div>
                     <div role="tabpanel" class="tab-pane" id="review">
-                        @include('adgainer.campaigns.edit.call-tracking', ['accountData' => $accountData])
+                        @include('adgainer.campaigns.edit.call-tracking', ['accountData' => $accountData, 'disabled' => $disable ])
                     </div>
                     <div role="tabpanel" class="tab-pane" id="notification">
-                        @include('adgainer.campaigns.edit.notifications', ['accountData' => $accountData])
+                        @include('adgainer.campaigns.edit.notifications', ['accountData' => $accountData, 'disabled' => $disable ])
                     </div>
                     <div role="tabpanel" class="tab-pane" id="filering">
-                        @include('adgainer.campaigns.edit.filtering', ['accountData' => $accountData])
+                        @include('adgainer.campaigns.edit.filtering', ['accountData' => $accountData, 'disabled' => $disable ])
                     </div>
                 </div>
             </form>

@@ -3,7 +3,7 @@
         <table class="table-form">
             <tr>
                 <td><label>Call Tracking Medium</label></td>
-                <td><select class="form-control" name="tracking_campaign_type">
+                <td><select class="form-control" name="tracking_campaign_type" id="tracking_campaign_type">
                         <option value="online">Online - Web</option>
                         <option value="offline">Offline - Non Web</option>
                     </select>
@@ -58,17 +58,17 @@
                 </td>
             </tr>
             <tr>
-                <td><label>Default Display Phone Number <span class="required_inputs_star text-danger">*</span></label></td>
+                <td><label>Default Display Phone Number </label></td>
                 <td><i>Note: All numbers, no dashes, periods or spaces.</i><br>
-                    <input type="text" class="form-control" name="default_number" />
+                    <input type="text" class="form-control" name="default_number" value='<?php echo $campaignDetails->default_number; ?>'/>
                 </td>
             </tr> 
 
             <tr>
 
-                <td><label>Phone Number Replacement <span class="required_inputs_star text-danger">*</span></label></td>
+                <td><label>Phone Number Replacement </label></td>
                 <td><i>i.e. 2125551212,2065551212 (must end with ",") </i> up to 20. <br/>These numbers will be specifically replaced with the single tracking number.<br/>
-                    <textarea class="form-control" name="numbers_to_replace" cols="40" rows='4'></textarea>
+                    <textarea class="form-control" name="numbers_to_replace" cols="40" rows='4'><?php echo $campaignDetails->numbers_to_replace; ?></textarea>
                 </td>
             </tr>
             <tr>
@@ -82,9 +82,29 @@
                 </td>
             </tr>
             <tr>
-                <td><label>Forwarding Number <span class="required_inputs_star text-danger">*</span></label></td>
+                <td><label>Forwarding Number </label></td>
                 <td><i>i.e. 2125551212,2065551212... Up to 3 will all ring at once</i> <br/>
-                    <textarea class="form-control" name="transfer_to_number" cols="40" rows='4'></textarea>
+                    <textarea class="form-control" name="transfer_to_number" cols="40" rows='4'><?php echo $campaignDetails->transfer_to_number; ?></textarea>
+                </td>
+            </tr>
+
+            <tr>
+                <td>
+                    <label>Record Calls</label>
+                </td>
+                <td>
+                    <div class="da-form-item large">
+                        <input type="radio" name="record_calls" value="1" <?php
+                        if ( $campaignDetails->record_calls == 1 ) {
+                            echo "checked";
+                        }
+                        ?> /> Yes
+                        <input type="radio" name="record_calls" value="0" <?php
+                        if ( $campaignDetails->record_calls == 0 ) {
+                            echo "checked";
+                        }
+                        ?> /> No
+                    </div>
                 </td>
             </tr>
 
@@ -127,19 +147,19 @@
                         <option value="zh-HK">Cantonese</option>
                         <option value="zh-TW">Taiwanese Mandarian</option>
                     </select> <br/>
-                    <textarea class="form-control" name="greeting" cols="40" rows='4'></textarea>
+                    <textarea class="form-control" name="greeting" cols="40" rows='4'><?php echo $campaignDetails->greeting; ?></textarea>
                 </td>
             </tr>
             <tr>
                 <td><label>Prompt*</label></td>
                 <td> <i>Be prompted with the text entered below, when the call occurs. Only for the receiving end.</i>
-                    <textarea class="form-control" name="prompt" cols="40" rows='4'></textarea>
+                    <textarea class="form-control" name="prompt" cols="40" rows='4'><?php echo $campaignDetails->prompt; ?></textarea>
                 </td>
             </tr>
             <tr>
                 <td><label>Post Back Page URL</label></td>
                 <td><i>Must include http:// <br/> Note: We will post phone call data to a page that you specify</i><br/>
-                    <textarea class="form-control" cols="40" rows='4' name='postback_page' ></textarea>
+                    <textarea class="form-control" cols="40" rows='4' name='postback_page' ><?php echo $campaignDetails->postback_page; ?></textarea>
                 </td>
             </tr>
             <tr>
@@ -154,43 +174,43 @@
                 <td><b>Campaign Info</b></td>
             </tr>
             <tr>
-                <td><div class='leftName'>Campaign Name:</div></td>
-                <td><input type="checkbox" name="postback_fields[]" value="campaign_name"  checked /></td></tr>
+                <td>Campaign Name:</td>
+                <td><input type="checkbox" name="postback_fields[]" value="campaign_name" {{ (stristr($campaignDetails->postback_fields, "campaign_name"))? 'checked' : '' }} /></td></tr>
             <tr>
                 <td><b>Call Information</b><br/></td>
             </tr>
             <tr>
-                <td><div class='leftName'>Record ID #:</div></td>
-                <td><input type="checkbox" name="postback_fields[]" value="id"  checked  /></td>
+                <td>Record ID #:</td>
+                <td><input type="checkbox" name="postback_fields[]" value="id"  {{ (stristr($campaignDetails->postback_fields, "id"))? 'checked' : '' }}   /></td>
             </tr>
             <tr>
-                <td><div class='leftName'>Tracking Phone #:</div></td>
+                <td>Tracking Phone #:</td>
 
-                <td><input type="checkbox" name="postback_fields[]" value="phone_number"  /></td>
+                <td><input type="checkbox" name="postback_fields[]" value="phone_number" {{ (stristr($campaignDetails->postback_fields, "phone_number"))? 'checked' : '' }}  /></td>
             </tr>
             <tr>
-                <td><div class='leftName'>Caller Phone #:</div></td>
+                <td>Caller Phone #:</td>
 
-                <td><input type="checkbox" name="postback_fields[]" value="caller_phone"   /></td>
+                <td><input type="checkbox" name="postback_fields[]" value="caller_phone"  {{ (stristr($campaignDetails->postback_fields, "caller_phone"))? 'checked' : '' }}  /></td>
             </tr>
             <tr>
-                <td><div class='leftName'>Caller Location:</div></td>
+                <td>Caller Location:</td>
 
-                <td><input type="checkbox" name="postback_fields[]" value="caller_state,caller_country,caller_zip"  /></td>
+                <td><input type="checkbox" name="postback_fields[]" value="caller_state,caller_country,caller_zip" {{ (stristr($campaignDetails->postback_fields, "caller_state,caller_country,caller_zip"))? 'checked' : '' }}  /></td>
             </tr>
             <tr>
-                <td><div class='leftName'>Caller Duration:</div></td>
-                <td><input type="checkbox" name="postback_fields[]" value="call_duration"     /></td>
+                <td>Caller Duration:</td>
+                <td><input type="checkbox" name="postback_fields[]" value="call_duration"  {{ (stristr($campaignDetails->postback_fields, "call_duration"))? 'checked' : '' }}    /></td>
             </tr>
             <tr>
-                <td><div class='leftName'>Call Time:</div></td>
+                <td>Call Time:</td>
 
-                <td><input type="checkbox" name="postback_fields[]" value="time_of_call"    /></td>
+                <td><input type="checkbox" name="postback_fields[]" value="time_of_call"  {{ (stristr($campaignDetails->postback_fields, "time_of_call"))? 'checked' : '' }}   /></td>
             </tr>
             <tr>
-                <td><div class='leftName'>Caller Name*:</div></td>
+                <td>Caller Name*:</td>
 
-                <td> <input type="checkbox" name="postback_fields[]" value="caller_name"    /></td>
+                <td> <input type="checkbox" name="postback_fields[]" value="caller_name"  {{ (stristr($campaignDetails->postback_fields, "caller_name"))? 'checked' : '' }}   /></td>
             </tr>
 
         </table>
@@ -199,98 +219,98 @@
                 <td colspan="2"><b>Web Tracking Information</b><br/></td>
             </tr>
             <tr>
-                <td><div class='leftName'>Entry Time: </div></td>
+                <td>Entry Time: </td>
 
-                <td><input type="checkbox" name="postback_fields[]" value="time_stamp" checked  /></td>
+                <td><input type="checkbox" name="postback_fields[]" value="time_stamp" {{ (stristr($campaignDetails->postback_fields, "time_stamp"))? 'checked' : '' }}   /></td>
             </tr>
             <tr>
-                <td><div class='leftName'>Location: </div></td>
+                <td>Location: </td>
 
-                <td><input type="checkbox" name="postback_fields[]" value="visitor_city_state"    /></td>
+                <td><input type="checkbox" name="postback_fields[]" value="visitor_city_state"  {{ (stristr($campaignDetails->postback_fields, "visitor_city_state"))? 'checked' : '' }}   /></td>
             </tr>
             <tr>
-                <td><div class='leftName'>Lat,Long:</div></td>
+                <td>Lat,Long:</td>
 
-                <td><input type="checkbox" name="postback_fields[]" value="lat,lng"    /></td>
+                <td><input type="checkbox" name="postback_fields[]" value="lat,lng"  {{ (stristr($campaignDetails->postback_fields, "lat,lng"))? 'checked' : '' }}   /></td>
             </tr>
             <tr>
-                <td><div class='leftName'>Duration:</div></td>
+                <td>Duration:</td>
 
-                <td><input type="checkbox" name="postback_fields[]" value="time_on_site"    /></td>
+                <td><input type="checkbox" name="postback_fields[]" value="time_on_site" {{ (stristr($campaignDetails->postback_fields, "time_on_site"))? 'checked' : '' }}    /></td>
             </tr>
             <tr>
-                <td><div class='leftName'>Traffic Type:</div></td>
+                <td>Traffic Type:</td>
 
-                <td><input type="checkbox" name="postback_fields[]" value="traffic_type"   /></td>
+                <td><input type="checkbox" name="postback_fields[]" value="traffic_type"  {{ (stristr($campaignDetails->postback_fields, "traffic_type"))? 'checked' : '' }}  /></td>
             </tr>
             <tr>
-                <td><div class='leftName'>Keyword:</div></td>
+                <td>Keyword:</td>
 
-                <td><input type="checkbox" name="postback_fields[]" value="keyword"     /></td>
+                <td><input type="checkbox" name="postback_fields[]" value="keyword"   {{ (stristr($campaignDetails->postback_fields, "keyword"))? 'checked' : '' }}   /></td>
             </tr>
             <tr>
-                <td><div class='leftName'>Match Type: </div></td>
+                <td>Match Type: </td>
 
-                <td><input type="checkbox" name="postback_fields[]" value="matchtype"   /></td>
+                <td><input type="checkbox" name="postback_fields[]" value="matchtype" {{ (stristr($campaignDetails->postback_fields, "matchtype"))? 'checked' : '' }}   /></td>
             </tr>
             <tr>
-                <td><div class='leftName'>Source:</div></td>
+                <td>Source:</td>
 
-                <td><input type="checkbox" name="postback_fields[]" value="source"    /></td>
+                <td><input type="checkbox" name="postback_fields[]" value="source"  {{ (stristr($campaignDetails->postback_fields, "source"))? 'checked' : '' }}   /></td>
             </tr>
             <tr>
-                <td><div class='leftName'>Goal Pages:</div></td>
+                <td>Goal Pages:</td>
 
-                <td><input type="checkbox" name="postback_fields[]" value="goal_pages"  /></td>
+                <td><input type="checkbox" name="postback_fields[]" value="goal_pages" {{ (stristr($campaignDetails->postback_fields, "goal_pages"))? 'checked' : '' }}  /></td>
             </tr>
             <tr>
-                <td><div class='leftName'>Custom 1:</div></td>
+                <td>Custom 1:</td>
 
-                <td><input type="checkbox" name="call_notification[]" value="custom1"  /></td>
+                <td><input type="checkbox" name="call_notification[]" value="custom1" {{ (stristr($campaignDetails->call_notification, "custom1"))? 'checked' : '' }} /></td>
 
             </tr>
             <tr>
-                <td><div class='leftName'>Custom 2:</div></td>
+                <td>Custom 2:</td>
 
-                <td><input type="checkbox" name="call_notification[]" value="custom2"  /></td>
+                <td><input type="checkbox" name="call_notification[]" value="custom2" {{ (stristr($campaignDetails->call_notification, "custom2"))? 'checked' : '' }}  /></td>
             </tr>
             <tr>
-                <td><div class='leftName'>Custom 3:</div></td>
+                <td>Custom 3:</td>
 
-                <td><input type="checkbox" name="call_notification[]" value="custom3"  /></td>
+                <td><input type="checkbox" name="call_notification[]" value="custom3" {{ (stristr($campaignDetails->call_notification, "custom3"))? 'checked' : '' }}  /></td>
             </tr>
             <tr>
-                <td><div class='leftName'>Custom 4:</div></td>
+                <td>Custom 4:</td>
 
-                <td><input type="checkbox" name="call_notification[]" value="custom4"  /></td>
+                <td><input type="checkbox" name="call_notification[]" value="custom4" {{ (stristr($campaignDetails->call_notification, "custom4"))? 'checked' : '' }}  /></td>
             </tr>
             <tr>
-                <td><div class='leftName'>Custom 5:</div></td>
+                <td>Custom 5:</td>
 
-                <td><input type="checkbox" name="call_notification[]" value="custom5"  /></td>
+                <td><input type="checkbox" name="call_notification[]" value="custom5" {{ (stristr($campaignDetails->call_notification, "custom5"))? 'checked' : '' }}  /></td>
             </tr>
             <tr>
-                <td><div class='leftName'>Custom 6:</div></td>
+                <td>Custom 6:</td>
 
-                <td><input type="checkbox" name="call_notification[]" value="custom6"  /></td>
+                <td><input type="checkbox" name="call_notification[]" value="custom6" {{ (stristr($campaignDetails->call_notification, "custom6"))? 'checked' : '' }}  /></td>
             </tr>
             <tr>
-                <td><div class='leftName'>Custom 7:</div></td>
+                <td>Custom 7:</td>
 
-                <td><input type="checkbox" name="call_notification[]" value="custom7"  /></td>
+                <td><input type="checkbox" name="call_notification[]" value="custom7" {{ (stristr($campaignDetails->call_notification, "custom7"))? 'checked' : '' }}  /></td>
             </tr>
             <tr>
-                <td><div class='leftName'>Custom 8:</div></td>
-                <td><input type="checkbox" name="call_notification[]" value="custom8"  /></td>
+                <td>Custom 8:</td>
+                <td><input type="checkbox" name="call_notification[]" value="custom8" {{ (stristr($campaignDetails->call_notification, "custom8"))? 'checked' : '' }}  /></td>
             </tr>
             <tr>
-                <td><div class='leftName'>Custom 9:</div></td>
-                <td><input type="checkbox" name="call_notification[]" value="custom9"  /></td>
+                <td>Custom 9:</td>
+                <td><input type="checkbox" name="call_notification[]" value="custom9" {{ (stristr($campaignDetails->call_notification, "custom9"))? 'checked' : '' }}  /></td>
             </tr>
             <tr>
-                <td><div class='leftName'>Custom 10:</div></td>
+                <td>Custom 10:</td>
 
-                <td><input type="checkbox" name="call_notification[]" value="custom10"  /></td>
+                <td><input type="checkbox" name="call_notification[]" value="custom10" {{ (stristr($campaignDetails->call_notification, "custom10"))? 'checked' : '' }}  /></td>
 
             </tr>
         </table>

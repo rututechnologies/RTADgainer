@@ -9,6 +9,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use function asset;
+use function redirect;
 use function response;
 use function view;
 
@@ -128,7 +129,6 @@ class CampaignController extends Controller
     /**
      * submit create form.
      * 
-     * TODO: Save to database
      */
     public function submitCreate( Request $request )
     {
@@ -180,8 +180,8 @@ class CampaignController extends Controller
             "sp_campaign_id"           => $request->input( 'sp_campaign_id' ) ? $request->input( 'sp_campaign_id' ) : '',
             $camp_field                => 1,
             "date_created"             => date( "Y-m-d H:i:s" ),
-            "multi_phone"              => $request->input( 'multi_phone' ) ? $request->input( 'multi_phone' ) : '',
-            "ppc_markup"               => $request->input( 'ppc_markup' ) ? $request->input( 'ppc_markup' ) : '',
+            "multi_phone"              => $request->input( 'multi_phone' ) ? $request->input( 'multi_phone' ) : 0,
+            "ppc_markup"               => $request->input( 'ppc_markup' ) ? $request->input( 'ppc_markup' ) : 0,
             "correlation_time"         => $corr_time,
             "timeZone"                 => $request->input( 'timeZone' ),
             "chat_campaign"            => $request->input( 'chat_campaign' ),
@@ -273,6 +273,10 @@ class CampaignController extends Controller
             "sttCount"                 => 0,
         );
 
+        foreach ( $data as $key => $val ) {
+            $data[ $key ] = $this->scrubSQL( $val );
+        }
+
         $goal_code = $this->scrubSQL( $request->input( 'goal_code' ) );
         $call_code = $this->scrubSQL( $request->input( 'call_code' ) );
         DB::beginTransaction();
@@ -282,7 +286,6 @@ class CampaignController extends Controller
             DB::table( 'campaigns' )->insert( $data );
             DB::commit();
             // TODO: send email
-            echo 'ok';
             return redirect()->route( 'campaignDetails', [ 'campaign_id' => $campaign_id, 'account_id' => $account_id ] );
         } catch ( Exception $ex ) {
             DB::rollback();
@@ -295,9 +298,175 @@ class CampaignController extends Controller
      * 
      * TODO: Save to database
      */
-    public function submitEdit( Requets $request )
+    public function submitEdit( Request $request )
     {
-        
+
+        $account_id = $request->input( 'account_id' );
+        $campaign_id = $request->input( 'campaign_id' );
+        $campaign_name = $request->input( 'campaign_name' );
+
+        $campaign_id = $this->scrubSQL( $campaign_id );
+        $campaign_name = $this->scrubSQL( $campaign_name );
+        if ( $campaign_id == "" ) {
+            exit;
+        }
+
+        $call_notification = $request->input( 'call_notification' );
+        if ( is_array( $call_notification ) && count( $call_notification ) > 0 ) {
+            $call_notification = implode( ",", $call_notification );
+        } else {
+            $call_notification = "";
+        }
+
+        $postback_fields = $request->input( 'postback_fields' );
+        if ( is_array( $postback_fields ) && count( $postback_fields ) > 0 ) {
+            $postback_fields = implode( ",", $postback_fields );
+        } else {
+            $postback_fields = "";
+        }
+
+        $source_code = 0;
+        $multi_code = 0;
+
+        $camp_type = $request->input( 'camp_type' );
+        if ( $camp_type == 'source_code' ) {
+            $source_code = 1;
+        } elseif ( $camp_type == 'multi_code' ) {
+            $multi_code = 1;
+        }
+
+        $data = array(
+            "campaign_name"          => $request->input( 'campaign_name' ),
+            "campaign_cycle"         => $request->input( 'campaign_cycle' ),
+            "campaign_budget"        => $request->input( 'campaign_budget' ),
+            "campaign_currency"      => $request->input( 'campaign_currency' ),
+            "campaign_mgr"           => $request->input( 'campaign_mgr' ),
+            "dblclick_name_calls"    => $request->input( 'dblclick_name_calls' ),
+            "dblclick_name_goals"    => $request->input( 'dblclick_name_goals' ),
+            "dblclick_agency_id"     => $request->input( 'dblclick_agency_id' ),
+            "dblclick_advertiser_id" => $request->input( 'dblclick_advertiser_id' ),
+            "yahoojpn_aid"           => $request->input( 'yahoojpn_aid' ),
+            "yahoojpn_cid"           => $request->input( 'yahoojpn_cid' ),
+            "adwords_campaign_id"    => $request->input( 'adwords_campaign_id' ),
+            "bing_campaign_id"       => $request->input( 'bing_campaign_id' ),
+            "sp_campaign_id"         => $request->input( 'sp_campaign_id' ),
+            "ppc_markup"             => $request->input( 'ppc_markup' ),
+            "correlation_time"       => $request->input( 'correlation_time' ),
+            "timeZone"               => $request->input( 'timeZone' ),
+            "show_number"            => $request->input( 'show_number' ),
+            "chat_campaign"          => $request->input( 'chat_campaign' ),
+            "tracking_type"          => $request->input( 'tracking_type' ),
+            "email_tracking"         => $request->input( 'email_tracking' ),
+            "email_notify"           => $request->input( 'email_notify' ),
+            "text_notify"            => $request->input( 'text_notify' ),
+            "cell_to_text"           => $request->input( 'cell_to_text' ),
+            "cell_provider"          => $request->input( 'cell_provider' ),
+            "phone_format"           => $request->input( 'phone_format' ),
+            "default_phone_format"   => $request->input( 'default_phone_format' ),
+            "multi_phone"            => $request->input( 'multi_phone' ),
+            "greeting"               => $request->input( 'greeting' ),
+            "prompt"                 => $request->input( 'prompt' ),
+            "record_calls"           => $request->input( 'record_calls' ),
+            "greet_voice"            => $request->input( 'greet_voice' ),
+            "source_code"            => $source_code,
+            "multi_code"             => $multi_code,
+            "language"               => $request->input( 'language' ),
+            "default_number"         => $request->input( 'default_number' ),
+            "post_back_type"         => $request->input( 'post_back_type' ),
+            "postback_page"          => $request->input( 'postback_page' ),
+            "country_tracking"       => $request->input( 'country_tracking' ),
+            "tracking_campaign_type" => $request->input( 'tracking_campaign_type' ),
+            "location_tracking"      => $request->input( 'location_tracking' ),
+            "location_device"        => $request->input( 'location_device' ),
+            "goal1Memo"              => $request->input( 'goal_page1_memo' ),
+            "goal1"                  => $request->input( 'goal_page1' ),
+            "goal2Memo"              => $request->input( 'goal_page2_memo' ),
+            "goal2"                  => $request->input( 'goal_page2' ),
+            "goal3Memo"              => $request->input( 'goal_page3_memo' ),
+            "goal3"                  => $request->input( 'goal_page3' ),
+            "goal4Memo"              => $request->input( 'goal_page4_memo' ),
+            "goal4"                  => $request->input( 'goal_page4' ),
+            "goal5Memo"              => $request->input( 'goal_page5_memo' ),
+            "goal5"                  => $request->input( 'goal_page5' ),
+            "goal6Memo"              => $request->input( 'goal_page6_memo' ),
+            "goal6"                  => $request->input( 'goal_page6' ),
+            "goal7Memo"              => $request->input( 'goal_page7_memo' ),
+            "goal7"                  => $request->input( 'goal_page7' ),
+            "goal8Memo"              => $request->input( 'goal_page8_memo' ),
+            "goal8"                  => $request->input( 'goal_page8' ),
+            "goal9Memo"              => $request->input( 'goal_page9_memo' ),
+            "goal9"                  => $request->input( 'goal_page9' ),
+            "goal10Memo"             => $request->input( 'goal_page10_memo' ),
+            "goal10"                 => $request->input( 'goal_page10' ),
+            "goal1_inc"              => $request->input( 'goal1_inc' ),
+            "goal2_inc"              => $request->input( 'goal2_inc' ),
+            "goal3_inc"              => $request->input( 'goal3_inc' ),
+            "goal4_inc"              => $request->input( 'goal4_inc' ),
+            "goal5_inc"              => $request->input( 'goal5_inc' ),
+            "goal6_inc"              => $request->input( 'goal6_inc' ),
+            "goal7_inc"              => $request->input( 'goal7_inc' ),
+            "goal8_inc"              => $request->input( 'goal8_inc' ),
+            "goal9_inc"              => $request->input( 'goal9_inc' ),
+            "goal10_inc"             => $request->input( 'goal10_inc' ),
+            "tag_words"              => $request->input( 'tag_words' ),
+            "save_chat"              => $request->input( 'save_chat' ),
+            "avgCalls"               => $request->input( 'avgCalls' ),
+            "callsThresh"            => $request->input( 'callsThresh' ),
+            "avgClicks"              => $request->input( 'avgClicks' ),
+            "clicksThresh"           => $request->input( 'clicksThresh' ),
+            "avgEmails"              => $request->input( 'avgEmails' ),
+            "emailsThresh"           => $request->input( 'emailsThresh' ),
+            "avgGoalPgs"             => $request->input( 'avgGoalPgs' ),
+            "goalsThresh"            => $request->input( 'goalsThresh' ),
+            "avgConversions"         => $request->input( 'avgConversions' ),
+            "convsThresh"            => $request->input( 'convsThresh' ),
+            "camp_custom1"           => $request->input( 'camp_custom1' ),
+            "camp_custom2"           => $request->input( 'camp_custom2' ),
+            "camp_custom3"           => $request->input( 'camp_custom3' ),
+            "camp_custom4"           => $request->input( 'camp_custom4' ),
+            "camp_custom5"           => $request->input( 'camp_custom5' ),
+            "camp_custom6"           => $request->input( 'camp_custom6' ),
+            "camp_custom7"           => $request->input( 'camp_custom7' ),
+            "camp_custom8"           => $request->input( 'camp_custom8' ),
+            "camp_custom9"           => $request->input( 'camp_custom9' ),
+            "camp_custom10"          => $request->input( 'camp_custom10' ),
+            "last_edited"            => Auth::user()->username,
+            "last_update"            => date( "Y-m-d H:i:s", time() )
+        );
+
+        $data[ 'email_to_notify_user' ] = $request->input( 'email_to_notify_user' ) ? $request->input( 'email_to_notify_user' ) : 0;
+        $data[ 'email_notify_user' ] = $request->input( 'email_notify_user' ) ? $request->input( 'email_notify_user' ) : 0;
+        $data[ 'email_to_notify' ] = $request->input( 'email_to_notify' );
+        $data[ 'numbers_to_replace' ] = $request->input( 'numbers_to_replace' );
+        $data[ 'transfer_to_number' ] = $request->input( 'transfer_to_number' );
+        $data[ 'blacklist_words' ] = $request->input( 'blacklist_words' );
+        $data[ 'blacklist_ips' ] = $request->input( 'blacklist_ips' );
+        $data[ 'call_notification' ] = $call_notification;
+        $data[ 'postback_fields' ] = $postback_fields;
+
+        foreach ( $data as $key => $val ) {
+            $data[ $key ] = $this->scrubSQL( $val );
+        }
+        $goal_code = $this->scrubSQL( $request->input( 'goal_code' ) );
+        $call_code = $this->scrubSQL( $request->input( 'call_code' ) );
+
+        DB::beginTransaction();
+        try {
+            $this->setGA_code( $campaign_id, 'goal', $goal_code );
+            $this->setGA_code( $campaign_id, 'call', $call_code );
+            DB::table( 'campaigns' )
+                ->where( 'account_id', $account_id )
+                ->where( 'campaign_id', $campaign_id )
+                ->update( $data );
+            DB::commit();
+        } catch ( Exception $ex ) {
+            DB::rollback();
+            return back()->with( 'error_msg', $ex->getMessage() );
+        }
+
+        // TODO: set flash data
+//        $this->session->set_flashdata( 'result', $result[ 'updateResult' ] );
+        return back()->with( 'success_msg', "Campaign: " . $campaign_name . ", has been updated." );
     }
 
     public function scrubSQL( $string )
@@ -316,7 +485,7 @@ class CampaignController extends Controller
         } else {
             DB::table( 'camp_analytics_codes' )
                 ->where( [ 'campaign_id' => $campaign_id, 'type' => $type ] )
-                ->insert( [ 'campaign_id' => $campaign_id, 'type' => $type, 'code' => $code ] );
+                ->update( [ 'campaign_id' => $campaign_id, 'type' => $type, 'code' => $code ] );
         }
     }
 

@@ -154,41 +154,41 @@
                 <td><b>Campaign Info</b></td>
             </tr>
             <tr>
-                <td><div class='leftName'>Campaign Name:</div></td>
+                <td>Campaign Name:</td>
                 <td><input type="checkbox" name="postback_fields[]" value="campaign_name"  checked /></td></tr>
             <tr>
                 <td><b>Call Information</b><br/></td>
             </tr>
             <tr>
-                <td><div class='leftName'>Record ID #:</div></td>
+                <td>Record ID #:</td>
                 <td><input type="checkbox" name="postback_fields[]" value="id"  checked  /></td>
             </tr>
             <tr>
-                <td><div class='leftName'>Tracking Phone #:</div></td>
+                <td>Tracking Phone #:</td>
 
                 <td><input type="checkbox" name="postback_fields[]" value="phone_number"  /></td>
             </tr>
             <tr>
-                <td><div class='leftName'>Caller Phone #:</div></td>
+                <td>Caller Phone #:</td>
 
                 <td><input type="checkbox" name="postback_fields[]" value="caller_phone"   /></td>
             </tr>
             <tr>
-                <td><div class='leftName'>Caller Location:</div></td>
+                <td>Caller Location:</td>
 
                 <td><input type="checkbox" name="postback_fields[]" value="caller_state,caller_country,caller_zip"  /></td>
             </tr>
             <tr>
-                <td><div class='leftName'>Caller Duration:</div></td>
+                <td>Caller Duration:</td>
                 <td><input type="checkbox" name="postback_fields[]" value="call_duration"     /></td>
             </tr>
             <tr>
-                <td><div class='leftName'>Call Time:</div></td>
+                <td>Call Time:</td>
 
                 <td><input type="checkbox" name="postback_fields[]" value="time_of_call"    /></td>
             </tr>
             <tr>
-                <td><div class='leftName'>Caller Name*:</div></td>
+                <td>Caller Name*:</td>
 
                 <td> <input type="checkbox" name="postback_fields[]" value="caller_name"    /></td>
             </tr>
@@ -199,96 +199,96 @@
                 <td colspan="2"><b>Web Tracking Information</b><br/></td>
             </tr>
             <tr>
-                <td><div class='leftName'>Entry Time: </div></td>
+                <td>Entry Time: </td>
 
                 <td><input type="checkbox" name="postback_fields[]" value="time_stamp" checked  /></td>
             </tr>
             <tr>
-                <td><div class='leftName'>Location: </div></td>
+                <td>Location: </td>
 
                 <td><input type="checkbox" name="postback_fields[]" value="visitor_city_state"    /></td>
             </tr>
             <tr>
-                <td><div class='leftName'>Lat,Long:</div></td>
+                <td>Lat,Long:</td>
 
                 <td><input type="checkbox" name="postback_fields[]" value="lat,lng"    /></td>
             </tr>
             <tr>
-                <td><div class='leftName'>Duration:</div></td>
+                <td>Duration:</td>
 
                 <td><input type="checkbox" name="postback_fields[]" value="time_on_site"    /></td>
             </tr>
             <tr>
-                <td><div class='leftName'>Traffic Type:</div></td>
+                <td>Traffic Type:</td>
 
                 <td><input type="checkbox" name="postback_fields[]" value="traffic_type"   /></td>
             </tr>
             <tr>
-                <td><div class='leftName'>Keyword:</div></td>
+                <td>Keyword:</td>
 
                 <td><input type="checkbox" name="postback_fields[]" value="keyword"     /></td>
             </tr>
             <tr>
-                <td><div class='leftName'>Match Type: </div></td>
+                <td>Match Type: </td>
 
                 <td><input type="checkbox" name="postback_fields[]" value="matchtype"   /></td>
             </tr>
             <tr>
-                <td><div class='leftName'>Source:</div></td>
+                <td>Source:</td>
 
                 <td><input type="checkbox" name="postback_fields[]" value="source"    /></td>
             </tr>
             <tr>
-                <td><div class='leftName'>Goal Pages:</div></td>
+                <td>Goal Pages:</td>
 
                 <td><input type="checkbox" name="postback_fields[]" value="goal_pages"  /></td>
             </tr>
             <tr>
-                <td><div class='leftName'>Custom 1:</div></td>
+                <td>Custom 1:</td>
 
                 <td><input type="checkbox" name="call_notification[]" value="custom1"  /></td>
 
             </tr>
             <tr>
-                <td><div class='leftName'>Custom 2:</div></td>
+                <td>Custom 2:</td>
 
                 <td><input type="checkbox" name="call_notification[]" value="custom2"  /></td>
             </tr>
             <tr>
-                <td><div class='leftName'>Custom 3:</div></td>
+                <td>Custom 3:</td>
 
                 <td><input type="checkbox" name="call_notification[]" value="custom3"  /></td>
             </tr>
             <tr>
-                <td><div class='leftName'>Custom 4:</div></td>
+                <td>Custom 4:</td>
 
                 <td><input type="checkbox" name="call_notification[]" value="custom4"  /></td>
             </tr>
             <tr>
-                <td><div class='leftName'>Custom 5:</div></td>
+                <td>Custom 5:</td>
 
                 <td><input type="checkbox" name="call_notification[]" value="custom5"  /></td>
             </tr>
             <tr>
-                <td><div class='leftName'>Custom 6:</div></td>
+                <td>Custom 6:</td>
 
                 <td><input type="checkbox" name="call_notification[]" value="custom6"  /></td>
             </tr>
             <tr>
-                <td><div class='leftName'>Custom 7:</div></td>
+                <td>Custom 7:</td>
 
                 <td><input type="checkbox" name="call_notification[]" value="custom7"  /></td>
             </tr>
             <tr>
-                <td><div class='leftName'>Custom 8:</div></td>
+                <td>Custom 8:</td>
                 <td><input type="checkbox" name="call_notification[]" value="custom8"  /></td>
             </tr>
             <tr>
-                <td><div class='leftName'>Custom 9:</div></td>
+                <td>Custom 9:</td>
                 <td><input type="checkbox" name="call_notification[]" value="custom9"  /></td>
             </tr>
             <tr>
-                <td><div class='leftName'>Custom 10:</div></td>
+                <td>Custom 10:</td>
 
                 <td><input type="checkbox" name="call_notification[]" value="custom10"  /></td>
 

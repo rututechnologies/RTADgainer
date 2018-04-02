@@ -7,13 +7,16 @@
                     <p>
                         <?php
                         echo "<input type='hidden' name='account_id' value='" . $accountData->account_id . "' />" . $accountData->accountName;
+                        echo "<input type='hidden' name='campaign_id' value='" . $campaignDetails->campaign_id . "' />";
                         ?>
                     </p>
                 </td>
             </tr>
             <tr>
                 <td>Campaign name:- <span class="required_inputs_star text-danger">*</span></td>
-                <td><input type="text" class="form-control" id="campaign_name" name="campaign_name" value="{{$campaignDetails->campaign_name}}" required /></td>
+                <td>
+                    <input type="text" class="form-control" id="campaign_name" name="campaign_name" value="{{$campaignDetails->campaign_name}}" required />
+                </td>
             </tr>
 
             <tr>
@@ -78,7 +81,7 @@
             <tr>
                 <td>Campaign Tracking Type</td>
                 <td>
-                    <select name="tracking_campaign_type" id="tracking_campaign_type" {{$disable}}>
+                    <select name="tracking_campaign_type" class="form-control" id="tracking_campaign_type" {{$disable}}>
                         <option value="online">online</option>
                         <option value="offline">offline</option>
                     </select>

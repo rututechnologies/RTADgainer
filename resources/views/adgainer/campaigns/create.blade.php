@@ -26,12 +26,6 @@
 @endsection
 
 @section('content')
-<?php
-$disable = "";
-if ( $level == 3 ) {
-    $disable = "disabled";
-}
-?>
 <div class="wrapper border-bottom white-bg page-heading">
     <h1 class="module_heading">
         <span>Create Campaign</span>
@@ -71,10 +65,10 @@ if ( $level == 3 ) {
                 {{ csrf_field() }}
                 <div class="tab-content">
                     <div role="tabpanel" class="tab-pane active" id="billing">
-                        @include('adgainer.campaigns.form.general-settings', ['accountData' => $accountData, 'level' => $level, 'disabled' => $disable])
+                        @include('adgainer.campaigns.form.general-settings', ['accountData' => $accountData, 'level' => $level])
                     </div>
                     <div role="tabpanel" class="tab-pane" id="shipping">
-                        @include('adgainer.campaigns.form.conversions', ['accountData' => $accountData, 'disabled' => $disable ])
+                        @include('adgainer.campaigns.form.conversions', ['accountData' => $accountData])
                     </div>
                     <div role="tabpanel" class="tab-pane" id="review">
                         @include('adgainer.campaigns.form.call-tracking', ['accountData' => $accountData])
