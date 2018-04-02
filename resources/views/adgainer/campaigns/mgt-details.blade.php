@@ -82,14 +82,14 @@
                         echo " <br/><br/> <a href='" . url( 'twilio/searchSourceNumbers', [ 'campaign_id' => $campaign->campaign_id, 'account_id' => $campaign->account_id ] ) . "' >Search Phone Numbers</a> ";
                     }
                 } else {
-                    $serveNumbers = $this->Campaign_model->getCampaignPhoneNumbers( $campaign->campaign_id );
-                    $serveNumbersCount = $serveNumbers->num_rows();
-                    $phoneNumbers = $this->Campaign_model->getAllCampaignPhoneNumbers( $campaign->campaign_id );
-                    $phoneNumbersCount = $phoneNumbers->num_rows();
+                    $serveNumbers = $campaignController->getCampaignPhoneNumbers( $campaign->campaign_id );
+                    $serveNumbersCount = $serveNumbers->count();
+                    $phoneNumbers = $campaignController->getAllCampaignPhoneNumbers( $campaign->campaign_id );
+                    $phoneNumbersCount = $phoneNumbers->count();
                     echo " <br/> <b>Phone Numbers</b> ";
                     echo "<br> <a href='" . url( 'campaign/addCampaignNumbers', [ 'campaign_id' => $campaign->campaign_id, 'account_id' => $campaign->account_id ] ) . "' >Add</a> ";
                     echo "<br> <a href='" . url( 'campaign/campaignPhoneNumbers', [ 'campaign_id' => $campaign->campaign_id, 'account_id' => $campaign->account_id ] ) . "' style='color:#999'>Serving (" . $serveNumbersCount . ") | Total (" . $phoneNumbersCount . ")</a> ";
-                    echo "<br> <a href='" . url( 'campaign/viewunassignednumbers', [ 'account_id' => $campaign->account_id ] ) . "' style='color:#999'>Available (" . $unassignedPhoneNumbers->num_rows() . ")</a> <br/> ";
+                    echo "<br> <a href='" . url( 'campaign/viewunassignednumbers', [ 'account_id' => $campaign->account_id ] ) . "' style='color:#999'>Available (" . $unassignedPhoneNumbers->count() . ")</a> <br/> ";
                     if ( $level == 1 ) {
                         echo " <br/><a href='" . url( 'twilio/searchNumbers', [ 'campaign_id' => $campaign->campaign_id, 'account_id' => $campaign->account_id ] ) . "' >Search Phone Numbers</a> ";
                     }

@@ -12,15 +12,26 @@
         width: 100%;
         vertical-align: top;
     }
+    table.table-form.table-form-single-col >tbody td:first-child{
+        width: 40%;
+    }
     table.table-form td{
         vertical-align: top;
+    }
+    .checkbox-inline{
+        padding-left: 0 !important;
     }
 </style>
 
 @endsection
 
 @section('content')
-
+<?php
+$disable = "";
+if ( $level == 3 ) {
+    $disable = "disabled";
+}
+?>
 <div class="wrapper border-bottom white-bg page-heading">
     <h1 class="module_heading">
         <span>Create Campaign</span>
@@ -60,10 +71,10 @@
                 {{ csrf_field() }}
                 <div class="tab-content">
                     <div role="tabpanel" class="tab-pane active" id="billing">
-                        @include('adgainer.campaigns.form.general-settings', ['accountData' => $accountData, 'level' => $level])
+                        @include('adgainer.campaigns.form.general-settings', ['accountData' => $accountData, 'level' => $level, 'disabled' => $disable])
                     </div>
                     <div role="tabpanel" class="tab-pane" id="shipping">
-                        @include('adgainer.campaigns.form.conversions', ['accountData' => $accountData])
+                        @include('adgainer.campaigns.form.conversions', ['accountData' => $accountData, 'disabled' => $disable ])
                     </div>
                     <div role="tabpanel" class="tab-pane" id="review">
                         @include('adgainer.campaigns.form.call-tracking', ['accountData' => $accountData])

@@ -1,44 +1,19 @@
 <div class="row">
     <div class="col-md-6">
         <table class="table-form">
-            <?php if ( !isset( $accountData->account_id ) ) { ?>
-                <tr>
-                    <td>
-                        Select Account or Create New Account
-                    </td>
-                    <td>
-                        <select name="account_id" id="account_id" class="form-control">
-                            <option value="">
-                                Select an Account
-                            </option>
-                            <option value="NEW">
-                                New Account
-                            </option>
-                            <?php
-                            foreach ( $allAccounts as $account ) {
-                                echo "<option value='" . $account->account_id . "'>" . $account->accountName . "</option>";
-                            }
-                            ?>
-                        </select>
-
-                    </td>
-                </tr>
-            <?php } else { ?>
-                <tr>
-                    <td><p>Account</p></td>
-                    <td>
-                        <p>
-                            <?php
-                            echo "<input type='hidden' name='account_id' value='" . $accountData->account_id . "' />" . $accountData->accountName;
-                            ?>
-                        </p>
-                    </td>
-                </tr>
-
-            <?php } ?>
+            <tr>
+                <td><p>Account</p></td>
+                <td>
+                    <p>
+                        <?php
+                        echo "<input type='hidden' name='account_id' value='" . $accountData->account_id . "' />" . $accountData->accountName;
+                        ?>
+                    </p>
+                </td>
+            </tr>
             <tr>
                 <td>Campaign name:- <span class="required_inputs_star text-danger">*</span></td>
-                <td><input type="text" class="form-control" id="campaign_name" name="campaign_name" required /></td>
+                <td><input type="text" class="form-control" id="campaign_name" name="campaign_name" value="{{$campaignDetails->campaign_name}}" required /></td>
             </tr>
 
             <tr>
@@ -57,20 +32,26 @@
                     Multi-Numbers Used Per Tracking Session
                 </td>
                 <td>
-                    <select name="multi_phone" class="form-control">
+                    <select name="multi_phone" class="form-control" {{$disabled}}>
                         <?php
+                        echo "<option value='" . $campaignDetails->multi_phone . "'>Current: " . $campaignDetails->multi_phone . " </option>";
                         for ( $x = 2; $x <= 150; $x++ ) {
                             echo "<option value='$x'>$x</option>";
                         }
                         ?>
                     </select>
+                    <?php
+                    if ( $disable == "disabled" ) {
+                        echo "<input type='hidden' name='multi_phone' value='" . $campaignDetails->multi_phone . "' />";
+                    }
+                    ?>
                 </td>
             </tr>
 
             <tr>
                 <td>Traffic Tracking Type</td>
                 <td>
-                    <select name="tracking_type" class="form-control">
+                    <select name="tracking_type" class="form-control" {{$disabled}}>
                         <option value="0">OFF</option>
                         <?php if ( (isset( $accountData->status ) && $accountData->status != "TEMP") || $level != 3 ) { ?>
                             <option value="P" selected>PPC</option>
@@ -86,45 +67,73 @@
                         <?php } ?>
 
                     </select>
+                    <?php
+                    if ( $disable == "disabled" ) {
+                        echo "<input type='hidden' name='tracking_type' value='" . $campaignDetails->tracking_type . "' />";
+                    }
+                    ?>
+                </td>
+            </tr>
+
+            <tr>
+                <td>Campaign Tracking Type</td>
+                <td>
+                    <select name="tracking_campaign_type" id="tracking_campaign_type" {{$disable}}>
+                        <option value="online">online</option>
+                        <option value="offline">offline</option>
+                    </select>
+                    <?php
+                    if ( $disable == "disabled" ) {
+                        echo "<input type='hidden' name='tracking_campaign_type' value='" . $campaignDetails->tracking_campaign_type . "' />";
+                    }
+                    ?>
+                    <input type="hidden" id="single_to_many_numbers" name="single_to_many_numbers" value=""/>
                 </td>
             </tr>
 
             <tr>
                 <td>Country/Language:-</td>
                 <td>
-                    <select name="country_tracking" class="form-control">
+                    <select name="country_tracking" class="form-control" {{$disable}}>
                         <option value="keyword">USA (English)</option>
                         <option value="ch_keyword">Chinese (Includes English)</option>
                         <option value="k_keyword">Korean (Includes English)</option>
                         <option value="j_keyword">Japanese (Includes English)</option>
                     </select>
+                    <?php
+                    if ( $disable == "disabled" ) {
+                        echo "<input type='hidden' name='country_tracking' value='" . $campaignDetails->country_tracking . "' />";
+                    }
+                    ?>
                 </td>
             </tr>
 
             <tr>
                 <td>Correlation Time:-</td>
                 <td>
-                    <select class="form-control" id="correlation_time"  name="correlation_time"  <?php if ( $level == 3 ) { ?> readonly="readonly" <?php } ?> >
+                    <select class="form-control" id="correlation_time"  name="correlation_time" {{$disable}} >
                         <option value="0.083">5 minutes</option>
                         <option value="0.166">10 minutes</option>
                         <option value="0.332">20 minutes</option>
                         <option value="0.5">30 minutes</option>
                         <?php
                         for ( $x = 1; $x <= 12; $x++ ) {
-                            $sel = "";
-                            if ( $x == 4 )
-                                $sel = "selected";
-                            echo "<option value='$x' $sel>$x</option>";
+                            echo "<option value='$x'>$x</option>";
                         }
                         ?>
                     </select>
+                    <?php
+                    if ( $disable == "disabled" ) {
+                        echo "<input type='hidden' name='correlation_time' value='" . $campaignDetails->correlation_time . "' />";
+                    }
+                    ?>
                 </td>
             </tr>
 
             <tr>
                 <td>Time Zone:-</td>
                 <td>
-                    <select name="timeZone" id="timeZone" class="form-control">
+                    <select name="timeZone" id="timeZone" class="form-control" {{$disable}}>
                         <option value="America/Los_Angeles">(GMT-08:00) Pacific Time (US & Canada)</option>
                         <option value="Pacific/Midway">(GMT-11:00) Midway Island, Samoa</option>
                         <option value="America/Adak">(GMT-10:00) Hawaii-Aleutian</option>
@@ -217,6 +226,11 @@
                         <option value="Pacific/Tongatapu">(GMT+13:00) Nuku'alofa</option>
                         <option value="Pacific/Kiritimati">(GMT+14:00) Kiritimati</option>
                     </select>
+                    <?php
+                    if ( $disable == "disabled" ) {
+                        echo "<input type='hidden' name='timeZone' value='" . $campaignDetails->timeZone . "' />";
+                    }
+                    ?>  
                 </td>
             </tr>
 
@@ -229,13 +243,19 @@
             </tr>
             <tr>
                 <td>Email Submission Form Tracking</td>
-                <td>Yes <input type="checkbox" name="email_tracking" value="1" checked style="width:auto"/></td>
+                <td>
+                    @if ($accountData->status == "FULL")
+                    Yes <input type="checkbox" name="email_tracking" value="1" {{ ($campaignDetails->email_tracking == 1) ? 'checked' : ''}}/>
+                    @else
+                    Only for Full Accounts
+                    @endif
+                </td>
             </tr>
 
             <tr>
                 <td>Browser Location Tracking *user authorized</td>
-                <td>Yes: <input type="radio" name="location_tracking" value="1" style="width:30px" /> 
-                    No: <input type="radio" name="location_tracking" value="0" style="width:30px" checked /><br>
+                <td>Yes: <input type="radio" name="location_tracking" value="1" {{($campaignDetails->location_tracking == 1) ? 'checked' : ''}} /> 
+                    No: <input type="radio" name="location_tracking" value="0"  {{($campaignDetails->location_tracking == 1) ? '' : 'checked'}} checked /><br>
                 </td>
             </tr>
 
@@ -244,13 +264,13 @@
                 <td>
                     <div class="radio">
                         <label style="display: block;">
-                            <input type="radio" name="location_device" value="2" checked /> Both
+                            <input type="radio" name="location_device" value="2" {{($campaignDetails->location_device == 1) ? 'checked' : ''}} /> Both
                         </label>
                         <label style="display: block;">
-                            <input type="radio" name="location_device" value="1" /> Mobile Only
+                            <input type="radio" name="location_device" value="1" {{($campaignDetails->location_device == 0) ? 'checked' : ''}} /> Mobile Only
                         </label>
                         <label style="display: block;">
-                            <input type="radio" name="location_device" value="0" /> Desktop Only
+                            <input type="radio" name="location_device" value="0" {{($campaignDetails->location_device != 0 && $campaignDetails->location_device != 1) ? 'checked' : ''}} /> Desktop Only
                         </label>
                     </div>
                 </td>
@@ -262,22 +282,23 @@
         <table class="table-form">
             <tr>
                 <td>Campaign Budget</td>
-                <td><input type="text" class="form-control" name="campaign_budget"  /></td>
+                <td><input type="text" class="form-control" name="campaign_budget" {{$disable}} value="{{$campaignDetails->campaign_budget}}" /></td>
             </tr>
 
             <tr>
                 <td>Campaign Manager</td>
-                <td><input type="text" class="form-control" name="campaign_mgr"  /></td>
+                <td><input type="text" class="form-control" name="campaign_mgr" {{$disable}} value="{{$campaignDetails->campaign_mgr}}" /></td>
             </tr>
 
-            <tr>
+<!--            <tr>
                 <td>Account Manager</td>
                 <td><input type="text" class="form-control" name="account_mgr"  /></td>
-            </tr>
+            </tr>-->
 
             <tr>
                 <td>Campaign Currency:-</td>
-                <td><select name="campaign_currency" class="form-control">
+                <td><select name="campaign_currency" class="form-control" {{$disable}}>
+                        <option value="<?php echo $campaignDetails->campaign_currency; ?>"> Current: <?php echo $campaignDetails->campaign_currency; ?></option>
                         <option value="">Select Currency</option>
                         <option value="AUD">Australian Dollar</option>
                         <option value="BRL">Brazilian Real </option>
@@ -303,64 +324,76 @@
                         <option value="THB">Thai Baht</option>
                         <option value="TRY">Turkish Lira</option>
                         <option value="USD" SELECTED="YES">U.S. Dollar</option>
-                    </select></td>
+                    </select>
+                    <?php
+                    if ( $disable == "disabled" ) {
+                        echo "<input type='hidden' name='campaign_currency' value='" . $campaignDetails->campaign_currency . "' />";
+                    }
+                    ?>
+                </td>
             </tr>
 
             <tr>
                 <td>Billing Cycle:-</td>
                 <td>
-                    <select class="form-control" name="campaign_cycle">
+                    <select class="form-control" name="campaign_cycle" {{$disable}}>
                         <?php
                         for ( $x = 1; $x <= 31; $x++ ) {
                             echo "<option value='$x'>$x</option>";
                         }
                         ?>     
-                    </select></td>
+                    </select>
+                    <?php
+                    if ( $disable == "disabled" ) {
+                        echo "<input type='hidden' name='campaign_cycle' value='" . $campaignDetails->campaign_cycle . "' />";
+                    }
+                    ?>
+                </td>
             </tr>
 
             <tr>
                 <td>Doubleclick Calls Activity Name:- </td>
-                <td><input type="text" class="form-control"   name="dblclick_name_calls"   /></td>
+                <td><input type="text" class="form-control"   name="dblclick_name_calls" value="{{$campaignDetails->dblclick_name_calls}}" {{$disable}} /></td>
             </tr>
 
             <tr>
                 <td>Doubleclick Goals Activity Name:-</td>
-                <td><input type="text" class="form-control"   name="dblclick_name_goals"   /></td>
+                <td><input type="text" class="form-control"   name="dblclick_name_goals"  value="{{$campaignDetails->dblclick_name_goals}}" {{$disable}} /></td>
             </tr>
 
             <tr>
                 <td>Doubleclick Agency ID:- </td>
-                <td><input type="text" class="form-control"    name="dblclick_agency_id"  onkeypress='return validateId()' /></td>
+                <td><input type="text" class="form-control"    name="dblclick_agency_id" value="<?php echo $campaignDetails->dblclick_agency_id; ?>" {{$disable}} /></td>
             </tr>
 
             <tr>
                 <td>Doubleclick Advertiser ID :-</td>
-                <td><input type="text" class="form-control"    name="dblclick_advertiser_id"  /></td>
+                <td><input type="text" class="form-control"    name="dblclick_advertiser_id" value="<?php echo $campaignDetails->dblclick_advertiser_id; ?>"  {{$disable}}  /></td>
             </tr>
 
             <tr>
                 <td>Yahoo JPN Account Id:- <span class="required_inputs_star text-danger">*</span></td>
-                <td><input type="text" class="form-control"   name="yahoojpn_aid" /></td>
+                <td><input type="text" class="form-control"   name="yahoojpn_aid" value="<?php echo $campaignDetails->yahoojpn_aid; ?>"  {{$disable}} /></td>
             </tr>
 
             <tr>
                 <td>Yahoo JPN Campaign Id:- <span class="required_inputs_star text-danger">*</span></td>
-                <td><input type="text" class="form-control"   name="yahoojpn_cid" /></td>
+                <td><input type="text" class="form-control"   name="yahoojpn_cid" value="<?php echo $campaignDetails->yahoojpn_cid; ?>" /></td>
             </tr>
 
             <tr>
                 <td>>AdWords Campaign Id:-</td>
-                <td><input type="text" class="form-control"   name="adwords_campaign_id" /></td>
+                <td><input type="text" class="form-control"   name="adwords_campaign_id" value="<?php echo $campaignDetails->adwords_campaign_id; ?>"  {{$disable}}/></td>
             </tr>
 
             <tr>
                 <td>Bing Campaign Id:-</td>
-                <td><input type="text" class="form-control"   name="bing_campaign_id" /></td>
+                <td><input type="text" class="form-control"   name="bing_campaign_id" value="<?php echo $campaignDetails->bing_campaign_id; ?>"  {{$disable}}/></td>
             </tr>
 
             <tr>
                 <td>Super Pgs Campaign Id:-</td>
-                <td><input type="text" class="form-control"   name="sp_campaign_id" /></td>
+                <td><input type="text" class="form-control"   name="sp_campaign_id" value="<?php echo $campaignDetails->sp_campaign_id; ?>" {{$disable}}/></td>
             </tr>
             <?php
             if ( $level == 1 || $level == 7 ) {
@@ -368,12 +401,12 @@
                 <tr>
                     <td>PPC Markup:-</td>
                     <td><i>20% markup = ( 100 - 20 ), enter 80 into the field</i><br>
-                        <input type="text" class="form-control" name="ppc_markup" />  = (100 - %)</td>
+                        <input type="text" class="form-control" name="ppc_markup"  value="<?php echo $campaignDetails->ppc_markup; ?>" />  = (100 - %)</td>
                 </tr>
                 <?php
             } else {
                 ?>
-                <input type="hidden" name="ppc_markup" value="55"/>
+                <input type="hidden" name="ppc_markup"  value="<?php echo $campaignDetails->ppc_markup; ?>"/>
                 <?php
             }
             ?>
@@ -382,8 +415,8 @@
                 <td>**Chat Campaign</td>
                 <td>
                     <div class="radio radio-inline">
-                        <label><input type="radio" name="chat_campaign" value="1"> Yes</label>
-                        <label><input type="radio" name="chat_campaign" value="0" checked> No</label>
+                        <label><input type="radio" name="chat_campaign" value="1" {{($campaignDetails->chat_campaign == 1) ? 'checked' : ''}}> Yes</label>
+                        <label><input type="radio" name="chat_campaign" value="0" {{($campaignDetails->chat_campaign == 0) ? 'checked' : ''}}> No</label>
                     </div>
                 </td>
             </tr>
@@ -391,15 +424,15 @@
                 <td>**Save Chat Conversation</td>
                 <td>
                     <div class="radio radio-inline">
-                        <label><input type="radio" name="save_chat" value="1"> Yes</label>
-                        <label><input type="radio" name="save_chat" value="0" checked> No</label>
+                        <label><input type="radio" name="save_chat" value="1" {{($campaignDetails->save_chat == 1) ? 'checked' : ''}}> Yes</label>
+                        <label><input type="radio" name="save_chat" value="0" {{($campaignDetails->save_chat == 0) ? 'checked' : ''}}> No</label>
                     </div>
                 </td>
             </tr>
             <tr>
                 <td>**Chat Covnersion Words:-</td>
                 <td><p><i>i.e. credit cards, appointment,shipping, do you take credit cards </i> up to 50.<br>
-                    If any of these words are typed during a chat session, they will be counted each time as a conversion</p>
+                        If any of these words are typed during a chat session, they will be counted each time as a conversion</p>
                     <textarea name="tag_words" cols="40" rows='4' class="form-control"></textarea></td>
             </tr>
 

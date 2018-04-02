@@ -95,10 +95,34 @@ class CampaignController extends Controller
      */
     public function edit( $campaign_id, $account_id )
     {
-        /*
-         * TODO: Get account details and display form
-         */
-        return view( "{$this->viewDir}.edit" );
+        $data[ 'campaign_id' ] = $campaign_id;
+        $data[ 'account_id' ] = $account_id;
+        $data[ 'campaignDetails' ] = Campaign::where( 'campaign_id', $campaign_id )->first();
+        $data[ 'accountData' ] = Account::where( 'account_id', $account_id )->first();
+        $user = Auth::user();
+        $data[ 'level' ] = $user->level;
+        $user_account_id = $user->account_id;
+
+        if ( $data[ 'level' ] == 5 ) {
+            $accounts = $this->accountController->getAccountAgent();
+        } else {
+            $accounts = $this->accountController->getAccounts();
+        }
+
+        $acctArray = array();
+        foreach ( $accounts as $acct ) {
+            if ( isset( $acct->account_id ) ) {
+                $acctArray[] = $acct->account_id;
+            }
+        }
+
+        if ( in_array( $account_id, $acctArray ) || $user_account_id == $account_id || $data[ 'accountData' ]->agent_id == $user_account_id
+        ) {
+            $data[ 'ga_codes' ] = $this->getGA_codes( $campaign_id );
+            return view( "{$this->viewDir}.edit", $data );
+        } else {
+            echo '1';
+        }
     }
 
     /**
@@ -156,8 +180,8 @@ class CampaignController extends Controller
             "sp_campaign_id"           => $request->input( 'sp_campaign_id' ) ? $request->input( 'sp_campaign_id' ) : '',
             $camp_field                => 1,
             "date_created"             => date( "Y-m-d H:i:s" ),
-            "multi_phone"              => $request->input( 'multi_phone' ),
-            "ppc_markup"               => $request->input( 'ppc_markup' ),
+            "multi_phone"              => $request->input( 'multi_phone' ) ? $request->input( 'multi_phone' ) : '',
+            "ppc_markup"               => $request->input( 'ppc_markup' ) ? $request->input( 'ppc_markup' ) : '',
             "correlation_time"         => $corr_time,
             "timeZone"                 => $request->input( 'timeZone' ),
             "chat_campaign"            => $request->input( 'chat_campaign' ),
@@ -293,6 +317,19 @@ class CampaignController extends Controller
             DB::table( 'camp_analytics_codes' )
                 ->where( [ 'campaign_id' => $campaign_id, 'type' => $type ] )
                 ->insert( [ 'campaign_id' => $campaign_id, 'type' => $type, 'code' => $code ] );
+        }
+    }
+
+    function getGA_codes( $campaign_id, $type = '' )
+    {
+        $q = DB::table( 'camp_analytics_codes' )->where( 'campaign_id', $campaign_id );
+        if ( $type != "" ) {
+            $q = $q->where( 'type', $type );
+        }
+        if ( $type == "" ) {
+            return $q->get();
+        } else {
+            return $q->first();
         }
     }
 
@@ -549,6 +586,21 @@ class CampaignController extends Controller
     {
         $result = DB::table( 'source_number_inventory' )->where( 'campaign_id', $campaign_id )->get();
         return $result;
+    }
+
+    function getCampaignPhoneNumbers( $campaign_id )
+    {
+        return DB::table( 'phone_number_inventory' )
+                ->where( 'campaign_id', $campaign_id )
+                ->where( 'useable', 1 )
+                ->get();
+    }
+
+    function getAllCampaignPhoneNumbers( $campaign_id )
+    {
+        return DB::table( 'phone_number_inventory' )
+                ->where( 'campaign_id', $campaign_id )
+                ->get();
     }
 
 }
