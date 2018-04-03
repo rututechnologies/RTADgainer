@@ -64,19 +64,35 @@ class CampaignController extends Controller
 
     /**
      * Create Campaign page
-     * 
-     * TODO: display campaign form.
+     */
+    public function create()
+    {
+        $data = [];
+        $user = Auth::user();
+        $level = $user->level;
+        if ( $level == 5 ) {
+            $accounts = $this->accountController->getAccountAgent();
+        } else {
+            $accounts = $this->accountController->getAccounts();
+        }
+        $data[ 'level' ] = $level;
+        $data[ 'allAccounts' ] = $accounts;
+        $data[ 'accountData' ] = false;
+
+        // get account data
+        return view( "{$this->viewDir}.create", $data );
+    }
+
+    /**
+     * Create Campaign page by selected account
      */
     public function createByAccount( $account_id )
     {
         $data = [];
-//        $level[ 'level' ] = $_SESSION[ 'user_level' ];
-        // TODO: level = 5 to get account agent
         $user = Auth::user();
         $level = $user->level;
         if ( $level == 5 ) {
-            $accounts = $this->accountController->getAccounts();
-//            $accounts = $this->accountController->getAccountAgent();
+            $accounts = $this->accountController->getAccountAgent();
         } else {
             $accounts = $this->accountController->getAccounts();
         }
@@ -133,6 +149,10 @@ class CampaignController extends Controller
     public function submitCreate( Request $request )
     {
         $account_id = $request->input( 'account_id' );
+        $camp_name = $request->input( 'campaign_name' );
+        if ( empty( $account_id ) || empty( $camp_name ) ) {
+            return back()->with( 'error_msg', 'Account and Campaign name are required' );
+        }
         $call_notification = $request->input( 'call_notification' );
         if ( is_array( $call_notification ) && count( $call_notification ) > 0 ) {
             $call_notification = implode( ',', $call_notification );
@@ -158,7 +178,6 @@ class CampaignController extends Controller
             $campaign_tracking_type = 'Source Tracking';
         }
 
-        $camp_name = $request->input( 'campaign_name' );
         $corr_time = $request->input( 'correlation_time' );
         $default_number = $request->input( 'default_number' ) ? $request->input( 'default_number' ) : '';
         $data = array(

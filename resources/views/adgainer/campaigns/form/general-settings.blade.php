@@ -4,16 +4,16 @@
             <?php if ( !isset( $accountData->account_id ) ) { ?>
                 <tr>
                     <td>
-                        Select Account or Create New Account
+                        Select Account
                     </td>
                     <td>
-                        <select name="account_id" id="account_id" class="form-control">
+                        <select name="account_id" id="account_id" class="form-control" required>
                             <option value="">
                                 Select an Account
                             </option>
-                            <option value="NEW">
+<!--                            <option value="NEW">
                                 New Account
-                            </option>
+                            </option>-->
                             <?php
                             foreach ( $allAccounts as $account ) {
                                 echo "<option value='" . $account->account_id . "'>" . $account->accountName . "</option>";

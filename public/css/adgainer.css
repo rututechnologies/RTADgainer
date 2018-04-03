@@ -2,6 +2,11 @@
   margin-bottom: 30px;
 }
 
+.nav-second-level li a {
+  padding: 10px;
+  padding-left: 40px;
+}
+
 ::-webkit-scrollbar-thumb {
   background: rgba(113, 102, 102, 0.83);
   border: none;

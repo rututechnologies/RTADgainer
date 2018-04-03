@@ -147,6 +147,10 @@
             e.preventDefault();
             return validate();
         });
+
+        $("#account_id").select2({
+            placeholder: "Select An Account"
+        });
     });
 
     function confirmSubmit()

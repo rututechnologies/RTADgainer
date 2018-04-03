@@ -78,13 +78,18 @@
                     <i class="fa fa-money"></i> <span class="nav-label">Accounting</span>
                 </a>
             </li>
-            <li class="{{ isActiveNav(['app/campaign-tools/mycampaign', 'app/campaign-tools/all-campaigns']) }}">
+            <li class="{{ isActiveNav(['app/campaign-tools/mycampaign', 'app/campaign-tools/all-campaigns', 'app/campaign/create']) }}">
                 <a href="">
                     <i class="fa fa-inr"></i> 
                     <span class="nav-label">Campaign Tools</span> 
                     <span class="fa arrow"></span>
                 </a>
-                <ul class="nav nav-second-level collapse {{ isActiveNav(['app/campaign-tools/mycampaign', 'app/campaign-tools/all-campaigns'], 'in') }}">
+                <ul class="nav nav-second-level collapse {{ isActiveNav(['app/campaign-tools/mycampaign', 'app/campaign-tools/all-campaigns', 'app/campaign/create'], 'in') }}">
+                    <li class="{{ isActiveNav('app/campaign/create') }}">
+                        <a href="{{ url('app/campaign/create/')}}">
+                            New Campaign
+                        </a>
+                    </li>
                     <li class="{{ isActiveNav('app/campaign-tools/mycampaign') }}">
                         <a href="{{ url('app/campaign-tools/mycampaign/')}}">
                             My Campaign
