@@ -10,12 +10,12 @@
 
 <div class="wrapper border-bottom white-bg page-heading">
     <h1 class="module_heading">
-        <span>My Campaign</span>
+        <span>My Campaigns</span>
     </h1>
     <ol class="breadcrumb" style="padding-bottom: 20px;">
         <li><a href="{{url('/dashboard')}}"><i class="fa fa-dashboard"></i> Dashboard</a></li>
         <li>Campaign Tools</a></li>
-        <li class="active"><strong>My Campaign</strong></li>
+        <li class="active"><strong>My Campaigns</strong></li>
     </ol>
 </div>
 

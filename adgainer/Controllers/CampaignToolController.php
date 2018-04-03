@@ -32,12 +32,12 @@ class CampaignToolController extends Controller
      * application/controller/campaign::myCampaign() | 2560
      * application/views/campaigns/myCampaign.php
      */
-    public function myCampaign( Request $request )
+    public function myCampaigns( Request $request )
     {
         // get my account and campaign data
         $account_id = Auth::user()->account_id;
         $data = $this->getData( $request, $account_id );
-        return view( "{$this->viewDir}.mycampaign", $data );
+        return view( "{$this->viewDir}.mycampaigns", $data );
     }
 
     /**

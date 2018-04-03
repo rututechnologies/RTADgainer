@@ -20,7 +20,7 @@ Route::group( [ 'middleware' => [ 'auth' ] ], function () {
     Route::post( 'campaign/submit-delete/{campaign_id}', [ 'uses' => 'CampaignController@submitDelete' ] );
 
     // campaign tools
-    Route::get( 'campaign-tools/mycampaign', [ 'uses' => 'CampaignToolController@myCampaign' ] );
+    Route::get( 'campaign-tools/mycampaigns', [ 'uses' => 'CampaignToolController@myCampaigns' ] );
     Route::get( 'campaign-tools/all-campaigns', [ 'uses' => 'CampaignToolController@allCampaigns' ] );
     // reports
     Route::get( 'account/get-table', [ 'uses' => 'AccountController@tableReports', 'as' => 'account-reports' ] );

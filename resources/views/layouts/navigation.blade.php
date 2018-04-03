@@ -90,9 +90,9 @@
                             New Campaign
                         </a>
                     </li>
-                    <li class="{{ isActiveNav('app/campaign-tools/mycampaign') }}">
-                        <a href="{{ url('app/campaign-tools/mycampaign/')}}">
-                            My Campaign
+                    <li class="{{ isActiveNav('app/campaign-tools/mycampaigns') }}">
+                        <a href="{{ url('app/campaign-tools/mycampaigns/')}}">
+                            My Campaigns
                         </a>
                     </li>
                     <li class="{{ isActiveNav('app/campaign-tools/all-campaigns') }}">
