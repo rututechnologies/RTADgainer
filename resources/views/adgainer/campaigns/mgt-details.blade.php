@@ -124,7 +124,7 @@
                 <textarea cols="50" rows="10" class="form-control">
                     <?php
                     if ( $accountData->status == "FULL" ) {
-                        printf( '<script type="text/javascript" src="%sincomingdata/email_tracking_js_code/?formId=&class=&campaignId=%s"></script>', url( '/' ), $campaign->campaign_id );
+                        printf( '<script type="text/javascript" src="%s/incomingdata/email_tracking_js_code/?formId=&class=&campaignId=%s"></script>', url( '/' ), $campaign->campaign_id );
                     } else {
                         echo "ONLY FOR FULL LEVEL ACCOUNTS";
                     }
