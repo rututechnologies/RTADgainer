@@ -856,4 +856,79 @@ class CampaignController extends Controller
             ->update( [ 'campaign_id' => $new_campaign_id ] );
     }
 
+    function actionGoals()
+    {
+        $data = [];
+        $user = Auth::user();
+        $data[ 'level' ] = $user->level;
+        $data[ 'user_account_id' ] = $user->account_id;
+        $data[ 'account' ] = Account::where( 'account_id', $user->account_id )->first();
+        $data[ 'campaigns' ] = Campaign::where( 'account_id', $user->account_id )->get();
+
+        if ( $data[ 'level' ] == 5 ) {
+            $accounts = $this->accountController->getAccountAgent();
+        } else {
+            $accounts = $this->accountController->getAccounts();
+        }
+        $data[ 'accounts' ] = $accounts;
+        return view( "{$this->viewDir}.goal-actions", $data );
+    }
+
+    function do_saveGoalAction( Request $request )
+    {
+        $data = $request->input();
+        unset( $data[ '_token' ] );
+        foreach ( $data as $key => $val ) {
+            $data[ $key ] = $this->scrubSQL( $val );
+        }
+        $data[ 'click_tag' ] = (isset($data[ 'click_tag' ])) ? $data[ 'click_tag' ] : '';
+        $data[ 'url' ] = (isset($data[ 'url' ])) ? $data[ 'url' ] : '';
+        if ( count( $data ) > 0 ) {
+            $qr = DB::table( 'campaign_triggers' )->insert( $data );
+            if ( $qr ) {
+                return back()->with( 'success_msg', 'Success' );
+            } else {
+                return back()->with( 'error_msg', 'Failed' );
+            }
+        }
+    }
+
+    function getClientCampaigns( Request $request )
+    {
+        $account_id = $request->input( 'account_id' );
+        $show_sp = $request->input( 'show_sp' );
+        $campaigns = Campaign::where( 'account_id', $account_id )->get();
+        foreach ( $campaigns as $campaign ) {
+            $show = "";
+            if ( $show_sp == TRUE && $campaign->sp_campaign_id != "" ) {
+                $show = "(SP)";
+            }
+            echo "<option value='" . $campaign->campaign_id . "'>" . $campaign->campaign_name . " $show</option>";
+        }
+    }
+
+    function getCampaignGoals( Request $request )
+    {
+        $campaign_id = $request->input( 'campaign_id' );
+        $info = Campaign::where( 'campaign_id', $campaign_id )->first();
+
+        if ( !isset( $info->campaign_id ) ) {
+            echo "<option value=''>Select a Campaign</option>";
+        } else {
+            echo "<option value=''>Select a Goal</option>";
+            if ( $info->goal1Memo != "" ) {
+                echo "<option value='1'>" . $info->goal1Memo . "</option>";
+            }
+            if ( $info->goal2Memo != "" ) {
+                echo "<option value='2'>" . $info->goal2Memo . "</option>";
+            }
+            if ( $info->goal3Memo != "" ) {
+                echo "<option value='3'>" . $info->goal3Memo . "</option>";
+            }
+            if ( $info->goal4Memo != "" ) {
+                echo "<option value='4'>" . $info->goal4Memo . "</option>";
+            }
+        }
+    }
+
 }
