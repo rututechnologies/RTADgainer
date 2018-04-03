@@ -73,6 +73,17 @@
                 @include('layouts.topnavbar')
 
                 <!-- Main view animated bounceInRight -->
+                
+                @if ($errors->any())
+                <div class="alert alert-danger">
+                    <ul>
+                        @foreach ($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                        @endforeach
+                    </ul>
+                </div>
+                @endif
+                
                 @yield('content')
                 <div id="common__modal_box" class="modal modal-fullscreen fade" role="dialog">
                     <div class="modal-dialog modal-md">
@@ -99,178 +110,165 @@
         <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/js/select2.min.js"></script>
         <script src="{{ asset('https://cdn.datatables.net/buttons/1.2.4/js/dataTables.buttons.min.js') }}"></script>
         <script src="{{ asset('//cdn.datatables.net/buttons/1.2.4/js/buttons.flash.min.js') }}"></script>
-        
+
         <!--datepicker js-->
         <script src="{{ asset('custom/plugins/datepicker/bootstrap-datepicker.js')}}"></script>
-        
+
         <!--qrcode js-->
         <script src="{{ asset('js/plugins/qrcode/jquery.qrcode.min.js')}}"></script>
-        
+
         <!--adgainer script-->
         <script src="{{ asset('js/adgainer.js')}}"></script>
-        
-<script>
-    $.fn.dialog = function(option,title=null) {
 
-        if(typeof option === 'object' ){
-            console.log(option.col_format);
-            if(option.col_format=='lg')
-                col_format=option['col_format'];
-            else if(option.col_format=='md') {
-                col_format = 'md';
+        <script>
+        $.fn.dialog = function(option, title = null) {
 
-            }else
-                col_format = 'md';
-            if(option.full_screen=='no')
-                $('#common__modal_box').removeClass('modal-fullscreen ');
+        if (typeof option === 'object'){
+        console.log(option.col_format);
+        if (option.col_format == 'lg')
+            col_format = option['col_format'];
+        else if (option.col_format == 'md') {
+        col_format = 'md';
+        } else
+            col_format = 'md';
+        if (option.full_screen == 'no')
+            $('#common__modal_box').removeClass('modal-fullscreen ');
+        $('#common__modal_box').modal({backdrop: 'static', keyboard: false});
+        var html = '<div class="modal-dialog modal-' + col_format + '"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal">&times;</button><h4 class="modal-title">' + option['title'] + '</h4></div><div class="modal-body"></div></div></div>';
+        $('#common__modal_box').html(html);
+        $('#common__modal_box').find('.modal-content > .modal-body').html(option['content']);
+        } else if (option == 'close'){
+        $('#common__modal_box').modal('hide');
+        } else{
 
-            $('#common__modal_box').modal({backdrop: 'static', keyboard: false});
-            var html='<div class="modal-dialog modal-'+col_format+'"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal">&times;</button><h4 class="modal-title">'+option['title']+'</h4></div><div class="modal-body"></div></div></div>';
-
-            $('#common__modal_box').html(html);
-            $('#common__modal_box').find('.modal-content > .modal-body').html(option['content']);
-        }else if(option=='close'){
-            $('#common__modal_box').modal('hide');
-
-        }else{
-
-            col_format='lg';
-            $('#common__modal_box').modal({backdrop: 'static', keyboard: false});
-            var html='<div class="modal-dialog modal-'+col_format+'"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal">&times;</button><h4 class="modal-title">'+title+'</h4></div><div class="modal-body"></div></div></div>';
-            $('#common__modal_box').html(html);
-            $('#common__modal_box').find('.modal-content > .modal-body').html(option);
+        col_format = 'lg';
+        $('#common__modal_box').modal({backdrop: 'static', keyboard: false});
+        var html = '<div class="modal-dialog modal-' + col_format + '"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal">&times;</button><h4 class="modal-title">' + title + '</h4></div><div class="modal-body"></div></div></div>';
+        $('#common__modal_box').html(html);
+        $('#common__modal_box').find('.modal-content > .modal-body').html(option);
         }
 
-    };
-$(document).ready(function() {
+        };
+        $(document).ready(function() {
 
         $('.footable').footable({
-            "paging": {
-                "limit": 3,
-            }
-});
-
-
-    });
-    $(document).ready(function(){
+        "paging": {
+        "limit": 3,
+        }
+        });
+        });
+        $(document).ready(function(){
         // Open close right sidebar
         $('.right-sidebar-toggle').on('click', function () {
-            $('#right-sidebar').toggleClass('sidebar-open');
+        $('#right-sidebar').toggleClass('sidebar-open');
         });
-
         // Initialize slimscroll for right sidebar
         $('.sidebar-container').slimScroll({
-            height: '100%',
+        height: '100%',
             railOpacity: 0.4,
             wheelStep: 10
         });
         $('.right-sidebar2-toggle').on('click', function () {
-            $('#right-sidebar2').toggleClass('sidebar-open');
+        $('#right-sidebar2').toggleClass('sidebar-open');
         });
-    });
-    $(document).ready(function(){
+        });
+        $(document).ready(function(){
         $('.dataTables-example').DataTable({
-            pageLength: 25,
+        pageLength: 25,
             responsive: true,
             dom: '<"html5buttons"B>lTfgitp',
             buttons: [
-                {
-                    extend: 'copy',
-                    exportOptions: {
-                        columns: "thead th:not(.noExport)"
-                    }
-                },
-                {
-                    extend: 'csv',
-                    exportOptions: {
-                        columns: "thead th:not(.noExport)"
-                    }
-                },
-                {extend: 'excel',
-                    exportOptions: {
-                        columns: "thead th:not(.noExport)"
-                    }
-
-                },
-                {extend: 'pdf',
-                    exportOptions: {
-                        columns: "thead th:not(.noExport)"
-                    }
-                },
-
-                {extend: 'print',
-                    exportOptions: {
-                        columns: "thead th:not(.noExport)"
-                    },
-                    customize: function (win){
-                        $(win.document.body).addClass('white-bg');
-                        $(win.document.body).css('font-size', '10px');
-
-                        $(win.document.body).find('table')
-                            .addClass('compact')
-                            .css('font-size', 'inherit');
-                    }
+            {
+            extend: 'copy',
+                exportOptions: {
+                columns: "thead th:not(.noExport)"
                 }
+            },
+            {
+            extend: 'csv',
+                exportOptions: {
+                columns: "thead th:not(.noExport)"
+                }
+            },
+            {extend: 'excel',
+                exportOptions: {
+                columns: "thead th:not(.noExport)"
+                }
+
+            },
+            {extend: 'pdf',
+                exportOptions: {
+                columns: "thead th:not(.noExport)"
+                }
+            },
+            {extend: 'print',
+                exportOptions: {
+                columns: "thead th:not(.noExport)"
+                },
+                customize: function (win){
+                $(win.document.body).addClass('white-bg');
+                $(win.document.body).css('font-size', '10px');
+                $(win.document.body).find('table')
+                    .addClass('compact')
+                    .css('font-size', 'inherit');
+                }
+            }
             ]
 
         });
-
-    });
+        });
         </script>
-<script type='text/javascript'>
-    $(function(){
-        $("#adv_search_btn").click(function(e){
+        <script type='text/javascript'>
+            $(function(){
+            $("#adv_search_btn").click(function(e){
             e.preventDefault();
             $("#advance_search").toggle();
-        });
-    })
-</script>
-<script type="text/javascript">
-    function load_languages() {
-        $.get("{{ url('/languages')}}")
-            .done(function (data) {
-                $('#raise_ticket_dialog').dialog(data['content'],'Change ' +
-                    'Language');
             });
-        return false;
-    }
-    function changeLanguage() {
-        var language_selected = $('#select_language').val();
-        toastr.error('You selected ' + language_selected);
-    }
+            })
+        </script>
+        <script type="text/javascript">
+                function load_languages() {
+                $.get("{{ url('/languages')}}")
+                    .done(function (data) {
+                    $('#raise_ticket_dialog').dialog(data['content'], 'Change ' +
+                        'Language');
+                    });
+                return false;
+                }
+            function changeLanguage() {
+            var language_selected = $('#select_language').val();
+            toastr.error('You selected ' + language_selected);
+            }
 
 
 
-    $( document ).ajaxStart(function() {
-        toastr.options = {
+            $(document).ajaxStart(function() {
+            toastr.options = {
             timeOut: 0,
-            extendedTimeOut: 0,
-            tapToDismiss: false
-        };
-        toastr.info('Processing...');
-    });
-
-    $( document ).ajaxError(function( event, jqxhr, settings, thrownError) {
-        $errors = jqxhr.responseJSON;
-
-        console.log($errors);
-        errorsHtml = '<ul>';
-        $.each( $errors, function( key, value ){
+                extendedTimeOut: 0,
+                tapToDismiss: false
+            };
+            toastr.info('Processing...');
+            });
+            $(document).ajaxError(function(event, jqxhr, settings, thrownError) {
+            $errors = jqxhr.responseJSON;
+            console.log($errors);
+            errorsHtml = '<ul>';
+            $.each($errors, function(key, value){
             console.log(key);
             errorsHtml += '<li>' + value[0] + '</li>'; //showing only the first error.
-        });
-        errorsHtml += '</ul>';
-        console.log(errorsHtml);
-        toastr.warning(errorsHtml);
-        toastr.remove();
+            });
+            errorsHtml += '</ul>';
+            console.log(errorsHtml);
+            toastr.warning(errorsHtml);
+            toastr.remove();
+            });
+            $(document).ajaxSuccess(function(data) {
+            toastr.success('Success');
+            toastr.remove();
+            });
 
-    });
-    $( document ).ajaxSuccess(function(data) {
-        toastr.success('Success');
-        toastr.remove();
-    });
-
-</script>
+        </script>
         @section('scripts')
         @show
 

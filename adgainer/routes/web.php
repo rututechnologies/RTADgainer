@@ -6,7 +6,7 @@ Route::group( [ 'middleware' => [ 'auth' ] ], function () {
     // form submitted
     Route::post( 'account/submit-edit/{account_id}', [ 'uses' => 'AccountController@submitEdit' ] );
 
-    // campaigns
+    // campaigns manager
     Route::get( 'campaigns', [ 'uses' => 'CampaignController@index' ] );
     Route::get( 'campaign/details/{campaign_id}/{account_id}', [ 'uses' => 'CampaignController@details', 'as' => 'campaignDetails' ] );
     Route::get( 'campaign/create', [ 'uses' => 'CampaignController@create' ] );
@@ -22,6 +22,7 @@ Route::group( [ 'middleware' => [ 'auth' ] ], function () {
     // campaign tools
     Route::get( 'campaign-tools/mycampaigns', [ 'uses' => 'CampaignToolController@myCampaigns' ] );
     Route::get( 'campaign-tools/all-campaigns', [ 'uses' => 'CampaignToolController@allCampaigns' ] );
+    
 
     // goal actions
     Route::get( 'campaign/goal-actions', [ 'uses' => 'CampaignController@actionGoals' ] );
@@ -32,4 +33,10 @@ Route::group( [ 'middleware' => [ 'auth' ] ], function () {
 
     // account - ppc detail
     Route::get( 'account/showPPCAccountDetails', [ 'uses' => 'AccountController@showPPCAccountDetails', 'as' => 'PPCAccountDetails' ] );
+    
+    // campaigns
+    Route::get( 'campaign/addCampaignSourceNumbers', [ 'uses' => 'CampaignController@addCampaignSourceNumbers' ] );
+    Route::post( 'campaign/do_addCampaignSourceNumbers', [ 'uses' => 'CampaignController@do_addCampaignSourceNumbers' ] );
+    Route::get( 'campaign/addCampaignNumbers', [ 'uses' => 'CampaignController@addCampaignNumbers' ] );
+    Route::post( 'campaign/do_addCampaignNumbers', [ 'uses' => 'CampaignController@do_addCampaignNumbers' ] );
 } );

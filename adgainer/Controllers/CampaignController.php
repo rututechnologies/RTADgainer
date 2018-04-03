@@ -8,9 +8,11 @@ use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Storage;
 use function asset;
 use function redirect;
 use function response;
+use function storage_path;
 use function view;
 
 class CampaignController extends Controller
@@ -881,8 +883,8 @@ class CampaignController extends Controller
         foreach ( $data as $key => $val ) {
             $data[ $key ] = $this->scrubSQL( $val );
         }
-        $data[ 'click_tag' ] = (isset($data[ 'click_tag' ])) ? $data[ 'click_tag' ] : '';
-        $data[ 'url' ] = (isset($data[ 'url' ])) ? $data[ 'url' ] : '';
+        $data[ 'click_tag' ] = (isset( $data[ 'click_tag' ] )) ? $data[ 'click_tag' ] : '';
+        $data[ 'url' ] = (isset( $data[ 'url' ] )) ? $data[ 'url' ] : '';
         if ( count( $data ) > 0 ) {
             $qr = DB::table( 'campaign_triggers' )->insert( $data );
             if ( $qr ) {
@@ -929,6 +931,214 @@ class CampaignController extends Controller
                 echo "<option value='4'>" . $info->goal4Memo . "</option>";
             }
         }
+    }
+
+    public function addCampaignSourceNumbers( Request $request )
+    {
+        $campaign_id = $request->get( 'campaign_id' );
+        $data[ 'campaign_id' ] = $campaign_id;
+        $user = Auth::user();
+        $data[ 'level' ] = $user->level;
+
+        $data[ 'campaignDetails' ] = Campaign::where( 'campaign_id', $campaign_id )->first();
+        if ( !isset( $data[ 'campaignDetails' ]->account_id ) ) {
+            echo 'Campaign not found';
+            exit;
+        }
+        $data[ 'accountData' ] = Account::where( 'account_id', $data[ 'campaignDetails' ]->account_id )->first();
+        return view( "{$this->viewDir}.addCampaignSourceNumbers", $data );
+    }
+
+    public function do_addCampaignSourceNumbers( Request $request )
+    {
+        $this->validate( $request, [
+            'account_id'        => 'required',
+            'campaign_id'       => 'required',
+            'phone_number'      => 'array',
+            'phone_number_file' => 'file|max:10000|mimetypes:text/csv,text/plain|mimes:csv,txt',
+            'phone_number_file' => 'file',
+        ] );
+
+        $numbers = $request->input( 'phone_number', [] );
+        $campaign_id = $request->input( 'campaign_id' );
+        $account_id = $request->input( 'account_id' );
+
+        $data[ 'campaign_id' ] = $campaign_id;
+        $data[ 'result' ] = "";
+        DB::beginTransaction();
+        try {
+            if ( $request->hasFile( 'phone_number_file' ) ) {
+                $path = $request->file( 'phone_number_file' )->store( 'csv' );
+
+                $update = [ 'pre_account_id' => $account_id, 'account_id' => '', 'campaign_id' => '' ];
+
+                if ( $path ) {
+                    $fullpath = Storage::path( $path );
+                    if ( ($handle = fopen( Storage::path( $path ), "r" )) !== FALSE ) {
+                        while ( ($data = fgetcsv( $handle, 1000, "," )) !== FALSE ) {
+                            DB::table( 'phone_number_inventory' )->where( 'phone_number', $data[ 1 ] )->update( $update );
+                            DB::table( 'multi_tracking_inventory' )->where( 'track_phone', $data[ 1 ] )->update( $update );
+                            DB::table( 'source_number_inventory' )->where( 'phone_number', $data[ 1 ] )->update( $update );
+                            DB::table( 'source_number_inventory' )->insert( [
+                                'pre_account_id'  => '',
+                                'campaign_id'     => $campaign_id,
+                                'account_id'      => $account_id,
+                                'source'          => $data[ 0 ],
+                                'phone_number'    => $data[ 1 ],
+                                'replace_number'  => '',
+                                'forward_number'  => $data[ 2 ],
+                                'single_tracking' => 0,
+                                'device'          => 0,
+                                'useable'         => 0,
+                                'timestamp'       => Carbon::now()
+                            ] );
+//                            $this->db->query( "UPDATE phone_number_inventory SET pre_account_id = account_id, account_id = "', campaign_id='' WHERE phone_number='" . $data[ 1 ] . "'" );
+//                            $this->db->query( "UPDATE multi_tracking_inventory SET pre_account_id = account_id, account_id = '', campaign_id='' WHERE track_phone='" . $data[ 1 ] . "'" );
+//                            $this->db->query( "UPDATE source_number_inventory SET pre_account_id = account_id, account_id = '', campaign_id=''  WHERE phone_number='" . $data[ 1 ] . "'" );
+//                            $this->db->insert( 'source_number_inventory', array( "account_id" => $account_id, "campaign_id" => $campaign_id, "source" => $data[ 0 ], "phone_number" => $data[ 1 ], "forward_number" => $data[ 2 ] ) );
+                        }
+                        fclose( $handle );
+                    }
+                    unlink( $fullpath );
+                }
+            } else {
+                $update = [ 'pre_account_id' => $account_id, 'account_id' => '', 'campaign_id' => '' ];
+                foreach ( $numbers as $key => $number ) {
+                    if ( !empty( $number ) ) {
+                        DB::table( 'phone_number_inventory' )->where( 'phone_number', $number )->update( $update );
+                        DB::table( 'multi_tracking_inventory' )->where( 'track_phone', $number )->update( $update );
+                        DB::table( 'source_number_inventory' )->where( 'phone_number', $number )->update( $update );
+                        DB::table( 'source_number_inventory' )->insert( [
+                            'pre_account_id'  => '',
+                            'campaign_id'     => $campaign_id,
+                            'account_id'      => $account_id,
+                            'source'          => '',
+                            'phone_number'    => $number,
+                            'replace_number'  => '',
+                            'forward_number'  => '',
+                            'single_tracking' => 0,
+                            'device'          => 0,
+                            'useable'         => 0,
+                            'timestamp'       => Carbon::now()
+                        ] );
+                    }
+                }
+            }
+
+            DB::commit();
+        } catch ( Exception $ex ) {
+            DB::rollback();
+            echo 'failed';
+            exit;
+        }
+
+        return redirect()->route( 'campaignDetails', [ 'campaign_id' => $campaign_id, 'account_id' => $account_id ] )->with( [ 'success_msg' => 'Numbers Added' ] );
+    }
+
+    public function addcampaignnumbers( Request $request )
+    {
+        $campaign_id = $request->get( 'campaign_id' );
+        $data[ 'campaign_id' ] = $campaign_id;
+        $user = Auth::user();
+        $data[ 'level' ] = $user->level;
+
+        $data[ 'campaignDetails' ] = Campaign::where( 'campaign_id', $campaign_id )->first();
+        if ( !isset( $data[ 'campaignDetails' ]->account_id ) ) {
+            echo 'Campaign not found';
+            exit;
+        }
+        $data[ 'accountData' ] = Account::where( 'account_id', $data[ 'campaignDetails' ]->account_id )->first();
+        return view( "{$this->viewDir}.addCampaignNumbers", $data );
+    }
+
+    public function do_addcampaignnumbers( Request $request )
+    {
+        $this->validate( $request, [
+            'account_id'        => 'required',
+            'campaign_id'       => 'required',
+            'phone_number'      => 'array',
+            'phone_number_file' => 'file|max:10000|mimetypes:text/csv,text/plain|mimes:csv,txt',
+            'phone_number_file' => 'file',
+        ] );
+
+        $numbers = $request->input( 'phone_number', [] );
+        $campaign_id = $request->input( 'campaign_id' );
+        $account_id = $request->input( 'account_id' );
+
+        $data[ 'campaign_id' ] = $campaign_id;
+        $data[ 'result' ] = "";
+        DB::beginTransaction();
+        try {
+            if ( $request->hasFile( 'phone_number_file' ) ) {
+                $path = $request->file( 'phone_number_file' )->store( 'csv' );
+
+                $update = [ 'pre_account_id' => $account_id, 'account_id' => '', 'campaign_id' => '' ];
+
+                if ( $path ) {
+                    $fullpath = Storage::path( $path );
+                    if ( ($handle = fopen( Storage::path( $path ), "r" )) !== FALSE ) {
+                        while ( ($data = fgetcsv( $handle, 1000, "," )) !== FALSE ) {
+                            DB::table( 'source_number_inventory' )->where( 'phone_number', $data[ 0 ] )->update( $update );
+                            DB::table( 'multi_tracking_inventory' )->where( 'track_phone', $data[ 0 ] )->update( $update );
+                            DB::table( 'phone_number_inventory' )->where( 'phone_number', $data[ 0 ] )->update( $update );
+                            DB::table( 'phone_number_inventory' )->insert( [
+                                'pre_account_id'  => '',
+                                'campaign_id'     => $campaign_id,
+                                'account_id'      => $account_id,
+                                'phone_number'    => $data[ 0 ],
+                                'type'            => '',
+                                'provider'        => '',
+                                'ip'              => '',
+                                'session_id'      => '',
+                                'phone_id'        => '',
+                                'single_tracking' => 0,
+                                'device'          => 0,
+                                'useable'         => 0,
+                                'timestamp'       => Carbon::now()
+                            ] );
+//                            $this->db->query( "UPDATE phone_number_inventory SET pre_account_id = account_id, account_id = "', campaign_id='' WHERE phone_number='" . $data[ 1 ] . "'" );
+//                            $this->db->query( "UPDATE multi_tracking_inventory SET pre_account_id = account_id, account_id = '', campaign_id='' WHERE track_phone='" . $data[ 1 ] . "'" );
+//                            $this->db->query( "UPDATE source_number_inventory SET pre_account_id = account_id, account_id = '', campaign_id=''  WHERE phone_number='" . $data[ 1 ] . "'" );
+//                            $this->db->insert( 'source_number_inventory', array( "account_id" => $account_id, "campaign_id" => $campaign_id, "source" => $data[ 0 ], "phone_number" => $data[ 1 ], "forward_number" => $data[ 2 ] ) );
+                        }
+                        fclose( $handle );
+                    }
+                    unlink( $fullpath );
+                }
+            } else {
+                $update = [ 'pre_account_id' => $account_id, 'account_id' => '', 'campaign_id' => '' ];
+                foreach ( $numbers as $key => $number ) {
+                    if ( !empty( $number ) ) {
+                        DB::table( 'source_number_inventory' )->where( 'phone_number', $number )->update( $update );
+                        DB::table( 'multi_tracking_inventory' )->where( 'track_phone', $number )->update( $update );
+                        DB::table( 'phone_number_inventory' )->where( 'phone_number', $number )->update( $update );
+                        DB::table( 'phone_number_inventory' )->insert( [
+                            'pre_account_id'  => '',
+                            'campaign_id'     => $campaign_id,
+                            'account_id'      => $account_id,
+                            'phone_number'    => $number,
+                            'type'            => '',
+                            'provider'        => '',
+                            'ip'              => '',
+                            'session_id'      => '',
+                            'phone_id'        => '',
+                            'single_tracking' => 0,
+                            'device'          => 0,
+                            'useable'         => 0,
+                            'timestamp'       => Carbon::now()
+                        ] );
+                    }
+                }
+            }
+
+            DB::commit();
+        } catch ( Exception $ex ) {
+            DB::rollback();
+            echo 'failed';
+            exit;
+        }
+
+        return redirect()->route( 'campaignDetails', [ 'campaign_id' => $campaign_id, 'account_id' => $account_id ] )->with( [ 'success_msg' => 'Numbers Added' ] );
     }
 
 }

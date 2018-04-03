@@ -22,6 +22,12 @@
 
 <div class="container-fluid">
 
+    @if (session('success_msg'))
+    <div class="alert alert-success">
+        {{ session('success_msg') }}
+    </div>
+    @endif
+
     <div class="buttons clearfix" style="margin-bottom: 20px;">
         <a href="{{url('app/campaign/createCampaign', ['account_id' => $accountData->account_id])}}" class="btn btn-primary">
             Create New Campaign
@@ -63,8 +69,8 @@
                     echo "<br/>";
                     // TODO: multi_add
 //                    echo $this->session->flashdata( 'multi_add' );
-                    echo "<br/> <h4>Phone Numbers</h4> <a href='" . url( 'app/campaign/addMultiPhoneNumbers', [ 'campaign_id' => $campaign->campaign_id, 'account_id' => $campaign->account_id ] ) . "' >Add</a> ";
-                    echo "<br> <a href='" . url( 'app/campaign/viewCampaignMulti', [ 'campaign_id' => $campaign->campaign_id, 'account_id' => $campaign->account_id ] ) . "' >View Applied</a> <br/>";
+                    echo "<br/> <h4>Phone Numbers</h4> <a href='" . url( 'app/campaign/addMultiPhoneNumbers?campaign_id=' . $campaign->campaign_id . '&account_id=' . $campaign->account_id ) . "' >Add</a> ";
+                    echo "<br> <a href='" . url( 'app/campaign/viewCampaignMulti?campaign_id=' . $campaign->campaign_id . '&account_id=' . $campaign->account_id ) . "' >View Applied</a> <br/>";
                 }
             } else {
                 if ( $campaign->source_code == 1 ) {
@@ -74,12 +80,12 @@
                     $phoneNumbers = $campaignController->getAllCampaignSourcePhoneNumbers( $campaign->campaign_id );
                     $phoneNumbersCount = $phoneNumbers->count();
                     if ( ((!stristr( $campaign->tracking_type, "P" ) && $campaign->tracking_type != "A") && $level == 3) || $level != 3 ) {
-                        echo "<br/> <a href='" . url( 'app/campaign/edit', [ 'campaign_id' => $campaign->campaign_id, 'account_id' => $accountData->account_id ] ) . "'>Edit Campaign</a> ";
+                        echo "<br/> <a href='" . url( 'app/campaign/edit?campaign_id=' . $campaign->campaign_id . '&account_id=' . $accountData->account_id ) . "'>Edit Campaign</a> ";
                     }
-                    echo "<br/><br/> <h4>Phone Numbers</h4> <a href='" . url( 'campaign/addCampaignSourceNumbers', [ 'campaign_id' => $campaign->campaign_id, 'account_id' => $campaign->account_id ] ) . "' >Add</a> ";
-                    echo "<br> <a href='" . url( 'app/campaign/campaignSourcePhoneNumbers', [ 'campaign_id' => $campaign->campaign_id, 'account_id' => $campaign->account_id ] ) . "' style='color:#999'>Serving (" . $serveNumbersCount . ") | Total (" . $phoneNumbersCount . ")</a> ";
+                    echo "<br/><br/> <h4>Phone Numbers</h4> <a href='" . url( 'campaign/addCampaignSourceNumbers?campaign_id=' . $campaign->campaign_id . '&account_id=' . $campaign->account_id ) . "' >Add</a> ";
+                    echo "<br> <a href='" . url( 'app/campaign/campaignSourcePhoneNumbers?campaign_id=' . $campaign->campaign_id . '&account_id=' . $campaign->account_id ) . "' style='color:#999'>Serving (" . $serveNumbersCount . ") | Total (" . $phoneNumbersCount . ")</a> ";
                     if ( $level == 1 ) {
-                        echo " <br/><br/> <a href='" . url( 'twilio/searchSourceNumbers', [ 'campaign_id' => $campaign->campaign_id, 'account_id' => $campaign->account_id ] ) . "' >Search Phone Numbers</a> ";
+                        echo " <br/><br/> <a href='" . url( 'twilio/searchSourceNumbers?campaign_id=' . $campaign->campaign_id . '&account_id=' . $campaign->account_id ) . "' >Search Phone Numbers</a> ";
                     }
                 } else {
                     $serveNumbers = $campaignController->getCampaignPhoneNumbers( $campaign->campaign_id );
@@ -87,11 +93,11 @@
                     $phoneNumbers = $campaignController->getAllCampaignPhoneNumbers( $campaign->campaign_id );
                     $phoneNumbersCount = $phoneNumbers->count();
                     echo " <br/> <b>Phone Numbers</b> ";
-                    echo "<br> <a href='" . url( 'campaign/addCampaignNumbers', [ 'campaign_id' => $campaign->campaign_id, 'account_id' => $campaign->account_id ] ) . "' >Add</a> ";
-                    echo "<br> <a href='" . url( 'campaign/campaignPhoneNumbers', [ 'campaign_id' => $campaign->campaign_id, 'account_id' => $campaign->account_id ] ) . "' style='color:#999'>Serving (" . $serveNumbersCount . ") | Total (" . $phoneNumbersCount . ")</a> ";
-                    echo "<br> <a href='" . url( 'campaign/viewunassignednumbers', [ 'account_id' => $campaign->account_id ] ) . "' style='color:#999'>Available (" . $unassignedPhoneNumbers->count() . ")</a> <br/> ";
+                    echo "<br> <a href='" . url( 'app/campaign/addCampaignNumbers?campaign_id=' . $campaign->campaign_id . '&account_id=' . $campaign->account_id ) . "' >Add</a> ";
+                    echo "<br> <a href='" . url( 'app/campaign/campaignPhoneNumbers?campaign_id=' . $campaign->campaign_id . '&account_id=' . $campaign->account_id ) . "' style='color:#999'>Serving (" . $serveNumbersCount . ") | Total (" . $phoneNumbersCount . ")</a> ";
+                    echo "<br> <a href='" . url( 'app/campaign/viewunassignednumbers?account_id=' . $campaign->account_id ) . "' style='color:#999'>Available (" . $unassignedPhoneNumbers->count() . ")</a> <br/> ";
                     if ( $level == 1 ) {
-                        echo " <br/><a href='" . url( 'twilio/searchNumbers', [ 'campaign_id' => $campaign->campaign_id, 'account_id' => $campaign->account_id ] ) . "' >Search Phone Numbers</a> ";
+                        echo " <br/><a href='" . url( 'twilio/searchNumbers?campaign_id=' . $campaign->campaign_id . '&account_id=' . $campaign->account_id ) . "' >Search Phone Numbers</a> ";
                     }
                 }
             }
