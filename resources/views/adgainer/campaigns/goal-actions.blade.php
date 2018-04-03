@@ -124,7 +124,7 @@
                             <label class="col-md-3">Mark as Email:</label>
                             <div class="col-md-9">
                                 <div class="radio radio-inline" style="padding-left: 0;">
-                                    <label><input type="radio" name="email_send" value="1" />Yes </label> &nbsp;
+                                    <label><input type="radio" name="email_send" value="1" checked />Yes </label> &nbsp;
                                     <label><input type="radio" name="email_send" value="0" />No </label>                                    
                                 </div>
                             </div>
@@ -133,7 +133,7 @@
                         <div class="form-group">
                             <label class="col-md-3">GOAL:</label>
                             <div class="col-md-9">
-                                <select id="goal_count" name="goal_count" class="form-control">
+                                <select id="goal_count" name="goal_count" class="form-control" required>
                                     <option value=''>Select a Campaign</option>
                                 </select>
                             </div>
