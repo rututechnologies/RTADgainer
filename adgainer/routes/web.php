@@ -22,11 +22,14 @@ Route::group( [ 'middleware' => [ 'auth' ] ], function () {
     // campaign tools
     Route::get( 'campaign-tools/mycampaigns', [ 'uses' => 'CampaignToolController@myCampaigns' ] );
     Route::get( 'campaign-tools/all-campaigns', [ 'uses' => 'CampaignToolController@allCampaigns' ] );
-    
+
     // goal actions
     Route::get( 'campaign/goal-actions', [ 'uses' => 'CampaignController@actionGoals' ] );
     Route::post( 'campaign/do_saveGoalAction', [ 'uses' => 'CampaignController@do_saveGoalAction' ] );
     // reports
     Route::get( 'account/get-table', [ 'uses' => 'AccountController@tableReports', 'as' => 'account-reports' ] );
     Route::get( 'campaign/get-table', [ 'uses' => 'CampaignController@tableReports', 'as' => 'campaign-reports' ] );
+
+    // account - ppc detail
+    Route::get( 'account/showPPCAccountDetails', [ 'uses' => 'AccountController@showPPCAccountDetails', 'as' => 'PPCAccountDetails' ] );
 } );

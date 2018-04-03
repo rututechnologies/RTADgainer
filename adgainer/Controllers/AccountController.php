@@ -276,4 +276,43 @@ class AccountController extends Controller
         return array( 'SEC' => $offset, 'HR' => (($offset / 60) / 60) );
     }
 
+    function showPPCAccountDetails( Request $request )
+    {
+        $account_id = $request->query( 'account_id' );
+        $data[ 'account_id' ] = $account_id;
+        $data[ 'accountData' ] = Account::where( 'account_id', $account_id )->first();
+
+        $user = Auth::user();
+        $user_account_id = $user->account_id;
+        $data[ 'level' ] = $user->level;
+        if ( $data[ 'level' ] == 5 ) {
+            $accounts = $this->getAccountAgent();
+        } else {
+            $accounts = $this->getAccounts();
+        }
+        $acctArray = array();
+        foreach ( $accounts as $acct ) {
+            if ( isset( $acct->account_id ) ) {
+                $acctArray[] = $acct->account_id;
+            }
+        }
+        $date1 = $request->query( 'date1' );
+        $date2 = $request->query( 'date2' );
+        $data[ 'date1' ] = $date1;
+        $data[ 'date2' ] = $date2;
+        // TODO: agent_id
+//        if ( in_array( $account_id, $acctArray ) || $user_account_id == $account_id || $_SESSION[ 'agent_id' ] == $user_account_id ) {
+        if ( in_array( $account_id, $acctArray ) || $user_account_id == $account_id ) {
+            return view( "{$this->viewDir}.ppcAccountOverview", $data );
+        }
+    }
+
+    public function scrubSQL( $string )
+    {
+        $string = htmlspecialchars( strip_tags( trim( $string ) ) );
+        $string = str_replace( "'", "", $string );
+        $string = str_replace( ",", "", $string );
+        return $string;
+    }
+
 }

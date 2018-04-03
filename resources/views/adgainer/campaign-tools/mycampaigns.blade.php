@@ -165,12 +165,13 @@
             $url2 = route( 'account-reports', array_merge( [ 'report' => 'Web Traffic' ], $url_params ) );
             $url3 = route( 'account-reports', array_merge( [ 'report' => 'PPC Traffic' ], $url_params ) );
             $url4 = route( 'account-reports', array_merge( [ 'report' => 'Conversion Records' ], $url_params ) );
+            $url5 = route( 'PPCAccountDetails', $url_params );
             ?>
             <a href="{{$url1}}" target="_blank" class="btn btn-primary btn-lg" style="margin-bottom: 10px;">Call Records</a> &nbsp;
             <a href="{{$url2}}" target="_blank" class="btn btn-primary btn-lg" style="margin-bottom: 10px;">Web Traffic</a> &nbsp;
             <a href="{{$url3}}" target="_blank" class="btn btn-primary btn-lg" style="margin-bottom: 10px;">PPC Traffic</a> &nbsp;
             <a href="{{$url4}}" target="_blank" class="btn btn-primary btn-lg" style="margin-bottom: 10px;">Conversion</a> &nbsp;
-            <a href="#" target="_blank" class="btn btn-primary btn-lg" style="margin-bottom: 10px;">PPC Daily</a> &nbsp;
+            <a href="{{$url5}}" target="_blank" class="btn btn-primary btn-lg" style="margin-bottom: 10px;">PPC Daily</a> &nbsp;
             <a href="#" target="_blank" class="btn btn-default btn-lg" style="margin-bottom: 10px;"><img src="{!!asset('images/doc_pdf.png')!!}" alt=""></a> &nbsp;
         </div>
     </div>
@@ -181,11 +182,11 @@
 
         <!-- Nav tabs -->
         <ul class="nav nav-tabs nav-tabs-sm" role="tablist">
-            <li class="active"><a href="#tab_camapaign_ppc" data-toggle="tab">Campaign PPC Overview</a></li>
+            <li class="active"><a href="#tab_graph_data" data-toggle="tab">Graph Data Overview</a></li>
+            <li><a href="#tab_camapaign_ppc" data-toggle="tab">Campaign PPC Overview</a></li>
             <li><a href="#tab_ppc_tracking" data-toggle="tab">PPC Tracking Details</a></li>
             <li><a href="#tab_all_tracking" data-toggle="tab">All Tracking Details</a></li>
             <li><a href="#tab_map_view" data-toggle="tab">Map View Configuration</a></li>
-            <li><a href="#tab_graph_data" data-toggle="tab">Graph Data Overview</a></li>
             <li><a href="#tab_last_30" data-toggle="tab">Last 30 Day Conversions</a></li>
             <li><a href="#tab_account_campaigns" data-toggle="tab">Account Campaigns List</a></li>
             <li><a href="#tab_campaign_goals" data-toggle="tab">Campaign Goals</a></li>
@@ -194,8 +195,12 @@
         <!-- Tab panes -->
         <div class="tab-content">
 
+            <!--section 5-->
+            <div role="tabpanel" class="tab-pane fade in active" id="tab_graph_data">
+                @include('adgainer.campaign-tools.parts.graph-data', ['account_id' => $account_id, 'campaigns' => $campaigns, 'all_ppc' => $ppc, 'date1' => $date1, 'date2' => $date2, 'date1_show' => $date1_show, 'date2_show_' => $date2_show_])
+            </div>
             <!--section 1-->
-            <div role="tabpanel" class="tab-pane fade in active" id="tab_camapaign_ppc">
+            <div role="tabpanel" class="tab-pane fade" id="tab_camapaign_ppc">
                 @include('adgainer.campaign-tools.parts.campaign-ppc')
             </div>
             <!--section 2-->
@@ -210,10 +215,7 @@
             <div role="tabpanel" class="tab-pane fade" id="tab_map_view">
                 @include('adgainer.campaign-tools.parts.map-view-configuration', ['campaigns' => $campaigns])
             </div>
-            <!--section 5-->
-            <div role="tabpanel" class="tab-pane fade" id="tab_graph_data">
-                @include('adgainer.campaign-tools.parts.graph-data', ['account_id' => $account_id, 'campaigns' => $campaigns, 'all_ppc' => $ppc, 'date1' => $date1, 'date2' => $date2, 'date1_show' => $date1_show, 'date2_show_' => $date2_show_])
-            </div>
+
             <!--section 6-->
             <div role="tabpanel" class="tab-pane fade" id="tab_last_30">
                 @include('adgainer.campaign-tools.parts.last-30-days')
