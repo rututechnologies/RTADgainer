@@ -43,4 +43,6 @@ Route::group( [ 'middleware' => [ 'auth' ] ], function () {
     Route::post( 'campaign/do_addMultiPhoneNumbers', [ 'uses' => 'CampaignController@do_addMultiPhoneNumbers' ] );
     Route::get( 'campaign/campaignSourcePhoneNumbers', [ 'uses' => 'CampaignController@campaignSourcePhoneNumbers' ] );
     Route::post( 'campaign/removeSourceCampaignNumbers', [ 'uses' => 'CampaignController@removeSourceCampaignNumbers' ] );    
+    Route::get( 'campaign/campaignPhoneNumbers', [ 'uses' => 'CampaignController@campaignPhoneNumbers' ] );
+    Route::post( 'campaign/removeCampaignNumbers', [ 'uses' => 'CampaignController@removeCampaignNumbers' ] );    
 } );

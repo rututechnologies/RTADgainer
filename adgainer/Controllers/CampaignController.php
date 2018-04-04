@@ -1308,8 +1308,9 @@ class CampaignController extends Controller
 
         if ( isset( $numbers[ 0 ] ) ) {
             foreach ( $numbers as $key => $id ) {
-                $this->db->where( 'id', $id );
-                $this->db->delete( 'source_number_inventory', array( 'id' => $id ) );
+                DB::table( 'source_number_inventory' )
+                    ->where( 'id', $id )
+                    ->delete();
             }
         }
 
@@ -1324,7 +1325,62 @@ class CampaignController extends Controller
                         "forward_number" => $forward_number[ $key ] | 0,
                         "replace_number" => $replace_number[ $key ] | 0,
                         "source"         => $source[ $key ] | 0
-                ] );
+                    ] );
+            }
+        }
+        return back();
+    }
+
+    public function campaignPhoneNumbers( Request $request )
+    {
+        $account_id = $request->input( 'account_id' );
+        $campaign_id = $request->input( 'campaign_id' );
+        $user = Auth::user();
+        $data[ 'level' ] = $user->level;
+
+        $data[ 'campaignDetails' ] = Campaign::where( 'campaign_id', $campaign_id )->first();
+        $data[ 'campaignPhoneNumbers' ] = $this->campaignModelController->getAllCampaignPhoneNumbers( $campaign_id );
+
+        if ( !isset( $data[ 'campaignDetails' ]->account_id ) ) {
+            exit;
+        }
+
+        $data[ 'account_id' ] = $data[ 'campaignDetails' ]->account_id;
+        $data[ 'accountData' ] = Account::where( 'account_id', $data[ 'account_id' ] )->first();
+
+        return view( "{$this->viewDir}.viewCampaignPhoneNumbers", $data );
+    }
+
+    public function removecampaignnumbers( Request $request )
+    {
+        $this->validate( $request, [
+            'account_id'  => 'required',
+            'campaign_id' => 'required',
+            'phoneNumber' => 'array',
+            'allNumbers'  => 'array',
+        ] );
+
+        $numbers = $request->input( 'phoneNumber' );
+        $allNumbers = $request->input( 'allNumbers' );
+        $campaign_id = $request->input( 'campaign_id' );
+        $camp_info = Campaign::where( 'campaign_id', $campaign_id )->first();
+
+        $data[ 'result' ] = '';
+        if ( isset( $numbers[ 0 ] ) ) {
+            foreach ( $numbers as $key => $id ) {
+                DB::table( 'phone_number_inventory' )
+                    ->where( 'id', $id )
+                    ->where( 'campaign_id', $campaign_id )
+                    ->update( [ "campaign_id" => "_" ] );
+            }
+        }
+        if ( isset( $allNumbers[ 0 ] ) ) {
+            foreach ( $allNumbers as $key => $id ) {
+                $value = $_POST[ 'non_' . $id ];
+                DB::table( 'phone_number_inventory' )
+                    ->where( 'id', $id )
+                    ->where( 'campaign_id', $campaign_id )
+                    ->update( [ "useable" => $value ] );
             }
         }
         return back();

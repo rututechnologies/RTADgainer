@@ -75,4 +75,11 @@ class CampaignModelController extends Controller
                 ->get();
     }
 
+    function getAllCampaignPhoneNumbers( $campaign_id )
+    {
+        return DB::table( 'phone_number_inventory' )
+                ->where( 'campaign_id', $campaign_id )
+                ->get();
+    }
+
 }

@@ -31,7 +31,7 @@
         </div>
         <div class="panel-body">
 
-            <form class="da-form" method="post" action="<?php echo url( '/' ) . '/app/campaign/removeSourceCampaignNumbers?campaign_id=' . $campaignDetails->campaign_id; ?>" >
+            <form class="da-form" method="post" action="<?php echo url( '/' ) . '/app/campaign/removeCampaignNumbers?campaign_id=' . $campaignDetails->campaign_id; ?>" >
                 {{csrf_field()}}
                 <?php
                 $count = 1;
@@ -51,29 +51,32 @@
                         <thead>
                             <tr>
                                 <th>Tracking Number</th>
-                                <th>Source</th>
-                                <th>Replace Number (optional) </th>
-                                <th>Forward To (optional)</th>
-                                <th>Remove</th>
+                                <th>Assigned to Visitor</th>
+                                <th class="text-center" style="width: 1%;">Remove</th>
                                 <th>Serveable</th>
                             </tr>
                         </thead>
                         <?php
                         $allPhoneData = $campaignPhoneNumbers;
                         foreach ( $allPhoneData as $eachPhone ):
+                            if ( $eachPhone->active == 1 ) {
+                                $active = "Yes";
+                            } else {
+                                $active = "No";
+                            }
                             ?>
                             <tr>
                                 <td>{{$eachPhone->phone_number}}</td>
-                                <td><input type="text" class="form-control" name="source[]" value="{{$eachPhone->source}}" /></td>
-                                <td><input type="text" class="form-control" name="replace_number[]" value="{{$eachPhone->replace_number}}" /></td>
-                                <td><input type="text" class="form-control" name="forward_number[]" value="{{$eachPhone->forward_number}}" /></td>
+                                <td>{{$active}}</td>
                                 <?php
+                                echo "<td class='text-center'>";
                                 if ( $level <= 2 || $level == 5 ) {
-                                    ?>
-                                    <td class="text-center">
-                                        <input type='checkbox' name='phoneNumber[]' value='" . $eachPhone->id . "' style='width:auto'/>
-                                    </td>
-                                    <?php
+                                    echo " <input type='checkbox' name='phoneNumber[]' value='" . $eachPhone->id . "' style='width:auto'/>";
+                                }
+                                echo "</td>";
+
+                                echo "<td>";
+                                if ( $level <= 2 || $level == 5 ) {
                                     $checkN = "";
                                     $checkY = "checked";
                                     if ( $eachPhone->useable == 0 ) {
@@ -81,22 +84,19 @@
                                         $checkN = "checked";
                                     }
                                     ?>
-                                    <td>
-                                        <div class="">
-                                            <label>
-                                                <input type='radio' name='non_{{$eachPhone->id}}' value='1' {{$checkY}} /> Yes &nbsp;&nbsp; | &nbsp;&nbsp;  
-                                            </label>
-                                            <label>
-                                                <input type='radio' name='non_{{$eachPhone->id}}' value='0' {{$checkN}} /> No
-                                            </label>
-                                        </div>
-                                        <?php
-                                        echo "<input type='hidden' name='allNumbers[]' value='" . $eachPhone->id . "' />";
-                                        ?>
-                                    </td>
-                                    <?php
-                                }
-                                ?>
+                                <div class="" style="padding-left: 0;">
+                                    <label>
+                                        <input type='radio' name='non_{{$eachPhone->id}}' value='1' {{$checkY}} /> Yes &nbsp;&nbsp; | &nbsp;&nbsp;  
+                                    </label>
+                                    <label>
+                                        <input type='radio' name='non_{{$eachPhone->id}}' value='0' {{$checkN}} /> No
+                                    </label>
+                                </div>
+                                <?php
+                                echo "<input type='hidden' name='allNumbers[]' value='" . $eachPhone->id . "' />";
+                            }
+                            echo "</td>";
+                            ?>
                             </tr>
                             <?php
                             $count++;
