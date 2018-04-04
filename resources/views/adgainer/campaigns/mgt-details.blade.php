@@ -82,10 +82,10 @@
                     if ( ((!stristr( $campaign->tracking_type, "P" ) && $campaign->tracking_type != "A") && $level == 3) || $level != 3 ) {
                         echo "<br/> <a href='" . url( 'app/campaign/edit?campaign_id=' . $campaign->campaign_id . '&account_id=' . $accountData->account_id ) . "'>Edit Campaign</a> ";
                     }
-                    echo "<br/><br/> <h4>Phone Numbers</h4> <a href='" . url( 'campaign/addCampaignSourceNumbers?campaign_id=' . $campaign->campaign_id . '&account_id=' . $campaign->account_id ) . "' >Add</a> ";
+                    echo "<br/><br/> <h4>Phone Numbers</h4> <a href='" . url( 'app/campaign/addCampaignSourceNumbers?campaign_id=' . $campaign->campaign_id . '&account_id=' . $campaign->account_id ) . "' >Add</a> ";
                     echo "<br> <a href='" . url( 'app/campaign/campaignSourcePhoneNumbers?campaign_id=' . $campaign->campaign_id . '&account_id=' . $campaign->account_id ) . "' style='color:#999'>Serving (" . $serveNumbersCount . ") | Total (" . $phoneNumbersCount . ")</a> ";
                     if ( $level == 1 ) {
-                        echo " <br/><br/> <a href='" . url( 'twilio/searchSourceNumbers?campaign_id=' . $campaign->campaign_id . '&account_id=' . $campaign->account_id ) . "' >Search Phone Numbers</a> ";
+                        echo " <br/><br/> <a href='" . url( 'app/twilio/searchSourceNumbers?campaign_id=' . $campaign->campaign_id . '&account_id=' . $campaign->account_id ) . "' >Search Phone Numbers</a> ";
                     }
                 } else {
                     $serveNumbers = $campaignController->getCampaignPhoneNumbers( $campaign->campaign_id );
