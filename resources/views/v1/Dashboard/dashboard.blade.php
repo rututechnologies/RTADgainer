@@ -64,7 +64,7 @@
     </div>
     <div class="col-lg-3">
         <div class="widget style1 lazur-bg ">
-             <a href="{{url('app/campaign-tools/mycampaign')}}" style="color:#fff;"><div class="row">
+             <a href="{{url('app/campaign-tools/mycampaigns')}}" style="color:#fff;"><div class="row">
             	<div class="col-xs-4">
                     <i class="fa fa-money fa-5x"></i>
                 </div>
