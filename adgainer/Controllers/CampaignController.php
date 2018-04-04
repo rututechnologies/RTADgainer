@@ -20,11 +20,13 @@ class CampaignController extends Controller
     protected $viewDir = 'adgainer.campaigns';
     protected $tableReportController;
     protected $accountController;
+    protected $campaignModelController;
 
-    public function __construct( TableReportController $tableReportController, AccountController $accountController )
+    public function __construct( TableReportController $tableReportController, AccountController $accountController, CampaignModelController $campaignModelController )
     {
         $this->tableReportController = $tableReportController;
         $this->accountController = $accountController;
+        $this->campaignModelController = $campaignModelController;
     }
 
     /**
@@ -1058,7 +1060,6 @@ class CampaignController extends Controller
             'campaign_id'       => 'required',
             'phone_number'      => 'array',
             'phone_number_file' => 'file|max:10000|mimetypes:text/csv,text/plain|mimes:csv,txt',
-            'phone_number_file' => 'file',
         ] );
 
         $numbers = $request->input( 'phone_number', [] );
@@ -1139,6 +1140,128 @@ class CampaignController extends Controller
         }
 
         return redirect()->route( 'campaignDetails', [ 'campaign_id' => $campaign_id, 'account_id' => $account_id ] )->with( [ 'success_msg' => 'Numbers Added' ] );
+    }
+
+    function addMultiPhoneNumbers( Request $request )
+    {
+        $campaign_id = $request->get( 'campaign_id' );
+        $data[ 'account_id' ] = $request->get( 'account_id' );
+        $data[ 'campaign_id' ] = $campaign_id;
+        $user = Auth::user();
+        $data[ 'level' ] = $user->level;
+
+        $data[ 'campaignDetails' ] = Campaign::where( 'campaign_id', $campaign_id )->first();
+        if ( !isset( $data[ 'campaignDetails' ]->account_id ) ) {
+            echo 'Campaign not found';
+            exit;
+        }
+        $data[ 'accountData' ] = Account::where( 'account_id', $data[ 'campaignDetails' ]->account_id )->first();
+        $data[ 'campaignModel' ] = $this->campaignModelController;
+        return view( "{$this->viewDir}.addMultiPhoneNumbers", $data );
+    }
+
+    function do_addMultiPhoneNumbers( Request $request )
+    {
+        $this->validate( $request, [
+            'account_id'        => 'required',
+            'campaign_id'       => 'required',
+            'track_phone'       => 'array',
+            'phone_name'        => 'array',
+            'cust_phone'        => 'array',
+            'forward_to'        => 'array',
+            'phone_number_file' => 'file|max:10000|mimetypes:text/csv,text/plain|mimes:csv,txt',
+        ] );
+        $track_phone = $request->input( 'track_phone', [] );
+        $phone_name = $request->input( 'phone_name', [] );
+        $cust_phone = $request->input( 'cust_phone', [] );
+        $forward_to = $request->input( 'forward_to', [] );
+        $account_id = $request->input( 'account_id' );
+        $campaign_id = $request->input( 'campaign_id' );
+        $added = 0;
+        $errors = [];
+        DB::beginTransaction();
+        try {
+            if ( $request->hasFile( 'phone_number_file' ) ) {
+                $path = $request->file( 'phone_number_file' )->store( 'csv' );
+
+                $update = [ 'pre_account_id' => $account_id, 'account_id' => '', 'campaign_id' => '' ];
+
+                if ( $path ) {
+                    $fullpath = Storage::path( $path );
+                    if ( ($handle = fopen( Storage::path( $path ), "r" )) !== FALSE ) {
+                        while ( ($data = fgetcsv( $handle, 1000, "," )) !== FALSE ) {
+                            if ( !isset( $data[ 0 ] ) ) {
+                                $errors[] = ' CUSTOMER NUMBER IS NOT SET ';
+                                break;
+                            }
+                            if ( !isset( $data[ 1 ] ) ) {
+                                $errors[] = ' TRACKING NUMBER IS NOT SET ';
+                                break;
+                            }
+                            if ( !isset( $data[ 2 ] ) ) {
+                                $errors[] = ' FORWARDING NUMBER IS NOT SET ';
+                                break;
+                            }
+                            if ( !isset( $data[ 3 ] ) ) {
+                                $errors[] = ' NUMBER NAME IS NOT SET ';
+                                break;
+                            }
+                            if ( !isset( $data[ 4 ] ) ) {
+                                $errors[] = ' ORDER ID IS NOT SET ';
+                                break;
+                            }
+                            DB::table( 'phone_number_inventory' )->where( 'phone_number', 'LIKE', "%{$data[ 1 ]}%" )->update( $update );
+                            DB::table( 'source_number_inventory' )->where( 'phone_number', 'LIKE', "%{$data[ 1 ]}%" )->update( $update );
+                            DB::table( 'multi_tracking_inventory' )->where( 'track_phone', 'LIKE', "%{$data[ 1 ]}%" )->update( $update );
+                            DB::table( 'multi_tracking_inventory' )->insert( [
+                                'pre_account_id'  => '',
+                                'campaign_id'     => $campaign_id,
+                                'account_id'      => $account_id,
+                                "phone_name"      => $data[ 3 ],
+                                'cust_phone'      => $data[ 0 ],
+                                "track_phone"     => $data[ 1 ],
+                                "forward_to"      => $data[ 2 ],
+                                "order_id"        => $data[ 4 ],
+                                "active"          => 1,
+                                'ip'              => '',
+                                'single_tracking' => 0,
+                                'device'          => 0,
+                                'useable'         => 0,
+                                'time_stamp'      => Carbon::now()
+                            ] );
+                            $this->db->insert( 'multi_tracking_inventory', array( "phone_name" => $data[ 3 ], "account_id" => $account_id, "campaign_id" => $campaign_id, "cust_phone" => $data[ 0 ], "track_phone" => $data[ 1 ], "forward_to" => $data[ 2 ], "order_id" => $data[ 4 ], "active" => 1 ) );
+                            $added++;
+                        }
+                        fclose( $handle );
+                    }
+                    unlink( $fullpath );
+                }
+            } else {
+                $added = $this->campaignModelController->addMultiPhoneNumbers( $track_phone, $phone_name, $cust_phone, $forward_to, $account_id, $campaign_id );
+            }
+        } catch ( Exception $ex ) {
+            DB::rollback();
+            echo 'failed';
+            exit;
+        }
+
+        if ( count( $errors ) ) {
+            return back()->withErrors( $errors );
+        }
+        return redirect()->route( 'campaignDetails', [ 'campaign_id' => $campaign_id, 'account_id' => $account_id ] )->with( [ 'success_msg' => $added . ' Numbers Added' ] );
+    }
+
+    function getMultiPhoneNumbers( Request $request )
+    {
+        $account_id = $request->input( 'account_id' );
+        $result = $this->campaignModelController->getMultiPhoneNumbers( $account_id );
+
+        echo "<option value=''>Select an Existing Number </option>";
+        echo "<option value=''>Clear Selected</option>";
+
+        foreach ( $result as $phone ) {
+            echo "<option value='" . $phone->cust_phone . "' name='" . $phone->phone_name . "' forward='" . $phone->forward_to . "' >" . $phone->cust_phone . "</option>";
+        }
     }
 
 }

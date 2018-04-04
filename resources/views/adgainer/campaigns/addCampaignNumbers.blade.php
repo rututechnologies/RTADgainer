@@ -32,7 +32,7 @@
                 <div class="form-group">
                     <p><label>Upload CSV, 1 column format</label></p>
                     <input type="file" name="phone_number_file"  />
-                    <i>Row format: Row format: 2125551212,\n</i>
+                    <i>Row format: 2125551212,\n</i>
                 </div>
 
                 <hr>

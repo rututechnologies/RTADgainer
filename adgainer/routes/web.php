@@ -39,4 +39,6 @@ Route::group( [ 'middleware' => [ 'auth' ] ], function () {
     Route::post( 'campaign/do_addCampaignSourceNumbers', [ 'uses' => 'CampaignController@do_addCampaignSourceNumbers' ] );
     Route::get( 'campaign/addCampaignNumbers', [ 'uses' => 'CampaignController@addCampaignNumbers' ] );
     Route::post( 'campaign/do_addCampaignNumbers', [ 'uses' => 'CampaignController@do_addCampaignNumbers' ] );
+    Route::get( 'campaign/addMultiPhoneNumbers', [ 'uses' => 'CampaignController@addMultiPhoneNumbers' ] );
+    Route::post( 'campaign/do_addMultiPhoneNumbers', [ 'uses' => 'CampaignController@do_addMultiPhoneNumbers' ] );
 } );
