@@ -1264,4 +1264,70 @@ class CampaignController extends Controller
         }
     }
 
+    public function campaignSourcePhoneNumbers( Request $request )
+    {
+        $account_id = $request->input( 'account_id' );
+        $campaign_id = $request->input( 'campaign_id' );
+        $user = Auth::user();
+        $data[ 'level' ] = $user->level;
+
+        $data[ 'campaignDetails' ] = Campaign::where( 'campaign_id', $campaign_id )->first();
+        $data[ 'campaignPhoneNumbers' ] = $this->campaignModelController->getAllCampaignSourcePhoneNumbers( $campaign_id );
+
+        if ( !isset( $data[ 'campaignDetails' ]->account_id ) ) {
+            exit;
+        }
+
+        $data[ 'account_id' ] = $data[ 'campaignDetails' ]->account_id;
+        $data[ 'accountData' ] = Account::where( 'account_id', $data[ 'account_id' ] )->first();
+
+        return view( "{$this->viewDir}.viewSourceCampaignPhoneNumbers", $data );
+    }
+
+    public function removeSourceCampaignNumbers( Request $request )
+    {
+        $this->validate( $request, [
+            'account_id'     => 'required',
+            'campaign_id'    => 'required',
+            'forward_number' => 'array',
+            'replace_number' => 'array',
+            'source'         => 'array',
+            'allNumbers'     => 'array',
+        ] );
+
+        $numbers = $request->input( 'phoneNumber' );
+        $forward_number = $request->input( 'forward_number' );
+        $replace_number = $request->input( 'replace_number' );
+        $source = $request->input( 'source' );
+        $allNumbers = $request->input( 'allNumbers' );
+        $campaign_id = $request->input( 'campaign_id' );
+
+        $camp_info = Campaign::where( 'campaign_id', $campaign_id )->first();
+
+        $data[ 'result' ] = '';
+
+        if ( isset( $numbers[ 0 ] ) ) {
+            foreach ( $numbers as $key => $id ) {
+                $this->db->where( 'id', $id );
+                $this->db->delete( 'source_number_inventory', array( 'id' => $id ) );
+            }
+        }
+
+        if ( isset( $allNumbers[ 0 ] ) ) {
+            foreach ( $allNumbers as $key => $id ) {
+                $value = $_POST[ 'non_' . $id ];
+                DB::table( 'source_number_inventory' )
+                    ->where( 'id', $id )
+                    ->where( 'campaign_id', $campaign_id )
+                    ->update( [
+                        "useable"        => $value,
+                        "forward_number" => $forward_number[ $key ] | 0,
+                        "replace_number" => $replace_number[ $key ] | 0,
+                        "source"         => $source[ $key ] | 0
+                ] );
+            }
+        }
+        return back();
+    }
+
 }

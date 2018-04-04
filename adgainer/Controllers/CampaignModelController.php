@@ -46,11 +46,11 @@ class CampaignModelController extends Controller
                     ->where( 'track_phone', $track_phone[ $key ] )
                     ->update( [ 'pre_account_id' => $account_id ] );
                 $data = array(
-                    'phone_name'     => $phone_name[ $key ],
-                    'cust_phone'     => $phone,
-                    'track_phone'    => $track_phone[ $key ] | 0,
-                    'forward_to'     => $forward_to[ $key ] | 0,
-                    'pre_account_id' => '',
+                    'phone_name'      => $phone_name[ $key ],
+                    'cust_phone'      => $phone,
+                    'track_phone'     => $track_phone[ $key ] | 0,
+                    'forward_to'      => $forward_to[ $key ] | 0,
+                    'pre_account_id'  => '',
                     'account_id'      => $account_id,
                     'campaign_id'     => $campaign_id,
                     'order_id'        => ($key + 1),
@@ -66,6 +66,13 @@ class CampaignModelController extends Controller
             }
         }
         return $added;
+    }
+
+    function getAllCampaignSourcePhoneNumbers( $campaign_id )
+    {
+        return DB::table( 'source_number_inventory' )
+                ->where( 'campaign_id', $campaign_id )
+                ->get();
     }
 
 }
