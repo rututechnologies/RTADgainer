@@ -325,7 +325,8 @@ function addNewCall(
         $time_stamp = date( "Y-m-d H:i:s", strtotime( "-" . $tz_dif . " HOURS", strtotime( $time_of_call ) ) );
     }
     $keyword = fuzzy_decode( $keyword );
-    $qry = "INSERT INTO phone_time_use 
+//    $qry = "INSERT  INTO phone_time_use 
+    $qry = "INSERT IGNORE INTO phone_time_use 
 		(unique_call_id,
 		account_id,
 		call_duration,
@@ -464,7 +465,8 @@ function addNewCallActive(
         $time_stamp = date( "Y-m-d H:i:s", strtotime( "-" . $tz_dif . " HOURS", strtotime( $time_of_call ) ) );
     }
     $keyword = fuzzy_decode( $keyword );
-    $insert_new_call = "INSERT INTO phone_time_use 
+//    $insert_new_call = "INSERT INTO phone_time_use 
+    $insert_new_call = "INSERT IGNORE INTO phone_time_use 
 		(unique_call_id,
 		account_id,
 		call_duration,

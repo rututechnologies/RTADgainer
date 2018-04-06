@@ -23,9 +23,9 @@ if ( isset( $this ) ) {
 $time_stamp = (
 (new DateTime($callstart, new DateTimeZone('Asia/Tokyo')))->sub(new DateInterval('PT120S'))
 )->setTimezone( new DateTimeZone( 'America/Los_Angeles' ) )->format( 'Y-m-d H:i:s' );
-
 echo " <br> CALL ONLY OFFLINE $time_stamp  | $jpn_time_stamp ";
-$qry = "INSERT INTO phone_time_use 
+//$qry = "INSERT INTO phone_time_use 
+$qry = "INSERT IGNORE INTO phone_time_use 
 	(unique_call_id,
 	call_duration,
 	call_recording,
@@ -65,6 +65,7 @@ try {
         $id = $this->db->insert_id();
         showFunction( __LINE__, __FUNCTION__, __FILE__ );
     } else {
+//        mysqli_query( $conn, "SET SESSION sql_mode = ''" );
         $mysql = mysqli_query( $conn, $qry );
         $id = mysqli_insert_id( $conn );
     }
@@ -73,7 +74,7 @@ try {
     $error = $e->getMessage();
     $id = FALSE;
 }
-if ( ! $id ) {
+if ( !$id ) {
     mail( 'hayashi@adgainer.co.jp', 'call offline', 'offline QRY 2 ' . $qry . ' ERROR: ' . $error . ' ' . __FILE__ );
 }
 return $id;

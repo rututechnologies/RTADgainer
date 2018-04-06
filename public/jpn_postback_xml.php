@@ -62,18 +62,17 @@ define( 'UNIQUE_CALL_ID', $unique_call_id );
 $time5 = '';
 
 /**
- * TODO: Send email to hayashi@adgainer.co.jp
- */
-//
-//
-/**
- * =======================================
- * insert the data to unsaved_calls table.
- * =======================================
+ * This procedure is needed to something for Christian.
  */
 try {
+    mail( 'hayashi@adgainer.co.jp', 'JPN XML', $contents );
+} catch ( Exception $e ) {
+    put_log( 'Mail function fail. - ' . $e->getMessage() );
+}
+
+try {
     $json_xml = @json_encode( $xml );
-    $query = mysqli_query( $conn, "INSERT INTO unsaved_calls (`phone_number`,`unique_call_id`,`query`,`call_data`,`vendor`) VALUES ('$phonenumber','$unique_call_id','initial save','$json_xml','cn') " );
+    mysqli_query( $conn, "INSERT INTO unsaved_calls (`phone_number`,`unique_call_id`,`query`,`call_data`,`vendor`) VALUES ('$phonenumber','$unique_call_id','initial save','$json_xml','cn') " );
     $call_save_id = mysqli_insert_id( $conn );
 } catch ( Exception $e ) {
     put_log( 'Initial call save failure. - ' . $e->getMessage() . ' - ' . mysqli_error( $conn ) );
@@ -84,14 +83,9 @@ if ( empty( $unique_call_id ) || empty( $phonenumber ) ) {
     header( 'HTTP/1.1 400 Bad Request' );
     exit;
 }
-
 $send_test_data = isset( $_GET[ 'send_data' ] ) && $_GET[ 'send_data' ];
-
 /**
- * =====================================
- * Find unique_call_id from phone_time_use table
  * The below will be perform when unique_call_id is already stored in database.
- * =====================================
  */
 $findID = mysqli_query( $conn, "SELECT unique_call_id FROM phone_time_use WHERE unique_call_id='$unique_call_id'" );
 if ( mysqli_num_rows( $findID ) > 0 ) {
@@ -100,7 +94,7 @@ if ( mysqli_num_rows( $findID ) > 0 ) {
         run_query( "DELETE FROM phone_time_use WHERE unique_call_id='$unique_call_id' and unique_call_id != '' " );
         mysqli_query( $conn, "UPDATE unsaved_calls SET data_sent=1 WHERE unique_call_id='$unique_call_id'" );
         header( 'HTTP/1.1 200 OK' );
-    } elseif ( ! empty( $send_test_data ) ) {
+    } elseif ( !empty( $send_test_data ) ) {
         put_log( 'Has send_data in request parameter.', 'NOTICE' );
         mysqli_query( $conn, "UPDATE unsaved_calls SET data_sent=1 WHERE unique_call_id='$unique_call_id'" );
         header( 'HTTP/1.1 400 Bad Request' );
@@ -112,22 +106,54 @@ if ( mysqli_num_rows( $findID ) > 0 ) {
 }
 put_log( 'Pass through at find unique_call_id.', 'NOTICE' );
 
-// Measurement number (0 if the leading does not appear 0
+// 計測番号（先頭が0出ない場合は0をつける
 $client_number = trim( $xml->cnt_number );
 if ( strpos( $client_number, '0' ) !== 0 ) {
     $client_number = '0' . $client_number;
 }
 
-/**
- * TODO: Cooperation with speech-to-text service
- */
-/*
- * =============================================
- */
+// 音声テキスト化サービスとの連携
+if ( getenv( 'STT_URL' ) ) {
+    // 録音可能な計測番号かどうか調べる
+    $stmt = mysqli_prepare(
+        $conn, sprintf(
+            "SELECT `campaign_id` FROM `intec_clients` WHERE `client_number` = ? AND `service_cd` IN ('%s')", implode( "', '", [ '0120rec', '050rec', '0800rec' ] )
+        )
+    );
+    mysqli_stmt_bind_param( $stmt, 's', $client_number );
+    mysqli_stmt_execute( $stmt );
+    mysqli_stmt_bind_result( $stmt, $campaignId );
+    mysqli_stmt_fetch( $stmt );
+    mysqli_stmt_close( $stmt );
 
-/**
- * 
- */
+    if ( !empty( $campaignId ) ) {
+        // 録音可能な計測番号ならば、通話 CV を STT に転送する
+        $ch = curl_init();
+        curl_setopt( $ch, CURLOPT_URL, sprintf( '%s?campaign_id=%s', getenv( 'STT_URL' ), $campaignId ) );
+        curl_setopt( $ch, CURLOPT_HEADER, TRUE );
+        curl_setopt( $ch, CURLOPT_RETURNTRANSFER, TRUE );
+        curl_setopt( $ch, CURLOPT_POST, TRUE );
+        curl_setopt( $ch, CURLOPT_POSTFIELDS, $contents );
+        curl_setopt( $ch, CURLOPT_HTTPHEADER, [
+            'Content-type: application/xml',
+            'Content-length: ' . strlen( $contents )
+        ] );
+        $res = curl_exec( $ch );
+        $status_code = ( int ) curl_getinfo( $ch, CURLINFO_HTTP_CODE );
+
+        if ( 200 === $status_code ) {
+            // 成功
+            put_log( 'Succeed to send XML to STT', 'NOTICE' );
+            mail( 'hayashi@adgainer.co.jp', 'Succeed to send XML to STT', $res );
+        } else {
+            // 失敗: とりあえずメールで通知されるので手動で対応するように
+            put_log( sprintf( 'Failed to send to STT: %d', $status_code ), 'ERROR' );
+            mail( 'hayashi@adgainer.co.jp', sprintf( 'Failed to send to STT: %d', $status_code ), $res );
+        }
+        put_log( $res, 'NOTICE' );
+    }
+}
+
 $url_params = '?';
 $total = array();
 $type = 'XML';
@@ -140,7 +166,7 @@ if ( empty( $total ) ) {
     foreach ( $_POST as $key => $value ) {
         $total[] = sprintf( 'P %s - %s', $key, $value );
     }
-    if ( ! empty( $total ) ) {
+    if ( !empty( $total ) ) {
         $type = 'post';
     }
 }
@@ -148,7 +174,7 @@ if ( empty( $total ) ) {
     foreach ( $_GET as $key => $value ) {
         $total[] = sprintf( 'G %s - %s', $key, $value );
     }
-    if ( ! empty( $total ) ) {
+    if ( !empty( $total ) ) {
         $type = 'get';
     }
 }
@@ -159,19 +185,14 @@ if ( empty( $total ) ) {
 }
 $total = implode( "\n", $total );
 put_log( sprintf( 'Data got from %s', $type ), 'NOTICE' );
-
-/*
- * =====================================================
- * Find Campaign
- * =====================================================
- */
-/*
- * Campaign: Standard
- */
-//$xmlArray = array();
+$xmlArray = array();
 $x = 1;
 $caller_state = "NON US";
 $caller_country = "NON US";
+
+/**
+ * Find campaign: standard, source, or multi
+ */
 $qry_ = "SELECT phone.phone_number,
 	phone.campaign_id AS phone_campaign_id,
 	phone.account_id,
@@ -198,15 +219,11 @@ $qry_ = "SELECT phone.phone_number,
 $check_campaign = mysqli_query( $conn, $qry_ );
 $err = mysqli_error( $conn );
 $time4 = date( "H:i:s", time() );
+$source = 0;
 $ROWS_ = mysqli_num_rows( $check_campaign );
 if ( $ROWS_ > 0 ) {
     put_log( 'Campaign: Standard', 'NOTICE' );
 }
-
-/*
- * Campaign: Source
- */
-$source = 0;
 if ( $ROWS_ == 0 ) {
     $qry_ = "SELECT phone.phone_number,
 		phone.campaign_id AS phone_campaign_id,
@@ -239,10 +256,6 @@ if ( $ROWS_ == 0 ) {
         $source = 1;
     }
 }
-
-/*
- * Campaign: Multi
- */
 $multi = 0;
 if ( $ROWS_ == 0 ) {
     $qry_ = "SELECT phone.track_phone,
@@ -277,15 +290,11 @@ if ( $ROWS_ == 0 ) {
     }
 }
 $have_campaign = mysqli_fetch_object( $check_campaign );
-put_log( sprintf( 'Rows found in the campaign: %d', $ROWS_ ), 'NOTICE' );
-
-// ?
 $json_xml = @json_encode( $xml );
-
-// campaign not found
-if ( ! isset( $have_campaign->phone_campaign_id ) || $ROWS_ == 0 ) {
+put_log( sprintf( 'Rouws found in the campaign: %d', $ROWS_ ), 'NOTICE' );
+if ( !isset( $have_campaign->phone_campaign_id ) || $ROWS_ == 0 ) {
     put_log( 'No campaign' );
-
+    echo 'CAMPAIGN NOT FOUND';
     $qry_ = mysqli_real_escape_string( $conn, $qry_ );
     $mysql_error = "";
     $u_id = mysqli_query( $conn, "SELECT * FROM unsaved_calls WHERE unique_call_id='$unique_call_id'" );
@@ -300,7 +309,7 @@ if ( ! isset( $have_campaign->phone_campaign_id ) || $ROWS_ == 0 ) {
      * 
      */
     $ignore = "";
-    if ( ! empty( $send_test_data ) ) {
+    if ( !empty( $send_test_data ) ) {
         mysqli_query( $conn, "UPDATE unsaved_calls SET data_sent=1 WHERE unique_call_id='$unique_call_id'" );
         put_log( 'Data sent1' );
         $ignore = " IGNORE ";
@@ -310,17 +319,16 @@ if ( ! isset( $have_campaign->phone_campaign_id ) || $ROWS_ == 0 ) {
 		INSERT INTO unsaved_calls (`phone_number`,`unique_call_id`,`query`,`call_data`,`vendor`) VALUES ('$phonenumber','$unique_call_id','$qry_','$json_xml','cn')"
     );
     put_log( sprintf( 'JPN PHONE CALL NO CAMPAIGN %s', $ignore ) );
-    put_log( sprintf( "PHONE: %s CALL DATA SAVED: INSERT INTO unsaved_calls (`phone_number`,`unique_call_id`,`query`,`call_data`,`vendor`) VALUES ('%s','%s','%s','%s','cn')", $phonenumber, $phonenumber, $unique_call_id, $qry_, $json_xml ) );
-
+    put_log(
+        sprintf(
+            "PHONE: %s CALL DATA SAVED: INSERT INTO unsaved_calls (`phone_number`,`unique_call_id`,`query`,`call_data`,`vendor`) VALUES ('%s','%s','%s','%s','cn')", $phonenumber, $phonenumber, $unique_call_id, $qry_, $json_xml
+        )
+    );
     if ( empty( $send_test_data ) ) {
         put_log( 'Will send email to sales', 'NOTICE' );
         mail( 'jpnsales@adgainer.co.jp', "JPN CALL NOT RECORDED $ignore", " PHONE: $phonenumber  -  $json_xml  " );
         put_log( 'Sent email to sales', 'NOTICE' );
     }
-
-    /**
-     * TODO: post to call tracking
-     */
     $ch = curl_init();
     curl_setopt( $ch, CURLOPT_URL, "http://callrecordings.calltracking.jp/?KEY=Xfewpow__po&UUID=$unique_call_id" ); // set url to post to
     curl_setopt( $ch, CURLOPT_SSL_VERIFYHOST, 0 );
@@ -328,7 +336,7 @@ if ( ! isset( $have_campaign->phone_campaign_id ) || $ROWS_ == 0 ) {
     curl_setopt( $ch, CURLOPT_POST, 1 );
     curl_setopt( $ch, CURLOPT_HTTPHEADER, array( 'Content-Type: text/xml' ) );
     curl_setopt( $ch, CURLOPT_RETURNTRANSFER, 1 );
-//    $output = curl_exec( $ch );
+    $output = curl_exec( $ch );
     curl_close( $ch );
     exit;
 }
@@ -357,18 +365,14 @@ include '../includes/tracking/postback_functions.php';
 $campTZ = $have_campaign->timeZone;
 $TZ_offset = get_timezone_offset( 'America/Los_Angeles', $campTZ );
 $jpn_call_time_pst = date( 'Y-m-d H:i:s', strtotime( "-$TZ_offset SECONDS", strtotime( $callstart ) ) );
-//echo $jpn_call_time_pst;
-put_log( '$jpn_call_time_pst: ' . $jpn_call_time_pst, 'NOTICE' );
-
+echo $jpn_call_time_pst;
 $jpn_time_stamp = date( 'Y-m-d H:i:s', strtotime( '-1 MINUTES' ) );
-if ( ! empty( $send_test_data ) ) {
+if ( !empty( $send_test_data ) ) {
     $jpn_time_stamp = date( 'Y-m-d H:i:s', strtotime( '-1 MINUTES', strtotime( $jpn_call_time_pst ) ) );
 }
 $jpn_time_out = date( 'H:i:s', mktime( 0, 0, ($have_campaign->correlation_time * 60 * 60 ), 0, 0, 0 ) );
 $campaign_id = $have_campaign->phone_campaign_id;
-put_log( '$campaign_id: ' . $have_campaign->phone_campaign_id, 'NOTICE' );
-//echo "<br> CAMPAIGN ID: $campaign_id <br>";
-//
+echo "<br> CAMPAIGN ID: $campaign_id <br>";
 $unix_current_date = time();
 $get_id = 0;
 $callstart = date( 'Y-m-d H:i:s', strtotime( $callstart ) );
@@ -387,25 +391,17 @@ if ( $have_campaign->tracking_campaign_type == 'offline' ) {
     }
 }
 put_log( 'Pass through at include postback program.', 'NOTICE' );
-/**
- * ==========================
- * end include postback program
- * ==========================
- */
-/**
- * ======================
- * call notification
- * ======================
- */
+
+
 $email_id = "";
 $c_rows = 0;
 $c_message = "";
-if ( ! empty( $have_campaign->call_notification ) ) {
-    $qry = "SELECT phone_time_use.id FROM phone_time_use JOIN campaigns on (campaigns.campaign_id = phone_time_use.campaign_id) WHERE unique_call_id='$unique_call_id' ORDER BY phone_time_use.id DESC LIMIT 1";
+if ( !empty( $have_campaign->call_notification ) ) {
+    $qry = "SELECT  phone_time_use.id FROM phone_time_use JOIN campaigns on (campaigns.campaign_id = phone_time_use.campaign_id) WHERE unique_call_id='$unique_call_id' ORDER BY phone_time_use.id DESC LIMIT 1";
     $c = mysqli_query( $conn, $qry );
     $c_data = mysqli_fetch_object( $c );
     $email_id = $c_data->id;
-    if ( ! isset( $c_data->id ) ) {
+    if ( !isset( $c_data->id ) ) {
         $send = " RECORD NOT FOUND ";
         echo 'CALL RECORD NOT FOUND';
         $qry_ = mysqli_real_escape_string( $conn, $qry_ );
@@ -428,22 +424,21 @@ if ( ! empty( $have_campaign->call_notification ) ) {
 			$err $mysql_error  $find_record $qry "
         );
         put_log( sprintf( 'jpn call record not found %s', $ignore ) );
-        put_log( sprintf( "PHONE: %s %s INSERT INTO unsaved_calls (`phone_number`,`unique_call_id`,`query`,`call_data`,`vendor`) VALUES ('%s','%s','%s','%s','cn')
-				 %s %s  %s %s ", $phonenumber, $qry_, $phonenumber, $unique_call_id, $qry_, $json_xml, $err, $mysql_error, $find_record, $qry )
+        put_log(
+            sprintf(
+                "PHONE: %s %s
+				 INSERT INTO unsaved_calls (`phone_number`,`unique_call_id`,`query`,`call_data`,`vendor`) VALUES ('%s','%s','%s','%s','cn')
+				 %s %s  %s %s ", $phonenumber, $qry_, $phonenumber, $unique_call_id, $qry_, $json_xml, $err, $mysql_error, $find_record, $qry
+            )
         );
     }
 }
-/**
- * ======================
- * end call notification
- * ======================
- */
 $p_rows = 0;
 $p_message = '?';
 $fields = '';
 $_post_keyword = "CALL%20ONLY";
 $xml_data = "<?xml version='1.0'?><calldata>";
-if ( ! empty( $have_campaign->postback_fields ) ) {
+if ( !empty( $have_campaign->postback_fields ) ) {
     $fields = $have_campaign->postback_fields;
     $first_click = mysqli_query( $conn, "SELECT phone_time_use.* FROM phone_time_use JOIN campaigns ON (campaigns.campaign_id = phone_time_use.campaign_id) WHERE phone_time_use.campaign_id = '" . $have_campaign->campaign_id . "' and caller_phone='$callid' and phone_number='$phonenumber' and ip != '' ORDER BY phone_time_use.id LIMIT 1" );
     showFunction( __LINE__, __FUNCTION__, __FILE__ );
@@ -553,9 +548,7 @@ if ( ! empty( $have_campaign->postback_fields ) ) {
     }
     put_log( 'Finished compute track data.', 'NOTICE' );
 }
-/**
- * ======================
- */
+
 $total = "Client Service Solutions
 
 いつもご利用頂きありがとうございます。
@@ -576,7 +569,7 @@ $callid
 
 ";
 $url_params = "?";
-if ( ! is_array( $xml ) ) {
+if ( !is_array( $xml ) ) {
     $xml = array();
 }
 foreach ( $xml as $key => $value ) {
@@ -625,18 +618,18 @@ if ( mysqli_num_rows( $qry ) == 1 ) {
     $xml_data .= "<msclkid>" . $result->msclkid . "</msclkid>";
     $url_params .= http_build_query(
         array(
-            'msclkid' => $result->msclkid, 'gclid' => $result->gclid, 'ip' => $result->ip,
-            'utm_campaign' => $result->campaign_name, 'utm_term' => $result->j_keyword,
-            'utm_source' => $result->source, 'source' => $result->source, 'keyword' => $result->j_keyword,
-            'utm_medium' => 'cpc', 'q' => $result->searchTerm
+            'msclkid'      => $result->msclkid, 'gclid'        => $result->gclid, 'ip'           => $result->ip,
+            'utm_campaign' => $result->campaign_name, 'utm_term'     => $result->j_keyword,
+            'utm_source'   => $result->source, 'source'       => $result->source, 'keyword'      => $result->j_keyword,
+            'utm_medium'   => 'cpc', 'q'            => $result->searchTerm
         )
     );
     $send_url_params .= http_build_query(
         array(
-            'msclkid' => $result->msclkid, 'gclid' => $result->gclid, 'ip' => $result->ip,
-            'utm_campaign' => $result->campaign_name, 'utm_term' => $result->j_keyword,
-            'utm_source' => $result->source, 'source' => $result->source, 'keyword' => $result->j_keyword,
-            'utm_medium' => 'cpc', 'q' => $result->searchTerm
+            'msclkid'      => $result->msclkid, 'gclid'        => $result->gclid, 'ip'           => $result->ip,
+            'utm_campaign' => $result->campaign_name, 'utm_term'     => $result->j_keyword,
+            'utm_source'   => $result->source, 'source'       => $result->source, 'keyword'      => $result->j_keyword,
+            'utm_medium'   => 'cpc', 'q'            => $result->searchTerm
         )
     );
 }
@@ -657,7 +650,7 @@ if ( $have_campaign->postback_page && detect_post_sent( $unique_call_id ) == FAL
     if ( isset( $parsed_url[ 'path' ] ) ) {
         $URL .= $parsed_url[ 'path' ];
     }
-    if ( ! empty( $parsed_url[ 'query' ] ) ) {
+    if ( !empty( $parsed_url[ 'query' ] ) ) {
         $URL .= '?' . http_build_query( $parsed_url[ 'query' ] );
     }
 
@@ -702,7 +695,7 @@ if ( $have_campaign->postback_page && detect_post_sent( $unique_call_id ) == FAL
             $httpcode = curl_getinfo( $ch, CURLINFO_HTTP_CODE );
             $error = "";
         }
-        $attempts ++;
+        $attempts++;
         put_log( sprintf( 'Sent call CV to %s is %s in %s times.', $URL, $httpcode, $attempts ), 'NOTICE' );
         if ( $output === FALSE ) {
             // HTTP request failed.
