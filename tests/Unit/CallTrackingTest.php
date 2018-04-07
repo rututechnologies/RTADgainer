@@ -43,7 +43,7 @@ class CallTracking extends TestCase
 
         $ch = curl_init();
          curl_setopt( $ch, CURLOPT_URL, sprintf( '%sjpn_postback_xml.php?send_data=1', 'http://127.0.0.1:8000/' ) ); // set url to post to
-//        curl_setopt( $ch, CURLOPT_URL, sprintf( 'http://rtadgainer.adgainersolutions.com/jpn_postback_xml.php' ) ); // set url to post to
+    //    curl_setopt( $ch, CURLOPT_URL, sprintf( 'http://rtadgainer.adgainersolutions.com/jpn_postback_xml.php' ) ); // set url to post to
         curl_setopt( $ch, CURLOPT_SSL_VERIFYHOST, 0 );
         curl_setopt( $ch, CURLOPT_SSL_VERIFYPEER, 0 );
         curl_setopt( $ch, CURLOPT_POST, 1 );

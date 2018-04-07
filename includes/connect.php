@@ -7,8 +7,6 @@ $db = array(
 	'database' => env('DB_DATABASE'),
 );
 
-put_log('env :' . print_r($db));
-
 $conn = mysqli_connect($db['hostname'], $db['username'], $db['password']);
 mysqli_set_charset($conn, 'utf8');
 mysqli_select_db($conn, $db['database']);
