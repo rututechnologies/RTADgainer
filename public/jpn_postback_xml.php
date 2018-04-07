@@ -1,4 +1,8 @@
 <?php
+require __DIR__.'/../vendor/autoload.php';
+$app = require_once __DIR__.'/../bootstrap/app.php';
+$kernel = $app->make(Illuminate\Contracts\Http\Kernel::class);
+(new \Dotenv\Dotenv($app->environmentPath()))->load();
 /**
  * This program will receive call conversion by HTTP request from CallNotes.
  *
@@ -43,6 +47,7 @@ put_log( $contents, 'NOTICE' );
  * @todo improve management approach.
  */
 include '../includes/connect.php';
+put_log( $db['database'] );
 ini_set( 'default_charset', 'utf-8' );
 mysqli_set_charset( $conn, 'utf8' );
 $callstart = $xml->start_timestamp_a;
@@ -52,7 +57,7 @@ $duration = $xml->calc_billsec_a;
 $callid = $xml->cnt_caller_number;
 $recordings = '';
 $recording_name = '';
-$unique_call_id = $xml->uuid_a;
+$unique_call_id = trim( $xml->uuid_a );
 define( 'UNIQUE_CALL_ID', $unique_call_id );
 
 /**
