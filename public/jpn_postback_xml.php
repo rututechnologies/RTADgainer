@@ -74,6 +74,10 @@ try {
     $json_xml = @json_encode( $xml );
     mysqli_query( $conn, "INSERT IGNORE INTO unsaved_calls (`phone_number`,`unique_call_id`,`query`,`call_data`,`vendor`) VALUES ('$phonenumber','$unique_call_id','initial save','$json_xml','cn') " );
     $call_save_id = mysqli_insert_id( $conn );
+    $mysql_error_ = mysqli_error( $conn );    
+    put_log( 'mysql error : ' . $mysql_error_ . $call_save_id );
+    echo "INSERT IGNORE INTO unsaved_calls (`phone_number`,`unique_call_id`,`query`,`call_data`,`vendor`) VALUES ('$phonenumber','$unique_call_id','initial save','$json_xml','cn')";
+    echo 'mysql error : ' . $mysql_error_ . $call_save_id;
 } catch ( Exception $e ) {
     put_log( 'Initial call save failure. - ' . $e->getMessage() . ' - ' . mysqli_error( $conn ) );
     $call_save_id = '';
