@@ -72,7 +72,7 @@ try {
 
 try {
     $json_xml = @json_encode( $xml );
-    mysqli_query( $conn, "INSERT INTO unsaved_calls (`phone_number`,`unique_call_id`,`query`,`call_data`,`vendor`) VALUES ('$phonenumber','$unique_call_id','initial save','$json_xml','cn') " );
+    mysqli_query( $conn, "INSERT IGNORE INTO unsaved_calls (`phone_number`,`unique_call_id`,`query`,`call_data`,`vendor`) VALUES ('$phonenumber','$unique_call_id','initial save','$json_xml','cn') " );
     $call_save_id = mysqli_insert_id( $conn );
 } catch ( Exception $e ) {
     put_log( 'Initial call save failure. - ' . $e->getMessage() . ' - ' . mysqli_error( $conn ) );
@@ -300,7 +300,7 @@ if ( !isset( $have_campaign->phone_campaign_id ) || $ROWS_ == 0 ) {
     $u_id = mysqli_query( $conn, "SELECT * FROM unsaved_calls WHERE unique_call_id='$unique_call_id'" );
     $stop = FALSE;
     if ( mysqli_num_rows( $u_id ) == 0 ) {
-        mysqli_query( $conn, "INSERT INTO unsaved_calls (`phone_number`,`unique_call_id`,`query`,`call_data`,`vendor`) VALUES ('$phonenumber','$unique_call_id','$qry_','$json_xml','cn') " );
+        mysqli_query( $conn, "INSERT IGNORE INTO unsaved_calls (`phone_number`,`unique_call_id`,`query`,`call_data`,`vendor`) VALUES ('$phonenumber','$unique_call_id','$qry_','$json_xml','cn') " );
         $mysql_error = mysqli_error( $conn );
     } else {
         mysqli_query( $conn, "UPDATE unsaved_calls SET data_sent=0 WHERE unique_call_id='$unique_call_id'" );
@@ -316,12 +316,12 @@ if ( !isset( $have_campaign->phone_campaign_id ) || $ROWS_ == 0 ) {
     }
     mail(
         'hayashi@adgainer.co.jp', "JPN PHONE CALL NO CAMPAIGN $ignore", "PHONE: $phonenumber CALL DATA SAVED
-		INSERT INTO unsaved_calls (`phone_number`,`unique_call_id`,`query`,`call_data`,`vendor`) VALUES ('$phonenumber','$unique_call_id','$qry_','$json_xml','cn')"
+		INSERT IGNORE INTO unsaved_calls (`phone_number`,`unique_call_id`,`query`,`call_data`,`vendor`) VALUES ('$phonenumber','$unique_call_id','$qry_','$json_xml','cn')"
     );
     put_log( sprintf( 'JPN PHONE CALL NO CAMPAIGN %s', $ignore ) );
     put_log(
         sprintf(
-            "PHONE: %s CALL DATA SAVED: INSERT INTO unsaved_calls (`phone_number`,`unique_call_id`,`query`,`call_data`,`vendor`) VALUES ('%s','%s','%s','%s','cn')", $phonenumber, $phonenumber, $unique_call_id, $qry_, $json_xml
+            "PHONE: %s CALL DATA SAVED: INSERT IGNORE INTO unsaved_calls (`phone_number`,`unique_call_id`,`query`,`call_data`,`vendor`) VALUES ('%s','%s','%s','%s','cn')", $phonenumber, $phonenumber, $unique_call_id, $qry_, $json_xml
         )
     );
     if ( empty( $send_test_data ) ) {
@@ -408,7 +408,7 @@ if ( !empty( $have_campaign->call_notification ) ) {
         $find_record = "SELECT * FROM unsaved_calls WHERE unique_call_id='$unique_call_id'";
         $u_id = mysqli_query( $conn, $find_record );
         if ( mysqli_num_rows( $u_id ) == 0 ) {
-            mysqli_query( $conn, "INSERT INTO unsaved_calls (`phone_number`,`unique_call_id`,`query`,`call_data`,`vendor`) VALUES ('$phonenumber','$unique_call_id','$qry_','$json_xml','cn') " );
+            mysqli_query( $conn, "INSERT IGNORE INTO unsaved_calls (`phone_number`,`unique_call_id`,`query`,`call_data`,`vendor`) VALUES ('$phonenumber','$unique_call_id','$qry_','$json_xml','cn') " );
             $mysql_error = mysqli_error( $conn );
         } else {
             mysqli_query( $conn, "UPDATE unsaved_calls SET data_sent=0 WHERE unique_call_id='$unique_call_id'" );
@@ -420,14 +420,14 @@ if ( !empty( $have_campaign->call_notification ) ) {
         showFunction( __LINE__, __FUNCTION__, __FILE__ );
         mail(
             'hayashi@adgainer.co.jp', "jpn call record not found $ignore", "PHONE: $phonenumber $qry_
-			INSERT INTO unsaved_calls (`phone_number`,`unique_call_id`,`query`,`call_data`,`vendor`) VALUES ('$phonenumber','$unique_call_id','$qry_','$json_xml','cn')
+			INSERT IGNORE INTO unsaved_calls (`phone_number`,`unique_call_id`,`query`,`call_data`,`vendor`) VALUES ('$phonenumber','$unique_call_id','$qry_','$json_xml','cn')
 			$err $mysql_error  $find_record $qry "
         );
         put_log( sprintf( 'jpn call record not found %s', $ignore ) );
         put_log(
             sprintf(
                 "PHONE: %s %s
-				 INSERT INTO unsaved_calls (`phone_number`,`unique_call_id`,`query`,`call_data`,`vendor`) VALUES ('%s','%s','%s','%s','cn')
+				 INSERT IGNORE INTO unsaved_calls (`phone_number`,`unique_call_id`,`query`,`call_data`,`vendor`) VALUES ('%s','%s','%s','%s','cn')
 				 %s %s  %s %s ", $phonenumber, $qry_, $phonenumber, $unique_call_id, $qry_, $json_xml, $err, $mysql_error, $find_record, $qry
             )
         );
@@ -714,7 +714,7 @@ if ( $have_campaign->postback_page && detect_post_sent( $unique_call_id ) == FAL
     }
     $xml_data_ins = mysqli_real_escape_string( $conn, $xml_data );
     $fields_ins = mysqli_real_escape_string( $conn, $fields );
-    $qry = "INSERT INTO postback_responses (account_id,campaign_id,attempts,responses,send_method,URL,query_string,response_code,response_html,variables,XML,try_error)
+    $qry = "INSERT IGNORE INTO postback_responses (account_id,campaign_id,attempts,responses,send_method,URL,query_string,response_code,response_html,variables,XML,try_error)
 			VALUES
 			('" . $have_campaign->account_id . "','" . $have_campaign->campaign_id . "','$attempts','$responses','$send_method','$URL','$p_message','$httpcode','$output','$fields_ins','$xml_data_ins','$error')";
     mysqli_query( $conn, $qry );
