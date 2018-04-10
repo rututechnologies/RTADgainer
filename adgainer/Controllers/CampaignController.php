@@ -36,7 +36,7 @@ class CampaignController extends Controller
      */
     public function details( $campaign_id, $account_id )
     {
-
+        
         $data[ 'campaign' ] = Campaign::where( 'campaign_id', $campaign_id )->first();
         $data[ 'accountData' ] = Account::where( 'account_id', $account_id )->first();
         $user = Auth::user();

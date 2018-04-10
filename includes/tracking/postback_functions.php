@@ -639,7 +639,7 @@ function updateVisitorCallsRow(
         $update_visit_data = $this->db->query( $qry );
         showFunction( __LINE__, __FUNCTION__, __FILE__, $qry );
     } else {
-        require_once '/var/www/html/vendor/autoload.php';
+//        require_once '/var/www/html/vendor/autoload.php';
         global $conn;
         $update_visit_data = mysqli_query( $conn, $qry );
     }

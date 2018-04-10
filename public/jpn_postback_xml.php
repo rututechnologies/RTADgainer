@@ -47,7 +47,7 @@ put_log( $contents, 'NOTICE' );
  * @todo improve management approach.
  */
 include '../includes/connect.php';
-put_log( $db['database'] );
+
 ini_set( 'default_charset', 'utf-8' );
 mysqli_set_charset( $conn, 'utf8' );
 $callstart = $xml->start_timestamp_a;
@@ -371,17 +371,17 @@ include '../includes/tracking/postback_functions.php';
 $campTZ = $have_campaign->timeZone;
 $TZ_offset = get_timezone_offset( 'America/Los_Angeles', $campTZ );
 $jpn_call_time_pst = date( 'Y-m-d H:i:s', strtotime( "-$TZ_offset SECONDS", strtotime( $callstart ) ) );
-echo $jpn_call_time_pst;
+//echo $jpn_call_time_pst;
 $jpn_time_stamp = date( 'Y-m-d H:i:s', strtotime( '-1 MINUTES' ) );
 if ( !empty( $send_test_data ) ) {
     $jpn_time_stamp = date( 'Y-m-d H:i:s', strtotime( '-1 MINUTES', strtotime( $jpn_call_time_pst ) ) );
 }
 $jpn_time_out = date( 'H:i:s', mktime( 0, 0, ($have_campaign->correlation_time * 60 * 60 ), 0, 0, 0 ) );
 $campaign_id = $have_campaign->phone_campaign_id;
-echo "<br> CAMPAIGN ID: $campaign_id <br>";
+//echo "<br> CAMPAIGN ID: $campaign_id <br>";
 $unix_current_date = time();
 $get_id = 0;
-$callstart = date( 'Y-m-d H:i:s', strtotime( $callstart ) );
+$callstart = date( 'Y-m-d H:i:s', strtotime( $callstart ) );put_log($have_campaign->tracking_campaign_type, 'debug');
 if ( $have_campaign->tracking_campaign_type == 'offline' ) {
     $caller_state = '';
     $caller_country = 'Japan';

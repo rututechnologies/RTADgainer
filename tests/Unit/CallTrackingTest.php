@@ -1,9 +1,8 @@
 <?php
 namespace Tests\Unit;
 
+use Illuminate\Support\Facades\Log;
 use Tests\TestCase;
-use Illuminate\Foundation\Testing\DatabaseMigrations;
-use Illuminate\Foundation\Testing\DatabaseTransactions;
 
 /**
  * @group call_tracking
@@ -18,6 +17,7 @@ class CallTracking extends TestCase
      */
     public function testCallNoteRequest()
     {
+        $rand = rand(1, 100000);
         $xml = '<?xml version="1.0" encoding="UTF-8"?> 
                     <root> 
                         <cnt_caller_number>09025914024</cnt_caller_number> 
@@ -25,8 +25,8 @@ class CallTracking extends TestCase
                         <displayed_number>05058940494</displayed_number> 
                         <client_number>0783253151</client_number> 
                         <hangup_code>1</hangup_code> 
-                        <uuid_a>6086243a-a9e9-4fba-9422-2c70c86f6cc1</uuid_a> 
-                        <cnt_number>123456123123123</cnt_number> 
+                        <uuid_a>6086243a-a9e9-4fba-9422-2c70c86f6cc3'.$rand.'</uuid_a> 
+                        <cnt_number>08006009805</cnt_number> 
                         <cnt_caller_number_hash>3ed93eeebd78b4e1a9fc56d70ab7e27e</cnt_caller_number_hash> 
                         <clientcd>42386</clientcd> 
                         <clientname> APC&#65288;&#26085;&#21521;&#65289;&#22618;&#30000;&#36786;&#22580;&#19977;&#23470;&#26412;&#24215; </clientname> 
@@ -57,7 +57,7 @@ class CallTracking extends TestCase
 //        $response = $this->get( '/jpn_postback_xml.php' );
 //        $response->assertStatus( 200 );
 //        $this->assertNotEmpty( $output );
-        error_log($output);
+        Log::debug($output);
         $this->assertEmpty( $output );
     }
 
