@@ -54,7 +54,7 @@
             <tr>
                 <td>Traffic Tracking Type</td>
                 <td>
-                    <select name="tracking_type" class="form-control" {{$disabled}}>
+                    <select id="tracking_type" name="tracking_type" class="form-control" {{$disabled}}>
                         <option value="0">OFF</option>
                         <?php if ( (isset( $accountData->status ) && $accountData->status != "TEMP") || $level != 3 ) { ?>
                             <option value="P" selected>PPC</option>
