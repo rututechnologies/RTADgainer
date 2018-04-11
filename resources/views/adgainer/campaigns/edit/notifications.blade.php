@@ -123,6 +123,7 @@
             <td><label>Recieve Text Messages After Phone Calls (USA)</label></td>
             <td>
                 <div class="checkbox">
+                    <input type="hidden" name="text_notify" value="0">
                     <label><input type="checkbox" name="text_notify" value="1" style="width:auto" {{ ($campaignDetails->text_notify)? 'checked' : '' }} /> Yes</label>
                 </div>
                 <label for="">Provider</label>
