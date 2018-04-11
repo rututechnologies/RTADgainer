@@ -248,6 +248,7 @@
                 <td>Email Submission Form Tracking</td>
                 <td>
                     @if ($accountData->status == "FULL")
+                    <input type="hidden" name="email_tracking" value="0" />
                     Yes <input type="checkbox" name="email_tracking" value="1" {{ ($campaignDetails->email_tracking == 1) ? 'checked' : ''}}/>
                     @else
                     Only for Full Accounts
