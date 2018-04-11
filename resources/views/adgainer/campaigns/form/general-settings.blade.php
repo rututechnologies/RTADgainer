@@ -229,7 +229,10 @@
             </tr>
             <tr>
                 <td>Email Submission Form Tracking</td>
-                <td>Yes <input type="checkbox" name="email_tracking" value="1" checked style="width:auto"/></td>
+                <td>
+                    <input type="hidden" name="email_tracking" value="0" />                
+                    Yes <input type="checkbox" name="email_tracking" value="1" checked style="width:auto"/>
+                </td>
             </tr>
 
             <tr>
