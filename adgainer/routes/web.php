@@ -48,9 +48,13 @@ Route::group( [ 'middleware' => [ 'auth' ], 'prefix' => 'app' ], function () {
 } );
 
 // tracking
-Route::get( 'incomingdata/getCode', [ 'uses' => 'IncomingDataController@getCode' ] );
-Route::get( 'incomingdata/tagManager', [ 'uses' => 'IncomingDataController@tagManager' ] );
+Route::get( 'adgainer/incomingdata/getCode', [ 'uses' => 'IncomingDataController@getCode' ] );
+Route::get( 'adgainer/index.php/incomingdata/getCode', [ 'uses' => 'IncomingDataController@getCode' ] );
+Route::get( 'adgainer/incomingdata/tagManager', [ 'uses' => 'IncomingDataController@tagManager' ] );
+Route::get( 'adgainer/index.php/incomingdata/tagManager', [ 'uses' => 'IncomingDataController@tagManager' ] );
 Route::get( 'incomingdata', [ 'uses' => 'IncomingDataController@index' ] );
+Route::get( 'adgainer/incomingdata', [ 'uses' => 'IncomingDataController@index' ] );
+Route::get( 'adgainer/index.php/incomingdata', [ 'uses' => 'IncomingDataController@index' ] );
 
 // tracking test
 Route::get( 'tracking/test', function () {
