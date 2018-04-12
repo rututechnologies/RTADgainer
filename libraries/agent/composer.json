@@ -1,0 +1,21 @@
+{
+    "name": "thytanium/agent",
+    "description": "User-Agent class ported from CodeIgniter to Laravel",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Alejandro Gonzalez",
+            "email": "thytanium@gmail.com"
+        }
+    ],
+    "require": {
+        "php": ">=5.4.0",
+        "illuminate/support": "5.0.*"
+    },
+    "autoload": {
+        "psr-4": {
+            "Thytanium\\Agent\\": "src/Thytanium/Agent"
+        }
+    },
+    "minimum-stability": "stable"
+}

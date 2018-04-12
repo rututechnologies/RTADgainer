@@ -10,7 +10,6 @@
 
 <div class="wrapper border-bottom white-bg page-heading">
     <h1 class="module_heading">
-        <!--TODO: campaign name here-->
         <span>Campaign Management - {{$accountData->accountName}}</span>
     </h1>
     <ol class="breadcrumb" style="padding-bottom: 20px;">
@@ -352,7 +351,7 @@ INSTALL JQUERY IF NEEDED
 
 <script type="text/javascript" src="' . url( '/' ) . '/tracking/getURLvars.js"></script> 
 <script>
-	document.write(unescape(\'<script type="text/javascript" src="' . url( '/' ) . '/incomingdata/getCode/?campaign_id=' . $campaign->campaign_id . '&\'+ vars +\'&referrer=\'+ referrer +\'"></scr\'+\'ipt>\')); 
+	document.write(unescape(\'<script type="text/javascript" src="' . url( '/' ) . '/incomingdata/getCode/?campaign_id=' . $campaign->campaign_id . '&\'+ vars +\'&referrer=\'+ referrer +\'"></script>\')); 
 </script>
 <div id="tagManager_DIV" style="display:none"></div></textarea></div>'
                 ?>

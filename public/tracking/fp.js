@@ -1255,6 +1255,7 @@ function cb(base_url, campaign_id, vars, referrer) {
 
         var load = function (data) {
             var rows = [];
+            console.log(data);
             for (var i = 0; i < data.scripts.length; i++) {
                 rows.push('<script type="text/javascript" async src="' + data.scripts[i].script + '" />');
             }

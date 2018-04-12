@@ -56,7 +56,7 @@ class RouteServiceProvider extends ServiceProvider
             ->group( base_path( 'routes/web.php' ) );
 
         Route::middleware( 'web' )
-            ->prefix( 'app' )
+//            ->prefix( 'app' )
             ->namespace( 'Adgainer\Controllers' )
             ->group( base_path( 'adgainer/routes/web.php' ) );
     }
