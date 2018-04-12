@@ -48,9 +48,9 @@ Route::group( [ 'middleware' => [ 'auth' ], 'prefix' => 'app' ], function () {
 } );
 
 // tracking
-Route::get( 'incomingdata/getCode', [ 'uses' => 'IncomingdataController@getCode' ] );
-Route::get( 'incomingdata/tagManager', [ 'uses' => 'IncomingdataController@tagManager' ] );
-Route::get( 'incomingdata', [ 'uses' => 'IncomingdataController@index' ] );
+Route::get( 'incomingdata/getCode', [ 'uses' => 'IncomingDataController@getCode' ] );
+Route::get( 'incomingdata/tagManager', [ 'uses' => 'IncomingDataController@tagManager' ] );
+Route::get( 'incomingdata', [ 'uses' => 'IncomingDataController@index' ] );
 
 // tracking test
 Route::get( 'tracking/test', function () {
