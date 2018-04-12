@@ -351,7 +351,7 @@ INSTALL JQUERY IF NEEDED
 
 <script type="text/javascript" src="' . url( '/' ) . '/tracking/getURLvars.js"></script> 
 <script>
-	document.write(unescape(\'<script type="text/javascript" src="' . url( '/' ) . '/incomingdata/getCode/?campaign_id=' . $campaign->campaign_id . '&\'+ vars +\'&referrer=\'+ referrer +\'"></scr'+'ipt>\')); 
+	document.write(unescape(\'<script type="text/javascript" src="' . url( '/' ) . '/incomingdata/getCode/?campaign_id=' . $campaign->campaign_id . '&\'+ vars +\'&referrer=\'+ referrer +\'"></scr\'+\'ipt>\')); 
 </script>
 <div id="tagManager_DIV" style="display:none"></div></textarea></div>'
                 ?>
