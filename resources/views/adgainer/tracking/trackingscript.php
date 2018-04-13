@@ -1409,13 +1409,13 @@ if ( $write_divs == 1 ) {
 								var src = jQuery(this).attr("src");
 								var onclick = jQuery(this).attr("onclick");
                                                                 // REVIEW: trim
-								var text_ = jQuery(this).text().trim();
+								var text_ = jQuery(this).html().trim();
 
 								//replace vanity
 								var vanityFind = "' . $have_campaign->vanity_to_replace . '";
                                                                     // REVIEW: replace text
 								if (text_.length > 0 && text_ == findNum) {
-									jQuery(this).text(trackingNumber);
+									jQuery(this).html(trackingNumber);
 								}
 								//if (text_.length > 0 && vanityFind == text_ && vanityFind.length > 0) {
 								//	jQuery(this).text(trackingNumber);
