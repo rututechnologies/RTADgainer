@@ -1275,6 +1275,12 @@ function cb(base_url, campaign_id, vars, referrer) {
             };
         } else {
             jQuery.support.cors = true;
+            console.log(base_url + 'incomingdata/tagManager');
+            console.log({
+                campaign_id: campaign_id,
+                vars: vars,
+                referrer: referrer
+            });
             jQuery.post(base_url + 'incomingdata/tagManager', {
                 campaign_id: campaign_id,
                 vars: vars,
