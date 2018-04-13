@@ -13,5 +13,7 @@ class VerifyCsrfToken extends BaseVerifier
      */
     protected $except = [
         //
+        'adgainer/incomingdata/*',
+        'adgainer/index.php/incomingdata/*'
     ];
 }
