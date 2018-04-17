@@ -1,5 +1,5 @@
 <?php
-if ( !function_exists( 'base_url' ) ) {
+if ( ! function_exists( 'base_url' ) ) {
 
     function base_url( $url )
     {
@@ -7,7 +7,7 @@ if ( !function_exists( 'base_url' ) ) {
     }
 
 }
-if ( !function_exists( 'site_url' ) ) {
+if ( ! function_exists( 'site_url' ) ) {
 
     function site_url( $url )
     {
@@ -16,7 +16,7 @@ if ( !function_exists( 'site_url' ) ) {
 
 }
 
-if ( !function_exists( 'getDomain' ) ) {
+if ( ! function_exists( 'getDomain' ) ) {
     function getDomain( $domain )
     {
 
@@ -42,7 +42,7 @@ if ( !function_exists( 'getDomain' ) ) {
 
 }
 
-if ( !function_exists( 'checkmobile' ) ) {
+if ( ! function_exists( 'checkmobile' ) ) {
 
     function checkmobile()
     {
@@ -128,11 +128,12 @@ if ( !function_exists( 'checkmobile' ) ) {
 
 }
 
-if ( !function_exists( 'get_ip_address' ) ) {
+if ( ! function_exists( 'get_ip_address' ) ) {
     function get_ip_address()
     {
         $ip_address = getenv( 'HTTP_X_FORWARDED_FOR' ) ? getenv( 'HTTP_X_FORWARDED_FOR' ) : getenv( 'REMOTE_ADDR' );
         sscanf( $ip_address, '%[^,]', $ip_address );
+
         return $ip_address;
     }
 

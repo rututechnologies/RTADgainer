@@ -20,6 +20,7 @@
 
         <script src="//ajax.googleapis.com/ajax/libs/jquery/2.2.2/jquery.min.js"></script>
         <script src="http://localhost:8000/incomingdata?campaign_id=2b15b046ee8e172fc398eedd0efe22be&vars=&referrer=%22"></script>
+        
         <!--<script type="text/javascript" src="http://localhost:8000/tracking/getURLvars.js"></script> 
         <script>
                 document.write(unescape('<script type="text/javascript" src="http://localhost:8000/incomingdata/getCode/?campaign_id=2b15b046ee8e172fc398eedd0efe22be&'+ vars +'&referrer='+ referrer +'"></scr'+'ipt>')); 

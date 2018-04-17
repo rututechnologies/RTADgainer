@@ -38,6 +38,7 @@ class IncomingDataController extends Controller
         if ( empty( $data[ 'numbers_to_replace' ] ) || empty( $data[ 'tracking_number' ] ) ) {
             exit;
         }
+        echo "\n//".get_ip_address() . "\n";
         return response()
                 ->view( "{$this->viewDirTracking}.trackingscript", $data )
                 ->header( 'content-type', 'application/x-javascript' );
