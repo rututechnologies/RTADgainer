@@ -1,7 +1,7 @@
 <div class="row">
     <div class="col-md-6">
         <table class="table-form">
-            <tr>
+            <!-- <tr>
                 <td><label>Call Tracking Medium</label></td>
                 <td><select class="form-control" name="tracking_campaign_type" id="tracking_campaign_type">
                         <option value="online">Online - Web</option>
@@ -9,7 +9,7 @@
                     </select>
                     <input type="hidden" name="single_to_many_numbers" value="NO" />
                 </td>
-            </tr>
+            </tr> -->
             <tr>
                 <td><label>Default Phone Display Format</label></td>
                 <td>
