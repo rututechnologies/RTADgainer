@@ -150,9 +150,8 @@
 
         }
 
-        var numberToReplace = '050-5834-8600';
-        var numberToReplace = '05058348600';
-        var trackingNumber = '123456798';
+        var numberToReplace = '{{$numbers_to_replace}}';
+        var trackingNumber = '{{$tracking_number}}';
         var replaceNumbers = numberToReplace.split(",");
         for (var x = 0; x < replaceNumbers.length; x++) {
             var replaceNumber = replaceNumbers[x];
