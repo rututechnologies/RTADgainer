@@ -30,7 +30,8 @@
     ],
     "files": [
       "app/Helpers/Navigation.php",
-      "app/Helpers/Url.php"
+      "app/Helpers/Url.php",
+      "app/Helpers/Date.php"
     ],
     "psr-4": {
       "App\\": "app/",
