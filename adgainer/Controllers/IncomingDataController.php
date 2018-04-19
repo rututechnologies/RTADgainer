@@ -41,7 +41,7 @@ class IncomingDataController extends Controller
 
         // get visitor and validate
         $visitor = get_ip_address();
-//        $visitor = '1.1.1.1';
+//        $visitor = '1.1.1.3';
         $this->validateIP( $visitor, $campaign );
 
         $data[ 'tracking_number' ] = $this->getTrackingNumber( $campaign, $visitor ) ?: $campaign->default_number;
@@ -147,6 +147,80 @@ class IncomingDataController extends Controller
     {
         $campaign_id = $campaign->campaign_id;
         $tracking_number = '';
+
+        // get phone number by visitor
+        $phoneTimeUse = DB::table( 'phone_time_use' )
+            ->select( 'phone_number' )
+            ->where( 'campaign_id', $campaign_id )
+            ->where( 'ip', $visitor )
+            ->orderBy( 'id', 'DESC' )
+            ->first();
+        if ( $phoneTimeUse && $phoneTimeUse->phone_number !== '' ) {
+            // check if phone_number is exist and usable
+            $phone_number_inventory = DB::table( 'phone_number_inventory' )
+                ->select( 'useable' )
+                ->where( 'campaign_id', $campaign_id )
+                ->where( 'phone_number', $phoneTimeUse->phone_number )
+                ->where( 'useable', '1' )
+                ->first();
+            if ( $phone_number_inventory ) {
+                $phone_number = $phoneTimeUse->phone_number;
+                return $phone_number;
+            }
+        }
+
+        // new visitor
+        // get active and useable number
+        $phone_number_inventory = DB::table( 'phone_number_inventory' )
+            ->select( 'phone_number' )
+            ->where( 'campaign_id', $campaign_id )
+            ->where( 'active', '0' )
+            ->where( 'useable', '1' )
+            ->orderBy( 'id', 'ASC' )
+            ->first();
+        // any active number
+        if ( $phone_number_inventory && $phone_number_inventory->phone_number ) {
+            $tracking_number = $phone_number_inventory->phone_number;
+            // update phone number to active
+            DB::table( 'phone_number_inventory' )
+                ->where( 'campaign_id', $campaign_id )
+                ->where( 'phone_number', $phone_number_inventory->phone_number )
+                ->update( [ 'active' => '1' ] );
+        } else {
+            // no active number
+            DB::table( 'phone_number_inventory' )
+                ->where( 'campaign_id', $campaign_id )
+                ->update( [ 'active' => '0' ] );
+            // get active and useable number
+            $phone_number_inventory = DB::table( 'phone_number_inventory' )
+                ->select( 'phone_number' )
+                ->where( 'campaign_id', $campaign_id )
+                ->where( 'active', '0' )
+                ->where( 'useable', '1' )
+                ->orderBy( 'id', 'ASC' )
+                ->first();
+            $tracking_number = $phone_number_inventory->phone_number;
+
+            // update phone number to active
+            DB::table( 'phone_number_inventory' )
+                ->where( 'campaign_id', $campaign_id )
+                ->where( 'phone_number', $phone_number_inventory->phone_number )
+                ->update( [ 'active' => '1' ] );
+        }
+
+        // update phone_time_use
+        if ( $tracking_number !== '' ) {
+            $insert_raw = "INSERT IGNORE INTO phone_time_use (phone_number, account_id, campaign_id, ip) VALUES ('$tracking_number', '$campaign->account_id', '$campaign_id','$visitor')";
+            DB::select( $insert_raw );
+        }
+
+        return $tracking_number;
+    }
+
+    public function getTrackingNumber_( $campaign, $visitor )
+    {
+        $campaign_id = $campaign->campaign_id;
+        $tracking_number = '';
         // get phone_time_use by ip
         $unix_current_date = time(); // today
 
@@ -223,7 +297,9 @@ class IncomingDataController extends Controller
 
     public function validateIP( $visitor, $campaign_id )
     {
-        
+        if ( empty( $visitor ) ) {
+            exit;
+        }
     }
 
 }
